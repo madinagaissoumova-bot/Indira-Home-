@@ -33,15 +33,15 @@ La cliente peut :
 
 La cliente peut :
 
-- Voir la liste des produits disponibles.
+- Voir la liste des produits publies.
 - Parcourir les produits par categorie.
 - Parcourir les produits par sous-categorie.
 - Voir les produits d'une categorie.
 - Voir les produits d'une sous-categorie.
-- Voir si un produit est disponible ou indisponible.
+- Voir clairement si un produit est epuise.
 - Voir le prix d'un produit en roubles.
 - Voir les photos d'un produit.
-- Lire la description d'un produit.
+- Ouvrir la fiche produit pour lire la description.
 
 ### Categories et sous-categories de depart
 
@@ -65,7 +65,7 @@ La cliente peut :
 - Rechercher un produit par son nom.
 - Trouver un produit en naviguant dans les categories.
 - Trouver un produit en naviguant dans les sous-categories.
-- Reperer rapidement les produits disponibles.
+- Reperer rapidement les produits en stock.
 - Revenir au catalogue apres avoir consulte un produit.
 
 ### Preparer une commande
@@ -73,7 +73,7 @@ La cliente peut :
 La cliente peut :
 
 - Preparer une commande sans creer de compte et sans se connecter.
-- Ajouter un produit disponible au panier.
+- Ajouter un produit en stock au panier.
 - Ajouter plusieurs produits au panier.
 - Modifier la quantite d'un produit dans le panier.
 - Retirer un produit du panier.
@@ -90,7 +90,8 @@ La cliente peut :
 - Choisir un mode de paiement hors ligne : paiement a la livraison ou virement apres confirmation.
 - Valider la commande sans paiement en ligne.
 - Recevoir une confirmation que la commande a ete envoyee.
-- Voir que la boutique la contactera par telephone ou WhatsApp pour confirmer la commande au +7 988 906-41-06.
+- Voir que la boutique la contactera par telephone ou WhatsApp pour confirmer la commande.
+- Voir le numero WhatsApp de la boutique : +7 988 906-41-06.
 
 ### Apres la commande
 
@@ -99,6 +100,8 @@ La cliente peut :
 - Attendre le contact de la boutique.
 - Confirmer ou ajuster la commande avec la boutique.
 - Payer a la livraison ou par virement selon ce qui est convenu avec la boutique.
+
+La cliente ne peut pas annuler elle-meme une commande validee depuis le site. Elle doit contacter la boutique si elle veut demander une annulation ou une modification.
 
 ## Fonctions admin
 
@@ -109,6 +112,7 @@ L'admin peut :
 - Se connecter a l'espace admin.
 - Se deconnecter de l'espace admin.
 - Acceder aux fonctions de gestion uniquement apres connexion.
+- Voir un tableau de bord central apres connexion.
 
 ### Gerer les produits
 
@@ -122,7 +126,6 @@ L'admin peut :
 - Ajouter ou modifier la description d'un produit.
 - Ajouter ou modifier le prix en roubles.
 - Ajouter ou modifier les photos d'un produit.
-- Definir si un produit est disponible ou indisponible.
 - Definir la quantite en stock d'un produit.
 - Ajouter du stock a un produit.
 - Retirer du stock a un produit.
@@ -144,7 +147,6 @@ L'admin peut :
 - Organiser les produits par categorie.
 - Organiser les produits par sous-categorie.
 - Ajouter plus tard de nouvelles categories si la boutique evolue.
-- Masquer une categorie ou sous-categorie si elle contient encore des produits mais ne doit plus etre visible.
 
 ### Gerer le stock
 
@@ -154,7 +156,8 @@ L'admin peut :
 - Ajouter une quantite au stock existant.
 - Retirer une quantite du stock existant.
 - Modifier manuellement la quantite disponible.
-- Voir si un produit est en stock ou indisponible.
+- Voir si un produit est en stock ou epuise.
+- Le stock determine si un produit est commandable ou epuise.
 - Corriger le stock apres une erreur, une modification de commande, une annulation ou un reassort.
 - Voir le stock diminuer automatiquement lorsqu'une commande est validee sur le site.
 - Exemple : si le stock d'un produit est N et qu'une cliente commande 1 unite, le stock devient N - 1.
@@ -176,16 +179,7 @@ L'admin peut :
 - Marquer une commande comme confirmee.
 - Marquer une commande comme livree.
 - Marquer une commande comme annulee.
-- Contacter la cliente par telephone ou WhatsApp avec le numero +7 988 906-41-06 pour confirmer la commande.
-
-### Gerer la boutique
-
-L'admin peut :
-
-- Gerer les informations principales de la boutique.
-- Verifier que les produits visibles sont corrects.
-- Garder le catalogue a jour.
-- Adapter le catalogue si de nouvelles categories sont ajoutees plus tard.
+- Contacter la cliente par telephone ou WhatsApp avec le numero renseigne dans la commande.
 
 ## Fonctions hors V1
 
@@ -204,4 +198,4 @@ Ces fonctions ne sont pas prevues dans la premiere version, mais peuvent etre aj
 
 ## Informations connues
 
-- Numero de telephone / WhatsApp pour confirmer les commandes : +7 988 906-41-06.
+- Numero de telephone / WhatsApp public de la boutique pour confirmer les commandes : +7 988 906-41-06.

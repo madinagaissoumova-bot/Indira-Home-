@@ -13,5 +13,17 @@ Chaque fiche devra decrire :
 - Cas speciaux
 - Regles metier
 
-## A remplir apres la Function Map
+Les fiches sont redigees progressivement, une fonctionnalite a la fois.
 
+## Fiches creees
+
+- `catalogue-produits.md`
+- `categories-sous-categories.md`
+- `fiche-produit.md`
+- `panier.md`
+- `validation-commande.md`
+- `admin-produits.md`
+- `admin-stock.md`
+- `admin-commandes.md`
+- `admin-auth.md`
+- `admin-dashboard.md`
