@@ -140,6 +140,23 @@ En tant que cliente, je veux envoyer ma commande sans creer de compte et sans pa
 - La commande est creee sans paiement en ligne.
 - Le message de confirmation indique que la boutique contactera la cliente.
 
+## Cliente - voir la confirmation
+
+### Story
+
+En tant que cliente, je veux voir une confirmation apres l'envoi de ma commande, afin de savoir que la boutique l'a bien recue.
+
+### Verification
+
+- La cliente arrive sur `/checkout/confirmation` apres une commande reussie.
+- La page indique que la commande a ete envoyee.
+- La page affiche le numero WhatsApp public de la boutique : +7 988 906-41-06.
+- La page propose de revenir au catalogue.
+- La page ne propose pas de paiement en ligne.
+- La page ne propose pas d'annulation cliente.
+- La page n'affiche pas l'adresse complete ou le telephone de la cliente.
+- Recharger la page ne cree pas une nouvelle commande.
+
 ## Cliente - livraison hors zone V1
 
 ### Story
@@ -149,7 +166,8 @@ En tant que cliente, je veux comprendre si ma zone n'est pas livree, afin de ne 
 ### Verification
 
 - Le formulaire demande une adresse ou zone en Republique tchetchene.
-- Une zone hors perimetre V1 bloque la validation si elle est detectee.
+- Une zone hors perimetre V1 bloque la validation si elle est clairement detectee.
+- Une zone ambigue mais non vide peut etre recue puis confirmee manuellement par la boutique.
 - Le message indique que la livraison V1 est limitee a la Republique tchetchene.
 
 ## Admin - connexion
@@ -191,6 +209,7 @@ En tant qu'admin, je veux creer et publier un produit complet, afin qu'il appara
 - Un produit publie apparait cote cliente.
 - Un produit masque n'apparait plus cote cliente.
 - Un produit supprime n'apparait plus cote cliente.
+- Un produit deja present dans une commande validee ne peut pas etre supprime definitivement en V1.
 
 ## Admin - gerer categories et sous-categories
 
@@ -257,4 +276,5 @@ En tant qu'admin, je veux changer le statut d'une commande, afin de suivre son t
 - Le stock diminue uniquement apres validation reussie d'une commande.
 - Une validation echouee ne diminue pas le stock.
 - Les prix d'une commande validee restent figes meme si le prix produit change ensuite.
-- Une commande reste lisible meme si un produit est masque ou supprime plus tard.
+- Une commande reste lisible meme si un produit est masque plus tard.
+- Un produit deja present dans une commande validee ne peut pas etre supprime definitivement en V1.

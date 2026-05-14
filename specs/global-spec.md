@@ -43,13 +43,17 @@ Le site resout ce probleme en centralisant les produits dans un catalogue access
 
 ## Perimetre global
 
-La premiere version concerne une boutique unique, avec une offre principalement orientee maison : vaisselle, electromenager, decoration et objets du quotidien.
+La premiere version doit rester simple : montrer les produits disponibles et permettre a une cliente d'envoyer une commande sans creer de compte et sans paiement en ligne.
+
+Elle concerne une boutique unique, avec une offre principalement orientee maison : vaisselle, electromenager, decoration et objets du quotidien.
 
 Le site doit rester assez souple pour permettre l'ajout d'autres categories plus tard.
 
 Le projet n'a pas vocation a devenir une marketplace avec plusieurs vendeurs. Il est pense pour une seule boutique : Indira Home.
 
 Le paiement en ligne n'est pas necessaire dans la premiere version. Il pourra etre ajoute plus tard si le projet evolue.
+
+La V1 doit aussi inclure un espace admin complet pour gerer les produits, les categories, le stock et les commandes.
 
 ## Nom de la boutique
 

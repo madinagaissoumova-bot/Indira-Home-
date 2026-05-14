@@ -28,6 +28,14 @@ Cette fonctionnalite ne gere pas encore le panier en detail. Elle couvre uniquem
 | Statut de publication | Produit publie, masque ou brouillon | Oui |
 | Ordre d'affichage | Priorite manuelle pour afficher certains produits avant d'autres | Non |
 
+## Images produits V1
+
+Pour la V1, les photos produit peuvent etre renseignees sous forme d'URLs dans l'espace admin.
+
+Chaque produit publie doit avoir au moins une URL d'image valide. La premiere image sert de photo principale, sauf si un champ specifique de photo principale est ajoute plus tard.
+
+Un vrai upload d'images pourra etre ajoute apres la V1 si necessaire.
+
 ## Informations visibles dans le catalogue
 
 Chaque produit affiche dans le catalogue doit montrer au minimum :
@@ -157,11 +165,12 @@ Les messages visibles par les clientes devront etre affiches en russe sur le sit
 - Un produit en stock ne doit pas afficher de label "disponible" dans le catalogue client.
 - Un produit epuise doit afficher un label clair, par exemple "indisponible" ou "produit epuise".
 - Un produit epuise doit avoir une action de commande desactivee ou impossible.
-- L'apparence visuelle d'un produit epuise, par exemple carte grisee, sera definie dans `visual-rules.md`.
+- L'apparence visuelle d'un produit epuise, par exemple carte grisee, est definie dans `visual-rules.md`.
 - Si un produit est masque par l'admin, il ne doit pas apparaitre dans le catalogue client.
 - Un produit masque est different d'un produit epuise : un produit masque est invisible pour la cliente ; un produit epuise peut etre visible mais ne peut pas etre commande.
 - Si une categorie est masquee, les produits de cette categorie ne doivent pas etre accessibles depuis le catalogue client.
 - Si une sous-categorie est masquee, les produits de cette sous-categorie ne doivent pas etre accessibles depuis cette sous-categorie.
+- Si une categorie ou sous-categorie est masquee, les produits associes ne doivent pas etre accessibles cote cliente, meme via une URL produit directe.
 - Si un produit appartient a une categorie active mais a une sous-categorie masquee, il ne doit pas apparaitre dans cette sous-categorie.
 - Si une categorie ne contient aucun produit visible, elle peut etre masquee du catalogue client.
 - Si une sous-categorie ne contient aucun produit visible, elle peut etre masquee du catalogue client.
@@ -180,7 +189,7 @@ La cliente doit pouvoir :
 - Ajouter un produit en stock au panier depuis le catalogue ou depuis la fiche produit.
 - Revenir facilement au catalogue apres avoir consulte un produit.
 
-Les details visuels seront definis plus tard dans `visual-rules.md`.
+Les details visuels sont definis dans `visual-rules.md`.
 
 ## Regles metier
 

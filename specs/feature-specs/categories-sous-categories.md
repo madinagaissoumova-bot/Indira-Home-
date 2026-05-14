@@ -118,6 +118,7 @@ Les messages visibles par les clientes doivent etre en russe. Les messages admin
 - Une categorie vide peut etre masquee automatiquement ou rester visible selon le choix de l'admin.
 - Une sous-categorie vide peut etre masquee automatiquement ou rester visible selon le choix de l'admin.
 - Supprimer une categorie doit etre impossible si elle contient des produits ou des sous-categories avec produits.
+- Si une categorie contient seulement des sous-categories vides, l'implementation peut demander de supprimer ou de deplacer ces sous-categories avant de supprimer la categorie.
 - Supprimer une sous-categorie doit etre impossible si elle contient des produits.
 
 ## Regles metier

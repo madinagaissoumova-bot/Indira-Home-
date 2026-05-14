@@ -41,6 +41,8 @@ Cette fiche garde seulement la quantite initiale necessaire pour publier un prod
 
 Le statut epuise n'est pas un statut manuel de publication. Il est calcule automatiquement a partir du stock.
 
+Le statut `archive` n'est pas obligatoire en V1. Un produit retire durablement mais deja present dans une commande doit etre masque, et sa suppression definitive doit etre bloquee.
+
 ## Actions possibles
 
 L'admin peut :
@@ -111,6 +113,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Un produit masque n'apparait pas cote cliente, meme s'il a du stock.
 - Un produit supprime ne doit plus apparaitre cote cliente.
 - Si un produit est supprime alors qu'il existe dans un panier client, la validation de ce panier doit etre bloquee.
+- Si un produit existe dans une commande validee, la suppression definitive doit etre bloquee. L'admin doit le masquer si elle veut le retirer du catalogue.
 - Si le prix est modifie, les paniers non valides doivent utiliser le nouveau prix avant validation.
 - Les commandes deja validees conservent les prix enregistres au moment de la validation.
 - Les cas de stock 0, produit epuise et reassort sont traites dans `admin-stock.md`.
@@ -124,6 +127,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Masquer un produit est different de supprimer un produit.
 - Masquer est recommande si l'admin veut retirer temporairement un produit du site client.
 - Supprimer est une action definitive ou exceptionnelle.
+- En V1, masquer est aussi utilise pour retirer durablement un produit qui a deja existe dans des commandes.
 - Les textes visibles par les clientes doivent etre en russe.
 
 ## Critères d'acceptation
@@ -137,6 +141,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - L'admin peut masquer un produit.
 - L'admin peut remettre visible un produit masque.
 - L'admin peut supprimer un produit apres confirmation.
+- L'admin ne peut pas supprimer definitivement un produit deja present dans une commande validee.
 - Un produit masque n'apparait pas cote cliente.
 - Un produit avec un stock invalide ne peut pas etre publie.
 - Les commandes deja validees ne changent pas si l'admin modifie le prix du produit ensuite.

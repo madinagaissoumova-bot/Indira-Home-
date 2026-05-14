@@ -12,19 +12,23 @@ Construire un site e-commerce simple pour une boutique unique :
 - Validation de commande sans paiement en ligne.
 - Espace admin protege pour gerer produits, categories, stock et commandes.
 
+La V1 inclut le parcours cliente complet et l'admin complet. Le developpement peut rester progressif, mais le projet n'est considere complet que lorsque les deux parties fonctionnent.
+
 ## Pages publiques
 
 | Page / route | Role |
 | --- | --- |
 | Accueil / `/` | Afficher les produits publies, les categories, la recherche et les filtres principaux |
-| Categorie / `/categorie/:slug` | Afficher les produits d'une categorie visible |
-| Sous-categorie / `/sous-categorie/:slug` | Afficher les produits d'une sous-categorie visible |
-| Fiche produit / `/produit/:slug` | Afficher les details d'un produit publie et commandable ou epuise |
-| Panier / `/panier` | Afficher les produits ajoutes, les quantites, les sous-totaux et le total |
-| Validation commande / `/commande/valider` | Collecter les informations cliente et envoyer la commande |
-| Confirmation commande / `/commande/confirmation` | Confirmer que la commande a ete envoyee |
+| Categorie / `/category/:slug` | Afficher les produits d'une categorie visible |
+| Sous-categorie / `/subcategory/:slug` | Afficher les produits d'une sous-categorie visible |
+| Fiche produit / `/product/:slug` | Afficher les details d'un produit publie dans une categorie et sous-categorie visibles, commandable ou epuise |
+| Panier / `/cart` | Afficher les produits ajoutes, les quantites, les sous-totaux et le total |
+| Validation commande / `/checkout` | Collecter les informations cliente et envoyer la commande |
+| Confirmation commande / `/checkout/confirmation` | Confirmer que la commande a ete envoyee |
 
 Toutes les pages publiques doivent afficher les textes visibles en russe.
+
+Les routes publiques utilisent des segments techniques en anglais pour rester simples et compatibles avec le code Next.js. Les textes visibles, titres, boutons et messages restent en russe cote cliente.
 
 ## Pages admin
 
@@ -32,12 +36,12 @@ Toutes les pages publiques doivent afficher les textes visibles en russe.
 | --- | --- |
 | Connexion admin / `/admin/login` | Authentifier l'admin |
 | Tableau de bord admin / `/admin` | Donner acces aux zones produits, categories, stock et commandes |
-| Produits / `/admin/produits` | Lister, rechercher, creer, modifier, masquer, publier ou supprimer les produits |
-| Edition produit / `/admin/produits/:id` | Modifier les informations produit, photos, prix, categorie, description et statut |
+| Produits / `/admin/products` | Lister, rechercher, creer, modifier, masquer, publier ou supprimer les produits |
+| Edition produit / `/admin/products/:id` | Modifier les informations produit, photos, prix, categorie, description et statut |
 | Categories / `/admin/categories` | Gerer les categories et sous-categories |
 | Stock / `/admin/stock` | Voir et ajuster les quantites disponibles |
-| Commandes / `/admin/commandes` | Lister les commandes et suivre leur statut |
-| Detail commande / `/admin/commandes/:id` | Lire les informations de commande, contacter la cliente, ajouter une note et changer le statut |
+| Commandes / `/admin/orders` | Lister les commandes et suivre leur statut |
+| Detail commande / `/admin/orders/:id` | Lire les informations de commande, contacter la cliente, ajouter une note et changer le statut |
 
 ## Navigation publique
 
@@ -65,11 +69,12 @@ Le tableau de bord doit afficher au minimum :
 - Le nombre de commandes nouvelles.
 - Le nombre de commandes en cours.
 - Le nombre de produits publies.
+- Le nombre de produits visibles cote cliente si different du nombre de produits publies.
 - Le nombre de produits epuises.
 - Le nombre de produits masques.
 - Les commandes recentes, avec un lien vers chaque detail.
 - Une alerte visuelle si des produits publies sont a stock 0.
-- Des raccourcis vers `/admin/commandes`, `/admin/produits`, `/admin/stock` et `/admin/categories`.
+- Des raccourcis vers `/admin/orders`, `/admin/products`, `/admin/stock` et `/admin/categories`.
 
 ## Composants publics
 
@@ -119,7 +124,7 @@ Le tableau de bord doit afficher au minimum :
 | subcategoryId | Identifiant | Obligatoire pour publication |
 | images | Liste d'images | Au moins une image pour publication |
 | stockQuantity | Nombre entier | Toujours egal ou superieur a 0 |
-| status | Enum | draft, published, hidden |
+| status | Enum | DRAFT, PUBLISHED, HIDDEN |
 | isNew | Booleen | Optionnel |
 | brand | Texte | Optionnel |
 | characteristics | Liste cle/valeur | Optionnel |
@@ -134,7 +139,7 @@ Le tableau de bord doit afficher au minimum :
 | id | Identifiant unique | Interne |
 | slug | Texte | Utilise pour les routes publiques |
 | name | Texte | Nom visible en russe |
-| status | Enum | visible, hidden |
+| status | Enum | VISIBLE, HIDDEN |
 | displayOrder | Nombre | Ordre client/admin |
 | createdAt | Date | Automatique |
 | updatedAt | Date | Automatique |
@@ -147,7 +152,7 @@ Le tableau de bord doit afficher au minimum :
 | categoryId | Identifiant | Categorie parente |
 | slug | Texte | Utilise pour les routes publiques |
 | name | Texte | Nom visible en russe |
-| status | Enum | visible, hidden |
+| status | Enum | VISIBLE, HIDDEN |
 | displayOrder | Nombre | Ordre dans la categorie |
 | createdAt | Date | Automatique |
 | updatedAt | Date | Automatique |
@@ -163,6 +168,8 @@ Le panier peut etre stocke cote client tant que la commande n'est pas validee.
 
 Les prix et stocks doivent etre reverifies cote serveur au moment de l'affichage critique et de la validation.
 
+Pour la V1, le panier est stocke dans `localStorage` cote navigateur sous forme minimale : identifiant produit et quantite. Aucune information de prix, de stock ou de disponibilite stockee dans le navigateur ne doit etre consideree comme fiable. Le serveur recalcule toujours les prix, les etats et le total avant affichage critique et avant validation.
+
 ### Order
 
 | Champ | Type attendu | Notes |
@@ -172,8 +179,8 @@ Les prix et stocks doivent etre reverifies cote serveur au moment de l'affichage
 | customerName | Texte | Obligatoire |
 | customerPhone | Texte | Telephone ou WhatsApp |
 | deliveryAddressOrZone | Texte | Republique tchetchene uniquement en V1 |
-| paymentMethod | Enum | cash_on_delivery, transfer_after_confirmation |
-| status | Enum | new, to_confirm, confirmed, preparing, delivered, cancelled |
+| paymentMethod | Enum | CASH_ON_DELIVERY, TRANSFER_AFTER_CONFIRMATION |
+| status | Enum | NEW, TO_CONFIRM, CONFIRMED, PREPARING, DELIVERED, CANCELLED |
 | totalRub | Nombre entier | Total fige a la validation |
 | adminNote | Texte | Optionnel |
 | createdAt | Date | Date de validation |
@@ -201,7 +208,7 @@ Les noms exacts peuvent varier selon le framework, mais la V1 doit couvrir ces a
 | Action | Role |
 | --- | --- |
 | Lister les produits publics | Retourner les produits publies, valides, avec filtres et tri |
-| Lire un produit public | Retourner une fiche produit accessible cote client |
+| Lire un produit public | Retourner une fiche produit publiee dans une categorie et sous-categorie visibles |
 | Lister les categories visibles | Retourner categories et sous-categories visibles |
 | Verifier le panier | Recalculer prix, etats, quantites disponibles et total |
 | Creer une commande | Valider le panier, figer les prix, diminuer le stock et creer la commande |
@@ -235,8 +242,10 @@ Les noms exacts peuvent varier selon le framework, mais la V1 doit couvrir ces a
 - Le panier ne reserve pas le stock.
 - Les commandes sont limitees a une adresse ou zone de livraison en Republique tchetchene pour la V1.
 - Une commande validee doit creer les lignes `OrderItem` avec snapshots de nom, image et prix.
-- Une commande validee doit decrementer le stock apres la transaction reussie.
+- Une commande validee doit decrementer le stock dans la meme transaction que la creation de commande, apres les verifications serveur.
 - Les listes du dashboard doivent pouvoir afficher au maximum les 10 commandes recentes.
+
+Les formats detailles des champs, slugs, URLs d'images, paniers et donnees de commande sont definis dans `specs/validation-rules.md`.
 
 ## Authentification
 
@@ -247,6 +256,20 @@ Les noms exacts peuvent varier selon le framework, mais la V1 doit couvrir ces a
 - Les identifiants admin ne doivent pas etre exposes dans le code client.
 - La connexion admin doit utiliser une session server-side ou un cookie de session securise.
 - Les pages `/admin` et `/admin/*` doivent rediriger vers `/admin/login` si la session est absente ou expiree.
+
+### Decision V1
+
+Pour la V1, l'authentification admin utilise :
+
+- un identifiant admin stocke dans `ADMIN_USERNAME` ;
+- un mot de passe admin stocke sous forme de hash bcrypt dans `ADMIN_PASSWORD_HASH` ;
+- un secret de signature stocke dans `ADMIN_SESSION_SECRET` ;
+- un cookie HTTP-only nomme `indira_admin_session`, `Secure` en production, `SameSite=Lax`, signe cote serveur ;
+- une duree de session limitee, par exemple 7 jours maximum.
+
+Il n'y a pas de table `AdminUser` obligatoire en V1. Si plusieurs admins deviennent necessaires plus tard, une table dediee pourra etre ajoutee.
+
+Les actions admin qui modifient des donnees doivent verifier la session cote serveur a chaque appel. Si l'implementation utilise des formulaires ou actions serveur Next.js, la verification de session serveur est obligatoire avant toute mutation. Si une route API admin est exposee, elle doit refuser les requetes sans cookie valide et eviter les mutations GET.
 
 ## Gestion des images
 
@@ -259,6 +282,42 @@ Les noms exacts peuvent varier selon le framework, mais la V1 doit couvrir ces a
 - Les images supprimees d'un produit deja commande ne doivent pas casser l'affichage du snapshot de commande.
 - Les photos, noms, descriptions, prix et categories des produits doivent etre geres par l'admin depuis l'espace admin, sans intervention technique.
 
+### Decision V1
+
+Pour eviter de bloquer le developpement sur un systeme d'upload, la V1 peut commencer avec des URLs d'images saisies ou collees dans l'admin. Les images doivent etre servies depuis une source stable et optimisee.
+
+Une evolution ulterieure pourra ajouter un vrai upload admin vers un stockage dedie comme Cloudinary, S3 ou un stockage equivalent. Les regles de formats acceptes s'appliquent seulement si cet upload est ajoute.
+
+## Suppression et archivage
+
+- Masquer un produit est l'action normale pour le retirer du catalogue client.
+- Supprimer definitivement un produit est autorise seulement si cela ne casse pas l'historique.
+- Si un produit a deja ete commande, la suppression definitive est bloquee en V1.
+- Si l'admin veut retirer durablement un produit deja commande, elle doit le masquer.
+- Les commandes doivent rester lisibles grace aux snapshots de nom, image, prix et quantite.
+- Les categories et sous-categories contenant des produits ne doivent pas etre supprimees.
+
+Pour la V1, le comportement recommande est :
+
+- produit actif mais non visible : statut `HIDDEN` ;
+- produit en preparation : statut `DRAFT` ;
+- produit visible : statut `PUBLISHED` ;
+- produit retire durablement mais lie a un historique : statut `HIDDEN`, avec suppression definitive bloquee.
+
+Le statut `archived` n'est pas obligatoire en V1. Il pourra etre ajoute plus tard si la boutique a besoin de distinguer les produits temporairement masques des produits retires durablement.
+
+## Livraison V1
+
+- La livraison V1 est limitee a la Republique tchetchene.
+- Le formulaire demande une adresse ou une zone en texte libre.
+- La validation automatique doit au minimum refuser un champ vide.
+- Si une zone hors Republique tchetchene est clairement detectee, la validation doit etre bloquee.
+- Si la zone est ambigue mais non vide, la commande peut etre recue et la boutique confirme manuellement la livraison.
+- Le site affiche clairement que la livraison est limitee a la Republique tchetchene.
+- La confirmation finale de la zone se fait manuellement par la boutique lors du contact telephone ou WhatsApp.
+
+Une liste stricte de villes ou zones autorisees pourra etre ajoutee plus tard si la boutique veut automatiser ce controle.
+
 ## Internationalisation
 
 - Les textes visibles par les clientes sont en russe.
@@ -266,6 +325,17 @@ Les noms exacts peuvent varier selon le framework, mais la V1 doit couvrir ces a
 - Les specs restent en francais.
 - L'admin peut aussi etre en russe dans l'interface finale, meme si la specification documente les comportements en francais.
 - Les identifiants techniques, enums et champs de donnees peuvent rester en anglais dans la base et l'API.
+
+Pour la V1, les textes d'interface client doivent etre centralises autant que possible dans un fichier de contenu ou de constantes, par exemple `lib/content/ru.ts`, afin d'eviter des traductions dispersees dans tout le code.
+
+## Confidentialite des donnees
+
+- Le site collecte uniquement les informations necessaires a la commande : nom, telephone ou WhatsApp, adresse ou zone de livraison.
+- Ces donnees servent uniquement a traiter, confirmer et livrer la commande.
+- Les informations cliente ne doivent pas etre affichees cote public.
+- L'espace admin doit etre protege avant toute consultation de commandes.
+- Les logs serveur ne doivent pas exposer inutilement les numeros de telephone ou adresses.
+- Un export ou une sauvegarde des commandes doit rester protege.
 
 ## Hebergement et configuration
 
@@ -278,6 +348,18 @@ La decision finale dependra du framework choisi, mais la V1 doit prevoir :
 - Des sauvegardes ou export possible des donnees commandes/produits.
 - Un mecanisme de migration de schema.
 - Un journal minimal des erreurs serveur pour depister les echecs de validation ou de session.
+
+### Decision V1
+
+- Framework : Next.js App Router.
+- Base locale : SQLite avec Prisma pendant le developpement.
+- Base production V1 : PostgreSQL compatible Prisma.
+- SQLite en production est seulement acceptable comme solution temporaire si l'hebergeur garantit un disque persistant, une sauvegarde et aucune perte au redeploiement.
+- Images V1 : URLs externes stables, puis stockage dedie plus tard.
+- Secrets : uniquement via variables d'environnement.
+- Deploiement : environnement Node.js compatible Next.js App Router et Prisma.
+- Sauvegarde : export regulier de la base de donnees avant et apres changements importants.
+- Logs : erreurs serveur generales autorisees, mais sans numero de telephone, adresse complete ou secrets.
 
 ## Tests attendus
 
@@ -293,3 +375,5 @@ La decision finale dependra du framework choisi, mais la V1 doit prevoir :
 - Admin produit : publication impossible si champs obligatoires manquants.
 - Admin categorie : suppression impossible si produits associes.
 - Admin commande : changement de statut et conservation des prix snapshots.
+
+La checklist complete de verification V1 est definie dans `specs/test-plan.md`.

@@ -18,6 +18,23 @@ Le stock determine automatiquement si un produit est commandable ou epuise cote 
 | Quantite en stock | Quantite actuellement disponible | Oui |
 | Variation de stock | Quantite ajoutee ou retiree | Oui lors d'un ajustement |
 | Motif d'ajustement | Raison de la modification : reassort, correction, erreur, annulation, autre | Non |
+| Date d'ajustement | Moment ou l'ajustement est effectue | Recommande |
+| Admin responsable | Admin qui effectue l'ajustement | Recommande si plusieurs admins existent plus tard |
+
+## Historique de stock
+
+La V1 peut fonctionner sans historique complet de stock, mais un journal minimal est recommande si l'implementation reste simple.
+
+Chaque mouvement de stock pourrait enregistrer :
+
+- produit concerne ;
+- quantite avant ;
+- variation ;
+- quantite apres ;
+- motif ;
+- date.
+
+Cet historique aide a comprendre les corrections, reassorts, annulations ou erreurs.
 
 ## Actions possibles
 
@@ -77,6 +94,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si deux clientes essaient de commander le dernier produit, seule la premiere commande validee doit diminuer le stock.
 - Si une commande est annulee par l'admin, le stock peut etre remis manuellement.
 - Si une commande est modifiee par l'admin, le stock peut etre corrige manuellement.
+- Si un historique de stock existe, les corrections manuelles doivent y etre tracees.
 - La quantite exacte en stock ne doit pas etre affichee aux clientes.
 - Un produit masque peut avoir du stock, mais il reste invisible cote cliente.
 - Un produit supprime ne doit plus etre gere comme un produit commandable.
@@ -85,7 +103,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 
 - Le stock doit toujours etre egal ou superieur a 0.
 - Le stock doit etre un nombre entier.
-- Un produit avec stock superieur a 0 est commandable s'il est publie et non masque.
+- Un produit avec stock superieur a 0 est commandable seulement s'il est publie, non masque, dans une categorie visible et dans une sous-categorie visible.
 - Un produit avec stock egal a 0 est epuise.
 - Un produit epuise ne peut pas etre commande.
 - Un produit epuise n'est pas supprime automatiquement.

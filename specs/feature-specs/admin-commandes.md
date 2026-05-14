@@ -29,6 +29,14 @@ En V1 obligatoire, la reception d'une commande se fait dans l'espace admin. Les 
 | Statut de commande | Etat actuel de traitement de la commande | Oui |
 | Note admin | Information interne ajoutee par l'admin si besoin | Non |
 
+## Confidentialite
+
+Les commandes contiennent des donnees personnelles : nom, telephone ou WhatsApp, adresse ou zone de livraison.
+
+Ces informations doivent etre visibles uniquement dans l'espace admin protege et uniquement pour traiter la commande.
+
+Elles ne doivent pas apparaitre dans le catalogue public, les pages publiques, les messages d'erreur techniques ou les logs inutiles.
+
 ## Statuts de commande
 
 | Statut | Description |
@@ -104,7 +112,9 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Une commande validee par la cliente doit apparaitre dans l'espace admin.
 - Une commande conserve les prix enregistres au moment de sa validation, meme si l'admin modifie ensuite le prix d'un produit.
 - Une commande conserve les produits et quantites enregistres au moment de sa validation.
-- Si un produit commande est ensuite masque ou supprime, la commande deja validee doit rester lisible par l'admin.
+- Si un produit commande est ensuite masque, la commande deja validee doit rester lisible par l'admin.
+- En V1, un produit deja present dans une commande validee ne doit pas etre supprime definitivement. Si une fiche produit n'existe plus a cause d'une migration, d'une erreur technique ou d'une evolution future, les snapshots de commande doivent quand meme garder la commande lisible.
+- Pour garantir cette lisibilite, chaque ligne de commande doit conserver au minimum le nom produit, le prix unitaire, la quantite et si possible l'image principale au moment de la validation.
 - Si une commande est annulee, le stock peut etre remis manuellement dans `admin-stock.md`.
 - Si une cliente demande une annulation apres validation, l'admin peut passer la commande au statut "Annulee".
 - Si une commande est modifiee avec la cliente par telephone ou WhatsApp, l'admin peut corriger le stock manuellement dans `admin-stock.md`.
@@ -142,6 +152,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Une cliente ne peut pas annuler elle-meme une commande validee depuis le site.
 - L'admin peut ajouter une note interne.
 - Une commande validee conserve ses prix meme si les prix produits changent ensuite.
-- Une commande reste lisible meme si un produit commande est ensuite masque ou supprime.
+- Une commande reste lisible meme si un produit commande est ensuite masque, ou si la fiche produit n'existe plus a cause d'une erreur technique ou d'une evolution future.
 - Le paiement en ligne n'est pas demande dans l'espace admin V1.
 - Les notifications automatiques SMS ou WhatsApp ne sont pas obligatoires en V1.

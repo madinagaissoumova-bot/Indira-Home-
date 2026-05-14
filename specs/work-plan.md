@@ -4,7 +4,22 @@ Ce fichier decoupe le developpement en petites etapes.
 
 ## Objectif
 
-Construire la V1 progressivement, en validant chaque partie par rapport aux specifications.
+Construire une V1 complete avec parcours cliente et admin complet.
+
+La V1 doit permettre aux clientes :
+
+- de voir les produits disponibles ;
+- d'ouvrir une fiche produit ;
+- de preparer une commande ;
+- d'envoyer la commande a la boutique sans compte et sans paiement en ligne.
+
+La V1 doit aussi permettre a l'admin :
+
+- de se connecter ;
+- de gerer les produits ;
+- de gerer les categories ;
+- de gerer le stock ;
+- de consulter et traiter les commandes.
 
 ## Phase 0 - Choix technique et initialisation
 
@@ -14,9 +29,9 @@ Mettre en place la base du projet applicatif.
 
 ### Taches
 
-- Choisir le framework web.
-- Choisir la base de donnees.
-- Choisir le stockage des images.
+- Utiliser Next.js App Router comme framework web.
+- Utiliser Prisma avec SQLite en developpement.
+- Commencer avec des URLs d'images produit en V1.
 - Creer la structure du projet.
 - Configurer les variables d'environnement.
 - Ajouter les outils de qualite : formatage, lint, tests.
@@ -41,6 +56,7 @@ Creer les donnees centrales avant l'interface.
 - Ajouter les enums de statuts produit et commande.
 - Ajouter les contraintes : prix positif, stock entier non negatif, relations categories.
 - Preparer des donnees de depart pour categories/sous-categories.
+- Bloquer la suppression definitive des produits deja presents dans une commande validee.
 
 ### Verification
 
@@ -108,6 +124,7 @@ Permettre a la cliente de preparer une commande.
 - Ajouter augmentation, diminution, retrait et vidage panier.
 - Reverifier prix et stock avant validation.
 - Bloquer la validation si panier vide ou invalide.
+- Stocker le panier en `localStorage` avec seulement productId et quantite.
 
 ### Verification
 
@@ -133,6 +150,7 @@ Transformer un panier valide en commande.
 - Creer la commande avec prix snapshots.
 - Diminuer le stock apres validation reussie.
 - Afficher la confirmation de commande.
+- Vider ou marquer le panier local comme traite apres validation reussie.
 
 ### Verification
 
@@ -140,6 +158,8 @@ Transformer un panier valide en commande.
 - Le stock diminue seulement apres validation reussie.
 - Une validation echouee ne diminue pas le stock.
 - Les prix de commande sont figes.
+- La page de confirmation ne recree pas la commande au rechargement.
+- La page de confirmation n'expose pas les donnees personnelles de la cliente.
 
 ## Phase 6 - Authentification admin
 
@@ -151,6 +171,7 @@ Proteger l'espace admin.
 
 - Creer la page connexion admin.
 - Ajouter session admin.
+- Configurer `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH` et `ADMIN_SESSION_SECRET`.
 - Proteger les routes/actions admin.
 - Ajouter deconnexion.
 
@@ -244,7 +265,8 @@ Permettre a l'admin de traiter les commandes.
 - Une commande cliente apparait dans l'admin.
 - L'admin peut changer le statut.
 - Les prix snapshots restent lisibles apres modification produit.
-- Une commande reste lisible si un produit est masque ou supprime.
+- Une commande reste lisible si un produit est masque.
+- Un produit deja present dans une commande validee ne peut pas etre supprime definitivement en V1.
 
 ## Phase 11 - Polish mobile et contenu russe
 
@@ -255,6 +277,7 @@ Rendre l'experience utilisable et professionnelle sur telephone.
 ### Taches
 
 - Relire tous les textes client en russe.
+- Centraliser les textes client russes dans un fichier de contenu ou de constantes.
 - Tester les parcours sur petit ecran.
 - Ajuster cartes produit, filtres, panier et formulaire.
 - Verifier les etats vides et erreurs.
@@ -277,6 +300,7 @@ Verifier la V1 avant mise en ligne.
 
 - Executer tests unitaires et integration.
 - Tester manuellement les user stories.
+- Suivre la checklist de `specs/test-plan.md`.
 - Verifier les variables d'environnement.
 - Verifier sauvegarde/export possible des donnees.
 - Preparer deploiement.
@@ -284,6 +308,7 @@ Verifier la V1 avant mise en ligne.
 ### Verification
 
 - Toutes les user stories critiques passent.
+- La checklist de `specs/test-plan.md` est passee.
 - Le catalogue, le panier, la commande et l'admin fonctionnent.
 - Aucun paiement en ligne n'est demande en V1.
 - La livraison est limitee a la Republique tchetchene.
@@ -297,17 +322,21 @@ Verifier la V1 avant mise en ligne.
 5. Panier.
 6. Validation commande.
 7. Auth admin.
-8. Admin produits/categories.
-9. Admin stock.
-10. Admin commandes.
-11. Mobile polish et tests finaux.
+8. Tableau de bord admin.
+9. Admin produits/categories.
+10. Admin stock.
+11. Admin commandes.
+12. Mobile polish et textes russes.
+13. Tests finaux.
 
 ## Definition of Done V1
 
 - Une cliente peut trouver un produit, l'ajouter au panier et envoyer une commande.
-- L'admin peut creer les produits, ajuster le stock et traiter les commandes.
 - Les produits epuises ne sont jamais commandables.
 - Les commandes diminuent le stock uniquement apres validation reussie.
 - Les prix des commandes sont figes.
 - Les textes client sont en russe.
 - Le site est utilisable principalement sur mobile.
+- L'admin peut creer les produits, ajuster le stock et traiter les commandes.
+- Les routes admin sont protegees par connexion.
+- Les donnees de commande restent lisibles dans l'espace admin.

@@ -26,6 +26,22 @@ La validation de commande doit enregistrer les informations de la cliente, les p
 | Statut de commande | Etat initial "nouvelle" apres validation | Oui |
 | Date de validation | Moment enregistre automatiquement quand la cliente valide la commande | Oui |
 
+Les formats detailles des champs sont definis dans `specs/validation-rules.md`.
+
+## Livraison V1
+
+La V1 limite la livraison a la Republique tchetchene.
+
+Pour rester simple, le formulaire utilise un champ texte libre pour l'adresse ou la zone de livraison. La validation automatique doit refuser un champ vide et afficher clairement que la livraison est limitee a la Republique tchetchene.
+
+Si une zone hors Republique tchetchene est clairement detectee, la validation doit etre bloquee.
+
+Si la zone est ambigue mais non vide, la commande peut etre recue.
+
+La boutique confirme ensuite manuellement la zone exacte par telephone ou WhatsApp avant de traiter la commande.
+
+En V1, une liste stricte de villes autorisees n'est pas obligatoire. La validation doit surtout refuser les champs vides et bloquer les zones clairement hors perimetre lorsque cette detection est simple et fiable.
+
 ## Informations visibles par la cliente avant validation
 
 Avant de valider, la cliente doit voir :
@@ -52,6 +68,7 @@ La cliente peut :
 - Relire le recapitulatif de commande.
 - Valider la commande sans paiement en ligne.
 - Recevoir une confirmation que la commande a ete envoyee.
+- Arriver sur `/checkout/confirmation` apres validation reussie.
 
 Apres validation, la cliente ne peut pas annuler elle-meme sa commande depuis le site. Si elle veut annuler ou modifier sa commande, elle doit contacter la boutique.
 
@@ -118,6 +135,8 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Si le prix a change avant validation, le recapitulatif doit utiliser le prix actuel avant envoi.
 - Une fois la commande validee, les prix enregistres dans cette commande ne doivent plus changer automatiquement si l'admin modifie les prix produit plus tard.
 - Une fois la commande validee, la cliente ne peut pas l'annuler directement depuis le site.
+- Si l'adresse saisie est ambigue mais non vide, la commande peut etre recue et la boutique confirme manuellement la livraison avec la cliente.
+- Apres validation reussie, le panier local doit etre vide ou marque comme traite pour eviter une nouvelle validation accidentelle.
 
 ## Regles metier
 
@@ -135,6 +154,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Le numero WhatsApp public de la boutique affiche aux clientes est +7 988 906-41-06.
 - Les informations de commande doivent etre visibles dans le tableau de bord admin.
 - Une annulation apres validation doit etre traitee par contact avec la boutique, puis par l'admin dans l'espace admin.
+- Les donnees personnelles de commande servent uniquement au traitement de la commande et ne doivent jamais etre affichees cote public.
 
 ## Critères d'acceptation
 

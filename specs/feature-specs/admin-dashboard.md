@@ -16,7 +16,8 @@ Le tableau de bord sert de point d'entree vers les commandes, les produits, le s
 | --- | --- | --- |
 | Nombre de commandes nouvelles | Nombre de commandes a traiter | Non |
 | Nombre de commandes en cours | Nombre de commandes deja prises en charge | Non |
-| Nombre de produits publies | Nombre de produits visibles cote cliente | Non |
+| Nombre de produits publies | Nombre de produits avec statut publie | Non |
+| Nombre de produits visibles cote cliente | Nombre de produits publies dans des categories et sous-categories visibles | Non |
 | Nombre de produits epuises | Nombre de produits publies mais sans stock | Non |
 | Nombre de produits masques | Nombre de produits caches cote cliente | Non |
 | Nombre de categories | Nombre de categories actives ou gerees | Non |

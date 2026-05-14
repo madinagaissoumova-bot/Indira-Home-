@@ -84,6 +84,8 @@ Les messages visibles par les clientes devront etre affiches en russe sur le sit
 | --- | --- |
 | Produit masque | Ne pas afficher la fiche produit a la cliente. |
 | Produit en brouillon | Ne pas afficher la fiche produit a la cliente. |
+| Categorie masquee | Ne pas afficher la fiche produit a la cliente. |
+| Sous-categorie masquee | Ne pas afficher la fiche produit a la cliente. |
 | Produit sans prix | Ne pas afficher la fiche produit a la cliente tant que le prix n'est pas renseigne. |
 | Produit sans photo | Ne pas afficher la fiche produit a la cliente tant qu'au moins une photo n'est pas ajoutee. |
 | Produit sans categorie ou sous-categorie | Ne pas afficher la fiche produit a la cliente tant que l'organisation du produit n'est pas complete. |
@@ -100,7 +102,7 @@ Les messages visibles par les clientes devront etre affiches en russe sur le sit
 - Un produit en stock ne doit pas afficher de label "disponible".
 - Un produit epuise doit afficher un label clair, par exemple "indisponible" ou "produit epuise".
 - Si un produit est masque, la cliente ne doit pas acceder a sa fiche produit.
-- Si une categorie ou sous-categorie du produit est masquee, le produit ne doit pas etre accessible depuis cette categorie ou sous-categorie.
+- Si une categorie ou sous-categorie du produit est masquee, le produit ne doit pas etre accessible cote cliente, meme via son URL directe.
 - Si une cliente arrive sur une fiche produit qui n'est plus disponible, elle doit voir que le produit ne peut pas etre commande.
 - Si la cliente revient au catalogue, les filtres ou la recherche precedents doivent etre conserves si possible.
 
@@ -114,7 +116,7 @@ Les messages visibles par les clientes devront etre affiches en russe sur le sit
 - La fiche produit ne doit pas afficher de label "disponible" pour un produit en stock.
 - La fiche produit doit afficher un label "indisponible" ou "produit epuise" pour un produit sans stock.
 - La quantite ajoutee au panier ne peut pas depasser le stock disponible.
-- Un produit epuise reste accessible tant qu'il est publie et que l'admin ne l'a pas masque ou supprime.
+- Un produit epuise reste accessible tant qu'il est publie, que l'admin ne l'a pas masque ou supprime, et que sa categorie et sa sous-categorie restent visibles.
 - Un produit epuise peut redevenir commandable si l'admin ajoute une quantite en stock superieure a 0.
 - La quantite minimale a ajouter au panier est 1.
 - Un produit publie doit avoir un nom, une photo, un prix, une categorie, une sous-categorie, une description et un stock valide.

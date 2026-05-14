@@ -26,6 +26,24 @@ Le panier doit contenir les produits choisis, les quantites et le total de la co
 
 La quantite exacte en stock ne doit pas etre affichee a la cliente. Elle sert seulement a verifier que la quantite choisie peut etre commandee.
 
+## Stockage du panier V1
+
+Pour la V1, le panier est stocke dans le navigateur avec `localStorage`.
+
+Le panier stocke uniquement :
+
+- l'identifiant du produit ;
+- la quantite choisie.
+
+Le panier ne doit pas stocker comme source fiable :
+
+- le prix du produit ;
+- le stock ;
+- le statut de publication ;
+- le nom ou la photo comme verite definitive.
+
+Ces informations doivent etre rechargees ou reverifiees depuis le serveur avant l'affichage du panier et avant la validation de commande.
+
 ## Informations visibles dans le panier
 
 La cliente doit voir :
@@ -105,6 +123,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Si le prix change avant validation de commande, le panier doit utiliser le prix actuel.
 - Le panier ne doit pas reserver definitivement le stock tant que la commande n'est pas validee.
 - Le stock diminue seulement lorsque la cliente valide la commande.
+- Si la cliente change de telephone ou vide les donnees du navigateur, le panier local peut etre perdu. C'est accepte en V1 car les clientes ne creent pas de compte.
 
 ## Regles metier
 
@@ -120,6 +139,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Le panier ne gere pas de paiement en ligne.
 - Le panier est accessible sans compte cliente.
 - La validation de commande se fait dans une autre Feature Spec.
+- Le contenu stocke dans `localStorage` n'est jamais considere comme fiable cote serveur.
 
 ## Critères d'acceptation
 
