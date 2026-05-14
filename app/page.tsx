@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
+import { AddToCartButton } from "@/components/AddToCartButton";
 
 async function getHomeData() {
   const [categories, products] = await Promise.all([
@@ -114,9 +115,16 @@ export default async function HomePage() {
                     <div className="price-row">
                       <span className="price">{formatRub(product.priceRub)}</span>
                     </div>
-                    <Link className="button secondary" href={`/product/${product.slug}`}>
-                      Смотреть
-                    </Link>
+                    <div className="card-actions">
+                      <Link className="button secondary" href={`/product/${product.slug}`}>
+                        Смотреть
+                      </Link>
+                      <AddToCartButton
+                        disabled={isSoldOut}
+                        label="В корзину"
+                        productId={product.id}
+                      />
+                    </div>
                   </div>
                 </article>
               );

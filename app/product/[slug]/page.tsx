@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
+import { AddToCartButton } from "@/components/AddToCartButton";
 
 export default async function ProductPage({
   params
@@ -52,9 +53,7 @@ export default async function ProductPage({
               <span className="price">{formatRub(product.priceRub)}</span>
               {isSoldOut ? <span className="badge sold-out">Нет в наличии</span> : null}
             </div>
-            <button className="button" disabled={isSoldOut} type="button">
-              {isSoldOut ? "Недоступно" : "Добавить в корзину"}
-            </button>
+            <AddToCartButton disabled={isSoldOut} productId={product.id} />
           </div>
         </article>
       </div>

@@ -22,7 +22,6 @@ export default function RootLayout({
           <nav className="site-nav" aria-label="Главная навигация">
             <Link href="/">Каталог</Link>
             <Link href="/cart">Корзина</Link>
-            <Link href="/admin">Admin</Link>
           </nav>
         </header>
         {children}
