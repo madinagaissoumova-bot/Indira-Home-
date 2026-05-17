@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
+import { CartNavLink } from "@/components/CartNavLink";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,23 +36,21 @@ export default async function RootLayout({
               <span className="brand-home">Home</span>
               <span className="brand-tagline">посуда и декор для дома</span>
             </Link>
-            <form className="header-search" action="/">
+            <form className="header-search" action="/search">
               <label className="sr-only" htmlFor="header-search">
                 Поиск товара
               </label>
               <input
                 id="header-search"
-                name="search"
-                placeholder="Поиск"
+                name="q"
+                placeholder="Поиск по товарам"
                 type="search"
               />
             </form>
             <nav className="site-nav" aria-label="Основные страницы">
-              <Link href="/">Каталог</Link>
-              <Link href="/cart" aria-label="Корзина">
-                Корзина
-              </Link>
-              <Link href="/checkout">Оформление</Link>
+              <Link href="/">Главная</Link>
+              <CartNavLink />
+              <Link href="/checkout">Заказ</Link>
             </nav>
           </div>
 

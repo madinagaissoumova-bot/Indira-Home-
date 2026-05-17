@@ -33,6 +33,14 @@ export default async function ProductPage({
   const image = product.images[0];
   const galleryImages = product.images.length > 0 ? product.images : [];
   const isSoldOut = product.stockQuantity <= 0;
+  const characteristics = product.characteristics
+    ?.split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean) ?? [];
+  const whatsappText = encodeURIComponent(
+    `Здравствуйте! Хочу уточнить наличие товара: ${product.name}`
+  );
+  const whatsappHref = `https://wa.me/79889064106?text=${whatsappText}`;
   const relatedProducts = await prisma.product.findMany({
     where: {
       id: { not: product.id },
@@ -64,14 +72,6 @@ export default async function ProductPage({
           { label: product.name }
         ]}
       />
-      <section className="hero hero-compact">
-        <span className="eyebrow">
-          {product.category.name} / {product.subcategory.name}
-        </span>
-        <h1>{product.name}</h1>
-        <p>{product.description}</p>
-      </section>
-
       <div className="product-detail-layout">
         <section className="product-gallery" aria-label="Фотографии товара">
           {image ? (
@@ -92,20 +92,50 @@ export default async function ProductPage({
         </section>
 
         <aside className="product-panel">
-          <div className="price-row">
-            <span className="price">{formatRub(product.priceRub)}</span>
+          <div className="product-panel-heading">
+            <span className="eyebrow">
+              {product.category.name} / {product.subcategory.name}
+            </span>
+            <h1>{product.name}</h1>
+            {product.brand ? <span className="product-brand">{product.brand}</span> : null}
+          </div>
+
+          <div className="product-buy-row">
+            <span className="product-detail-price">{formatRub(product.priceRub)}</span>
+            {product.isNew ? <span className="badge new">Новинка</span> : null}
             {isSoldOut ? <span className="badge sold-out">Нет в наличии</span> : null}
           </div>
-          <p>
-            Подтверждение заказа по телефону или WhatsApp. Доставка по Чеченской
-            Республике.
-          </p>
-          <div className="info-list">
-            <span>Понятный заказ без аккаунта</span>
-            <span>Статус товара виден сразу</span>
-            <span>Онлайн-оплаты нет</span>
+
+          <p className="product-description">{product.description}</p>
+
+          {characteristics.length > 0 ? (
+            <div className="product-specs" aria-label="Характеристики">
+              {characteristics.map((line) => {
+                const [label, ...valueParts] = line.split(":");
+                const value = valueParts.join(":").trim();
+
+                return (
+                  <div className="product-spec-row" key={line}>
+                    <span>{value ? label : "Деталь"}</span>
+                    <strong>{value || line}</strong>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
+
+          <div className="product-service-note">
+            <span>Заказ без аккаунта</span>
+            <span>Подтверждение по телефону или WhatsApp</span>
+            <span>Доставка по Чеченской Республике</span>
           </div>
-          <AddToCartButton disabled={isSoldOut} productId={product.id} />
+
+          <div className="product-cta-stack">
+            <AddToCartButton disabled={isSoldOut} productId={product.id} />
+            <a className="button secondary whatsapp-button" href={whatsappHref} target="_blank" rel="noreferrer">
+              Написать в WhatsApp
+            </a>
+          </div>
         </aside>
       </div>
 

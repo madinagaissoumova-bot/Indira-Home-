@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 type AddToCartButtonProps = {
   productId: string;
   disabled?: boolean;
@@ -43,6 +45,17 @@ export function AddToCartButton({
   disabled = false,
   label = "Добавить в корзину"
 }: AddToCartButtonProps) {
+  const [isAdded, setIsAdded] = useState(false);
+  const resetTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) {
+        window.clearTimeout(resetTimer.current);
+      }
+    };
+  }, []);
+
   function addToCart() {
     const cart = readCart();
     const existing = cart.find((item) => item.productId === productId);
@@ -54,11 +67,25 @@ export function AddToCartButton({
     }
 
     writeCart(cart);
+    setIsAdded(true);
+
+    if (resetTimer.current) {
+      window.clearTimeout(resetTimer.current);
+    }
+
+    resetTimer.current = window.setTimeout(() => {
+      setIsAdded(false);
+    }, 1600);
   }
 
   return (
-    <button className="button" disabled={disabled} onClick={addToCart} type="button">
-      {disabled ? "Недоступно" : label}
+    <button
+      className={`button add-to-cart-button${isAdded ? " is-added" : ""}`}
+      disabled={disabled}
+      onClick={addToCart}
+      type="button"
+    >
+      {disabled ? "Недоступно" : isAdded ? "Добавлено" : label}
     </button>
   );
 }

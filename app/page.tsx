@@ -49,6 +49,14 @@ export default async function HomePage() {
           <span>Доставка по Чеченской Республике</span>
           <span>Оплата после подтверждения</span>
         </div>
+
+        <nav className="home-collection-links" aria-label="Коллекции">
+          {categories.slice(0, 4).map((category) => (
+            <Link href={`/category/${category.slug}`} key={category.id}>
+              {category.name}
+            </Link>
+          ))}
+        </nav>
       </section>
     </main>
   );
