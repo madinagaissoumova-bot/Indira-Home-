@@ -66,13 +66,14 @@ export function CartClient({ products }: CartClientProps) {
     const quantity = product
       ? Math.max(1, Math.min(item.quantity, Math.max(product.stockQuantity, 1)))
       : item.quantity;
+    const needsQuantityCorrection = !!product && !isUnavailable && quantity !== item.quantity;
     const subtotal = product && !isUnavailable ? product.priceRub * quantity : 0;
 
-    return { item, product, isUnavailable, quantity, subtotal };
+    return { item, product, isUnavailable, needsQuantityCorrection, quantity, subtotal };
   });
 
   const total = rows.reduce((sum, row) => sum + row.subtotal, 0);
-  const hasInvalidItems = rows.some((row) => row.isUnavailable || row.quantity !== row.item.quantity);
+  const hasInvalidItems = rows.some((row) => row.isUnavailable || row.needsQuantityCorrection);
 
   function updateQuantity(productId: string, quantity: number) {
     const next = items
@@ -85,6 +86,22 @@ export function CartClient({ products }: CartClientProps) {
 
   function removeItem(productId: string) {
     const next = items.filter((item) => item.productId !== productId);
+    setItems(next);
+    writeCart(next);
+  }
+
+  function applyAvailableQuantity(productId: string, quantity: number) {
+    updateQuantity(productId, quantity);
+  }
+
+  function cleanInvalidItems() {
+    const next = rows
+      .filter((row) => row.product && !row.isUnavailable)
+      .map((row) => ({
+        productId: row.item.productId,
+        quantity: row.quantity
+      }));
+
     setItems(next);
     writeCart(next);
   }
@@ -108,7 +125,7 @@ export function CartClient({ products }: CartClientProps) {
   return (
     <section className="cart-layout" aria-label="Корзина">
       <div className="cart-list">
-        {rows.map(({ item, product, isUnavailable, quantity, subtotal }) => (
+        {rows.map(({ item, product, isUnavailable, needsQuantityCorrection, quantity, subtotal }) => (
           <article className="cart-row" key={item.productId}>
             {product?.imageUrl ? (
               <img className="cart-image" src={product.imageUrl} alt={product.imageAlt} />
@@ -126,9 +143,21 @@ export function CartClient({ products }: CartClientProps) {
                   )}
                 </h2>
                 {product && !isUnavailable ? (
-                  <p>{formatRub(product.priceRub)}</p>
+                  <>
+                    <p>{formatRub(product.priceRub)}</p>
+                    {needsQuantityCorrection ? (
+                      <p className="cart-warning">
+                        Количество изменилось. Можно заказать меньше, чем было выбрано.
+                      </p>
+                    ) : null}
+                  </>
                 ) : (
-                  <span className="badge sold-out">Недоступно для заказа</span>
+                  <>
+                    <span className="badge sold-out">Недоступно для заказа</span>
+                    <p className="cart-warning">
+                      Удалите этот товар, чтобы продолжить оформление заказа.
+                    </p>
+                  </>
                 )}
               </div>
 
@@ -153,9 +182,24 @@ export function CartClient({ products }: CartClientProps) {
 
               <div className="cart-row-footer">
                 <strong>{formatRub(subtotal)}</strong>
-                <button className="text-button" onClick={() => removeItem(item.productId)} type="button">
-                  Удалить
-                </button>
+                <div className="cart-row-actions">
+                  {needsQuantityCorrection ? (
+                    <button
+                      className="text-button"
+                      onClick={() => applyAvailableQuantity(item.productId, quantity)}
+                      type="button"
+                    >
+                      Исправить
+                    </button>
+                  ) : null}
+                  <button
+                    className="text-button"
+                    onClick={() => removeItem(item.productId)}
+                    type="button"
+                  >
+                    Удалить
+                  </button>
+                </div>
               </div>
             </div>
           </article>
@@ -174,9 +218,14 @@ export function CartClient({ products }: CartClientProps) {
           <p>Оплата онлайн не требуется. Магазин свяжется с вами для подтверждения.</p>
         )}
         {hasInvalidItems ? (
-          <span className="button disabled-link" aria-disabled="true">
-            Оформить заказ
-          </span>
+          <>
+            <button className="button" onClick={cleanInvalidItems} type="button">
+              Исправить корзину
+            </button>
+            <span className="button disabled-link" aria-disabled="true">
+              Оформить заказ
+            </span>
+          </>
         ) : (
           <Link className="button" href="/checkout">
             Оформить заказ

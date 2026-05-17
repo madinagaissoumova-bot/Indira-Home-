@@ -38,6 +38,8 @@ La cliente peut :
 - Parcourir les produits par sous-categorie.
 - Voir les produits d'une categorie.
 - Voir les produits d'une sous-categorie.
+- Ouvrir une page categorie dediee avec une presentation visuelle propre.
+- Ouvrir une page sous-categorie dediee depuis la categorie ou le menu principal.
 - Voir clairement si un produit est epuise.
 - Voir le prix d'un produit en roubles.
 - Voir les photos d'un produit.
@@ -65,6 +67,7 @@ La cliente peut :
 - Rechercher un produit par son nom.
 - Trouver un produit en naviguant dans les categories.
 - Trouver un produit en naviguant dans les sous-categories.
+- Utiliser le menu principal pour acceder rapidement aux pages du site et au catalogue par categorie.
 - Reperer rapidement les produits en stock.
 - Revenir au catalogue apres avoir consulte un produit.
 

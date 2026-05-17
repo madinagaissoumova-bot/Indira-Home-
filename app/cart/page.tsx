@@ -1,6 +1,7 @@
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { CartClient } from "./CartClient";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 async function getCartProducts() {
   const products = await prisma.product.findMany({
@@ -30,7 +31,8 @@ export default async function CartPage() {
 
   return (
     <main className="page">
-      <section className="hero">
+      <Breadcrumbs items={[{ label: "Каталог", href: "/" }, { label: "Корзина" }]} />
+      <section className="hero hero-compact">
         <span className="eyebrow">Корзина</span>
         <h1>Ваша корзина</h1>
         <p>Проверьте товары и количество перед оформлением заказа.</p>

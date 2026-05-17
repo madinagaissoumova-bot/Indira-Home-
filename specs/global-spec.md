@@ -7,6 +7,7 @@ Créer un site internet en russe pour **Indira Home**, une boutique qui vend pri
 Le catalogue doit pouvoir s'elargir plus tard a d'autres categories de produits si la boutique evolue.
 
 Le site doit presenter les produits de la boutique et permettre aux clientes de passer une commande simplement.
+Le site doit se presenter comme un catalogue multi-pages : accueil compact, pages categorie, pages sous-categorie et fiches produit separees.
 
 ## Qui utilise le site ?
 

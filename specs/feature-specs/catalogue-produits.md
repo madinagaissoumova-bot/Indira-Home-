@@ -65,6 +65,30 @@ Par defaut, le catalogue affiche :
 
 Les produits masques ou en brouillon ne doivent pas apparaitre dans le catalogue client.
 
+## UX D'Accueil Catalogue
+
+L'accueil `/` doit etre une vraie entree catalogue, pas seulement une page de presentation.
+
+La cliente doit pouvoir, depuis l'accueil :
+
+- comprendre rapidement que le site vend des produits pour la maison ;
+- entrer par une mise en scene visuelle premium ;
+- acceder aux categories depuis la navbar et son mega-menu ;
+- rechercher un produit par nom ;
+- filtrer par categorie ;
+- filtrer par sous-categorie ;
+- limiter l'affichage aux produits en stock ;
+- afficher les nouveautes ;
+- trier les produits ;
+- reinitialiser les filtres ;
+- voir une grille de produits sans passer par une autre page ;
+- ouvrir une fiche produit ;
+- ajouter un produit commandable au panier.
+
+Les categories ne doivent pas etre repetees comme de gros blocs sur l'accueil si elles sont deja accessibles dans le mega-menu. Sur desktop, l'accueil peut etre limite au hero principal afin de tenir au-dessus de la ligne de flottaison ; le catalogue detaille reste accessible depuis la recherche, le mega-menu et les pages categorie/sous-categorie.
+
+Si aucun produit ne correspond aux filtres, l'accueil doit afficher un etat vide clair en russe et proposer une reinitialisation accessible.
+
 ## Actions possibles
 
 La cliente peut :
@@ -186,6 +210,7 @@ La cliente doit pouvoir :
 - Parcourir les categories sans confusion.
 - Voir rapidement la photo, le nom, le prix et si le produit est epuise.
 - Rechercher un produit sans devoir parcourir tout le catalogue.
+- Utiliser les filtres principaux sans avoir a scroller longuement avant de voir les produits.
 - Ajouter un produit en stock au panier depuis le catalogue ou depuis la fiche produit.
 - Revenir facilement au catalogue apres avoir consulte un produit.
 

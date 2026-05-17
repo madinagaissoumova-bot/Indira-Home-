@@ -46,11 +46,23 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 ## Navigation publique
 
 - Le catalogue est le point d'entree principal.
+- Le header public doit contenir les acces principaux aux pages du site et le menu des categories.
 - La cliente doit pouvoir passer du catalogue a une fiche produit, puis revenir au catalogue.
 - Les filtres de catalogue doivent etre conserves si possible au retour depuis une fiche produit.
 - Le panier doit etre accessible depuis toutes les pages publiques.
 - La validation de commande doit etre accessible uniquement depuis un panier valide.
 - Apres validation reussie, la cliente arrive sur une page de confirmation.
+
+## Architecture des pages publiques
+
+- L'accueil doit rester une page d'entree compacte.
+- L'accueil doit afficher l'identite de la boutique, les acces principaux et un apercu du catalogue, sans gros blocs successifs.
+- Les categories doivent etre accessibles depuis le header via un menu dedie.
+- Chaque categorie visible doit disposer de sa propre page publique.
+- Chaque page categorie doit pouvoir servir de page de collection avec un espace visuel pour de futures photos, puis un acces rapide aux sous-categories.
+- Chaque sous-categorie visible doit disposer de sa propre page publique.
+- Les pages sous-categorie et produit doivent rester separees de l'accueil pour eviter de charger la home avec trop de contenu.
+- Les fiches produit doivent rester des pages autonomes, accessibles depuis les cartes du catalogue et depuis les pages de categorie et sous-categorie.
 
 ## Navigation admin
 
@@ -80,13 +92,13 @@ Le tableau de bord doit afficher au minimum :
 
 | Composant | Role |
 | --- | --- |
-| Header boutique | Afficher le nom Indira Home, l'acces panier et les informations principales |
+| Header boutique | Afficher le nom Indira Home, les pages principales, le panier et le menu categories |
 | Liste categories | Permettre la navigation par categorie et sous-categorie |
 | Barre de recherche | Rechercher un produit par nom |
 | Filtres catalogue | Filtrer par categorie, sous-categorie, stock et nouveaute |
 | Tri catalogue | Trier par defaut, prix croissant, prix decroissant, nouveautes |
 | Carte produit | Afficher photo, nom, prix, categorie/sous-categorie, nouveaute et etat epuise, sans quantite exacte |
-| Galerie produit | Afficher les photos d'une fiche produit |
+| Galerie produit | Afficher les photos d'une fiche produit et un rendu plus large que les cartes catalogue |
 | Controle quantite | Augmenter ou diminuer une quantite sans depasser le stock |
 | Ligne panier | Afficher produit, prix, quantite, sous-total et etat |
 | Recapitulatif panier | Afficher total et action de validation |

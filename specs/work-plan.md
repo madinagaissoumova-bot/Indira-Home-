@@ -80,6 +80,11 @@ Afficher les produits visibles aux clientes.
 - Ajouter tris : defaut, prix croissant, prix decroissant, nouveautes.
 - Gerer les etats vides.
 - Gerer les produits epuises.
+- Garder l'accueil compact, mais en faire une entree catalogue actionnable avec recherche, filtres, tri et grille produits visibles rapidement.
+- Utiliser les collections d'accueil comme aide de navigation, sans remplacer la consultation directe des produits.
+- Utiliser les pages categorie comme vraies pages de collection.
+- Prevoir un header avec acces principal aux pages du site et au menu categories.
+- Prevoir sur les pages categorie une zone visuelle pour les futures photos de collection.
 
 ### Verification
 
@@ -103,6 +108,7 @@ Permettre la consultation detaillee d'un produit.
 - Ajouter controle de quantite.
 - Bloquer l'ajout si produit epuise.
 - Conserver autant que possible le retour au catalogue precedent.
+- Garder la fiche produit comme une page separee et plus detaillee que la page categorie.
 
 ### Verification
 

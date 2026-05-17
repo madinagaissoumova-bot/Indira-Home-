@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export default async function ConfirmationPage({
   searchParams
@@ -9,7 +10,10 @@ export default async function ConfirmationPage({
 
   return (
     <main className="page">
-      <section className="hero">
+      <Breadcrumbs
+        items={[{ label: "Каталог", href: "/" }, { label: "Корзина", href: "/cart" }, { label: "Подтверждение" }]}
+      />
+      <section className="hero hero-compact">
         <span className="eyebrow">Заказ отправлен</span>
         <h1>Спасибо за заказ</h1>
         <p>

@@ -17,12 +17,9 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. `PUBLIC-103` Recherche, filtres et tri catalogue.
-2. `PUBLIC-104` Route sous-categorie.
-3. `PUBLIC-203` Robustesse panier.
-4. `SERVER-301` Verification panier serveur reutilisable.
-5. `SERVER-302` Validation commande stricte.
-6. `ADMIN-401` Auth admin.
+1. `SERVER-301` Verification panier serveur reutilisable.
+2. `SERVER-302` Validation commande stricte.
+3. `ADMIN-401` Auth admin.
 
 ## Lot 0 - Base projet et donnees
 
@@ -41,8 +38,8 @@ Priorites :
 | --- | --- | --- | --- |
 | PUBLIC-101 | P0 | ACTIVE | Page catalogue `/` avec cartes produit. |
 | PUBLIC-102 | P0 | ACTIVE | Navigation categories visibles. |
-| PUBLIC-103 | P0 | TODO | Recherche, filtres et tri catalogue. |
-| PUBLIC-104 | P0 | TODO | Route `/subcategory/:slug`. |
+| PUBLIC-103 | P0 | DONE | Recherche, filtres et tri catalogue. |
+| PUBLIC-104 | P0 | DONE | Route `/subcategory/:slug`. |
 | UI-101 | P1 | TODO | Mobile catalogue et filtres compacts. |
 
 ## Lot 2 - Fiche produit et panier
@@ -52,7 +49,7 @@ Priorites :
 | PUBLIC-201 | P0 | ACTIVE | Fiche produit `/product/:slug`. |
 | PUBLIC-202 | P0 | ACTIVE | Ajout panier depuis catalogue et fiche. |
 | PUBLIC-203 | P0 | ACTIVE | Page panier `/cart`. |
-| PUBLIC-204 | P0 | TODO | Quantites panier robustes et corrections invalides. |
+| PUBLIC-204 | P0 | DONE | Quantites panier robustes et corrections invalides. |
 | PUBLIC-205 | P1 | TODO | Galerie produit et caracteristiques facultatives. |
 
 ## Lot 3 - Commande client

@@ -26,7 +26,7 @@ const adminSections = [
 export default function AdminPage() {
   return (
     <main className="page">
-      <section className="hero">
+      <section className="hero hero-compact">
         <span className="eyebrow">Espace admin</span>
         <h1>Панель управления</h1>
         <p>

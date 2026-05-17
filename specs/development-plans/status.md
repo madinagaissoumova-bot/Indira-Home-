@@ -14,8 +14,8 @@ Statuts utilises :
 | Lot | Plan | Statut | Resume |
 | --- | --- | --- | --- |
 | Lot 0 | `lot-0-base-donnees.md` | ACTIF | Schema, constantes, seed et base Prisma existent, mais les validations/helpers serveur restent a consolider. |
-| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue et route categorie existent. Recherche, filtres complets, tri et route sous-categorie restent a finaliser. |
-| Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, ajout panier et page panier existent. Galerie, caracteristiques et validations panier serveur restent a renforcer. |
+| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue, route categorie, route sous-categorie, recherche, filtres et tri existent. Polish mobile des filtres et verification detaillee restent a finaliser. |
+| Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, ajout panier, page panier et corrections de quantites existent. Galerie, caracteristiques et validations panier serveur restent a renforcer. |
 | Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur et confirmation existent. Validation stricte, verification panier centralisee et tests concurrence restent a finaliser. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | A FAIRE | Seul un dashboard placeholder existe. Auth admin, session, protection et compteurs ne sont pas faits. |
 | Lot 5 | `lot-5-admin-catalogue.md` | A FAIRE | Routes produits/categories admin a creer. |
@@ -52,10 +52,6 @@ Pourquoi actif :
 
 Reste a faire avant de marquer termine :
 
-- creer `/subcategory/:slug` ;
-- rendre la recherche fonctionnelle ;
-- ajouter les filtres V1 ;
-- ajouter les tris V1 ;
 - verifier les etats vides par categorie/sous-categorie ;
 - finaliser l'ergonomie mobile des filtres.
 
@@ -155,9 +151,8 @@ Premier ticket :
 
 Le prochain focus recommande est :
 
-1. terminer Lot 1 : sous-categorie, recherche, filtres, tri ;
-2. terminer Lot 2 : panier robuste et fiche produit complete ;
-3. terminer Lot 3 : validation commande stricte et tests stock ;
-4. demarrer Lot 4 : auth admin.
+1. terminer Lot 2 : panier robuste et fiche produit complete ;
+2. terminer Lot 3 : validation commande stricte et tests stock ;
+3. demarrer Lot 4 : auth admin.
 
 Cette sequence garde le parcours cliente commandable avant de construire l'admin complet. Si besoin, le Lot 4 peut demarrer plus tot, mais il ne doit pas etre considere termine avant protection effective des routes et actions admin.

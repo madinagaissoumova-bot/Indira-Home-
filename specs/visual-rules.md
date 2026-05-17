@@ -10,6 +10,23 @@ Indira Home vend des objets pour la maison. L'interface doit donc etre chaleureu
 
 La direction visuelle doit etre basee sur un rose tres clair, tres doux, presque poudree, accompagne de neutres chauds et d'accents discrets. L'ensemble doit rester raffine, jamais criard.
 
+## Architecture De L'Interface
+
+- L'accueil doit rester court et servir d'entree vers le catalogue, pas de long empilement de blocs.
+- L'accueil desktop doit tenir sur un seul ecran quand c'est possible : navbar, mega-menu en overlay si ouvert, et hero principal.
+- L'accueil doit servir d'entree vers le catalogue : la cliente doit pouvoir chercher depuis la navbar ou ouvrir une categorie sans passer par un contenu intermediaire lourd.
+- L'accueil peut commencer par un hero editorial premium si les CTA mènent clairement aux collections et au catalogue.
+- Le header doit contenir les pages principales du site et un acces discret aux categories.
+- Le header est le centre principal de navigation : logo, recherche compacte, navigation principale et bouton categories.
+- Les categories doivent etre accessibles depuis un mega-menu compact en haut, sur mobile comme sur desktop.
+- Les categories ne doivent pas etre repetees sous forme de gros blocs sur l'accueil si elles sont deja disponibles dans le mega-menu.
+- Les collections et categories peuvent servir de raccourcis visuels, mais seulement de facon ponctuelle et legere.
+- Une page categorie doit fonctionner comme une page de collection, avec un espace visuel dedie et un acces rapide aux sous-categories.
+- Les sous-categories doivent etre visibles dans le parcours mais ne doivent pas dominer visuellement la page.
+- Les futures photos de collection ou de categorie doivent pouvoir etre ajoutees sans refondre toute la page.
+- Les fiches produit doivent rester des pages separees, avec galerie et action d'achat visibles rapidement.
+- Eviter de multiplier les grands blocs pleins largeur sur une meme page.
+
 ## Priorite mobile
 
 - Le design est mobile-first.
@@ -62,12 +79,18 @@ Eviter :
 ## Mise en page publique
 
 - Le catalogue est la premiere experience utile.
+- L'accueil doit etre une page d'entree compacte, avec peu de sections et peu de texte : hero editorial, navigation categories dans la navbar et CTA vers le catalogue.
+- Sur desktop, l'accueil ne doit pas afficher de sections sous le hero si cela cree un scroll inutile.
 - Les photos produit doivent etre grandes assez pour identifier l'article.
 - Les cartes produit doivent avoir des dimensions stables pour eviter les sauts de layout.
 - Les informations essentielles sur une carte : photo, nom, prix, etat epuise si necessaire, action.
 - La quantite exacte en stock ne doit pas etre affichee.
 - Les produits epuises restent visibles mais leur action de commande est desactivee ou impossible.
 - Le header public doit rester leger, avec le logo/nom, un bouton panier et une icone client distincte.
+- Le menu categories doit vivre dans le header et pouvoir s'ouvrir pour afficher les categories et sous-categories.
+- Les pages de categorie doivent presenter la collection de facon aeree, avec une zone visuelle pour les futures photos et un acces direct aux sous-categories.
+- Les controles de catalogue doivent etre regroupes dans une toolbar claire et discrete : recherche compacte dans le header, categorie, sous-categorie, disponibilite, nouveautes, tri et reinitialisation.
+- Les filtres actifs doivent produire un resultat comprehensible : nombre de produits affiche et etat vide clair si aucun produit ne correspond.
 
 ## Cartes produit
 

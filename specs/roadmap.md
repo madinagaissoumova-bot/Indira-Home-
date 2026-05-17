@@ -63,6 +63,9 @@ Inclus :
 - tris par defaut, prix croissant, prix decroissant, nouveautes ;
 - gestion des produits epuises ;
 - textes client en russe.
+- accueil compact servant d'entree vers le catalogue ;
+- pages categorie comme pages de collection distinctes ;
+- acces rapide aux sous-categories depuis le header et les pages categorie.
 
 Sortie attendue :
 
