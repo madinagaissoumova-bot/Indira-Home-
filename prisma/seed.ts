@@ -43,6 +43,51 @@ const productImages = [
     slug: "hlebnitsa-keramika-steklo-26-sm",
     url: "/uploads/products/hlebnitsa-keramika-steklo-26-sm-premium.png",
     alt: "Хлебница керамика/стекло 26 см"
+  },
+  {
+    slug: "stolovyi-serviz-32pr-white-relief",
+    url: "/uploads/products/stolovyi-serviz-32pr-white-relief-premium.png",
+    alt: "Столовый сервиз на 6 персон, 32 предмета"
+  },
+  {
+    slug: "nabor-kastryul-bayer-black-5",
+    url: "/uploads/products/nabor-kastryul-bayer-black-5-premium.png",
+    alt: "Набор кастрюль BAYER, 5 предметов"
+  },
+  {
+    slug: "otparivatel-proliss-wizard-aid",
+    url: "/uploads/products/otparivatel-proliss-wizard-aid-premium.png",
+    alt: "Отпариватель для одежды PROLISS Series Wizard Aid"
+  },
+  {
+    slug: "stolovyi-serviz-blue-floral-40",
+    url: "/uploads/products/stolovyi-serviz-blue-floral-40-premium.png",
+    alt: "Столовый сервиз с голубым цветочным декором, 40 предметов"
+  },
+  {
+    slug: "stolovyi-serviz-pink-floral-32",
+    url: "/uploads/products/stolovyi-serviz-pink-floral-32-premium.png",
+    alt: "Столовый сервиз 32пр 6перс с розовым цветочным декором"
+  },
+  {
+    slug: "pogruzhnoy-blender-uakeen-s-nasadkami",
+    url: "/uploads/products/pogruzhnoy-blender-uakeen-premium.png",
+    alt: "Погружной блендер UAKEEN с насадками"
+  },
+  {
+    slug: "nabor-kastryul-uakeen-beige-5",
+    url: "/uploads/products/nabor-kastryul-uakeen-beige-5-premium.png",
+    alt: "Набор кастрюль UAKEEN бежевый, 5 предметов"
+  },
+  {
+    slug: "nabor-kastryul-uakeen-black-5",
+    url: "/uploads/products/nabor-kastryul-uakeen-black-5-premium.png",
+    alt: "Набор кастрюль UAKEEN черный, 5 предметов"
+  },
+  {
+    slug: "emkosti-lefard-med-sahar-250",
+    url: "/uploads/products/emkosti-lefard-med-sahar-250-premium.png",
+    alt: "Набор емкостей Lefard для меда и сахара, 250 мл"
   }
 ];
 
@@ -74,7 +119,8 @@ const categories = [
     subcategories: [
       ["Чайники", "chainiki"],
       ["Блендеры", "blendery"],
-      ["Пылесосы", "pylesosy"]
+      ["Пылесосы", "pylesosy"],
+      ["Отпариватели", "otparivateli"]
     ]
   },
   {
@@ -246,6 +292,15 @@ async function main() {
   });
   const kitchenAccessoriesSubcategory = await prisma.subcategory.findUniqueOrThrow({
     where: { slug: "kuhonnye-aksessuary" }
+  });
+  const applianceCategory = await prisma.category.findUniqueOrThrow({
+    where: { slug: "bytovaya-tehnika" }
+  });
+  const blendersSubcategory = await prisma.subcategory.findUniqueOrThrow({
+    where: { slug: "blendery" }
+  });
+  const steamersSubcategory = await prisma.subcategory.findUniqueOrThrow({
+    where: { slug: "otparivateli" }
   });
 
   await prisma.product.upsert({
@@ -432,6 +487,157 @@ async function main() {
       }
     }
   });
+
+  const newProducts = [
+    {
+      name: "Столовый сервиз на 6 персон, 32 предмета",
+      slug: "stolovyi-serviz-32pr-white-relief",
+      description:
+        "Элегантный столовый сервиз на 6 персон в классическом белом цвете с нежным рельефным декором. Подходит для ежедневной сервировки и праздничного стола. В набор входят обеденные и десертные тарелки, суповые чаши, кружки с блюдцами и два овальных блюда.",
+      priceRub: 9500,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 10,
+      brand: null,
+      characteristics:
+        "Обеденные тарелки: 6 шт.\nДесертные тарелки: 6 шт.\nСуповые чаши: 6 шт.\nКружки 250 мл: 6 шт.\nБлюдца: 6 шт.\nОвальное блюдо: 2 шт.\nВсего предметов: 32\nКоличество персон: 6"
+    },
+    {
+      name: "Набор кастрюль BAYER, 5 предметов",
+      slug: "nabor-kastryul-bayer-black-5",
+      description:
+        "Набор кастрюль BAYER в черном цвете с крышками. Практичный комплект из 5 предметов для ежедневного приготовления блюд, выполненный в сдержанном современном дизайне.",
+      priceRub: 5500,
+      categoryId: kitchenCategory.id,
+      subcategoryId: potsSubcategory.id,
+      stockQuantity: 10,
+      brand: "BAYER",
+      characteristics:
+        "Всего предметов: 5\nЦвет: черный\nКомплектация: кастрюли с крышками\nБренд: BAYER\nНазначение: ежедневная готовка"
+    },
+    {
+      name: "Отпариватель для одежды PROLISS Series Wizard Aid",
+      slug: "otparivatel-proliss-wizard-aid",
+      description:
+        "Многофункциональный отпариватель для одежды PROLISS Series Wizard Aid мощностью 3000 Вт. Подходит для ухода за одеждой дома, помогает быстро освежить вещи, разгладить складки и привести ткани в аккуратный вид без гладильной доски.",
+      priceRub: 6000,
+      categoryId: applianceCategory.id,
+      subcategoryId: steamersSubcategory.id,
+      stockQuantity: 10,
+      brand: "PROLISS",
+      characteristics:
+        "Мощность: 3000 Вт\nОбъем резервуара: 2.3 л\nФункции: отпаривание одежды\nРезервуар для воды: визуальный контроль уровня\nПредохранитель: термозащита\nКоличество режимов: 11\nГарантия: 12 месяцев"
+    },
+    {
+      name: "Столовый сервиз с голубым цветочным декором, 40 предметов",
+      slug: "stolovyi-serviz-blue-floral-40",
+      description:
+        "Столовый сервиз на 40 предметов в белом цвете с нежным голубым цветочным декором. Подходит для красивой сервировки семейного или праздничного стола. В набор входят тарелки, чашки, салатники и блюда для полноценной подачи.",
+      priceRub: 13000,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 10,
+      brand: null,
+      characteristics:
+        "Всего предметов: 40\nДекор: голубой цветочный узор\nЦвет: белый\nНазначение: сервировка стола"
+    },
+    {
+      name: "Столовый сервиз 32пр 6перс с розовым цветочным декором",
+      slug: "stolovyi-serviz-pink-floral-32",
+      description:
+        "Элегантный столовый сервиз на 6 персон в белом цвете с нежным розовым цветочным декором. Подходит для ежедневной сервировки и праздничного стола.",
+      priceRub: 10000,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 10,
+      brand: null,
+      characteristics:
+        "Обеденные тарелки: 6 шт.\nДесертные тарелки: 6 шт.\nСуповые чаши: 6 шт.\nКружки 250 мл: 6 шт.\nБлюдца: 6 шт.\nОвальное блюдо: 2 шт."
+    },
+    {
+      name: "Погружной блендер UAKEEN с насадками",
+      slug: "pogruzhnoy-blender-uakeen-s-nasadkami",
+      description:
+        "Многофункциональный погружной блендер UAKEEN с набором насадок для приготовления разных блюд. Подходит для измельчения, взбивания, смешивания и нарезки продуктов. В комплект входят чаша, венчики, измельчитель и дополнительные насадки для удобной работы на кухне.",
+      priceRub: 5000,
+      categoryId: applianceCategory.id,
+      subcategoryId: blendersSubcategory.id,
+      stockQuantity: 10,
+      brand: "UAKEEN",
+      characteristics:
+        "Тип: погружной блендер\nКомплектация: блендер, чаша, венчики, измельчитель, насадки\nНазначение: измельчение, смешивание, взбивание, нарезка\nБренд: UAKEEN"
+    },
+    {
+      name: "Набор кастрюль UAKEEN бежевый, 5 предметов",
+      slug: "nabor-kastryul-uakeen-beige-5",
+      description:
+        "Бежевый набор кастрюль UAKEEN из литого алюминия с прочным покрытием. Кастрюли равномерно нагреваются, легко моются и подходят для ежедневного приготовления блюд. В комплект входят пять удобных объемов для разных задач на кухне.",
+      priceRub: 6500,
+      categoryId: kitchenCategory.id,
+      subcategoryId: potsSubcategory.id,
+      stockQuantity: 10,
+      brand: "UAKEEN",
+      characteristics:
+        "Материал: литой алюминий\nПокрытие: прочное, легко моется\nОбъемы: 3 л, 5 л, 5 л, 8 л, 12 л\nВсего предметов: 5\nРавномерное нагревание\nЛегко моется"
+    },
+    {
+      name: "Набор кастрюль UAKEEN черный, 5 предметов",
+      slug: "nabor-kastryul-uakeen-black-5",
+      description:
+        "Черный набор кастрюль UAKEEN из литого алюминия с прочным покрытием. Кастрюли подходят для ежедневной готовки, равномерно нагреваются и легко моются. В комплект входят пять объемов, удобных для приготовления блюд на каждый день и на большую семью.",
+      priceRub: 6500,
+      categoryId: kitchenCategory.id,
+      subcategoryId: potsSubcategory.id,
+      stockQuantity: 10,
+      brand: "UAKEEN",
+      characteristics:
+        "Материал: литой алюминий\nПокрытие: прочное\nОбъемы: 3 л, 5 л, 5 л, 8 л, 12 л\nВсего предметов: 5\nПодходят для всех плит\nЛегко моются"
+    },
+    {
+      name: "Набор емкостей Lefard для меда и сахара, 250 мл",
+      slug: "emkosti-lefard-med-sahar-250",
+      description:
+        "Набор стеклянных емкостей Lefard с деревянными крышками и ложечками. Подходит для красивой подачи меда и сахара на стол и удобного хранения на кухне.",
+      priceRub: 800,
+      categoryId: kitchenCategory.id,
+      subcategoryId: kitchenAccessoriesSubcategory.id,
+      stockQuantity: 10,
+      brand: "Lefard",
+      characteristics:
+        "Объем: 250 мл\nКоличество емкостей: 2\nКрышки: дерево\nВ комплекте: ложечки\nНазначение: мед и сахар"
+    }
+  ];
+
+  for (const product of newProducts) {
+    await prisma.product.upsert({
+      where: { slug: product.slug },
+      update: {
+        name: product.name,
+        description: product.description,
+        priceRub: product.priceRub,
+        categoryId: product.categoryId,
+        subcategoryId: product.subcategoryId,
+        stockQuantity: product.stockQuantity,
+        status: PRODUCT_STATUS.published,
+        isNew: true,
+        brand: product.brand,
+        characteristics: product.characteristics
+      },
+      create: {
+        name: product.name,
+        slug: product.slug,
+        description: product.description,
+        priceRub: product.priceRub,
+        categoryId: product.categoryId,
+        subcategoryId: product.subcategoryId,
+        stockQuantity: product.stockQuantity,
+        status: PRODUCT_STATUS.published,
+        isNew: true,
+        brand: product.brand,
+        characteristics: product.characteristics
+      }
+    });
+  }
 
   for (const productImage of productImages) {
     const product = await prisma.product.findUnique({

@@ -40,7 +40,7 @@ Read only what is relevant:
 - `AGENTS.md`
 - `Docs/specs/global-spec.md`
 - `Docs/specs/functional-map.md`
-- `Docs/specs/technical-specs.md`
+- `Docs/specs/technical/README.md`
 - `Docs/specs/work-plan.md`
 - `roadmap.md`
 - `Docs/development-plans/status.md`

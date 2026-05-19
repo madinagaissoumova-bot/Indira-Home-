@@ -2,6 +2,8 @@
 
 Ce fichier donne une vue produit de la progression du projet.
 
+Le minimum indispensable de la V1 est detaille dans `Docs/roadmap/v1.md`.
+
 Le detail d'execution reste dans `Docs/specs/work-plan.md`. Les regles fonctionnelles restent dans les fiches de `Docs/specs/feature-specs/`.
 
 ## Objectif V1

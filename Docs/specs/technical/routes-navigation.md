@@ -8,9 +8,11 @@
 | Categorie / `/category/:slug` | Afficher les produits d'une categorie visible |
 | Sous-categorie / `/subcategory/:slug` | Afficher les produits d'une sous-categorie visible |
 | Fiche produit / `/product/:slug` | Afficher les details d'un produit publie dans une categorie et sous-categorie visibles, commandable ou epuise |
+| Recherche / `/search` | Afficher les resultats d'une recherche produit |
 | Panier / `/cart` | Afficher les produits ajoutes, les quantites, les sous-totaux et le total |
 | Validation commande / `/checkout` | Collecter les informations cliente et envoyer la commande |
 | Confirmation commande / `/checkout/confirmation` | Confirmer que la commande a ete envoyee |
+| Confidentialite / `/privacy` | Expliquer les donnees collectees pour traiter les commandes |
 
 Toutes les pages publiques doivent afficher les textes visibles en russe.
 

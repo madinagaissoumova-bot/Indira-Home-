@@ -90,9 +90,11 @@ Routes publiques :
 - `/category/:slug`
 - `/subcategory/:slug`
 - `/product/:slug`
+- `/search`
 - `/cart`
 - `/checkout`
 - `/checkout/confirmation`
+- `/privacy`
 
 Routes admin :
 

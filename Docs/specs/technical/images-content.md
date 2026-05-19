@@ -27,4 +27,4 @@ Une evolution ulterieure pourra ajouter un vrai upload admin vers un stockage de
 - L'admin peut aussi etre en russe dans l'interface finale, meme si la specification documente les comportements en francais.
 - Les identifiants techniques, enums et champs de donnees peuvent rester en anglais dans la base et l'API.
 
-Pour la V1, les textes d'interface client doivent etre centralises autant que possible dans un fichier de contenu ou de constantes, par exemple `lib/content/ru.ts`, afin d'eviter des traductions dispersees dans tout le code.
+Pour la V1, les textes d'interface client doivent etre centralises autant que possible dans un fichier de contenu ou de constantes, par exemple `lib/i18n/ru.ts`, afin d'eviter des traductions dispersees dans tout le code.

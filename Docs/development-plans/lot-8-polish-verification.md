@@ -38,7 +38,7 @@ Centraliser autant que possible les textes client.
 
 Exemple de cible :
 
-- `lib/content/ru.ts`
+- `lib/i18n/ru.ts`
 
 Validation :
 
@@ -123,7 +123,7 @@ Validation :
 - `app/globals.css`
 - `app/`
 - `components/`
-- `lib/content/ru.ts`
+- `lib/i18n/ru.ts`
 - `Docs/test-plan.md`
 
 ## Risques
