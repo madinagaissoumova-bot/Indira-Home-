@@ -5,9 +5,11 @@ import { useActionState, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PAYMENT_METHOD } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
+import { ru } from "@/lib/i18n/ru";
 import { createOrder, type CheckoutState } from "./actions";
 
 const CART_KEY = "indira-home-cart";
+const CONFIRMATION_KEY = "indira-home-last-order-confirmation";
 
 type CartStorageItem = {
   productId: string;
@@ -47,23 +49,14 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
   const router = useRouter();
   const [cart, setCart] = useState<CartStorageItem[]>([]);
   const [state, formAction, isPending] = useActionState<CheckoutState, FormData>(createOrder, {});
-
-  useEffect(() => {
-    setCart(readCart());
-  }, []);
-
-  useEffect(() => {
-    if (!state.orderNumber) return;
-
-    window.localStorage.removeItem(CART_KEY);
-    window.dispatchEvent(new Event("indira-home-cart-updated"));
-    router.push(`/checkout/confirmation?order=${encodeURIComponent(state.orderNumber)}`);
-  }, [router, state.orderNumber]);
-
   const productById = useMemo(
     () => new Map(products.map((product) => [product.id, product])),
     [products]
   );
+
+  useEffect(() => {
+    setCart(readCart());
+  }, []);
 
   const rows = cart.map((item) => {
     const product = productById.get(item.productId);
@@ -75,12 +68,27 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
   const total = rows.reduce((sum, row) => sum + row.subtotal, 0);
   const isInvalid = cart.length === 0 || rows.some((row) => row.isUnavailable);
 
+  useEffect(() => {
+    if (!state.orderNumber) return;
+
+    window.sessionStorage.setItem(
+      CONFIRMATION_KEY,
+      JSON.stringify({
+        orderNumber: state.orderNumber,
+        totalRub: total
+      })
+    );
+    window.localStorage.removeItem(CART_KEY);
+    window.dispatchEvent(new Event("indira-home-cart-updated"));
+    router.push("/checkout/confirmation");
+  }, [router, state.orderNumber, total]);
+
   if (cart.length === 0) {
     return (
       <div className="empty-state">
-        <p>Ваша корзина пуста.</p>
+        <p>{ru.cart.empty}</p>
         <Link className="button" href="/cart">
-          Вернуться в корзину
+          {ru.cart.backToCart}
         </Link>
       </div>
     );
@@ -91,80 +99,77 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
       <input name="cart" type="hidden" value={JSON.stringify(cart)} />
 
       <section className="form-panel" aria-labelledby="checkout-form-title">
-        <h2 id="checkout-form-title">Контактные данные</h2>
+        <h2 id="checkout-form-title">{ru.checkout.contactTitle}</h2>
         {state.error ? <p className="form-error">{state.error}</p> : null}
 
         <div className="field">
-          <label htmlFor="customerName">Имя</label>
+          <label htmlFor="customerName">{ru.checkout.name}</label>
           <input className="input" id="customerName" name="customerName" required />
         </div>
 
         <div className="field">
-          <label htmlFor="customerPhone">Телефон или WhatsApp</label>
+          <label htmlFor="customerPhone">{ru.checkout.phone}</label>
           <input
             className="input"
             id="customerPhone"
             name="customerPhone"
-            placeholder="+7 ..."
+            placeholder={ru.checkout.phonePlaceholder}
             required
             type="tel"
           />
         </div>
 
         <div className="field">
-          <label htmlFor="deliveryAddressOrZone">Адрес или зона доставки</label>
+          <label htmlFor="deliveryAddressOrZone">{ru.checkout.address}</label>
           <textarea
             className="input textarea"
             id="deliveryAddressOrZone"
             name="deliveryAddressOrZone"
-            placeholder="Доставка только по Чеченской Республике"
+            placeholder={ru.checkout.addressPlaceholder}
             required
           />
         </div>
 
         <div className="field">
-          <label htmlFor="paymentMethod">Способ оплаты</label>
+          <label htmlFor="paymentMethod">{ru.checkout.paymentMethod}</label>
           <select className="input" id="paymentMethod" name="paymentMethod" required>
-            <option value={PAYMENT_METHOD.cashOnDelivery}>Оплата при получении</option>
+            <option value={PAYMENT_METHOD.cashOnDelivery}>{ru.checkout.cashOnDelivery}</option>
             <option value={PAYMENT_METHOD.transferAfterConfirmation}>
-              Перевод после подтверждения
+              {ru.checkout.transferAfterConfirmation}
             </option>
           </select>
         </div>
 
-        <p>
-          Онлайн-оплаты нет. Магазин свяжется с вами по телефону или WhatsApp для
-          подтверждения заказа.
-        </p>
+        <p>{ru.checkout.reminder}</p>
 
         <div className="form-actions">
           <Link className="button secondary" href="/cart">
-            Вернуться в корзину
+            {ru.cart.backToCart}
           </Link>
           <button className="button" disabled={isInvalid || isPending} type="submit">
-            {isPending ? "Отправка..." : "Отправить заказ"}
+            {isPending ? ru.checkout.submitting : ru.checkout.submit}
           </button>
         </div>
       </section>
 
       <aside className="cart-summary">
-        <h2>Ваш заказ</h2>
+        <h2>{ru.checkout.summary}</h2>
         <div className="checkout-items">
           {rows.map(({ item, product, isUnavailable, subtotal }) => (
             <div className="summary-line" key={item.productId}>
               <span>
-                {product?.name ?? "Товар недоступен"} x {item.quantity}
-                {isUnavailable ? " - недоступно" : ""}
+                {product?.name ?? ru.common.unavailableProduct} x {item.quantity}
+                {isUnavailable ? ru.checkout.unavailableSuffix : ""}
               </span>
               <strong>{formatRub(subtotal)}</strong>
             </div>
           ))}
         </div>
         <div className="summary-line">
-          <span>Итого</span>
+          <span>{ru.common.total}</span>
           <strong>{formatRub(total)}</strong>
         </div>
-        {isInvalid ? <p>Корзину нужно исправить перед отправкой заказа.</p> : null}
+        {isInvalid ? <p>{ru.checkout.invalidCart}</p> : null}
       </aside>
     </form>
   );

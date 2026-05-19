@@ -2,6 +2,7 @@
 
 import { ORDER_STATUS, PAYMENT_METHOD, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
+import { ru } from "@/lib/i18n/ru";
 
 type CartItem = {
   productId: string;
@@ -56,24 +57,24 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
   const cart = parseCart(formData.get("cart"));
 
   if (cart.length === 0) {
-    return { error: "Ваша корзина пуста или содержит товары, которые нужно исправить." };
+    return { error: ru.checkout.errors.emptyCart };
   }
 
-  if (!customerName) return { error: "Пожалуйста, укажите имя." };
+  if (!customerName) return { error: ru.checkout.errors.missingName };
   if (!/^\+?[0-9\s()\-]{8,20}$/.test(customerPhone)) {
-    return { error: "Пожалуйста, укажите корректный номер телефона или WhatsApp." };
+    return { error: ru.checkout.errors.invalidPhone };
   }
   if (!deliveryAddressOrZone) {
-    return { error: "Пожалуйста, укажите адрес или зону доставки в Чеченской Республике." };
+    return { error: ru.checkout.errors.missingAddress };
   }
   if (isClearlyOutsideChechnya(deliveryAddressOrZone)) {
-    return { error: "Доставка пока доступна только по Чеченской Республике." };
+    return { error: ru.checkout.errors.outsideZone };
   }
   if (
     paymentMethod !== PAYMENT_METHOD.cashOnDelivery &&
     paymentMethod !== PAYMENT_METHOD.transferAfterConfirmation
   ) {
-    return { error: "Пожалуйста, выберите способ оплаты." };
+    return { error: ru.checkout.errors.missingPayment };
   }
 
   const products = await prisma.product.findMany({
@@ -152,12 +153,12 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
     return { orderNumber };
   } catch (error) {
     if (error instanceof Error && error.message === "INSUFFICIENT_STOCK") {
-      return { error: "Запрошенное количество больше недоступно. Пожалуйста, обновите корзину." };
+      return { error: ru.checkout.errors.insufficientStock };
     }
     if (error instanceof Error && error.message === "UNAVAILABLE_PRODUCT") {
-      return { error: "Один из товаров больше недоступен для заказа." };
+      return { error: ru.checkout.errors.unavailableProduct };
     }
 
-    return { error: "Не удалось отправить заказ. Попробуйте еще раз." };
+    return { error: ru.checkout.errors.general };
   }
 }

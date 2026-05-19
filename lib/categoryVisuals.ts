@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 
 const CATEGORY_VISUALS: Record<string, { image: string; tone: string }> = {
   posuda: {
-    image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=900&q=80",
+    image: "/uploads/products/nabor-posudy-belyi-serviz-premium.png",
     tone: "#ead6d9"
   },
   kuhnya: {
@@ -19,8 +19,12 @@ const CATEGORY_VISUALS: Record<string, { image: string; tone: string }> = {
   }
 };
 
+export function getCategoryVisual(slug: string) {
+  return CATEGORY_VISUALS[slug] ?? CATEGORY_VISUALS.posuda;
+}
+
 export function getCategoryVisualStyle(slug: string): CSSProperties {
-  const visual = CATEGORY_VISUALS[slug] ?? CATEGORY_VISUALS.posuda;
+  const visual = getCategoryVisual(slug);
 
   return {
     "--category-image": `url("${visual.image}")`,

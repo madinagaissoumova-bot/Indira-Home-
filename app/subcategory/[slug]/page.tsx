@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
-import { AddToCartButton } from "@/components/AddToCartButton";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ru } from "@/lib/i18n/ru";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 export default async function SubcategoryPage({
   params
@@ -47,7 +49,7 @@ export default async function SubcategoryPage({
     <main className="page">
       <Breadcrumbs
         items={[
-          { label: "Каталог", href: "/" },
+          { label: ru.common.catalog, href: "/" },
           { label: subcategory.category.name, href: `/category/${subcategory.category.slug}` },
           { label: subcategory.name }
         ]}
@@ -55,7 +57,7 @@ export default async function SubcategoryPage({
       <section className="hero hero-compact">
         <span className="eyebrow">{subcategory.category.name}</span>
         <h1>{subcategory.name}</h1>
-        <p>{subcategory.products.length} товаров в разделе</p>
+        <p>{ru.catalog.productCount(subcategory.products.length)} {ru.catalog.inSection}</p>
       </section>
 
       {subcategory.products.length > 0 ? (
@@ -67,25 +69,32 @@ export default async function SubcategoryPage({
             return (
               <article className="product-card" key={product.id}>
                 {image ? (
-                  <img className="product-image" src={image.url} alt={image.alt} />
+                  <Image
+                    alt={image.alt}
+                    className="product-image"
+                    height={800}
+                    src={image.url}
+                    unoptimized
+                    width={600}
+                  />
                 ) : (
                   <div className="product-image" />
                 )}
                 <div className="product-body">
                   <div className="price-row">
-                    {product.isNew ? <span className="badge new">Новинка</span> : <span />}
-                    {isSoldOut ? <span className="badge sold-out">Нет в наличии</span> : null}
+                    {product.isNew ? <span className="badge new">{ru.common.new}</span> : <span />}
+                    {isSoldOut ? <span className="badge sold-out">{ru.common.soldOut}</span> : null}
                   </div>
                   <h3 className="product-title">{product.name}</h3>
                   <div className="product-meta">{product.category.name}</div>
                   <span className="price">{formatRub(product.priceRub)}</span>
                   <div className="card-actions">
                     <Link className="button secondary" href={`/product/${product.slug}`}>
-                      Смотреть
+                      {ru.common.viewProduct}
                     </Link>
                     <AddToCartButton
                       disabled={isSoldOut}
-                      label="В корзину"
+                      label={ru.common.addToCart}
                       productId={product.id}
                     />
                   </div>
@@ -96,7 +105,7 @@ export default async function SubcategoryPage({
         </div>
       ) : (
         <div className="empty-state">
-          <p>В этой подкатегории пока нет товаров.</p>
+          <p>{ru.catalog.noSubcategoryProducts}</p>
         </div>
       )}
     </main>

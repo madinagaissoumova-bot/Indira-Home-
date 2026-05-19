@@ -36,11 +36,15 @@ Le parcours cliente et l'admin complet font tous les deux partie de la V1.
 
 Lire ces specs avant de modifier un comportement important :
 
-- `specs/global-spec.md`
-- `specs/function-map.md`
-- `specs/technical-specs.md`
-- `specs/work-plan.md`
-- fiches dans `specs/feature-specs/`
+- `Docs/specs/global-spec.md`
+- `Docs/specs/functional-map.md`
+- `Docs/specs/technical/README.md`
+- `Docs/specs/work-plan.md`
+- fiches dans `Docs/specs/feature-specs/`
+- `Docs/development-plans/status.md`
+- `Docs/development-plans/tickets.md`
+- `Docs/roadmap/README.md`
+- `Docs/test-plan.md`
 
 Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les specs pour garder le projet coherent.
 

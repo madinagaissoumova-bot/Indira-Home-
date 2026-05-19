@@ -1,7 +1,8 @@
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
+import { ru } from "@/lib/i18n/ru";
 import { CheckoutClient } from "./CheckoutClient";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 async function getCheckoutProducts() {
   const products = await prisma.product.findMany({
@@ -27,12 +28,16 @@ export default async function CheckoutPage() {
   return (
     <main className="page">
       <Breadcrumbs
-        items={[{ label: "Каталог", href: "/" }, { label: "Корзина", href: "/cart" }, { label: "Оформление заказа" }]}
+        items={[
+          { label: ru.common.catalog, href: "/" },
+          { label: ru.common.cart, href: "/cart" },
+          { label: ru.checkout.breadcrumb }
+        ]}
       />
       <section className="hero hero-compact">
-        <span className="eyebrow">Оформление заказа</span>
-        <h1>Данные для доставки</h1>
-        <p>Заполните контакты. Мы подтвердим заказ по телефону или WhatsApp.</p>
+        <span className="eyebrow">{ru.checkout.eyebrow}</span>
+        <h1>{ru.checkout.title}</h1>
+        <p>{ru.checkout.intro}</p>
       </section>
       <CheckoutClient products={products} />
     </main>

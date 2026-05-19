@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
-import { AddToCartButton } from "@/components/AddToCartButton";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ru } from "@/lib/i18n/ru";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 export default async function SearchPage({
   searchParams
@@ -40,15 +42,15 @@ export default async function SearchPage({
 
   return (
     <main className="page">
-      <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Поиск" }]} />
+      <Breadcrumbs items={[{ label: ru.common.home, href: "/" }, { label: ru.common.search }]} />
 
       <section className="search-heading">
-        <span className="eyebrow">Поиск</span>
-        <h1>{query ? `Результаты: ${query}` : "Поиск товаров"}</h1>
+        <span className="eyebrow">{ru.common.search}</span>
+        <h1>{query ? ru.search.resultsTitle(query) : ru.search.title}</h1>
         <p>
           {query
-            ? `${products.length} товаров найдено`
-            : "Введите название, бренд или описание товара в поисковой строке."}
+            ? ru.search.resultsCount(products.length)
+            : ru.search.intro}
         </p>
       </section>
 
@@ -61,14 +63,21 @@ export default async function SearchPage({
             return (
               <article className="product-card compact" key={product.id}>
                 {image ? (
-                  <img className="product-image" src={image.url} alt={image.alt} />
+                  <Image
+                    alt={image.alt}
+                    className="product-image"
+                    height={800}
+                    src={image.url}
+                    unoptimized
+                    width={600}
+                  />
                 ) : (
                   <div className="product-image" />
                 )}
                 <div className="product-body">
                   <div className="price-row">
-                    {product.isNew ? <span className="badge new">Новинка</span> : <span />}
-                    {isSoldOut ? <span className="badge sold-out">Нет в наличии</span> : null}
+                    {product.isNew ? <span className="badge new">{ru.common.new}</span> : <span />}
+                    {isSoldOut ? <span className="badge sold-out">{ru.common.soldOut}</span> : null}
                   </div>
                   <h3 className="product-title">{product.name}</h3>
                   <div className="product-meta">
@@ -77,11 +86,11 @@ export default async function SearchPage({
                   <span className="price">{formatRub(product.priceRub)}</span>
                   <div className="card-actions">
                     <Link className="button secondary" href={`/product/${product.slug}`}>
-                      Смотреть
+                      {ru.common.viewProduct}
                     </Link>
                     <AddToCartButton
                       disabled={isSoldOut}
-                      label="В корзину"
+                      label={ru.common.addToCart}
                       productId={product.id}
                     />
                   </div>
@@ -94,11 +103,11 @@ export default async function SearchPage({
         <div className="empty-state">
           <p>
             {query
-              ? "По этому запросу пока ничего не найдено."
-              : "Поиск поможет быстро найти сервизы, посуду, аксессуары для кухни и декор."}
+              ? ru.search.noResults
+              : ru.search.hint}
           </p>
           <Link className="button secondary" href="/">
-            Вернуться на главную
+            {ru.search.backHome}
           </Link>
         </div>
       )}

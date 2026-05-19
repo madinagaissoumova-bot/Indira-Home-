@@ -3,6 +3,49 @@ import { PRODUCT_STATUS, VISIBILITY_STATUS } from "../lib/constants";
 
 const prisma = new PrismaClient();
 
+const productImages = [
+  {
+    slug: "nabor-posudy-belyi-serviz",
+    url: "/uploads/products/nabor-posudy-belyi-serviz-premium.png",
+    alt: "Белый набор посуды"
+  },
+  {
+    slug: "chaynyi-nabor-smeg",
+    url: "/uploads/products/chaynyi-nabor-smeg-premium.png",
+    alt: "Чайный набор Smeg"
+  },
+  {
+    slug: "stolovyi-serviz-white-lui-laren-39",
+    url: "/uploads/products/stolovyi-serviz-white-lui-laren-39-premium.png",
+    alt: "Столовый сервиз WHITE Lui Laren"
+  },
+  {
+    slug: "nabor-kastryul-304-english-design",
+    url: "/uploads/products/nabor-kastryul-304-english-design-premium.png",
+    alt: "Набор кастрюль English Design 304"
+  },
+  {
+    slug: "hlebnitsa-lefard-steklo-derevo",
+    url: "/uploads/products/hlebnitsa-lefard-steklo-derevo-premium.png",
+    alt: "Хлебница Lefard со стеклянной крышкой"
+  },
+  {
+    slug: "syrnitsa-lefard-steklo-derevo-20-sm",
+    url: "/uploads/products/syrnitsa-lefard-steklo-derevo-20-sm-premium.png",
+    alt: "Сырница Lefard 20 см"
+  },
+  {
+    slug: "maslenka-lefard-steklo-derevo",
+    url: "/uploads/products/maslenka-lefard-steklo-derevo-premium.png",
+    alt: "Масленка Lefard со стеклянной крышкой"
+  },
+  {
+    slug: "hlebnitsa-keramika-steklo-26-sm",
+    url: "/uploads/products/hlebnitsa-keramika-steklo-26-sm-premium.png",
+    alt: "Хлебница керамика/стекло 26 см"
+  }
+];
+
 const categories = [
   {
     name: "Посуда",
@@ -109,7 +152,7 @@ async function main() {
         "Тарелка 26 см: 6 штук\nТарелка 21 см: 6 штук\nСуповая пиала: 6 штук\nЧашка с блюдцем: 6 штук\nРозетка: 6 штук\nОвальное блюдо 30 см: 2 штуки\nЧайник: 1 штука\nСахарница: 1 штука",
       images: {
         create: {
-          url: "/uploads/products/nabor-posudy-belyi-serviz-9300.jpeg",
+          url: "/uploads/products/nabor-posudy-belyi-serviz-premium.png",
           alt: "Белый набор посуды",
           displayOrder: 0
         }
@@ -147,7 +190,7 @@ async function main() {
       characteristics: "Объем кружек: 250 мл\nОбъем чайника: 1 л",
       images: {
         create: {
-          url: "/uploads/products/chaynyi-nabor-smeg.jpeg",
+          url: "/uploads/products/chaynyi-nabor-smeg-premium.png",
           alt: "Чайный набор Smeg",
           displayOrder: 0
         }
@@ -187,7 +230,7 @@ async function main() {
         "Коллекция: WHITE\nКоличество персон: 6\nВсего предметов: 39\nПодтарельники: 6 штук\nЗакусочные тарелки: 6 штук\nЕвро суповые тарелки: 6 штук\nПиалы: 6 штук\nКружки: 6 штук\nБлюдца: 6 штук\nОвальные блюда: 2 штуки\nСалатник: 1 штука",
       images: {
         create: {
-          url: "/uploads/products/stolovyi-serviz-white-lui-laren-39.jpeg",
+          url: "/uploads/products/stolovyi-serviz-white-lui-laren-39-premium.png",
           alt: "Столовый сервиз WHITE Lui Laren",
           displayOrder: 0
         }
@@ -232,7 +275,7 @@ async function main() {
       characteristics: "Материал: нержавеющая сталь 304\nОбъемы: 1.8 л, 3.5 л, 5.3 л\nКомплектация: 3 кастрюли и сковорода",
       images: {
         create: {
-          url: "/uploads/products/nabor-kastryul-304-english-design.jpeg",
+          url: "/uploads/products/nabor-kastryul-304-english-design-premium.png",
           alt: "Набор кастрюль English Design 304",
           displayOrder: 0
         }
@@ -270,7 +313,7 @@ async function main() {
       characteristics: "Крышка: стекло\nОснование: дерево",
       images: {
         create: {
-          url: "/uploads/products/hlebnitsa-lefard-steklo-derevo.jpeg",
+          url: "/uploads/products/hlebnitsa-lefard-steklo-derevo-premium.png",
           alt: "Хлебница Lefard со стеклянной крышкой",
           displayOrder: 0
         }
@@ -308,7 +351,7 @@ async function main() {
       characteristics: "Размер: 20 см\nКрышка: стекло\nОснование: дерево",
       images: {
         create: {
-          url: "/uploads/products/syrnitsa-lefard-steklo-derevo-20-sm.jpeg",
+          url: "/uploads/products/syrnitsa-lefard-steklo-derevo-20-sm-premium.png",
           alt: "Сырница Lefard 20 см",
           displayOrder: 0
         }
@@ -346,7 +389,7 @@ async function main() {
       characteristics: "Крышка: стекло\nОснование: дерево",
       images: {
         create: {
-          url: "/uploads/products/maslenka-lefard-steklo-derevo.jpeg",
+          url: "/uploads/products/maslenka-lefard-steklo-derevo-premium.png",
           alt: "Масленка Lefard со стеклянной крышкой",
           displayOrder: 0
         }
@@ -382,13 +425,32 @@ async function main() {
       characteristics: "Размер: 26 см\nОснование: керамика\nКрышка: стекло",
       images: {
         create: {
-          url: "/uploads/products/hlebnitsa-keramika-steklo-26-sm.jpeg",
+          url: "/uploads/products/hlebnitsa-keramika-steklo-26-sm-premium.png",
           alt: "Хлебница керамика/стекло 26 см",
           displayOrder: 0
         }
       }
     }
   });
+
+  for (const productImage of productImages) {
+    const product = await prisma.product.findUnique({
+      where: { slug: productImage.slug },
+      select: { id: true }
+    });
+
+    if (!product) continue;
+
+    await prisma.productImage.deleteMany({ where: { productId: product.id } });
+    await prisma.productImage.create({
+      data: {
+        productId: product.id,
+        url: productImage.url,
+        alt: productImage.alt,
+        displayOrder: 0
+      }
+    });
+  }
 }
 
 main()

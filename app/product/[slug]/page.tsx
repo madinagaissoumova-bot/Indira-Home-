@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
-import { AddToCartButton } from "@/components/AddToCartButton";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ru } from "@/lib/i18n/ru";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 export default async function ProductPage({
   params
@@ -38,7 +40,7 @@ export default async function ProductPage({
     .map((line) => line.trim())
     .filter(Boolean) ?? [];
   const whatsappText = encodeURIComponent(
-    `Здравствуйте! Хочу уточнить наличие товара: ${product.name}`
+    ru.product.whatsappText(product.name)
   );
   const whatsappHref = `https://wa.me/79889064106?text=${whatsappText}`;
   const relatedProducts = await prisma.product.findMany({
@@ -63,32 +65,44 @@ export default async function ProductPage({
   });
 
   return (
-    <main className="page">
+    <main className="page product-page">
       <Breadcrumbs
         items={[
-          { label: "Каталог", href: "/" },
+          { label: ru.common.catalog, href: "/" },
           { label: product.category.name, href: `/category/${product.category.slug}` },
           { label: product.subcategory.name, href: `/subcategory/${product.subcategory.slug}` },
           { label: product.name }
         ]}
       />
       <div className="product-detail-layout">
-        <section className="product-gallery" aria-label="Фотографии товара">
+        <section className="product-gallery" aria-label={ru.product.photos}>
           {image ? (
-            <img className="gallery-main" src={image.url} alt={image.alt} />
+            <Image
+              alt={image.alt}
+              className="gallery-main"
+              height={1125}
+              src={image.url}
+              unoptimized
+              width={900}
+            />
           ) : (
             <div className="gallery-main" />
           )}
-          <div className="gallery-thumbs">
-            {galleryImages.map((galleryImage) => (
-              <img
-                className="gallery-thumb"
-                key={galleryImage.id}
-                src={galleryImage.url}
-                alt={galleryImage.alt}
-              />
-            ))}
-          </div>
+          {galleryImages.length > 1 ? (
+            <div className="gallery-thumbs">
+              {galleryImages.map((galleryImage) => (
+                <Image
+                  alt={galleryImage.alt}
+                  className="gallery-thumb"
+                  height={240}
+                  key={galleryImage.id}
+                  src={galleryImage.url}
+                  unoptimized
+                  width={240}
+                />
+              ))}
+            </div>
+          ) : null}
         </section>
 
         <aside className="product-panel">
@@ -102,21 +116,21 @@ export default async function ProductPage({
 
           <div className="product-buy-row">
             <span className="product-detail-price">{formatRub(product.priceRub)}</span>
-            {product.isNew ? <span className="badge new">Новинка</span> : null}
-            {isSoldOut ? <span className="badge sold-out">Нет в наличии</span> : null}
+            {product.isNew ? <span className="badge new">{ru.common.new}</span> : null}
+            {isSoldOut ? <span className="badge sold-out">{ru.common.soldOut}</span> : null}
           </div>
 
           <p className="product-description">{product.description}</p>
 
           {characteristics.length > 0 ? (
-            <div className="product-specs" aria-label="Характеристики">
+            <div className="product-specs" aria-label={ru.product.characteristics}>
               {characteristics.map((line) => {
                 const [label, ...valueParts] = line.split(":");
                 const value = valueParts.join(":").trim();
 
                 return (
                   <div className="product-spec-row" key={line}>
-                    <span>{value ? label : "Деталь"}</span>
+                    <span>{value ? label : ru.product.fallbackSpecLabel}</span>
                     <strong>{value || line}</strong>
                   </div>
                 );
@@ -125,15 +139,15 @@ export default async function ProductPage({
           ) : null}
 
           <div className="product-service-note">
-            <span>Заказ без аккаунта</span>
-            <span>Подтверждение по телефону или WhatsApp</span>
-            <span>Доставка по Чеченской Республике</span>
+            <span>{ru.product.noAccountOrder}</span>
+            <span>{ru.product.confirmationByPhone}</span>
+            <span>{ru.product.deliveryChechnya}</span>
           </div>
 
           <div className="product-cta-stack">
             <AddToCartButton disabled={isSoldOut} productId={product.id} />
             <a className="button secondary whatsapp-button" href={whatsappHref} target="_blank" rel="noreferrer">
-              Написать в WhatsApp
+              {ru.product.whatsappButton}
             </a>
           </div>
         </aside>
@@ -142,9 +156,9 @@ export default async function ProductPage({
       {relatedProducts.length > 0 ? (
         <section aria-labelledby="related-title">
           <div className="section-heading">
-            <h2 id="related-title">Похожие товары</h2>
+            <h2 id="related-title">{ru.product.relatedTitle}</h2>
             <Link className="chip" href={`/subcategory/${product.subcategory.slug}`}>
-              Смотреть раздел
+              {ru.product.viewSection}
             </Link>
           </div>
           <div className="product-grid">
@@ -155,19 +169,22 @@ export default async function ProductPage({
               return (
                 <article className="product-card" key={relatedProduct.id}>
                   {relatedImage ? (
-                    <img
-                      className="product-image"
-                      src={relatedImage.url}
+                    <Image
                       alt={relatedImage.alt}
+                      className="product-image"
+                      height={800}
+                      src={relatedImage.url}
+                      unoptimized
+                      width={600}
                     />
                   ) : (
                     <div className="product-image" />
                   )}
                   <div className="product-body">
                     <div className="price-row">
-                      {relatedProduct.isNew ? <span className="badge new">Новинка</span> : <span />}
+                      {relatedProduct.isNew ? <span className="badge new">{ru.common.new}</span> : <span />}
                       {relatedSoldOut ? (
-                        <span className="badge sold-out">Нет в наличии</span>
+                        <span className="badge sold-out">{ru.common.soldOut}</span>
                       ) : null}
                     </div>
                     <h3 className="product-title">{relatedProduct.name}</h3>
@@ -179,11 +196,11 @@ export default async function ProductPage({
                     </div>
                     <div className="card-actions">
                       <Link className="button secondary" href={`/product/${relatedProduct.slug}`}>
-                        Смотреть
+                        {ru.common.viewProduct}
                       </Link>
                       <AddToCartButton
                         disabled={relatedSoldOut}
-                        label="В корзину"
+                        label={ru.common.addToCart}
                         productId={relatedProduct.id}
                       />
                     </div>

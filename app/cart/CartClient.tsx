@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { formatRub } from "@/lib/format";
+import { ru } from "@/lib/i18n/ru";
 
 const CART_KEY = "indira-home-cart";
 
@@ -114,21 +116,28 @@ export function CartClient({ products }: CartClientProps) {
   if (items.length === 0) {
     return (
       <div className="empty-state">
-        <p>Ваша корзина пуста.</p>
+        <p>{ru.cart.empty}</p>
         <Link className="button" href="/">
-          Вернуться в каталог
+          {ru.common.backToCatalog}
         </Link>
       </div>
     );
   }
 
   return (
-    <section className="cart-layout" aria-label="Корзина">
+    <section className="cart-layout" aria-label={ru.common.cart}>
       <div className="cart-list">
         {rows.map(({ item, product, isUnavailable, needsQuantityCorrection, quantity, subtotal }) => (
           <article className="cart-row" key={item.productId}>
             {product?.imageUrl ? (
-              <img className="cart-image" src={product.imageUrl} alt={product.imageAlt} />
+              <Image
+                alt={product.imageAlt}
+                className="cart-image"
+                height={220}
+                src={product.imageUrl}
+                unoptimized
+                width={220}
+              />
             ) : (
               <div className="cart-image" />
             )}
@@ -139,7 +148,7 @@ export function CartClient({ products }: CartClientProps) {
                   {product ? (
                     <Link href={`/product/${product.slug}`}>{product.name}</Link>
                   ) : (
-                    "Товар недоступен"
+                    ru.common.unavailableProduct
                   )}
                 </h2>
                 {product && !isUnavailable ? (
@@ -147,21 +156,21 @@ export function CartClient({ products }: CartClientProps) {
                     <p>{formatRub(product.priceRub)}</p>
                     {needsQuantityCorrection ? (
                       <p className="cart-warning">
-                        Количество изменилось. Можно заказать меньше, чем было выбрано.
+                        {ru.cart.quantityChanged}
                       </p>
                     ) : null}
                   </>
                 ) : (
                   <>
-                    <span className="badge sold-out">Недоступно для заказа</span>
+                    <span className="badge sold-out">{ru.cart.unavailableLine}</span>
                     <p className="cart-warning">
-                      Удалите этот товар, чтобы продолжить оформление заказа.
+                      {ru.cart.removeUnavailable}
                     </p>
                   </>
                 )}
               </div>
 
-              <div className="quantity-controls" aria-label="Количество">
+              <div className="quantity-controls" aria-label={ru.common.quantity}>
                 <button
                   className="icon-button"
                   onClick={() => updateQuantity(item.productId, quantity - 1)}
@@ -189,7 +198,7 @@ export function CartClient({ products }: CartClientProps) {
                       onClick={() => applyAvailableQuantity(item.productId, quantity)}
                       type="button"
                     >
-                      Исправить
+                      {ru.cart.fix}
                     </button>
                   ) : null}
                   <button
@@ -197,7 +206,7 @@ export function CartClient({ products }: CartClientProps) {
                     onClick={() => removeItem(item.productId)}
                     type="button"
                   >
-                    Удалить
+                    {ru.cart.remove}
                   </button>
                 </div>
               </div>
@@ -207,32 +216,32 @@ export function CartClient({ products }: CartClientProps) {
       </div>
 
       <aside className="cart-summary">
-        <h2>Итого</h2>
+        <h2>{ru.common.total}</h2>
         <div className="summary-line">
-          <span>Сумма заказа</span>
+          <span>{ru.cart.orderAmount}</span>
           <strong>{formatRub(total)}</strong>
         </div>
         {hasInvalidItems ? (
-          <p>Некоторые товары нужно удалить или исправить перед оформлением.</p>
+          <p>{ru.cart.invalid}</p>
         ) : (
-          <p>Оплата онлайн не требуется. Магазин свяжется с вами для подтверждения.</p>
+          <p>{ru.cart.noOnlinePayment}</p>
         )}
         {hasInvalidItems ? (
           <>
             <button className="button" onClick={cleanInvalidItems} type="button">
-              Исправить корзину
+              {ru.cart.fixCart}
             </button>
             <span className="button disabled-link" aria-disabled="true">
-              Оформить заказ
+              {ru.cart.checkout}
             </span>
           </>
         ) : (
           <Link className="button" href="/checkout">
-            Оформить заказ
+            {ru.cart.checkout}
           </Link>
         )}
         <button className="button secondary" onClick={clearCart} type="button">
-          Очистить корзину
+          {ru.cart.clear}
         </button>
       </aside>
     </section>

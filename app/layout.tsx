@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
-import { CartNavLink } from "@/components/CartNavLink";
+import { ru } from "@/lib/i18n/ru";
+import { CartNavLink } from "@/components/cart/CartNavLink";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Indira Home",
-  description: "Каталог товаров для дома Indira Home"
+  title: ru.brand.name,
+  description: ru.brand.metadataDescription
 };
 
 export default async function RootLayout({
@@ -34,34 +35,35 @@ export default async function RootLayout({
             <Link className="brand" href="/">
               <span className="brand-mark">Indira</span>
               <span className="brand-home">Home</span>
-              <span className="brand-tagline">посуда и декор для дома</span>
+              <span className="brand-tagline">{ru.brand.tagline}</span>
             </Link>
             <form className="header-search" action="/search">
               <label className="sr-only" htmlFor="header-search">
-                Поиск товара
+                {ru.layout.searchLabel}
               </label>
               <input
                 id="header-search"
                 name="q"
-                placeholder="Поиск по товарам"
+                placeholder={ru.layout.searchPlaceholder}
                 type="search"
               />
             </form>
-            <nav className="site-nav" aria-label="Основные страницы">
-              <Link href="/">Главная</Link>
+            <nav className="site-nav" aria-label={ru.layout.mainNav}>
+              <Link href="/">{ru.common.home}</Link>
               <CartNavLink />
-              <Link href="/checkout">Заказ</Link>
+              <Link href="/checkout">{ru.common.checkout}</Link>
+              <Link href="/privacy">{ru.layout.privacy}</Link>
             </nav>
           </div>
 
           <details className="category-menu">
-            <summary className="category-menu-summary" aria-label="Категории">
+            <summary className="category-menu-summary" aria-label={ru.common.categories}>
               <span className="category-menu-icon" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </span>
-              <span className="category-menu-label">Категории</span>
+              <span className="category-menu-label">{ru.common.categories}</span>
             </summary>
             <div className="category-menu-panel">
               {categories.map((category) => (
