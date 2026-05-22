@@ -40,14 +40,14 @@ Une liste stricte de villes autorisees n'est pas obligatoire en V1.
 | Description | Obligatoire pour publication, 10 a 2000 caracteres |
 | Prix | Entier en roubles, strictement superieur a 0 |
 | Stock | Entier, superieur ou egal a 0 |
-| Image URL | Au moins une URL valide pour publication, protocole `http` ou `https` |
+| Image URL | Au moins une URL valide pour publication, protocole `http` ou `https`, ou chemin local `/uploads/...` |
 | Marque | Optionnelle, maximum 80 caracteres |
 | Caracteristiques | Optionnelles, cles et valeurs texte courtes |
 | Ordre d'affichage | Optionnel, entier |
 
 Un brouillon peut etre incomplet. La publication doit etre refusee si un champ obligatoire de publication manque.
 
-Les URLs d'images doivent etre stockees comme texte. En V1, il n'est pas obligatoire de telecharger ou proxyfier les images, mais une URL vide ou mal formee ne permet pas la publication.
+Les URLs d'images doivent etre stockees comme texte. En V1, il n'est pas obligatoire de telecharger ou proxyfier les images. Les images deja presentes dans `public/uploads/` peuvent etre referencees avec un chemin `/uploads/...`. Une URL vide ou mal formee ne permet pas la publication.
 
 ## Categories et sous-categories
 

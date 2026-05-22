@@ -4,26 +4,17 @@ import { useActionState } from "react";
 import { ru } from "@/lib/i18n/ru";
 import type { AdminActionState } from "../actions";
 import { setStockAction } from "../actions";
-
-type ProductItem = {
-  id: string;
-  name: string;
-  slug: string;
-  stockQuantity: number;
-  status: string;
-  category: { name: string };
-  subcategory: { name: string };
-};
+import type { AdminStockProductItem } from "@/types";
 
 type StockManagerProps = {
-  products: ProductItem[];
+  products: AdminStockProductItem[];
 };
 
 function initialState(): AdminActionState {
   return {};
 }
 
-function StockRow({ product }: { product: ProductItem }) {
+function StockRow({ product }: { product: AdminStockProductItem }) {
   const [state, action, isPending] = useActionState(setStockAction, initialState());
   const statusLabel =
     ru.admin.common.productStatusLabels[

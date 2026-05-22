@@ -306,7 +306,7 @@ Verifier la V1 avant mise en ligne.
 
 - Executer tests unitaires et integration.
 - Tester manuellement les user stories.
-- Suivre la checklist de `Docs/test-plan.md`.
+- Suivre la checklist de `Docs/testing/test-plan.md`.
 - Verifier les variables d'environnement.
 - Verifier sauvegarde/export possible des donnees.
 - Preparer deploiement.
@@ -314,7 +314,7 @@ Verifier la V1 avant mise en ligne.
 ### Verification
 
 - Toutes les user stories critiques passent.
-- La checklist de `Docs/test-plan.md` est passee.
+- La checklist de `Docs/testing/test-plan.md` est passee.
 - Le catalogue, le panier, la commande et l'admin fonctionnent.
 - Aucun paiement en ligne n'est demande en V1.
 - La livraison est limitee a la Republique tchetchene.

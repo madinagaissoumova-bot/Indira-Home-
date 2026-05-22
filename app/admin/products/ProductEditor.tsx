@@ -1,52 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import type { FormEvent } from "react";
+import { useActionState, useState } from "react";
 import { PRODUCT_STATUS } from "@/lib/constants";
 import type { AdminActionState } from "../actions";
 import { deleteProductAction, saveProductAction } from "../actions";
-
-type CategoryOption = {
-  id: string;
-  name: string;
-  subcategories: {
-    id: string;
-    name: string;
-    categoryId: string;
-  }[];
-};
-
-type ProductEditorProduct = {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  priceRub: number;
-  stockQuantity: number;
-  status: string;
-  isNew: boolean;
-  brand: string | null;
-  characteristics: string | null;
-  displayOrder: number;
-  categoryId: string;
-  subcategoryId: string;
-  images: { url: string; alt: string }[];
-};
+import type { AdminCategoryOption, AdminProductEditorProduct } from "@/types";
 
 type ProductEditorProps = {
-  categories: CategoryOption[];
-  product?: ProductEditorProduct | null;
+  categories: AdminCategoryOption[];
+  product?: AdminProductEditorProduct | null;
 };
 
 function emptyState(): AdminActionState {
   return {};
 }
 
+function confirmDelete(event: FormEvent<HTMLFormElement>) {
+  if (!window.confirm("Confirmer la suppression definitive ?")) {
+    event.preventDefault();
+  }
+}
+
 export function ProductEditor({ categories, product }: ProductEditorProps) {
   const [saveState, saveAction, isSaving] = useActionState(saveProductAction, emptyState());
   const [deleteState, deleteAction, isDeleting] = useActionState(deleteProductAction, emptyState());
   const currentImage = product?.images[0];
-  const currentCategory = categories.find((category) => category.id === product?.categoryId);
+  const initialCategoryId = product?.categoryId ?? categories[0]?.id ?? "";
+  const initialCategory = categories.find((category) => category.id === initialCategoryId);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(initialCategoryId);
+  const [selectedSubcategoryId, setSelectedSubcategoryId] = useState(
+    product?.subcategoryId ?? initialCategory?.subcategories[0]?.id ?? ""
+  );
+  const selectedCategory = categories.find((category) => category.id === selectedCategoryId);
+  const availableSubcategories = selectedCategory?.subcategories ?? [];
 
   return (
     <div className="checkout-layout">
@@ -63,7 +51,6 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             defaultValue={product?.name ?? ""}
             id={`name-${product?.id ?? "new"}`}
             name="name"
-            required
           />
         </div>
 
@@ -74,7 +61,6 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             defaultValue={product?.slug ?? ""}
             id={`slug-${product?.id ?? "new"}`}
             name="slug"
-            required
           />
         </div>
 
@@ -85,7 +71,6 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             defaultValue={product?.description ?? ""}
             id={`description-${product?.id ?? "new"}`}
             name="description"
-            required
           />
         </div>
 
@@ -117,8 +102,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             defaultValue={product?.priceRub ?? 0}
             id={`priceRub-${product?.id ?? "new"}`}
             name="priceRub"
-            min={1}
-            required
+            min={0}
             type="number"
           />
         </div>
@@ -161,11 +145,17 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
           <label htmlFor={`categoryId-${product?.id ?? "new"}`}>Catégorie</label>
           <select
             className="input"
-            defaultValue={product?.categoryId ?? categories[0]?.id ?? ""}
             id={`categoryId-${product?.id ?? "new"}`}
             name="categoryId"
-            required
+            onChange={(event) => {
+              const nextCategoryId = event.target.value;
+              const nextCategory = categories.find((category) => category.id === nextCategoryId);
+              setSelectedCategoryId(nextCategoryId);
+              setSelectedSubcategoryId(nextCategory?.subcategories[0]?.id ?? "");
+            }}
+            value={selectedCategoryId}
           >
+            <option value="">Sans categorie</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -178,24 +168,16 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
           <label htmlFor={`subcategoryId-${product?.id ?? "new"}`}>Sous-catégorie</label>
           <select
             className="input"
-            defaultValue={
-              product?.subcategoryId ??
-              currentCategory?.subcategories[0]?.id ??
-              categories[0]?.subcategories[0]?.id ??
-              ""
-            }
             id={`subcategoryId-${product?.id ?? "new"}`}
             name="subcategoryId"
-            required
+            onChange={(event) => setSelectedSubcategoryId(event.target.value)}
+            value={selectedSubcategoryId}
           >
-            {categories.map((category) => (
-              <optgroup key={category.id} label={category.name}>
-                {category.subcategories.map((subcategory) => (
-                  <option key={subcategory.id} value={subcategory.id}>
-                    {subcategory.name}
-                  </option>
-                ))}
-              </optgroup>
+            <option value="">Sans sous-categorie</option>
+            {availableSubcategories.map((subcategory) => (
+              <option key={subcategory.id} value={subcategory.id}>
+                {subcategory.name}
+              </option>
             ))}
           </select>
         </div>
@@ -240,7 +222,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
       </form>
 
       {product ? (
-        <form action={deleteAction} className="form-panel">
+        <form action={deleteAction} className="form-panel" onSubmit={confirmDelete}>
           <h2>Suppression</h2>
           {deleteState.error ? <p className="form-error">{deleteState.error}</p> : null}
           {deleteState.success ? <p>{deleteState.success}</p> : null}

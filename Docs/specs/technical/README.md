@@ -48,4 +48,4 @@ La V1 inclut le parcours cliente complet et l'admin complet. Le developpement pe
 - `Docs/specs/feature-specs/`
 - `Docs/development-plans/`
 - `Docs/roadmap/README.md`
-- `Docs/test-plan.md`
+- `Docs/testing/test-plan.md`

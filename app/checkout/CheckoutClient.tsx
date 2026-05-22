@@ -7,14 +7,10 @@ import { PAYMENT_METHOD } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
 import { createOrder, type CheckoutState } from "./actions";
+import type { CartStorageItem } from "@/types";
 
 const CART_KEY = "indira-home-cart";
 const CONFIRMATION_KEY = "indira-home-last-order-confirmation";
-
-type CartStorageItem = {
-  productId: string;
-  quantity: number;
-};
 
 type CheckoutProduct = {
   id: string;
@@ -75,13 +71,13 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
       CONFIRMATION_KEY,
       JSON.stringify({
         orderNumber: state.orderNumber,
-        totalRub: total
+        totalRub: state.totalRub
       })
     );
     window.localStorage.removeItem(CART_KEY);
     window.dispatchEvent(new Event("indira-home-cart-updated"));
     router.push("/checkout/confirmation");
-  }, [router, state.orderNumber, total]);
+  }, [router, state.orderNumber, state.totalRub]);
 
   if (cart.length === 0) {
     return (

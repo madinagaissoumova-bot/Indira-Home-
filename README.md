@@ -25,7 +25,7 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 - `Docs/specs/` : source de vérité produit, UX et technique.
 - `Docs/development-plans/` : lots de developpement, tickets, statut, securite et production.
 - `Docs/roadmap/` : vision et sequence globale de la V1.
-- `Docs/test-plan.md` : checklist de verification V1.
+- `Docs/testing/test-plan.md` : checklist de verification V1.
 
 ## Chemin de specification
 
@@ -38,7 +38,7 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 7. `Docs/specs/work-plan.md` : plan de developpement progressif avant de coder.
 8. `Docs/development-plans/` : execution et suivi des lots.
 9. `Docs/roadmap/` : priorites et sequence globale de la V1.
-10. `Docs/test-plan.md` : validation finale et verifications manuelles.
+10. `Docs/testing/test-plan.md` : validation finale et verifications manuelles.
 
 ## Principe de travail
 

@@ -4,6 +4,8 @@ import { ru } from "@/lib/i18n/ru";
 import { CheckoutClient } from "./CheckoutClient";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
+export const dynamic = "force-dynamic";
+
 async function getCheckoutProducts() {
   const products = await prisma.product.findMany({
     where: {

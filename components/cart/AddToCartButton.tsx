@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ru } from "@/lib/i18n/ru";
+import type { CartStorageItem } from "@/types";
 
 type AddToCartButtonProps = {
   productId: string;
@@ -11,12 +12,7 @@ type AddToCartButtonProps = {
 
 const CART_KEY = "indira-home-cart";
 
-type CartItem = {
-  productId: string;
-  quantity: number;
-};
-
-function readCart(): CartItem[] {
+function readCart(): CartStorageItem[] {
   try {
     const raw = window.localStorage.getItem(CART_KEY);
     if (!raw) return [];
@@ -25,7 +21,7 @@ function readCart(): CartItem[] {
 
     return parsed
       .filter(
-        (item): item is CartItem =>
+        (item): item is CartStorageItem =>
           typeof item?.productId === "string" &&
           Number.isInteger(item?.quantity) &&
           item.quantity > 0
@@ -36,7 +32,7 @@ function readCart(): CartItem[] {
   }
 }
 
-function writeCart(items: CartItem[]) {
+function writeCart(items: CartStorageItem[]) {
   window.localStorage.setItem(CART_KEY, JSON.stringify(items));
   window.dispatchEvent(new Event("indira-home-cart-updated"));
 }

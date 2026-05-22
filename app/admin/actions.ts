@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { ORDER_STATUS, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
+import { createSlugFallback, hasLength, isValidProductImageUrl, isValidSlug } from "@/lib/validation";
 import {
   clearAdminSession,
   createAdminSession,
@@ -13,15 +14,14 @@ import {
   verifyAdminCredentials
 } from "@/lib/adminAuth";
 import { ru } from "@/lib/i18n/ru";
+import type { FormActionState } from "@/types";
 
-export type AdminActionState = {
-  error?: string;
-  success?: string;
-};
+export type AdminActionState = FormActionState;
 
 const PRODUCT_STATUSES = Object.values(PRODUCT_STATUS);
 const VISIBILITY_STATUSES = Object.values(VISIBILITY_STATUS);
 const ORDER_STATUSES = Object.values(ORDER_STATUS);
+const SYSTEM_DRAFT_CATEGORY_SLUG = "system-drafts";
 
 function text(value: FormDataEntryValue | null) {
   return typeof value === "string" ? value.trim() : "";
@@ -38,6 +38,10 @@ function integerValue(value: FormDataEntryValue | null) {
 
 function parseAllowed(value: string, allowed: readonly string[]) {
   return allowed.includes(value) ? value : null;
+}
+
+function optionalTextIsTooLong(value: string | null, max: number) {
+  return Boolean(value && value.length > max);
 }
 
 function revalidatePublicSurface(product?: { slug: string; categorySlug: string; subcategorySlug: string }) {
@@ -77,6 +81,36 @@ async function getCategoryAndSubcategory(categoryId: string, subcategoryId: stri
   return { category, subcategory };
 }
 
+async function getDraftCategoryAndSubcategory() {
+  const category = await prisma.category.upsert({
+    where: { slug: SYSTEM_DRAFT_CATEGORY_SLUG },
+    update: { status: VISIBILITY_STATUS.hidden },
+    create: {
+      name: "Черновики",
+      slug: SYSTEM_DRAFT_CATEGORY_SLUG,
+      status: VISIBILITY_STATUS.hidden,
+      displayOrder: 9999
+    }
+  });
+
+  const subcategory = await prisma.subcategory.upsert({
+    where: { slug: SYSTEM_DRAFT_CATEGORY_SLUG },
+    update: {
+      categoryId: category.id,
+      status: VISIBILITY_STATUS.hidden
+    },
+    create: {
+      categoryId: category.id,
+      name: "Черновики",
+      slug: SYSTEM_DRAFT_CATEGORY_SLUG,
+      status: VISIBILITY_STATUS.hidden,
+      displayOrder: 9999
+    }
+  });
+
+  return { category, subcategory };
+}
+
 export async function loginAdmin(_previousState: AdminActionState, formData: FormData): Promise<AdminActionState> {
   const username = text(formData.get("username"));
   const password = String(formData.get("password") ?? "");
@@ -109,13 +143,13 @@ export async function saveProductAction(
   await requireAdminSession();
 
   const productId = text(formData.get("productId")) || null;
-  const name = text(formData.get("name"));
-  const slug = text(formData.get("slug"));
-  const description = text(formData.get("description"));
+  const rawName = text(formData.get("name"));
+  const rawSlug = text(formData.get("slug"));
+  const rawDescription = text(formData.get("description"));
   const brand = text(formData.get("brand")) || null;
   const characteristics = text(formData.get("characteristics")) || null;
   const imageUrl = text(formData.get("imageUrl")) || null;
-  const imageAlt = text(formData.get("imageAlt")) || name;
+  const imageAlt = text(formData.get("imageAlt")) || rawName || "Indira Home";
   const categoryId = text(formData.get("categoryId"));
   const subcategoryId = text(formData.get("subcategoryId"));
   const status = parseAllowed(text(formData.get("status")), PRODUCT_STATUSES);
@@ -124,27 +158,68 @@ export async function saveProductAction(
   const displayOrder = integerValue(formData.get("displayOrder")) ?? 0;
   const isNew = booleanValue(formData.get("isNew"));
 
-  if (!name || !slug || !description) {
-    return { error: "Le nom, le slug et la description sont obligatoires." };
-  }
   if (!status) {
     return { error: "Le statut du produit est invalide." };
   }
-  if (!categoryId || !subcategoryId) {
-    return { error: "La categorie et la sous-categorie sont obligatoires." };
+  const requiresPublicFields = status === PRODUCT_STATUS.published;
+  const canBeIncomplete = status === PRODUCT_STATUS.draft || status === PRODUCT_STATUS.hidden;
+  if (priceRub != null && priceRub < 0) {
+    return { error: "Le prix doit etre positif ou nul pour un brouillon ou produit masque." };
   }
-  if (!priceRub || priceRub <= 0) {
-    return { error: "Le prix doit etre un entier strictement positif." };
-  }
-  if (stockQuantity == null || stockQuantity < 0) {
+  if (stockQuantity != null && stockQuantity < 0) {
     return { error: "Le stock doit etre un entier positif ou nul." };
+  }
+  if (requiresPublicFields && stockQuantity == null) {
+    return { error: "Le stock doit etre renseigne avant publication." };
   }
   if (displayOrder < 0) {
     return { error: "L'ordre d'affichage doit etre positif ou nul." };
   }
+  if (rawSlug && !isValidSlug(rawSlug)) {
+    return { error: "Le slug doit contenir seulement des lettres latines minuscules, chiffres et tirets." };
+  }
+  if (rawName && !hasLength(rawName, 2, 120)) {
+    return { error: "Le nom du produit doit contenir entre 2 et 120 caracteres." };
+  }
+  if (rawDescription && !hasLength(rawDescription, 10, 2000)) {
+    return { error: "La description doit contenir entre 10 et 2000 caracteres." };
+  }
+  if (optionalTextIsTooLong(brand, 80)) {
+    return { error: "La marque ne doit pas depasser 80 caracteres." };
+  }
+  if (imageUrl && !isValidProductImageUrl(imageUrl)) {
+    return { error: "L'image doit etre une URL valide en http, https ou /uploads/." };
+  }
+
+  const name = rawName || (canBeIncomplete ? "Brouillon sans nom" : "");
+  const slug = rawSlug || (canBeIncomplete ? createSlugFallback("draft-product") : "");
+  const description = rawDescription || (canBeIncomplete ? "Brouillon en preparation." : "");
+  const normalizedPriceRub = priceRub ?? 0;
+  const normalizedStockQuantity = stockQuantity ?? 0;
+
+  if (requiresPublicFields) {
+    if (!categoryId || !subcategoryId) {
+      return { error: "La categorie et la sous-categorie sont obligatoires avant publication." };
+    }
+    if (!hasLength(name, 2, 120) || !hasLength(description, 10, 2000) || !slug) {
+      return { error: "Completez les informations obligatoires avant de publier le produit." };
+    }
+    if (normalizedPriceRub <= 0) {
+      return { error: "Le prix doit etre un entier strictement positif." };
+    }
+  }
 
   try {
-    await getCategoryAndSubcategory(categoryId, subcategoryId);
+    const categorySelection = categoryId && subcategoryId
+      ? await getCategoryAndSubcategory(categoryId, subcategoryId)
+      : await getDraftCategoryAndSubcategory();
+    if (
+      requiresPublicFields &&
+      (categorySelection.category.status !== VISIBILITY_STATUS.visible ||
+        categorySelection.subcategory.status !== VISIBILITY_STATUS.visible)
+    ) {
+      return { error: "La categorie et la sous-categorie doivent etre visibles avant publication." };
+    }
     const existing = productId
       ? await prisma.product.findUnique({
           where: { id: productId },
@@ -156,8 +231,10 @@ export async function saveProductAction(
       return { error: "Le produit a modifier est introuvable." };
     }
 
-    const hasImageAfterUpdate = Boolean(imageUrl) || Boolean(existing?.images.length);
-    if (status === PRODUCT_STATUS.published && !hasImageAfterUpdate) {
+    const hasValidImageAfterUpdate = imageUrl
+      ? isValidProductImageUrl(imageUrl)
+      : existing?.images.some((image) => isValidProductImageUrl(image.url)) ?? false;
+    if (status === PRODUCT_STATUS.published && !hasValidImageAfterUpdate) {
       return { error: "Un produit publie doit avoir au moins une image." };
     }
 
@@ -169,10 +246,10 @@ export async function saveProductAction(
               name,
               slug,
               description,
-              priceRub,
-              categoryId,
-              subcategoryId,
-              stockQuantity,
+              priceRub: normalizedPriceRub,
+              categoryId: categorySelection.category.id,
+              subcategoryId: categorySelection.subcategory.id,
+              stockQuantity: normalizedStockQuantity,
               status,
               isNew,
               brand,
@@ -185,10 +262,10 @@ export async function saveProductAction(
               name,
               slug,
               description,
-              priceRub,
-              categoryId,
-              subcategoryId,
-              stockQuantity,
+              priceRub: normalizedPriceRub,
+              categoryId: categorySelection.category.id,
+              subcategoryId: categorySelection.subcategory.id,
+              stockQuantity: normalizedStockQuantity,
               status,
               isNew,
               brand,
@@ -307,6 +384,12 @@ export async function saveCategoryAction(
 
   if (!name || !slug) {
     return { error: "Le nom et le slug sont obligatoires." };
+  }
+  if (!hasLength(name, 2, 80)) {
+    return { error: "Le nom de categorie doit contenir entre 2 et 80 caracteres." };
+  }
+  if (!isValidSlug(slug)) {
+    return { error: "Le slug doit contenir seulement des lettres latines minuscules, chiffres et tirets." };
   }
   if (!status) {
     return { error: "Le statut de visibilite est invalide." };
@@ -433,6 +516,12 @@ export async function saveSubcategoryAction(
 
   if (!categoryId || !name || !slug) {
     return { error: "La categorie parente, le nom et le slug sont obligatoires." };
+  }
+  if (!hasLength(name, 2, 80)) {
+    return { error: "Le nom de sous-categorie doit contenir entre 2 et 80 caracteres." };
+  }
+  if (!isValidSlug(slug)) {
+    return { error: "Le slug doit contenir seulement des lettres latines minuscules, chiffres et tirets." };
   }
   if (!status) {
     return { error: "Le statut de visibilite est invalide." };

@@ -6,29 +6,10 @@ import type { AdminActionState } from "../actions";
 import { updateOrderAction } from "../actions";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
-
-type OrderItem = {
-  id: string;
-  productNameSnapshot: string;
-  quantity: number;
-  subtotalRub: number;
-};
-
-type OrderEditorOrder = {
-  id: string;
-  orderNumber: string;
-  status: string;
-  totalRub: number;
-  customerName: string;
-  customerPhone: string;
-  deliveryAddressOrZone: string;
-  paymentMethod: string;
-  adminNote: string | null;
-  items: OrderItem[];
-};
+import type { AdminOrderEditorOrder } from "@/types";
 
 type OrderEditorProps = {
-  order: OrderEditorOrder;
+  order: AdminOrderEditorOrder;
 };
 
 function initialState(): AdminActionState {

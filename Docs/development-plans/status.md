@@ -38,7 +38,7 @@ Reste a faire avant de marquer termine :
 
 - consolider les helpers de lecture publique ;
 - centraliser les validations critiques cote serveur ;
-- executer la checklist metier complete de `Docs/test-plan.md`.
+- executer la checklist metier complete de `Docs/testing/test-plan.md`.
 
 ### Lot 1 - Catalogue client
 
@@ -82,13 +82,13 @@ Pourquoi actif :
 Reste a faire avant de marquer termine :
 
 - verifier manuellement toutes les longueurs et formats de `Docs/specs/validation-rules.md` ;
-- executer les tests manuels commande du `Docs/test-plan.md`.
+- executer les tests manuels commande du `Docs/testing/test-plan.md`.
 
 ## Plans termines
 
 Aucun lot complet n'est marque `TERMINE` pour le moment.
 
-Raison : plusieurs bases existent deja, mais aucun lot n'a encore ete valide contre tous ses criteres de sortie et contre `Docs/test-plan.md`.
+Raison : plusieurs bases existent deja, mais aucun lot n'a encore ete valide contre tous ses criteres de sortie et contre `Docs/testing/test-plan.md`.
 
 ## Suivi des lots
 

@@ -1,5 +1,6 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { useActionState } from "react";
 import type { AdminActionState } from "../actions";
 import {
@@ -8,33 +9,23 @@ import {
   saveCategoryAction,
   saveSubcategoryAction
 } from "../actions";
-
-type CategoryItem = {
-  id: string;
-  name: string;
-  slug: string;
-  status: string;
-  displayOrder: number;
-  products: { id: string }[];
-  subcategories: {
-    id: string;
-    name: string;
-    slug: string;
-    status: string;
-    displayOrder: number;
-    products: { id: string }[];
-  }[];
-};
+import type { AdminCategoryManagerItem } from "@/types";
 
 type CategoryManagerProps = {
-  categories: CategoryItem[];
+  categories: AdminCategoryManagerItem[];
 };
 
 function initialState(): AdminActionState {
   return {};
 }
 
-function CategoryForm({ category }: { category?: CategoryItem }) {
+function confirmDelete(event: FormEvent<HTMLFormElement>) {
+  if (!window.confirm("Confirmer la suppression definitive ?")) {
+    event.preventDefault();
+  }
+}
+
+function CategoryForm({ category }: { category?: AdminCategoryManagerItem }) {
   const [state, action, isPending] = useActionState(saveCategoryAction, initialState());
 
   return (
@@ -98,7 +89,7 @@ function SubcategoryForm({
   subcategory
 }: {
   categoryId: string;
-  subcategory?: CategoryItem["subcategories"][number];
+  subcategory?: AdminCategoryManagerItem["subcategories"][number];
 }) {
   const [state, action, isPending] = useActionState(saveSubcategoryAction, initialState());
 
@@ -164,14 +155,14 @@ function SubcategoryCard({
   subcategory
 }: {
   categoryId: string;
-  subcategory: CategoryItem["subcategories"][number];
+  subcategory: AdminCategoryManagerItem["subcategories"][number];
 }) {
   const [deleteState, deleteAction, isDeleting] = useActionState(deleteSubcategoryAction, initialState());
 
   return (
     <div className="form-panel">
       <SubcategoryForm categoryId={categoryId} subcategory={subcategory} />
-      <form action={deleteAction}>
+      <form action={deleteAction} onSubmit={confirmDelete}>
         {deleteState.error ? <p className="form-error">{deleteState.error}</p> : null}
         {deleteState.success ? <p>{deleteState.success}</p> : null}
         <input name="subcategoryId" type="hidden" value={subcategory.id} />
@@ -184,13 +175,13 @@ function SubcategoryCard({
   );
 }
 
-function CategoryCard({ category }: { category: CategoryItem }) {
+function CategoryCard({ category }: { category: AdminCategoryManagerItem }) {
   const [deleteState, deleteAction, isDeleting] = useActionState(deleteCategoryAction, initialState());
 
   return (
     <section className="admin-panel">
       <CategoryForm category={category} />
-      <form action={deleteAction} className="form-panel">
+      <form action={deleteAction} className="form-panel" onSubmit={confirmDelete}>
         {deleteState.error ? <p className="form-error">{deleteState.error}</p> : null}
         {deleteState.success ? <p>{deleteState.success}</p> : null}
         <input name="categoryId" type="hidden" value={category.id} />

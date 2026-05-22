@@ -4,6 +4,8 @@ import { ru } from "@/lib/i18n/ru";
 import { CartClient } from "./CartClient";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
+export const dynamic = "force-dynamic";
+
 async function getCartProducts() {
   const products = await prisma.product.findMany({
     where: {

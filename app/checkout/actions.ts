@@ -1,5 +1,6 @@
 "use server";
 
+import { randomInt } from "node:crypto";
 import { ORDER_STATUS, PAYMENT_METHOD } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
@@ -8,6 +9,7 @@ import { parseCartInput, verifyCartForOrder } from "@/lib/serverCart";
 export type CheckoutState = {
   error?: string;
   orderNumber?: string;
+  totalRub?: number;
 };
 
 function isClearlyOutsideChechnya(address: string) {
@@ -22,9 +24,36 @@ function isClearlyOutsideChechnya(address: string) {
 function createOrderNumber() {
   const date = new Date();
   const stamp = date.toISOString().slice(0, 10).replaceAll("-", "");
-  const random = Math.floor(1000 + Math.random() * 9000);
+  const random = randomInt(100000, 1000000);
 
   return `IH-${stamp}-${random}`;
+}
+
+type CreatedOrderResult = {
+  orderNumber: string;
+  totalRub: number;
+};
+
+async function createOrderWithRetry(create: () => Promise<CreatedOrderResult>) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      return await create();
+    } catch (error) {
+      if (
+        error &&
+        typeof error === "object" &&
+        "code" in error &&
+        error.code === "P2002" &&
+        attempt < 2
+      ) {
+        continue;
+      }
+
+      throw error;
+    }
+  }
+
+  throw new Error("ORDER_NUMBER_COLLISION");
 }
 
 export async function createOrder(_previousState: CheckoutState, formData: FormData) {
@@ -59,54 +88,59 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
   }
 
   try {
-    const orderNumber = await prisma.$transaction(async (tx) => {
-      const verifiedCart = await verifyCartForOrder(cart, tx);
-      if (!verifiedCart.ok) {
-        throw new Error(verifiedCart.reason);
-      }
+    const createdOrder = await createOrderWithRetry(() =>
+      prisma.$transaction(async (tx) => {
+        const verifiedCart = await verifyCartForOrder(cart, tx);
+        if (!verifiedCart.ok) {
+          throw new Error(verifiedCart.reason);
+        }
 
-      for (const item of verifiedCart.items) {
-        const updated = await tx.product.updateMany({
-          where: {
-            id: item.product.id,
-            stockQuantity: { gte: item.quantity }
-          },
+        for (const item of verifiedCart.items) {
+          const updated = await tx.product.updateMany({
+            where: {
+              id: item.product.id,
+              stockQuantity: { gte: item.quantity }
+            },
+            data: {
+              stockQuantity: { decrement: item.quantity }
+            }
+          });
+
+          if (updated.count !== 1) {
+            throw new Error("INSUFFICIENT_STOCK");
+          }
+        }
+
+        const created = await tx.order.create({
           data: {
-            stockQuantity: { decrement: item.quantity }
+            orderNumber: createOrderNumber(),
+            customerName,
+            customerPhone: customerPhone.replace(/\s+/g, " "),
+            deliveryAddressOrZone,
+            paymentMethod,
+            status: ORDER_STATUS.new,
+            totalRub: verifiedCart.totalRub,
+            items: {
+              create: verifiedCart.items.map((item) => ({
+                productId: item.product.id,
+                productNameSnapshot: item.product.name,
+                productImageSnapshot: item.product.images[0]?.url ?? null,
+                unitPriceRub: item.product.priceRub,
+                quantity: item.quantity,
+                subtotalRub: item.subtotalRub
+              }))
+            }
           }
         });
 
-        if (updated.count !== 1) {
-          throw new Error("INSUFFICIENT_STOCK");
-        }
-      }
+        return {
+          orderNumber: created.orderNumber,
+          totalRub: created.totalRub
+        };
+      })
+    );
 
-      const created = await tx.order.create({
-        data: {
-          orderNumber: createOrderNumber(),
-          customerName,
-          customerPhone: customerPhone.replace(/\s+/g, " "),
-          deliveryAddressOrZone,
-          paymentMethod,
-          status: ORDER_STATUS.new,
-          totalRub: verifiedCart.totalRub,
-          items: {
-            create: verifiedCart.items.map((item) => ({
-              productId: item.product.id,
-              productNameSnapshot: item.product.name,
-              productImageSnapshot: item.product.images[0]?.url ?? null,
-              unitPriceRub: item.product.priceRub,
-              quantity: item.quantity,
-              subtotalRub: item.subtotalRub
-            }))
-          }
-        }
-      });
-
-      return created.orderNumber;
-    });
-
-    return { orderNumber };
+    return createdOrder;
   } catch (error) {
     if (error instanceof Error && error.message === "EMPTY_CART") {
       return { error: ru.checkout.errors.emptyCart };

@@ -1,90 +1,87 @@
 # AGENTS.md
 
-## Contexte Du Projet
+## Mission
 
-Ce projet est **Indira Home**, un site e-commerce simple pour une boutique qui vend de la vaisselle et des produits pour la maison en Republique tchetchene.
+Ce projet est **Indira Home**, une V1 e-commerce simple pour une boutique de vaisselle et de produits maison en Republique tchetchene.
 
-La V1 doit inclure le parcours cliente et un admin complet :
+La V1 doit livrer deux surfaces completes :
 
-- catalogue public de produits ;
-- page detail produit ;
-- panier ;
-- formulaire de commande ;
-- page de confirmation ;
-- connexion admin ;
-- tableau de bord admin ;
-- gestion produits ;
-- gestion categories ;
-- gestion stock ;
-- gestion commandes ;
-- pas de compte cliente ;
-- pas de paiement en ligne ;
-- textes visibles par les clientes en russe ;
-- experience mobile-first.
+- un parcours cliente mobile-first ;
+- un espace admin protege.
 
-Le parcours cliente et l'admin complet font tous les deux partie de la V1.
+Le site cliente est en russe. L'admin peut etre en russe ou en francais pendant la construction, mais les libelles finaux doivent tendre vers le russe quand ils sont visibles dans l'interface.
 
 ## Stack
 
 - Framework : Next.js App Router
 - Langage : TypeScript
-- ORM base de donnees : Prisma
+- ORM : Prisma
 - Base locale : SQLite
 - Styles : CSS global dans `app/globals.css`
+- Types partages : `types/`
+- Donnees metier : constantes dans `lib/constants.ts`
 
-## Source De Verite
+## Sources De Verite
 
-Lire ces specs avant de modifier un comportement important :
+Avant tout changement important de comportement, lire les documents pertinents :
 
 - `Docs/specs/global-spec.md`
 - `Docs/specs/functional-map.md`
-- `Docs/specs/technical/README.md`
 - `Docs/specs/work-plan.md`
-- fiches dans `Docs/specs/feature-specs/`
+- `Docs/specs/technical/README.md`
+- `Docs/specs/feature-specs/`
 - `Docs/development-plans/status.md`
 - `Docs/development-plans/tickets.md`
 - `Docs/roadmap/README.md`
-- `Docs/test-plan.md`
+- `Docs/testing/test-plan.md`
 
-Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les specs pour garder le projet coherent.
+Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
 
-## Priorite Actuelle
+## Fonctionnalites V1
 
-Construire la V1 complete dans cet ordre :
+### Parcours Cliente
 
-1. page catalogue ;
-2. navigation par categorie ;
-3. page detail produit ;
-4. panier stocke dans `localStorage` ;
-5. formulaire de commande ;
-6. creation de commande ;
-7. page de confirmation ;
-8. connexion admin ;
-9. tableau de bord admin ;
-10. gestion produits et categories ;
-11. gestion stock ;
-12. gestion commandes ;
-13. polish mobile et textes russes.
+- catalogue public ;
+- navigation par categorie et sous-categorie ;
+- recherche ;
+- fiche produit ;
+- panier en `localStorage` ;
+- checkout sans compte ;
+- creation de commande ;
+- confirmation de commande ;
+- page confidentialite.
 
-## Regles Produit
+### Admin
 
-- Le site cliente doit etre en russe.
+- connexion admin ;
+- tableau de bord ;
+- gestion produits ;
+- gestion categories et sous-categories ;
+- gestion stock ;
+- gestion commandes ;
+- changement de statut commande ;
+- notes internes.
+
+## Regles Produit Non Negociables
+
+- Les textes visibles par les clientes doivent etre en russe.
 - Les prix sont affiches en roubles.
 - Les clientes ne creent pas de compte.
 - Il n'y a pas de paiement en ligne en V1.
-- Les commandes sont confirmees ensuite par telephone ou WhatsApp.
+- La boutique confirme les commandes par telephone ou WhatsApp.
 - Numero WhatsApp public : `+7 988 906-41-06`.
 - La livraison V1 est limitee a la Republique tchetchene.
-- La quantite exacte en stock est reservee a l'admin et ne doit pas etre affichee aux clientes.
-- Un produit avec stock `0` reste visible s'il est publie, mais il n'est pas commandable.
-- Les produits masques ou en brouillon ne sont pas visibles cote cliente.
-- Un produit commandable doit etre publie, non masque, dans une categorie visible, dans une sous-categorie visible, et avoir un stock superieur a `0`.
-- Les prix d'une commande doivent etre figes au moment de la validation.
+- La quantite exacte en stock est reservee a l'admin et ne doit jamais etre affichee cote cliente.
+- Un produit publie avec stock `0` reste visible, mais il n'est pas commandable.
+- Les produits `DRAFT` ou `HIDDEN` ne sont pas visibles cote cliente.
+- Un produit commandable doit etre `PUBLISHED`, non masque, dans une categorie visible, dans une sous-categorie visible, avec un stock superieur a `0`.
+- Les prix d'une commande sont figes au moment de la validation.
 - Le stock diminue uniquement apres une validation de commande reussie.
+- Les donnees personnelles de commande ne sont jamais affichees sur les pages publiques.
 
 ## Routes
 
-Routes publiques :
+### Publiques
 
 - `/`
 - `/category/:slug`
@@ -96,7 +93,7 @@ Routes publiques :
 - `/checkout/confirmation`
 - `/privacy`
 
-Routes admin :
+### Admin
 
 - `/admin/login`
 - `/admin`
@@ -109,7 +106,7 @@ Routes admin :
 
 ## Conventions De Donnees
 
-Utiliser les constantes de `lib/constants.ts` pour les statuts et les modes de paiement.
+Toujours utiliser `lib/constants.ts` pour les valeurs metier.
 
 Statuts produit :
 
@@ -136,29 +133,55 @@ Statuts de commande :
 - `DELIVERED`
 - `CANCELLED`
 
-## Notes D'Implementation
+## Regles D'Implementation
 
-- Garder les changements concentres sur la phase en cours.
+- Garder les changements concentres sur le besoin en cours.
 - Preferer les patterns deja presents dans le projet.
-- Garder l'interface cliente mobile-first.
-- Stocker le panier cote client avec seulement `productId` et `quantity`.
-- Recalculer les prix et le stock cote serveur avant la commande.
-- Utiliser des URLs d'images pour les produits dans la premiere version.
-- Ne pas exposer les donnees personnelles des clientes sur les pages publiques.
-- Ne pas afficher un lien admin de facon trop visible dans le parcours cliente.
+- Ne pas ajouter de grosse abstraction sans benefice clair.
+- Mettre les types reutilisables dans `types/`.
+- Garder les types strictement locaux dans le composant ou le module concerne.
+- Stocker le panier navigateur avec seulement `productId` et `quantity`.
+- Ne jamais faire confiance au panier navigateur pour les prix, le stock ou les statuts.
+- Recalculer prix, disponibilite, total et stock cote serveur avant creation de commande.
+- Utiliser des URLs d'images produit en V1.
+- Proteger toutes les pages et actions admin cote serveur.
+- Ne pas exposer de lien admin de facon trop visible dans le parcours cliente.
 
-## Commandes Utiles
+## Frontend Et UX
+
+- Mobile-first pour le parcours cliente.
+- Interface cliente chaleureuse, propre, raffinee, centree produit.
+- Admin plus dense, plus utilitaire, facile a scanner.
+- Les boutons principaux doivent etre faciles a toucher sur mobile.
+- Les cartes produit ne doivent pas afficher de longues descriptions.
+- Les etats vides, erreurs et indisponibilites doivent etre clairs.
+- Ne pas transformer le catalogue en landing page marketing.
+- Ne pas afficher le stock exact cote cliente.
+
+## Verification
+
+Commandes utiles :
 
 - `npm run dev`
+- `npm run lint`
 - `npm run build`
 - `npm run prisma:generate`
 - `npm run prisma:migrate`
 - `npm run prisma:seed`
 
+Avant de terminer un changement significatif :
+
+- lancer `npm run lint` si le changement touche TypeScript ou React ;
+- lancer `npm run build` si le changement touche routes, actions serveur, Prisma, CSS global ou configuration ;
+- mettre a jour `Docs/development-plans/tickets.md` et `Docs/development-plans/status.md` si un ticket ou lot change d'etat ;
+- utiliser `Docs/testing/test-plan.md` pour la validation V1.
+
 ## A Eviter
 
 - Construire une marketplace.
-- Ajouter le paiement en ligne dans la premiere version.
+- Ajouter le paiement en ligne en V1.
 - Demander une connexion cliente.
 - Afficher la quantite exacte en stock aux clientes.
+- Exposer telephone, adresse ou notes admin sur une page publique.
 - Ajouter de gros refactors sans lien avec la phase en cours.
+- Modifier les specs, la roadmap ou les plans sans garder le code coherent avec eux.

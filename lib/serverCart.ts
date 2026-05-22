@@ -2,6 +2,8 @@ import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import type { Prisma } from "@prisma/client";
 
+const MAX_CART_QUANTITY_PER_PRODUCT = 99;
+
 export type ServerCartInput = {
   productId: string;
   quantity: number;
@@ -43,15 +45,19 @@ export function parseCartInput(value: FormDataEntryValue | null): ServerCartInpu
       if (
         typeof item?.productId !== "string" ||
         !Number.isInteger(item?.quantity) ||
-        item.quantity < 1
+        !Number.isSafeInteger(item.quantity) ||
+        item.quantity < 1 ||
+        item.quantity > MAX_CART_QUANTITY_PER_PRODUCT
       ) {
         continue;
       }
 
-      quantityByProductId.set(
-        item.productId,
-        (quantityByProductId.get(item.productId) ?? 0) + item.quantity
-      );
+      const nextQuantity = (quantityByProductId.get(item.productId) ?? 0) + item.quantity;
+      if (!Number.isSafeInteger(nextQuantity) || nextQuantity > MAX_CART_QUANTITY_PER_PRODUCT) {
+        continue;
+      }
+
+      quantityByProductId.set(item.productId, nextQuantity);
     }
 
     return Array.from(quantityByProductId, ([productId, quantity]) => ({ productId, quantity }));
