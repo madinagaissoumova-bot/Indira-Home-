@@ -3,6 +3,7 @@ import { requireAdminSession } from "@/lib/adminAuth";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
 import { CategoryManager } from "./CategoryManager";
+import { AdminNav } from "../AdminNav";
 
 async function getCategories() {
   return prisma.category.findMany({
@@ -25,6 +26,7 @@ export default async function AdminCategoriesPage() {
 
   return (
     <main className="page">
+      <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
         <h1>{ru.admin.categories.title}</h1>

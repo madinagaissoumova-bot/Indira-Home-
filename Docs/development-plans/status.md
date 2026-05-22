@@ -14,14 +14,14 @@ Statuts utilises :
 | Lot | Plan | Statut | Resume |
 | --- | --- | --- | --- |
 | Lot 0 | `lot-0-base-donnees.md` | ACTIF | Schema, constantes, seed et base Prisma existent, mais les validations/helpers serveur restent a consolider. |
-| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue, route categorie, route sous-categorie, recherche, filtres et tri existent. Polish mobile des filtres et verification detaillee restent a finaliser. |
-| Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, ajout panier, page panier et corrections de quantites existent. Galerie, caracteristiques et validations panier serveur restent a renforcer. |
-| Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur et confirmation existent. Validation stricte, verification panier centralisee et tests concurrence restent a finaliser. |
+| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue, routes categorie/sous-categorie, recherche, filtres, tri et corrections mobile existent. Verification visuelle responsive reste a finaliser. |
+| Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et verification serveur existent. Parcours mobile complet reste a tester visuellement. |
+| Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation et test concurrence existent. Verification manuelle complete reste a finaliser. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
 | Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
 | Lot 7 | `lot-7-admin-commandes.md` | ACTIF | Les commandes peuvent etre consultees et mises a jour. |
-| Lot 8 | `lot-8-polish-verification.md` | A FAIRE | A faire apres les lots fonctionnels. |
+| Lot 8 | `lot-8-polish-verification.md` | ACTIF | Polish mobile public, textes russes, build production et verification HTTP locale effectues. Screenshots responsive et parcours admin connecte restent a finaliser. |
 
 ## Plans actifs
 
@@ -38,8 +38,7 @@ Reste a faire avant de marquer termine :
 
 - consolider les helpers de lecture publique ;
 - centraliser les validations critiques cote serveur ;
-- verifier que la suppression definitive produit deja commande est bloquee par la logique applicative ;
-- executer `npm run prisma:generate` et `npm run build`.
+- executer la checklist metier complete de `Docs/test-plan.md`.
 
 ### Lot 1 - Catalogue client
 
@@ -53,7 +52,7 @@ Pourquoi actif :
 Reste a faire avant de marquer termine :
 
 - verifier les etats vides par categorie/sous-categorie ;
-- finaliser l'ergonomie mobile des filtres.
+- finaliser la verification visuelle responsive avec screenshots.
 
 ### Lot 2 - Fiche produit et panier
 
@@ -67,12 +66,8 @@ Pourquoi actif :
 
 Reste a faire avant de marquer termine :
 
-- afficher toutes les photos ou une vraie galerie ;
-- afficher les caracteristiques facultatives ;
-- renforcer la verification panier cote serveur ;
-- eviter toute exposition du stock exact cote cliente ;
 - verifier les produits masques, supprimes ou rendus invisibles par categorie/sous-categorie masquee dans un panier ancien ;
-- tester le parcours mobile complet.
+- tester le parcours mobile complet dans le navigateur.
 
 ### Lot 3 - Commande client
 
@@ -86,11 +81,7 @@ Pourquoi actif :
 
 Reste a faire avant de marquer termine :
 
-- appliquer toutes les longueurs et formats de `Docs/specs/validation-rules.md` ;
-- extraire une verification panier serveur reutilisable ;
-- verifier le cas concurrent du dernier stock ;
-- garantir que la confirmation ouverte directement, sans commande recente, affiche un etat neutre selon la spec ;
-- verifier que la page confirmation n'expose aucune donnee personnelle ;
+- verifier manuellement toutes les longueurs et formats de `Docs/specs/validation-rules.md` ;
 - executer les tests manuels commande du `Docs/test-plan.md`.
 
 ## Plans termines
@@ -152,7 +143,7 @@ Premier ticket :
 Le prochain focus recommande est :
 
 1. terminer les verifications Lot 3 : validation commande stricte et tests stock ;
-2. finaliser Lot 8 : verification fonctionnelle et polish mobile ;
-3. garder l'admin en maintenance tant que les retours QA ne remontent pas de regression.
+2. finaliser les screenshots responsive listes dans `Docs/development-plans/v1-verification-2026-05-21.md` ;
+3. tester l'admin connecte avec les variables `.env` definitives.
 
 Cette sequence garde le parcours client commandable et recentre l'effort sur la verification. L'admin est maintenant presente, mais elle doit encore etre auditee en situation reelle avant d'etre consideree totalement terminee.

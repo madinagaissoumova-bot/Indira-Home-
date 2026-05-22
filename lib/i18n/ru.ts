@@ -191,7 +191,7 @@ export const ru = {
       recentOrders: "Последние заказы",
       noOrders: "Пока нет заказов.",
       stockAlerts: "Товары без наличия",
-      noStockAlerts: "Нет опубликованных товаров с нулевым stock.",
+      noStockAlerts: "Нет опубликованных товаров без наличия.",
       sections: {
         products: "Товары",
         productsText: "Создание, публикация, скрытие, редактирование и удаление товаров.",
@@ -215,7 +215,26 @@ export const ru = {
       payment: "Оплата",
       total: "Итого",
       note: "Заметка",
-      createdAt: "Дата"
+      createdAt: "Дата",
+      save: "Сохранить",
+      update: "Обновить",
+      statusLabels: {
+        NEW: "Новый",
+        TO_CONFIRM: "Нужно подтвердить",
+        CONFIRMED: "Подтвержден",
+        PREPARING: "Готовится",
+        DELIVERED: "Доставлен",
+        CANCELLED: "Отменен"
+      },
+      paymentLabels: {
+        CASH_ON_DELIVERY: "Оплата при получении",
+        TRANSFER_AFTER_CONFIRMATION: "Перевод после подтверждения"
+      },
+      productStatusLabels: {
+        DRAFT: "Черновик",
+        PUBLISHED: "Опубликован",
+        HIDDEN: "Скрыт"
+      }
     },
     products: {
       title: "Товары",
@@ -232,6 +251,7 @@ export const ru = {
       title: "Склад",
       text: "Точные остатки видны только администратору, и их можно корректировать здесь.",
       empty: "Нет товаров для отображения.",
+      available: "Доступный остаток",
       lowStock: "Низкий остаток",
       outOfStock: "Нет в наличии"
     },
@@ -240,6 +260,9 @@ export const ru = {
       text: "Просмотр заказов, изменение статуса и внутренние заметки.",
       empty: "Заказов пока нет.",
       open: "Открыть заказ",
+      customerInfo: "Данные клиентки",
+      orderedProducts: "Товары в заказе",
+      editOrder: "Изменить заказ",
       items: "Товары в заказе",
       noNote: "Нет внутренней заметки."
     }

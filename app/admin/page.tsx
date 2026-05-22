@@ -5,6 +5,7 @@ import { ru } from "@/lib/i18n/ru";
 import { requireAdminSession } from "@/lib/adminAuth";
 import { formatRub } from "@/lib/format";
 import { logoutAdmin } from "./actions";
+import { AdminNav } from "./AdminNav";
 
 const adminSections = [
   {
@@ -100,6 +101,7 @@ export default async function AdminPage() {
 
   return (
     <main className="page">
+      <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
         <h1>{ru.admin.dashboard.title}</h1>
@@ -113,7 +115,7 @@ export default async function AdminPage() {
 
       <section className="admin-grid" aria-label={ru.admin.dashboard.title}>
         {dashboard.cards.map((card) => (
-          <article className="admin-panel" key={card.label}>
+          <article className="admin-panel admin-stat-card" key={card.label}>
             <span className="eyebrow">{card.label}</span>
             <h2>{card.value}</h2>
           </article>
@@ -126,9 +128,9 @@ export default async function AdminPage() {
           {dashboard.recentOrders.length > 0 ? (
             <div className="checkout-items">
               {dashboard.recentOrders.map((order) => (
-                <Link className="summary-line" href={`/admin/orders/${order.id}`} key={order.id}>
+                <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
                   <span>
-                    {order.orderNumber} · {order.status} · {order.items.length}
+                    {order.orderNumber} · <span className="admin-badge">{order.status}</span> · {order.items.length}
                   </span>
                   <strong>{formatRub(order.totalRub)}</strong>
                 </Link>
@@ -144,7 +146,7 @@ export default async function AdminPage() {
           {dashboard.stockAlerts.length > 0 ? (
             <div className="checkout-items">
               {dashboard.stockAlerts.map((product) => (
-                <Link className="summary-line" href={`/admin/products/${product.id}`} key={product.id}>
+                <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
                   <span>{product.name}</span>
                   <strong>{formatRub(product.priceRub)}</strong>
                 </Link>
@@ -158,7 +160,7 @@ export default async function AdminPage() {
 
       <div className="admin-grid">
         {adminSections.map((section) => (
-          <Link className="admin-panel" href={section.href} key={section.href}>
+          <Link className="admin-panel admin-section-card" href={section.href} key={section.href}>
             <h2>{section.title}</h2>
             <p>{section.text}</p>
           </Link>

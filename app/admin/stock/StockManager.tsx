@@ -25,6 +25,10 @@ function initialState(): AdminActionState {
 
 function StockRow({ product }: { product: ProductItem }) {
   const [state, action, isPending] = useActionState(setStockAction, initialState());
+  const statusLabel =
+    ru.admin.common.productStatusLabels[
+      product.status as keyof typeof ru.admin.common.productStatusLabels
+    ] ?? product.status;
 
   return (
     <form action={action} className="summary-line">
@@ -32,7 +36,7 @@ function StockRow({ product }: { product: ProductItem }) {
       <span>
         {product.name} · {product.category.name} / {product.subcategory.name}
         <br />
-        <small>{product.status}</small>
+        <small>{statusLabel}</small>
       </span>
       <div className="stock-controls">
         <input
@@ -43,7 +47,7 @@ function StockRow({ product }: { product: ProductItem }) {
           type="number"
         />
         <button className="button secondary" disabled={isPending} type="submit">
-          Mettre a jour
+          {ru.admin.common.update}
         </button>
       </div>
       {state.error ? <p className="form-error">{state.error}</p> : null}
@@ -55,7 +59,7 @@ function StockRow({ product }: { product: ProductItem }) {
 export function StockManager({ products }: StockManagerProps) {
   return (
     <section className="form-panel">
-      <h2>Stock disponible</h2>
+      <h2>{ru.admin.stock.available}</h2>
       {products.length > 0 ? (
         <div className="checkout-items">
           {products.map((product) => (

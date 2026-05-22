@@ -3,6 +3,7 @@ import { requireAdminSession } from "@/lib/adminAuth";
 import { prisma } from "@/lib/db";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
+import { AdminNav } from "../AdminNav";
 
 export default async function AdminOrdersPage() {
   await requireAdminSession();
@@ -13,6 +14,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <main className="page">
+      <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
         <h1>{ru.admin.orders.title}</h1>
@@ -22,13 +24,14 @@ export default async function AdminOrdersPage() {
         </Link>
       </section>
 
-      <section className="form-panel">
+      <section className="form-panel admin-list-panel">
+        <h2>{ru.admin.orders.title}</h2>
         {orders.length > 0 ? (
           <div className="checkout-items">
             {orders.map((order) => (
-              <Link className="summary-line" href={`/admin/orders/${order.id}`} key={order.id}>
+              <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
                 <span>
-                  {order.orderNumber} · {order.status} · {order.customerName} · {order.items.length}
+                  {order.orderNumber} · <span className="admin-badge">{order.status}</span> · {order.customerName} · {order.items.length}
                 </span>
                 <strong>{formatRub(order.totalRub)}</strong>
               </Link>

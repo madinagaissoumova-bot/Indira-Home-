@@ -150,3 +150,19 @@ Une migration destructive ne doit pas etre lancee sans sauvegarde recente.
 - Livraison limitee a la Republique tchetchene visible.
 - Sauvegarde production disponible.
 - Page confidentialite publique disponible.
+
+## Etat local du 2026-05-21
+
+Verifie pendant la passe QA V1 :
+
+- `npm run lint` passe.
+- `npm run prisma:generate` passe.
+- `npm run build` passe.
+- Les routes publiques principales repondent en HTTP local.
+- `/admin` sans session redirige vers `/admin/login`.
+- `.env.example` documente les variables attendues par le code : `DATABASE_URL`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`.
+- Le `.env` local de developpement a ete migre vers les variables admin actuelles.
+
+Point a corriger avant go-live :
+
+- remplacer les identifiants admin locaux par un vrai mot de passe de production, un hash bcrypt neuf et un `ADMIN_SESSION_SECRET` long et aleatoire.

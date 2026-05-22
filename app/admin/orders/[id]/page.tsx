@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
 import { OrderEditor } from "../OrderEditor";
+import { AdminNav } from "../../AdminNav";
 
 export default async function AdminOrderDetailPage({
   params
@@ -22,6 +23,7 @@ export default async function AdminOrderDetailPage({
 
   return (
     <main className="page">
+      <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.orders.title}</span>
         <h1>{order.orderNumber}</h1>

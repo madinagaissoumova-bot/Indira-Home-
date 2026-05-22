@@ -1,36 +1,14 @@
 "use server";
 
-import { ORDER_STATUS, PAYMENT_METHOD, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
+import { ORDER_STATUS, PAYMENT_METHOD } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
-
-type CartItem = {
-  productId: string;
-  quantity: number;
-};
+import { parseCartInput, verifyCartForOrder } from "@/lib/serverCart";
 
 export type CheckoutState = {
   error?: string;
   orderNumber?: string;
 };
-
-function parseCart(value: FormDataEntryValue | null): CartItem[] {
-  if (typeof value !== "string") return [];
-
-  try {
-    const parsed = JSON.parse(value);
-    if (!Array.isArray(parsed)) return [];
-
-    return parsed.filter(
-      (item): item is CartItem =>
-        typeof item?.productId === "string" &&
-        Number.isInteger(item?.quantity) &&
-        item.quantity > 0
-    );
-  } catch {
-    return [];
-  }
-}
 
 function isClearlyOutsideChechnya(address: string) {
   const value = address.toLowerCase();
@@ -54,17 +32,20 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
   const customerPhone = String(formData.get("customerPhone") ?? "").trim();
   const deliveryAddressOrZone = String(formData.get("deliveryAddressOrZone") ?? "").trim();
   const paymentMethod = String(formData.get("paymentMethod") ?? "");
-  const cart = parseCart(formData.get("cart"));
+  const cart = parseCartInput(formData.get("cart"));
+  const phoneDigits = customerPhone.replace(/[\s()+-]/g, "");
 
   if (cart.length === 0) {
     return { error: ru.checkout.errors.emptyCart };
   }
 
-  if (!customerName) return { error: ru.checkout.errors.missingName };
-  if (!/^\+?[0-9\s()\-]{8,20}$/.test(customerPhone)) {
+  if (customerName.length < 2 || customerName.length > 80) {
+    return { error: ru.checkout.errors.missingName };
+  }
+  if (!/^[0-9]{7,20}$/.test(phoneDigits)) {
     return { error: ru.checkout.errors.invalidPhone };
   }
-  if (!deliveryAddressOrZone) {
+  if (deliveryAddressOrZone.length < 5 || deliveryAddressOrZone.length > 240) {
     return { error: ru.checkout.errors.missingAddress };
   }
   if (isClearlyOutsideChechnya(deliveryAddressOrZone)) {
@@ -77,38 +58,14 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
     return { error: ru.checkout.errors.missingPayment };
   }
 
-  const products = await prisma.product.findMany({
-    where: {
-      id: { in: cart.map((item) => item.productId) },
-      status: PRODUCT_STATUS.published,
-      category: { status: VISIBILITY_STATUS.visible },
-      subcategory: { status: VISIBILITY_STATUS.visible }
-    },
-    include: {
-      images: { orderBy: { displayOrder: "asc" }, take: 1 }
-    }
-  });
-
   try {
-    const productById = new Map(products.map((product) => [product.id, product]));
-    const items = cart.map((item) => {
-      const product = productById.get(item.productId);
-      if (!product || product.stockQuantity <= 0) {
-        throw new Error("UNAVAILABLE_PRODUCT");
-      }
-      if (item.quantity > product.stockQuantity) {
-        throw new Error("INSUFFICIENT_STOCK");
-      }
-
-      return {
-        product,
-        quantity: item.quantity,
-        subtotalRub: product.priceRub * item.quantity
-      };
-    });
-
     const orderNumber = await prisma.$transaction(async (tx) => {
-      for (const item of items) {
+      const verifiedCart = await verifyCartForOrder(cart, tx);
+      if (!verifiedCart.ok) {
+        throw new Error(verifiedCart.reason);
+      }
+
+      for (const item of verifiedCart.items) {
         const updated = await tx.product.updateMany({
           where: {
             id: item.product.id,
@@ -124,18 +81,17 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
         }
       }
 
-      const totalRub = items.reduce((sum, item) => sum + item.subtotalRub, 0);
       const created = await tx.order.create({
         data: {
           orderNumber: createOrderNumber(),
           customerName,
-          customerPhone,
+          customerPhone: customerPhone.replace(/\s+/g, " "),
           deliveryAddressOrZone,
           paymentMethod,
           status: ORDER_STATUS.new,
-          totalRub,
+          totalRub: verifiedCart.totalRub,
           items: {
-            create: items.map((item) => ({
+            create: verifiedCart.items.map((item) => ({
               productId: item.product.id,
               productNameSnapshot: item.product.name,
               productImageSnapshot: item.product.images[0]?.url ?? null,
@@ -152,10 +108,16 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
 
     return { orderNumber };
   } catch (error) {
+    if (error instanceof Error && error.message === "EMPTY_CART") {
+      return { error: ru.checkout.errors.emptyCart };
+    }
     if (error instanceof Error && error.message === "INSUFFICIENT_STOCK") {
       return { error: ru.checkout.errors.insufficientStock };
     }
     if (error instanceof Error && error.message === "UNAVAILABLE_PRODUCT") {
+      return { error: ru.checkout.errors.unavailableProduct };
+    }
+    if (error instanceof Error && error.message === "INVALID_PRICE") {
       return { error: ru.checkout.errors.unavailableProduct };
     }
 

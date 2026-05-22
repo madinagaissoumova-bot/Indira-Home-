@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
 import { ProductEditor } from "./ProductEditor";
+import { AdminNav } from "../AdminNav";
 
 async function getProducts() {
   return prisma.product.findMany({
@@ -33,6 +34,7 @@ export default async function AdminProductsPage() {
 
   return (
     <main className="page">
+      <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
         <h1>{ru.admin.products.title}</h1>
@@ -44,14 +46,14 @@ export default async function AdminProductsPage() {
 
       <ProductEditor categories={categories} />
 
-      <section className="form-panel">
+      <section className="form-panel admin-list-panel">
         <h2>Produits existants</h2>
         {products.length > 0 ? (
           <div className="checkout-items">
             {products.map((product) => (
-              <Link className="summary-line" href={`/admin/products/${product.id}`} key={product.id}>
+              <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
                 <span>
-                  {product.name} · {product.status} · {product.category.name} / {product.subcategory.name}
+                  {product.name} · <span className="admin-badge">{product.status}</span> · {product.category.name} / {product.subcategory.name}
                 </span>
                 <strong>{formatRub(product.priceRub)}</strong>
               </Link>

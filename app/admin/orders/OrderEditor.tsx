@@ -5,6 +5,7 @@ import { ORDER_STATUS } from "@/lib/constants";
 import type { AdminActionState } from "../actions";
 import { updateOrderAction } from "../actions";
 import { formatRub } from "@/lib/format";
+import { ru } from "@/lib/i18n/ru";
 
 type OrderItem = {
   id: string;
@@ -36,31 +37,35 @@ function initialState(): AdminActionState {
 
 export function OrderEditor({ order }: OrderEditorProps) {
   const [state, action, isPending] = useActionState(updateOrderAction, initialState());
+  const paymentLabel =
+    ru.admin.common.paymentLabels[
+      order.paymentMethod as keyof typeof ru.admin.common.paymentLabels
+    ] ?? order.paymentMethod;
 
   return (
     <div className="checkout-layout">
       <section className="form-panel">
-        <h2>Informations client</h2>
+        <h2>{ru.admin.orders.customerInfo}</h2>
         <div className="summary-line">
-          <span>Nom</span>
+          <span>{ru.admin.common.customer}</span>
           <strong>{order.customerName}</strong>
         </div>
         <div className="summary-line">
-          <span>Telephone</span>
+          <span>{ru.admin.common.phone}</span>
           <strong>{order.customerPhone}</strong>
         </div>
         <div className="summary-line">
-          <span>Adresse / zone</span>
+          <span>{ru.admin.common.address}</span>
           <strong>{order.deliveryAddressOrZone}</strong>
         </div>
         <div className="summary-line">
-          <span>Paiement</span>
-          <strong>{order.paymentMethod}</strong>
+          <span>{ru.admin.common.payment}</span>
+          <strong>{paymentLabel}</strong>
         </div>
       </section>
 
       <section className="cart-summary">
-        <h2>Produits commandes</h2>
+        <h2>{ru.admin.orders.orderedProducts}</h2>
         <div className="checkout-items">
           {order.items.map((item) => (
             <div className="summary-line" key={item.id}>
@@ -72,29 +77,29 @@ export function OrderEditor({ order }: OrderEditorProps) {
           ))}
         </div>
         <div className="summary-line">
-          <span>Total</span>
+          <span>{ru.admin.common.total}</span>
           <strong>{formatRub(order.totalRub)}</strong>
         </div>
       </section>
 
       <form action={action} className="form-panel">
-        <h2>Modifier la commande</h2>
+        <h2>{ru.admin.orders.editOrder}</h2>
         {state.error ? <p className="form-error">{state.error}</p> : null}
         {state.success ? <p>{state.success}</p> : null}
         <input name="orderId" type="hidden" value={order.id} />
         <div className="field">
-          <label htmlFor={`status-${order.id}`}>Statut</label>
+          <label htmlFor={`status-${order.id}`}>{ru.admin.common.status}</label>
           <select className="input" defaultValue={order.status} id={`status-${order.id}`} name="status">
-            <option value={ORDER_STATUS.new}>New</option>
-            <option value={ORDER_STATUS.toConfirm}>A confirmer</option>
-            <option value={ORDER_STATUS.confirmed}>Confirmee</option>
-            <option value={ORDER_STATUS.preparing}>Preparation</option>
-            <option value={ORDER_STATUS.delivered}>Livree</option>
-            <option value={ORDER_STATUS.cancelled}>Annulee</option>
+            <option value={ORDER_STATUS.new}>{ru.admin.common.statusLabels.NEW}</option>
+            <option value={ORDER_STATUS.toConfirm}>{ru.admin.common.statusLabels.TO_CONFIRM}</option>
+            <option value={ORDER_STATUS.confirmed}>{ru.admin.common.statusLabels.CONFIRMED}</option>
+            <option value={ORDER_STATUS.preparing}>{ru.admin.common.statusLabels.PREPARING}</option>
+            <option value={ORDER_STATUS.delivered}>{ru.admin.common.statusLabels.DELIVERED}</option>
+            <option value={ORDER_STATUS.cancelled}>{ru.admin.common.statusLabels.CANCELLED}</option>
           </select>
         </div>
         <div className="field">
-          <label htmlFor={`adminNote-${order.id}`}>Note interne</label>
+          <label htmlFor={`adminNote-${order.id}`}>{ru.admin.common.note}</label>
           <textarea
             className="input textarea"
             defaultValue={order.adminNote ?? ""}
@@ -103,7 +108,7 @@ export function OrderEditor({ order }: OrderEditorProps) {
           />
         </div>
         <button className="button" disabled={isPending} type="submit">
-          Enregistrer
+          {ru.admin.common.save}
         </button>
       </form>
     </div>

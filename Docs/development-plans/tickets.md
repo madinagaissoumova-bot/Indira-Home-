@@ -17,9 +17,9 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. `SERVER-301` Verification panier serveur reutilisable.
-2. `QA-301` Test concurrence dernier stock.
-3. `QA-302` Test confirmation sans donnees personnelles.
+1. `UI-803` Audit mobile public.
+2. `QA-801` Checklist fonctionnelle V1.
+3. Parcours admin connecte avec variables `.env` de production.
 
 ## Lot 0 - Base projet et donnees
 
@@ -30,7 +30,7 @@ Priorites :
 | DATA-003 | P1 | ACTIVE | Seed categories, sous-categories et produits de test. |
 | SERVER-001 | P0 | TODO | Creer helpers de lecture publique reutilisables. |
 | SERVER-002 | P0 | TODO | Centraliser les validations serveur communes. |
-| SERVER-003 | P0 | TODO | Bloquer suppression definitive produit deja commande. |
+| SERVER-003 | P0 | DONE | Bloquer suppression definitive produit deja commande. |
 
 ## Lot 1 - Catalogue client
 
@@ -40,7 +40,7 @@ Priorites :
 | PUBLIC-102 | P0 | ACTIVE | Navigation categories visibles. |
 | PUBLIC-103 | P0 | DONE | Recherche, filtres et tri catalogue. |
 | PUBLIC-104 | P0 | DONE | Route `/subcategory/:slug`. |
-| UI-101 | P1 | TODO | Mobile catalogue et filtres compacts. |
+| UI-101 | P1 | DONE | Mobile catalogue et filtres compacts. |
 
 ## Lot 2 - Fiche produit et panier
 
@@ -50,18 +50,18 @@ Priorites :
 | PUBLIC-202 | P0 | ACTIVE | Ajout panier depuis catalogue et fiche. |
 | PUBLIC-203 | P0 | ACTIVE | Page panier `/cart`. |
 | PUBLIC-204 | P0 | DONE | Quantites panier robustes et corrections invalides. |
-| PUBLIC-205 | P1 | TODO | Galerie produit et caracteristiques facultatives. |
+| PUBLIC-205 | P1 | DONE | Galerie produit et caracteristiques facultatives. |
 
 ## Lot 3 - Commande client
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| SERVER-301 | P0 | TODO | Verification panier serveur reutilisable. |
+| SERVER-301 | P0 | DONE | Verification panier serveur reutilisable. |
 | PUBLIC-301 | P0 | ACTIVE | Formulaire checkout `/checkout`. |
 | SERVER-302 | P0 | ACTIVE | Creation commande transactionnelle. |
 | PUBLIC-302 | P0 | ACTIVE | Confirmation `/checkout/confirmation`. |
-| QA-301 | P0 | TODO | Test concurrence dernier stock. |
-| QA-302 | P0 | TODO | Test confirmation sans donnees personnelles. |
+| QA-301 | P0 | DONE | Test concurrence dernier stock. |
+| QA-302 | P0 | DONE | Test confirmation sans donnees personnelles. |
 
 ## Lot 4 - Auth admin et dashboard
 
@@ -105,12 +105,12 @@ Priorites :
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| UI-801 | P0 | TODO | Relecture textes russes client. |
-| UI-802 | P1 | TODO | Centralisation contenu client russe. |
-| UI-803 | P0 | TODO | Audit mobile public. |
-| UI-804 | P1 | TODO | Audit admin. |
-| QA-801 | P0 | TODO | Checklist fonctionnelle V1. |
-| QA-802 | P0 | TODO | Build et verification production. |
+| UI-801 | P0 | DONE | Relecture textes russes client. |
+| UI-802 | P1 | DONE | Centralisation contenu client russe. |
+| UI-803 | P0 | ACTIVE | Audit mobile public. |
+| UI-804 | P1 | ACTIVE | Audit admin. |
+| QA-801 | P0 | ACTIVE | Checklist fonctionnelle V1. |
+| QA-802 | P0 | DONE | Build et verification production. |
 
 ## Regle de mise a jour
 
