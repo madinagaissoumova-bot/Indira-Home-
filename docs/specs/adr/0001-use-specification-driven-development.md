@@ -12,7 +12,7 @@ Le projet démarre sans code existant. Il est donc possible de définir le compo
 
 Le projet utilisera une approche Specification-Driven Development :
 
-- Les besoins sont décrits dans `Docs/specs/`.
+- Les besoins sont décrits dans `docs/specs/`.
 - Les exigences ont des identifiants stables.
 - Les critères d'acceptation sont écrits avant le code.
 - Les décisions techniques importantes sont enregistrées comme ADR.

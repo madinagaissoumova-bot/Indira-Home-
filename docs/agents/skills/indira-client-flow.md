@@ -11,15 +11,15 @@ Use this skill for public customer experience work.
 
 Use the relevant files:
 
-- `Docs/specs/feature-specs/catalogue-produits.md`
-- `Docs/specs/feature-specs/categories-sous-categories.md`
-- `Docs/specs/feature-specs/fiche-produit.md`
-- `Docs/specs/feature-specs/panier.md`
-- `Docs/specs/feature-specs/validation-commande.md`
-- `Docs/specs/feature-specs/confirmation-commande.md`
-- `Docs/specs/visual-rules.md`
-- `Docs/specs/content/ru-copy.md`
-- `Docs/development-plans/tickets.md`
+- `docs/specs/feature-specs/catalogue-produits.md`
+- `docs/specs/feature-specs/categories-sous-categories.md`
+- `docs/specs/feature-specs/fiche-produit.md`
+- `docs/specs/feature-specs/panier.md`
+- `docs/specs/feature-specs/validation-commande.md`
+- `docs/specs/feature-specs/confirmation-commande.md`
+- `docs/specs/visual-rules.md`
+- `docs/specs/content/ru-copy.md`
+- `docs/development-plans/tickets.md`
 
 ## Routes
 

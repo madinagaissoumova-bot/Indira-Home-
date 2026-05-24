@@ -11,13 +11,13 @@ Utiliser ce skill pour le travail visuel et UX sur Indira Home.
 
 Lire seulement les fichiers pertinents :
 
-- `Docs/specs/visual-rules.md`
-- `Docs/specs/content/ru-copy.md`
-- `Docs/specs/feature-specs/catalogue-produits.md`
-- `Docs/specs/feature-specs/fiche-produit.md`
-- `Docs/specs/feature-specs/panier.md`
-- `Docs/specs/feature-specs/validation-commande.md`
-- `Docs/specs/feature-specs/confirmation-commande.md`
+- `docs/specs/visual-rules.md`
+- `docs/specs/content/ru-copy.md`
+- `docs/specs/feature-specs/catalogue-produits.md`
+- `docs/specs/feature-specs/fiche-produit.md`
+- `docs/specs/feature-specs/panier.md`
+- `docs/specs/feature-specs/validation-commande.md`
+- `docs/specs/feature-specs/confirmation-commande.md`
 - la fiche admin pertinente si le travail concerne l'interface admin
 
 ## Direction Visuelle

@@ -11,17 +11,17 @@ Use this skill for admin work.
 
 Use the relevant files:
 
-- `Docs/specs/feature-specs/admin-auth.md`
-- `Docs/specs/feature-specs/admin-dashboard.md`
-- `Docs/specs/feature-specs/admin-produits.md`
-- `Docs/specs/feature-specs/categories-sous-categories.md`
-- `Docs/specs/feature-specs/admin-stock.md`
-- `Docs/specs/feature-specs/admin-commandes.md`
-- `Docs/specs/validation-rules.md`
-- `Docs/development-plans/lot-4-auth-dashboard-admin.md`
-- `Docs/development-plans/lot-5-admin-catalogue.md`
-- `Docs/development-plans/lot-6-admin-stock.md`
-- `Docs/development-plans/lot-7-admin-commandes.md`
+- `docs/specs/feature-specs/admin-auth.md`
+- `docs/specs/feature-specs/admin-dashboard.md`
+- `docs/specs/feature-specs/admin-produits.md`
+- `docs/specs/feature-specs/categories-sous-categories.md`
+- `docs/specs/feature-specs/admin-stock.md`
+- `docs/specs/feature-specs/admin-commandes.md`
+- `docs/specs/validation-rules.md`
+- `docs/development-plans/lot-4-auth-dashboard-admin.md`
+- `docs/development-plans/lot-5-admin-catalogue.md`
+- `docs/development-plans/lot-6-admin-stock.md`
+- `docs/development-plans/lot-7-admin-commandes.md`
 
 ## Routes
 

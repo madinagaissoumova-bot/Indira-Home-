@@ -56,4 +56,4 @@ Pour chaque ligne de panier, le serveur doit :
 
 La commande et ses `OrderItem` ne doivent etre crees que si tous les decrements de stock ont reussi. Si deux clientes essaient de commander le dernier exemplaire, une seule transaction doit reussir.
 
-Les formats detailles des champs, slugs, URLs d'images, paniers et donnees de commande sont definis dans `Docs/specs/validation-rules.md`.
+Les formats detailles des champs, slugs, URLs d'images, paniers et donnees de commande sont definis dans `docs/specs/validation-rules.md`.

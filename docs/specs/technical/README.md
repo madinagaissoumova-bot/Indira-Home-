@@ -18,12 +18,12 @@ La V1 inclut le parcours cliente complet et l'admin complet. Le developpement pe
 
 | Fichier | Role |
 | --- | --- |
-| `Docs/specs/technical/routes-navigation.md` | Routes publiques/admin, navigation et structure des pages |
-| `Docs/specs/technical/data-model.md` | Modeles Product, Category, Subcategory, CartItem, Order et OrderItem |
-| `Docs/specs/technical/server-actions.md` | Actions serveur publiques/admin et regles transactionnelles |
-| `Docs/specs/technical/admin-auth.md` | Authentification admin, session et protection des routes |
-| `Docs/specs/technical/images-content.md` | Images produit, contenu russe et snapshots de commande |
-| `Docs/specs/technical/operations.md` | Suppression, livraison, confidentialite, hebergement et tests |
+| `docs/specs/technical/routes-navigation.md` | Routes publiques/admin, navigation et structure des pages |
+| `docs/specs/technical/data-model.md` | Modeles Product, Category, Subcategory, CartItem, Order et OrderItem |
+| `docs/specs/technical/server-actions.md` | Actions serveur publiques/admin et regles transactionnelles |
+| `docs/specs/technical/admin-auth.md` | Authentification admin, session et protection des routes |
+| `docs/specs/technical/images-content.md` | Images produit, contenu russe et snapshots de commande |
+| `docs/specs/technical/operations.md` | Suppression, livraison, confidentialite, hebergement et tests |
 
 ## Regles techniques transversales
 
@@ -40,12 +40,12 @@ La V1 inclut le parcours cliente complet et l'admin complet. Le developpement pe
 
 ## References liees
 
-- `Docs/specs/global-spec.md`
-- `Docs/specs/functional-map.md`
-- `Docs/specs/validation-rules.md`
-- `Docs/specs/visual-rules.md`
-- `Docs/specs/work-plan.md`
-- `Docs/specs/feature-specs/`
-- `Docs/development-plans/`
-- `Docs/roadmap/README.md`
-- `Docs/testing/test-plan.md`
+- `docs/specs/global-spec.md`
+- `docs/specs/functional-map.md`
+- `docs/specs/validation-rules.md`
+- `docs/specs/visual-rules.md`
+- `docs/specs/work-plan.md`
+- `docs/specs/feature-specs/`
+- `docs/development-plans/`
+- `docs/roadmap/README.md`
+- `docs/testing/test-plan.md`

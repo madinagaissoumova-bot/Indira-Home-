@@ -9,11 +9,11 @@ Use this skill for QA, review, and release readiness.
 
 ## Read First
 
-- `Docs/testing/test-plan.md`
-- `Docs/development-plans/security-checklist.md`
-- `Docs/development-plans/production-plan.md`
-- `Docs/development-plans/status.md`
-- `Docs/development-plans/tickets.md`
+- `docs/testing/test-plan.md`
+- `docs/development-plans/security-checklist.md`
+- `docs/development-plans/production-plan.md`
+- `docs/development-plans/status.md`
+- `docs/development-plans/tickets.md`
 - relevant feature specs for the area under review
 
 ## Verification Commands

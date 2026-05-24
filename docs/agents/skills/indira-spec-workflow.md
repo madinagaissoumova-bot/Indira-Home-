@@ -38,14 +38,14 @@ V1 excludes:
 Read only what is relevant:
 
 - `AGENTS.md`
-- `Docs/specs/global-spec.md`
-- `Docs/specs/functional-map.md`
-- `Docs/specs/technical/README.md`
-- `Docs/specs/work-plan.md`
+- `docs/specs/global-spec.md`
+- `docs/specs/functional-map.md`
+- `docs/specs/technical/README.md`
+- `docs/specs/work-plan.md`
 - `roadmap.md`
-- `Docs/development-plans/status.md`
-- `Docs/development-plans/tickets.md`
-- relevant files in `Docs/specs/feature-specs/`
+- `docs/development-plans/status.md`
+- `docs/development-plans/tickets.md`
+- relevant files in `docs/specs/feature-specs/`
 
 ## Workflow
 

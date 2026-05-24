@@ -26,7 +26,7 @@ La validation de commande doit enregistrer les informations de la cliente, les p
 | Statut de commande | Etat initial "nouvelle" apres validation | Oui |
 | Date de validation | Moment enregistre automatiquement quand la cliente valide la commande | Oui |
 
-Les formats detailles des champs sont definis dans `Docs/specs/validation-rules.md`.
+Les formats detailles des champs sont definis dans `docs/specs/validation-rules.md`.
 
 ## Livraison V1
 
