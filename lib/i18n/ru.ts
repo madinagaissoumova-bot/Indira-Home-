@@ -44,6 +44,7 @@ export const ru = {
   },
   catalog: {
     collection: "Коллекция",
+    collectionSummary: "Информация о коллекции",
     defaultCategoryDescription: "Подборка товаров для красивого и уютного дома.",
     subcategories: "Подкатегории",
     filtersAndSorting: "Сортировка и фильтры",
@@ -96,6 +97,7 @@ export const ru = {
     orderAmount: "Сумма заказа",
     invalid: "Некоторые товары нужно удалить или исправить перед оформлением.",
     noOnlinePayment: "Оплата онлайн не требуется. Магазин свяжется с вами для подтверждения.",
+    maxReached: "Больше добавить нельзя",
     fixCart: "Исправить корзину",
     checkout: "Оформить заказ",
     clear: "Очистить корзину",
@@ -191,6 +193,7 @@ export const ru = {
       recentOrders: "Последние заказы",
       noOrders: "Пока нет заказов.",
       stockAlerts: "Товары без наличия",
+      stockQuantity: (quantity: number) => `${quantity} шт.`,
       noStockAlerts: "Нет опубликованных товаров без наличия.",
       sections: {
         products: "Товары",

@@ -72,12 +72,8 @@ export default async function CategoryPage({
         ))}
       </section>
 
-      <section className="collection-toolbar" aria-label={ru.catalog.filtersAndSorting}>
+      <section className="collection-toolbar" aria-label={ru.catalog.collectionSummary}>
         <span>{ru.catalog.productCount(category.products.length)}</span>
-        <div>
-          <button className="text-control" type="button">{ru.catalog.filters}</button>
-          <button className="text-control" type="button">{ru.catalog.defaultSort}</button>
-        </div>
       </section>
 
       {category.products.length > 0 ? (
@@ -115,6 +111,7 @@ export default async function CategoryPage({
                     <AddToCartButton
                       disabled={isSoldOut}
                       label={ru.common.addToCart}
+                      maxQuantity={product.stockQuantity}
                       productId={product.id}
                     />
                   </div>

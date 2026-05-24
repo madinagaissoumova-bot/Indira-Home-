@@ -148,7 +148,7 @@ export default async function AdminPage() {
               {dashboard.stockAlerts.map((product) => (
                 <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
                   <span>{product.name}</span>
-                  <strong>{formatRub(product.priceRub)}</strong>
+                  <strong>{ru.admin.dashboard.stockQuantity(product.stockQuantity)}</strong>
                 </Link>
               ))}
             </div>

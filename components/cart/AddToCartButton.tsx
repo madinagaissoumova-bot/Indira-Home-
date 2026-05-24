@@ -8,6 +8,7 @@ type AddToCartButtonProps = {
   productId: string;
   disabled?: boolean;
   label?: string;
+  maxQuantity?: number;
 };
 
 const CART_KEY = "indira-home-cart";
@@ -40,9 +41,11 @@ function writeCart(items: CartStorageItem[]) {
 export function AddToCartButton({
   productId,
   disabled = false,
-  label = ru.common.addToCartLong
+  label = ru.common.addToCartLong,
+  maxQuantity
 }: AddToCartButtonProps) {
   const [isAdded, setIsAdded] = useState(false);
+  const [isLimitReached, setIsLimitReached] = useState(false);
   const resetTimer = useRef<number | null>(null);
 
   useEffect(() => {
@@ -56,6 +59,21 @@ export function AddToCartButton({
   function addToCart() {
     const cart = readCart();
     const existing = cart.find((item) => item.productId === productId);
+    const currentQuantity = existing?.quantity ?? 0;
+
+    if (maxQuantity != null && currentQuantity >= maxQuantity) {
+      setIsAdded(false);
+      setIsLimitReached(true);
+
+      if (resetTimer.current) {
+        window.clearTimeout(resetTimer.current);
+      }
+
+      resetTimer.current = window.setTimeout(() => {
+        setIsLimitReached(false);
+      }, 1600);
+      return;
+    }
 
     if (existing) {
       existing.quantity += 1;
@@ -65,6 +83,7 @@ export function AddToCartButton({
 
     writeCart(cart);
     setIsAdded(true);
+    setIsLimitReached(false);
 
     if (resetTimer.current) {
       window.clearTimeout(resetTimer.current);
@@ -82,7 +101,13 @@ export function AddToCartButton({
       onClick={addToCart}
       type="button"
     >
-      {disabled ? ru.common.unavailable : isAdded ? ru.common.added : label}
+      {disabled
+        ? ru.common.unavailable
+        : isLimitReached
+          ? ru.cart.maxReached
+          : isAdded
+            ? ru.common.added
+            : label}
     </button>
   );
 }

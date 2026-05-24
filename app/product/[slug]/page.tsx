@@ -145,7 +145,11 @@ export default async function ProductPage({
           </div>
 
           <div className="product-cta-stack">
-            <AddToCartButton disabled={isSoldOut} productId={product.id} />
+            <AddToCartButton
+              disabled={isSoldOut}
+              maxQuantity={product.stockQuantity}
+              productId={product.id}
+            />
             <a className="button secondary whatsapp-button" href={whatsappHref} target="_blank" rel="noreferrer">
               {ru.product.whatsappButton}
             </a>
@@ -201,6 +205,7 @@ export default async function ProductPage({
                       <AddToCartButton
                         disabled={relatedSoldOut}
                         label={ru.common.addToCart}
+                        maxQuantity={relatedProduct.stockQuantity}
                         productId={relatedProduct.id}
                       />
                     </div>

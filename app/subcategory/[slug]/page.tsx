@@ -95,6 +95,7 @@ export default async function SubcategoryPage({
                     <AddToCartButton
                       disabled={isSoldOut}
                       label={ru.common.addToCart}
+                      maxQuantity={product.stockQuantity}
                       productId={product.id}
                     />
                   </div>

@@ -12,6 +12,10 @@ type ConfirmationData = {
   totalRub?: number;
 };
 
+type ConfirmationClientProps = {
+  initialOrderNumber?: string;
+};
+
 function readConfirmation(): ConfirmationData | null {
   try {
     const raw = window.sessionStorage.getItem(CONFIRMATION_KEY);
@@ -29,12 +33,13 @@ function readConfirmation(): ConfirmationData | null {
   }
 }
 
-export function ConfirmationClient() {
+export function ConfirmationClient({ initialOrderNumber }: ConfirmationClientProps) {
   const [confirmation, setConfirmation] = useState<ConfirmationData | null>(null);
 
   useEffect(() => {
-    setConfirmation(readConfirmation());
-  }, []);
+    const savedConfirmation = readConfirmation();
+    setConfirmation(savedConfirmation ?? (initialOrderNumber ? { orderNumber: initialOrderNumber } : null));
+  }, [initialOrderNumber]);
 
   return (
     <div className="empty-state">
