@@ -48,6 +48,6 @@ Le hash bcrypt local a ete verifie avec le mot de passe de developpement. En pro
 - Test visuel responsive reel a 360 px, 390 px, 768 px et 1280 px avec screenshots.
 - Parcours commande complet dans le navigateur : ajout panier, checkout, confirmation, vidage panier.
 - Parcours admin connecte complet dans le navigateur : dashboard, produits, categories, stock, commandes.
-- Checklist metier complete de `Docs/testing/test-plan.md`, surtout snapshots prix/images et transaction avec ligne invalide.
+- Checklist metier complete de `docs/testing/test-plan.md`, surtout snapshots prix/images et transaction avec ligne invalide.
 
 Le plugin Browser etait disponible dans les instructions, mais l'outil Node REPL requis pour le piloter n'etait pas expose dans cette session. La verification visuelle screenshot reste donc a faire dans une session ou le navigateur integre est pilotable.

@@ -7,9 +7,9 @@ Permettre a l'admin de maintenir les produits, categories et sous-categories san
 ## Dependances
 
 - Lot 4 termine.
-- `Docs/specs/feature-specs/admin-produits.md`
-- `Docs/specs/feature-specs/categories-sous-categories.md`
-- `Docs/specs/validation-rules.md`
+- `docs/specs/feature-specs/admin-produits.md`
+- `docs/specs/feature-specs/categories-sous-categories.md`
+- `docs/specs/validation-rules.md`
 
 ## Tickets
 

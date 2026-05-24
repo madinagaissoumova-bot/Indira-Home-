@@ -7,9 +7,9 @@ Transformer un panier valide en commande enregistree, sans compte cliente et san
 ## Dependances
 
 - Lot 2 termine.
-- `Docs/specs/feature-specs/validation-commande.md`
-- `Docs/specs/feature-specs/confirmation-commande.md`
-- `Docs/specs/validation-rules.md`
+- `docs/specs/feature-specs/validation-commande.md`
+- `docs/specs/feature-specs/confirmation-commande.md`
+- `docs/specs/validation-rules.md`
 
 ## Tickets
 

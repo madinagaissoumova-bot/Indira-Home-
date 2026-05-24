@@ -33,7 +33,7 @@ Pour changer un lot en `TERMINE`, verifier d'abord :
 
 - les criteres de sortie du plan de lot ;
 - les criteres d'acceptation des fiches feature liees ;
-- la checklist pertinente de `Docs/testing/test-plan.md`.
+- la checklist pertinente de `docs/testing/test-plan.md`.
 
 ## Documents operationnels
 

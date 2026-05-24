@@ -7,8 +7,8 @@ Permettre a la cliente de consulter un produit puis de preparer sa commande dans
 ## Dependances
 
 - Lot 1 termine.
-- `Docs/specs/feature-specs/fiche-produit.md`
-- `Docs/specs/feature-specs/panier.md`
+- `docs/specs/feature-specs/fiche-produit.md`
+- `docs/specs/feature-specs/panier.md`
 
 ## Tickets
 

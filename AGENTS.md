@@ -25,15 +25,15 @@ Le site cliente est en russe. L'admin peut etre en russe ou en francais pendant 
 
 Avant tout changement important de comportement, lire les documents pertinents :
 
-- `Docs/specs/global-spec.md`
-- `Docs/specs/functional-map.md`
-- `Docs/specs/work-plan.md`
-- `Docs/specs/technical/README.md`
-- `Docs/specs/feature-specs/`
-- `Docs/development-plans/status.md`
-- `Docs/development-plans/tickets.md`
-- `Docs/roadmap/README.md`
-- `Docs/testing/test-plan.md`
+- `docs/specs/global-spec.md`
+- `docs/specs/functional-map.md`
+- `docs/specs/work-plan.md`
+- `docs/specs/technical/README.md`
+- `docs/specs/feature-specs/`
+- `docs/development-plans/status.md`
+- `docs/development-plans/tickets.md`
+- `docs/roadmap/README.md`
+- `docs/testing/test-plan.md`
 
 Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
 
@@ -173,8 +173,8 @@ Avant de terminer un changement significatif :
 
 - lancer `npm run lint` si le changement touche TypeScript ou React ;
 - lancer `npm run build` si le changement touche routes, actions serveur, Prisma, CSS global ou configuration ;
-- mettre a jour `Docs/development-plans/tickets.md` et `Docs/development-plans/status.md` si un ticket ou lot change d'etat ;
-- utiliser `Docs/testing/test-plan.md` pour la validation V1.
+- mettre a jour `docs/development-plans/tickets.md` et `docs/development-plans/status.md` si un ticket ou lot change d'etat ;
+- utiliser `docs/testing/test-plan.md` pour la validation V1.
 
 ## A Eviter
 

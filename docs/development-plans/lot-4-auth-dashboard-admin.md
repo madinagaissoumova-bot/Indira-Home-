@@ -7,8 +7,8 @@ Proteger l'espace admin et fournir un tableau de bord central.
 ## Dependances
 
 - Lot 3 termine.
-- `Docs/specs/feature-specs/admin-auth.md`
-- `Docs/specs/feature-specs/admin-dashboard.md`
+- `docs/specs/feature-specs/admin-auth.md`
+- `docs/specs/feature-specs/admin-dashboard.md`
 
 ## Tickets
 

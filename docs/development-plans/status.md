@@ -38,7 +38,7 @@ Reste a faire avant de marquer termine :
 
 - consolider les helpers de lecture publique ;
 - centraliser les validations critiques cote serveur ;
-- executer la checklist metier complete de `Docs/testing/test-plan.md`.
+- executer la checklist metier complete de `docs/testing/test-plan.md`.
 
 ### Lot 1 - Catalogue client
 
@@ -81,14 +81,14 @@ Pourquoi actif :
 
 Reste a faire avant de marquer termine :
 
-- verifier manuellement toutes les longueurs et formats de `Docs/specs/validation-rules.md` ;
-- executer les tests manuels commande du `Docs/testing/test-plan.md`.
+- verifier manuellement toutes les longueurs et formats de `docs/specs/validation-rules.md` ;
+- executer les tests manuels commande du `docs/testing/test-plan.md`.
 
 ## Plans termines
 
 Aucun lot complet n'est marque `TERMINE` pour le moment.
 
-Raison : plusieurs bases existent deja, mais aucun lot n'a encore ete valide contre tous ses criteres de sortie et contre `Docs/testing/test-plan.md`.
+Raison : plusieurs bases existent deja, mais aucun lot n'a encore ete valide contre tous ses criteres de sortie et contre `docs/testing/test-plan.md`.
 
 ## Suivi des lots
 
@@ -143,7 +143,7 @@ Premier ticket :
 Le prochain focus recommande est :
 
 1. terminer les verifications Lot 3 : validation commande stricte et tests stock ;
-2. finaliser les screenshots responsive listes dans `Docs/development-plans/v1-verification-2026-05-21.md` ;
+2. finaliser les screenshots responsive listes dans `docs/development-plans/v1-verification-2026-05-21.md` ;
 3. tester l'admin connecte avec les variables `.env` definitives.
 
 Cette sequence garde le parcours client commandable et recentre l'effort sur la verification. L'admin est maintenant presente, mais elle doit encore etre auditee en situation reelle avant d'etre consideree totalement terminee.

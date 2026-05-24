@@ -2,9 +2,9 @@
 
 Ce fichier donne une vue produit de la progression du projet.
 
-Le minimum indispensable de la V1 est detaille dans `Docs/roadmap/v1.md`.
+Le minimum indispensable de la V1 est detaille dans `docs/roadmap/v1.md`.
 
-Le detail d'execution reste dans `Docs/specs/work-plan.md`. Les regles fonctionnelles restent dans les fiches de `Docs/specs/feature-specs/`.
+Le detail d'execution reste dans `docs/specs/work-plan.md`. Les regles fonctionnelles restent dans les fiches de `docs/specs/feature-specs/`.
 
 ## Objectif V1
 
@@ -220,7 +220,7 @@ Inclus :
 - responsive mobile, tablette et desktop ;
 - verification visuelle des cartes, filtres, panier, checkout ;
 - verification des etats vides et erreurs ;
-- checklist `Docs/testing/test-plan.md` ;
+- checklist `docs/testing/test-plan.md` ;
 - variables d'environnement ;
 - sauvegarde/export prevu avant production.
 
@@ -242,7 +242,7 @@ Sortie attendue :
 - L'admin peut creer les produits, ajuster le stock et traiter les commandes.
 - Les routes admin sont protegees par connexion.
 - Les donnees de commande restent lisibles dans l'espace admin.
-- La checklist `Docs/testing/test-plan.md` est passee.
+- La checklist `docs/testing/test-plan.md` est passee.
 
 ## Hors V1
 

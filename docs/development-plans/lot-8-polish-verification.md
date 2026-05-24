@@ -7,9 +7,9 @@ Transformer l'application fonctionnelle en V1 livrable.
 ## Dependances
 
 - Lots 0 a 7 termines.
-- `Docs/specs/visual-rules.md`
-- `Docs/testing/test-plan.md`
-- `Docs/specs/user-stories.md`
+- `docs/specs/visual-rules.md`
+- `docs/testing/test-plan.md`
+- `docs/specs/user-stories.md`
 
 ## Tickets
 
@@ -89,7 +89,7 @@ Validation :
 
 ### QA-801 - Checklist fonctionnelle
 
-Executer `Docs/testing/test-plan.md`.
+Executer `docs/testing/test-plan.md`.
 
 Validation :
 
@@ -124,7 +124,7 @@ Validation :
 - `app/`
 - `components/`
 - `lib/i18n/ru.ts`
-- `Docs/testing/test-plan.md`
+- `docs/testing/test-plan.md`
 
 ## Risques
 

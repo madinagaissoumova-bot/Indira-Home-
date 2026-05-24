@@ -8,7 +8,7 @@ Permettre a l'admin de consulter et traiter les commandes recues.
 
 - Lot 4 termine pour la protection admin.
 - Lot 3 termine pour la creation de commandes.
-- `Docs/specs/feature-specs/admin-commandes.md`
+- `docs/specs/feature-specs/admin-commandes.md`
 
 ## Tickets
 

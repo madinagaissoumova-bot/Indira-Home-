@@ -114,4 +114,4 @@ Priorites :
 
 ## Regle de mise a jour
 
-Quand un ticket change de statut, mettre aussi a jour `Docs/development-plans/status.md` si cela change l'etat d'un lot complet.
+Quand un ticket change de statut, mettre aussi a jour `docs/development-plans/status.md` si cela change l'etat d'un lot complet.

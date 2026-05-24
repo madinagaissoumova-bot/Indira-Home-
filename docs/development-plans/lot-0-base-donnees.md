@@ -6,8 +6,8 @@ Stabiliser la base technique et les donnees metier avant de developper les parco
 
 ## Dependances
 
-- `Docs/specs/technical/README.md`
-- `Docs/specs/validation-rules.md`
+- `docs/specs/technical/README.md`
+- `docs/specs/validation-rules.md`
 - `lib/constants.ts`
 - `prisma/schema.prisma`
 

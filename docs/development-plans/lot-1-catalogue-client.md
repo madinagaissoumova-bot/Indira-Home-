@@ -7,9 +7,9 @@ Permettre aux clientes de consulter et trouver les produits visibles.
 ## Dependances
 
 - Lot 0 termine.
-- `Docs/specs/feature-specs/catalogue-produits.md`
-- `Docs/specs/feature-specs/categories-sous-categories.md`
-- `Docs/specs/visual-rules.md`
+- `docs/specs/feature-specs/catalogue-produits.md`
+- `docs/specs/feature-specs/categories-sous-categories.md`
+- `docs/specs/visual-rules.md`
 
 ## Tickets
 

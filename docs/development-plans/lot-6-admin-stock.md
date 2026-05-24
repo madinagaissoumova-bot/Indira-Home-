@@ -7,7 +7,7 @@ Permettre a l'admin de suivre et ajuster les quantites disponibles.
 ## Dependances
 
 - Lot 5 termine.
-- `Docs/specs/feature-specs/admin-stock.md`
+- `docs/specs/feature-specs/admin-stock.md`
 
 ## Tickets
 
