@@ -50,5 +50,8 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 ## Commandes Utiles
 
 - `npm run dev`
+- `npm run check:docs`
+- `npm test`
+- `npm run lint`
 - `npm run build`
 - `npm run prisma:seed`
