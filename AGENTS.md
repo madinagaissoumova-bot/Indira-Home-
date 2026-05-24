@@ -135,10 +135,10 @@ Statuts de commande :
 
 ## Regles D'Implementation
 
-- Avant un changement significatif, creer ou utiliser un plan dans `docs/plans/en-cours/`.
+- Avant un changement significatif, remplir `docs/workflow/plan-en-cours.md`.
 - Executer le travail selon ce plan en cours.
-- Quand le travail est termine et verifie, deplacer le plan dans `docs/plans/termines/`.
-- Ne pas pousser sur GitHub tant qu'un plan en cours lie au changement n'est pas termine, sauf demande explicite.
+- Quand le travail est termine et verifie, remettre `docs/workflow/plan-en-cours.md` a l'etat "Aucun plan en cours".
+- Ne pas pousser sur GitHub tant que le plan en cours lie au changement n'est pas termine, sauf demande explicite.
 - Garder les changements concentres sur le besoin en cours.
 - Preferer les patterns deja presents dans le projet.
 - Ne pas ajouter de grosse abstraction sans benefice clair.

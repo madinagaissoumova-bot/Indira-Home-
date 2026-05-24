@@ -138,7 +138,7 @@ Premier ticket :
 
 - `QA-801` Checklist fonctionnelle.
 
-## Prochain plan actif recommande
+## Prochain focus recommande
 
 Le prochain focus recommande est :
 
