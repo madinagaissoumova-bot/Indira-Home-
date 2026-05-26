@@ -40,6 +40,8 @@ Le site resout ce probleme en centralisant les produits dans un catalogue access
 - Pays : Russie
 - Region principale : Republique tchetchene
 - Zone de livraison initiale : Republique tchetchene uniquement
+- Delai de livraison V1 : 4 a 5 jours
+- Frais de livraison V1 : non definis sur le site, confirmes plus tard par la boutique
 - Langue du site : russe
 
 ## Perimetre global
@@ -55,6 +57,8 @@ Le projet n'a pas vocation a devenir une marketplace avec plusieurs vendeurs. Il
 Le paiement en ligne n'est pas necessaire dans la premiere version. Il pourra etre ajoute plus tard si le projet evolue.
 
 La V1 doit aussi inclure un espace admin complet pour gerer les produits, les categories, le stock et les commandes.
+
+La livraison V1 est limitee a la Republique tchetchene. Le delai annonce aux clientes est de 4 a 5 jours. Les frais de livraison ne sont pas calcules automatiquement dans la V1 : la boutique les confirme manuellement avec la cliente par telephone ou WhatsApp.
 
 ## Nom de la boutique
 

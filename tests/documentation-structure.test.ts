@@ -27,7 +27,7 @@ function listProjectFiles(dir: string): string[] {
   return files;
 }
 
-describe("docs directory casing", () => {
+describe("documentation structure", () => {
   it("tracks only docs/ paths in Git", () => {
     const trackedFiles = execFileSync("git", ["ls-files"], {
       cwd: root,

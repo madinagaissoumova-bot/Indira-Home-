@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ORDER_STATUS, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
+import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
 import { requireAdminSession } from "@/lib/adminAuth";
@@ -130,7 +131,7 @@ export default async function AdminPage() {
               {dashboard.recentOrders.map((order) => (
                 <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
                   <span>
-                    {order.orderNumber} · <span className="admin-badge">{order.status}</span> · {order.items.length}
+                    {order.orderNumber} · <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span> · {order.items.length}
                   </span>
                   <strong>{formatRub(order.totalRub)}</strong>
                 </Link>

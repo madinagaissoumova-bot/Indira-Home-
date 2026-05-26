@@ -87,6 +87,7 @@ La cliente peut :
 
 La cliente peut :
 
+- Renseigner son prenom.
 - Renseigner son nom.
 - Renseigner son numero de telephone ou WhatsApp.
 - Renseigner son adresse ou sa zone de livraison en Republique tchetchene.
@@ -95,6 +96,9 @@ La cliente peut :
 - Recevoir une confirmation que la commande a ete envoyee.
 - Voir que la boutique la contactera par telephone ou WhatsApp pour confirmer la commande.
 - Voir le numero WhatsApp de la boutique : +7 988 906-41-06.
+- Voir que la livraison est limitee a la Republique tchetchene.
+- Voir que le delai de livraison estime est de 4 a 5 jours.
+- Voir que les frais de livraison seront confirmes par la boutique.
 
 ### Apres la commande
 
@@ -104,7 +108,7 @@ La cliente peut :
 - Confirmer ou ajuster la commande avec la boutique.
 - Payer a la livraison ou par virement selon ce qui est convenu avec la boutique.
 
-La cliente ne peut pas annuler elle-meme une commande validee depuis le site. Elle doit contacter la boutique si elle veut demander une annulation ou une modification.
+La cliente ne peut pas annuler ou modifier elle-meme une commande validee depuis le site. Elle doit contacter la boutique par telephone ou WhatsApp si elle veut demander une annulation ou une modification.
 
 ## Fonctions admin
 

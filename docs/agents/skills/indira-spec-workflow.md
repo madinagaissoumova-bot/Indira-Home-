@@ -43,8 +43,8 @@ Read only what is relevant:
 - `docs/specs/technical/README.md`
 - `docs/specs/work-plan.md`
 - `roadmap.md`
-- `docs/development-plans/status.md`
-- `docs/development-plans/tickets.md`
+- `docs/project-management/status.md`
+- `docs/project-management/tickets.md`
 - relevant files in `docs/specs/feature-specs/`
 
 ## Workflow

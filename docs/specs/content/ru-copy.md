@@ -21,7 +21,7 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Usage | Texte russe |
 | --- | --- |
 | Eyebrow accueil | Товары для дома |
-| Description accueil | Посуда, кухня, техника и декор для дома. Доставка по Чеченской Республике. |
+| Description accueil | Посуда, кухня, техника и декор для уютного дома. |
 | Recherche label | Поиск товара |
 | Recherche placeholder | Например: сервиз, чайник, ваза |
 | Rechercher | Найти |
@@ -39,9 +39,11 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Nouveau | Новинка |
 | Produit epuise | Нет в наличии |
 | Aucun produit | Пока нет товаров для отображения. |
-| Aucun resultat | По вашему запросу ничего не найдено. |
+| Aucun resultat | По этому запросу ничего не найдено. |
 | Aucun produit categorie | В этой категории пока нет товаров. |
 | Aucun produit sous-categorie | В этой подкатегории пока нет товаров. |
+| Retour categories | Смотреть другие категории |
+| Retour categorie | Вернуться в категорию |
 
 ## Fiche produit
 
@@ -52,7 +54,7 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Produit ajoute | Товар добавлен в корзину. |
 | Produit indisponible | Товар недоступен для заказа. |
 | Quantite | Количество |
-| Quantite trop elevee | Запрошенное количество недоступно. |
+| Quantite trop elevee | Такое количество сейчас недоступно. |
 | Description | Описание |
 | Caracteristiques | Характеристики |
 | Produit introuvable | Товар не найден. |
@@ -71,7 +73,9 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Commander | Оформить заказ |
 | Panier invalide | Некоторые товары нужно удалить или исправить перед оформлением. |
 | Produit indisponible panier | Недоступно для заказа |
-| Rappel paiement | Онлайн-оплаты нет. Магазин свяжется с вами для подтверждения. |
+| Rappel paiement | Оплата онлайн не нужна. Мы подтвердим заказ по телефону или в WhatsApp. |
+| Quantite trop elevee | Такое количество сейчас недоступно. Уменьшите количество или удалите товар. |
+| Panier a corriger | Исправьте корзину перед оформлением заказа. |
 
 ## Checkout
 
@@ -83,7 +87,7 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Telephone label | Телефон или WhatsApp |
 | Telephone placeholder | +7 ... |
 | Adresse label | Адрес или зона доставки |
-| Adresse placeholder | Доставка только по Чеченской Республике |
+| Adresse placeholder | Город, улица, дом, квартира или ориентир |
 | Paiement label | Способ оплаты |
 | Paiement livraison | Оплата при получении |
 | Paiement virement | Перевод после подтверждения |
@@ -91,20 +95,25 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Retour panier | Вернуться в корзину |
 | Envoyer commande | Отправить заказ |
 | Envoi en cours | Отправка... |
-| Checkout rappel | Онлайн-оплаты нет. Магазин свяжется с вами по телефону или WhatsApp для подтверждения заказа. |
+| Livraison | Доставка по Чеченской Республике, обычно 4-5 дней. |
+| Frais livraison | Стоимость доставки уточним при подтверждении заказа. |
+| Checkout rappel | Оплата онлайн не нужна. Мы подтвердим заказ по телефону или в WhatsApp. |
+| Modification annulation | Изменить или отменить заказ можно через WhatsApp: +7 988 906-41-06. |
+| Somme modifiee | Сумма заказа обновилась. Проверьте итог и отправьте заказ еще раз. |
 
 ## Erreurs checkout
 
 | Situation | Texte russe |
 | --- | --- |
-| Panier vide | Ваша корзина пуста или содержит товары, которые нужно исправить. |
+| Panier vide | Корзина пуста или в ней есть товары, которые нужно исправить. |
 | Nom manquant | Пожалуйста, укажите имя. |
-| Telephone invalide | Пожалуйста, укажите корректный номер телефона или WhatsApp. |
-| Adresse manquante | Пожалуйста, укажите адрес или зону доставки в Чеченской Республике. |
+| Telephone invalide | Укажите корректный номер телефона или WhatsApp. |
+| Adresse manquante | Укажите полный адрес доставки в Чеченской Республике. |
 | Zone hors livraison | Доставка пока доступна только по Чеченской Республике. |
 | Paiement manquant | Пожалуйста, выберите способ оплаты. |
-| Stock insuffisant | Запрошенное количество больше недоступно. Пожалуйста, обновите корзину. |
-| Produit indisponible | Один из товаров больше недоступен для заказа. |
+| Stock insuffisant | Такое количество уже недоступно. Обновите корзину. |
+| Produit indisponible | Один из товаров больше недоступен. |
+| Prix modifie | Сумма заказа изменилась. Проверьте итог перед отправкой. |
 | Erreur generale | Не удалось отправить заказ. Попробуйте еще раз. |
 
 ## Confirmation
@@ -113,11 +122,14 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | --- | --- |
 | Eyebrow | Заказ отправлен |
 | Titre | Спасибо за заказ |
-| Message | Ваш заказ отправлен. Магазин свяжется с вами по телефону или WhatsApp, чтобы подтвердить детали. |
+| Message | Заказ отправлен. Мы свяжемся с вами по телефону или в WhatsApp для подтверждения. |
 | Numero commande | Номер заказа: |
+| Livraison | Доставка по Чеченской Республике, обычно 4-5 дней. |
+| Frais livraison | Стоимость доставки уточним при подтверждении заказа. |
+| Modification annulation | Изменить или отменить заказ можно через WhatsApp: +7 988 906-41-06. |
 | Contact WhatsApp | WhatsApp магазина: +7 988 906-41-06 |
 | Retour catalogue | Вернуться в каталог |
-| Acces direct sans commande | Нет недавнего заказа для подтверждения. |
+| Acces direct sans commande | Нет недавнего заказа. |
 
 ## Regles de style texte
 

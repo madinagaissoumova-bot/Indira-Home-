@@ -11,6 +11,7 @@ import type { CartStorageItem } from "@/types";
 
 const CART_KEY = "indira-home-cart";
 const CONFIRMATION_KEY = "indira-home-last-order-confirmation";
+const MAX_CART_QUANTITY_PER_PRODUCT = 99;
 
 type CheckoutProduct = {
   id: string;
@@ -34,7 +35,8 @@ function readCart(): CartStorageItem[] {
       (item): item is CartStorageItem =>
         typeof item?.productId === "string" &&
         Number.isInteger(item?.quantity) &&
-        item.quantity > 0
+        item.quantity > 0 &&
+        item.quantity <= MAX_CART_QUANTITY_PER_PRODUCT
     );
   } catch {
     return [];
@@ -62,7 +64,9 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
     return { item, product, isUnavailable, subtotal };
   });
   const total = rows.reduce((sum, row) => sum + row.subtotal, 0);
-  const isInvalid = cart.length === 0 || rows.some((row) => row.isUnavailable);
+  const reviewedRows = state.review?.items;
+  const displayedTotal = state.review?.totalRub ?? total;
+  const isInvalid = cart.length === 0 || (!state.review && rows.some((row) => row.isUnavailable));
 
   useEffect(() => {
     if (!state.orderNumber) return;
@@ -93,14 +97,36 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
   return (
     <form action={formAction} className="checkout-layout">
       <input name="cart" type="hidden" value={JSON.stringify(cart)} />
+      <input name="expectedTotalRub" type="hidden" value={displayedTotal} />
 
       <section className="form-panel" aria-labelledby="checkout-form-title">
         <h2 id="checkout-form-title">{ru.checkout.contactTitle}</h2>
         {state.error ? <p className="form-error">{state.error}</p> : null}
 
         <div className="field">
-          <label htmlFor="customerName">{ru.checkout.name}</label>
-          <input className="input" id="customerName" name="customerName" required />
+          <label htmlFor="customerFirstName">{ru.checkout.firstName}</label>
+          <input
+            autoComplete="given-name"
+            className="input"
+            id="customerFirstName"
+            maxLength={80}
+            minLength={2}
+            name="customerFirstName"
+            required
+          />
+        </div>
+
+        <div className="field">
+          <label htmlFor="customerLastName">{ru.checkout.lastName}</label>
+          <input
+            autoComplete="family-name"
+            className="input"
+            id="customerLastName"
+            maxLength={80}
+            minLength={2}
+            name="customerLastName"
+            required
+          />
         </div>
 
         <div className="field">
@@ -108,6 +134,8 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
           <input
             className="input"
             id="customerPhone"
+            inputMode="tel"
+            maxLength={24}
             name="customerPhone"
             placeholder={ru.checkout.phonePlaceholder}
             required
@@ -120,6 +148,8 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
           <textarea
             className="input textarea"
             id="deliveryAddressOrZone"
+            maxLength={240}
+            minLength={10}
             name="deliveryAddressOrZone"
             placeholder={ru.checkout.addressPlaceholder}
             required
@@ -136,7 +166,12 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
           </select>
         </div>
 
-        <p>{ru.checkout.reminder}</p>
+        <div className="checkout-note">
+          <p>{ru.checkout.deliveryNote}</p>
+          <p>{ru.checkout.deliveryFeeNote}</p>
+          <p>{ru.checkout.reminder}</p>
+          <p>{ru.checkout.changeOrCancel}</p>
+        </div>
 
         <div className="form-actions">
           <Link className="button secondary" href="/cart">
@@ -151,7 +186,14 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
       <aside className="cart-summary">
         <h2>{ru.checkout.summary}</h2>
         <div className="checkout-items">
-          {rows.map(({ item, product, isUnavailable, subtotal }) => (
+          {reviewedRows ? reviewedRows.map((item) => (
+            <div className="summary-line" key={item.productId}>
+              <span>
+                {item.name} x {item.quantity}
+              </span>
+              <strong>{formatRub(item.subtotalRub)}</strong>
+            </div>
+          )) : rows.map(({ item, product, isUnavailable, subtotal }) => (
             <div className="summary-line" key={item.productId}>
               <span>
                 {product?.name ?? ru.common.unavailableProduct} x {item.quantity}
@@ -163,9 +205,10 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
         </div>
         <div className="summary-line">
           <span>{ru.common.total}</span>
-          <strong>{formatRub(total)}</strong>
+          <strong>{formatRub(displayedTotal)}</strong>
         </div>
         {isInvalid ? <p>{ru.checkout.invalidCart}</p> : null}
+        {state.review ? <p>{ru.checkout.reviewUpdated}</p> : null}
       </aside>
     </form>
   );

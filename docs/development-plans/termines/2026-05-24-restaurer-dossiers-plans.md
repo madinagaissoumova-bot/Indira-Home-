@@ -6,9 +6,9 @@ Revenir a une organisation avec un dossier de plans en cours et un dossier de pl
 
 ## Etapes
 
-- [x] 1. Creer `docs/plans/en-cours/`.
-- [x] 2. Creer `docs/plans/termines/`.
-- [x] 3. Ajouter une explication simple dans `docs/plans/README.md`.
+- [x] 1. Creer `docs/development-plans/en-cours/`.
+- [x] 2. Creer `docs/development-plans/termines/`.
+- [x] 3. Ajouter une explication simple dans `docs/development-plans/README.md`.
 - [x] 4. Ajouter un modele de plan.
 - [x] 5. Mettre a jour `AGENTS.md`.
 - [x] 6. Verifier.
@@ -26,5 +26,5 @@ Revenir a une organisation avec un dossier de plans en cours et un dossier de pl
 Separation retenue :
 
 - `docs/roadmap/` : direction generale ;
-- `docs/development-plans/` : grands lots et statut projet ;
-- `docs/plans/` : plans de travail quotidiens.
+- `docs/development-plans/en-cours/` : grands lots, statut projet et plans de travail actifs ;
+- `docs/development-plans/termines/` : plans de travail termines.

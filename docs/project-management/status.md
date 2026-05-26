@@ -16,7 +16,7 @@ Statuts utilises :
 | Lot 0 | `lot-0-base-donnees.md` | ACTIF | Schema, constantes, seed et base Prisma existent, mais les validations/helpers serveur restent a consolider. |
 | Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue, routes categorie/sous-categorie, recherche, filtres, tri et corrections mobile existent. Verification visuelle responsive reste a finaliser. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et verification serveur existent. Parcours mobile complet reste a tester visuellement. |
-| Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation et test concurrence existent. Verification manuelle complete reste a finaliser. |
+| Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration et etats d'erreur sont en place. Verification mobile finale reste a finaliser. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
 | Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
@@ -81,7 +81,7 @@ Pourquoi actif :
 
 Reste a faire avant de marquer termine :
 
-- verifier manuellement toutes les longueurs et formats de `docs/specs/validation-rules.md` ;
+- verifier le parcours complet sur mobile ;
 - executer les tests manuels commande du `docs/testing/test-plan.md`.
 
 ## Plans termines
@@ -142,8 +142,8 @@ Premier ticket :
 
 Le prochain focus recommande est :
 
-1. terminer les verifications Lot 3 : validation commande stricte et tests stock ;
-2. finaliser les screenshots responsive listes dans `docs/development-plans/v1-verification-2026-05-21.md` ;
-3. tester l'admin connecte avec les variables `.env` definitives.
+1. finir l'audit mobile public Lot 8 ;
+2. lancer l'audit admin connecte ;
+3. garder la checklist fonctionnelle V1 comme filtre final avant V1.
 
-Cette sequence garde le parcours client commandable et recentre l'effort sur la verification. L'admin est maintenant presente, mais elle doit encore etre auditee en situation reelle avant d'etre consideree totalement terminee.
+Cette sequence garde le parcours client stable et recentre maintenant l'effort sur l'admin et la verification finale. Le lot 3 est implante et automatise, mais la validation mobile doit encore etre vue en conditions reelles.

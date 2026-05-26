@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "node --test --require ./tests/register.cjs tests/**/*.test.ts",
-    "check:docs": "node --test --require ./tests/register.cjs tests/docs-casing.test.ts",
+    "check:docs": "node --test --require ./tests/register.cjs tests/documentation-structure.test.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed.ts"

@@ -123,6 +123,9 @@ export default async function CategoryPage({
       ) : (
         <div className="empty-state">
           <p>{ru.catalog.noCategoryProducts}</p>
+          <Link className="button secondary" href="/">
+            {ru.catalog.backToCategories}
+          </Link>
         </div>
       )}
     </main>

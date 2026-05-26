@@ -51,7 +51,6 @@ export default async function RootLayout({
             <nav className="site-nav" aria-label={ru.layout.mainNav}>
               <Link href="/">{ru.common.home}</Link>
               <CartNavLink />
-              <Link href="/checkout">{ru.common.checkout}</Link>
               <Link href="/privacy">{ru.layout.privacy}</Link>
             </nav>
           </div>

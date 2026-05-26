@@ -3,7 +3,8 @@
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { ORDER_STATUS, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
+import { ORDER_STATUS, PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
+import { computeAdjustedStockQuantity, type StockAdjustmentMode } from "@/lib/adminStock";
 import { prisma } from "@/lib/db";
 import { createSlugFallback, hasLength, isValidProductImageUrl, isValidSlug } from "@/lib/validation";
 import {
@@ -348,7 +349,7 @@ export async function deleteProductAction(
     include: { category: true, subcategory: true }
   });
   if (!product) {
-    return { error: "Le produit est introuvable." };
+    return { error: "Товар не найден." };
   }
 
   const orderedCount = await prisma.orderItem.count({
@@ -612,7 +613,7 @@ export async function deleteSubcategoryAction(
   return { success: "La sous-categorie a ete supprimee." };
 }
 
-export async function setStockAction(
+export async function adjustStockAction(
   _previousState: AdminActionState,
   formData: FormData
 ): Promise<AdminActionState> {
@@ -620,11 +621,15 @@ export async function setStockAction(
 
   const productId = text(formData.get("productId"));
   const stockQuantity = integerValue(formData.get("stockQuantity"));
+  const mode = parseAllowed(text(formData.get("mode")), Object.values(STOCK_ADJUSTMENT_MODE));
   if (!productId) {
-    return { error: "Produit manquant." };
+    return { error: "Товар не указан." };
   }
   if (stockQuantity == null || stockQuantity < 0) {
-    return { error: "Le stock doit etre un entier positif ou nul." };
+    return { error: "Количество должно быть целым числом не ниже нуля." };
+  }
+  if (!mode) {
+    return { error: "Неверный тип изменения склада." };
   }
 
   const product = await prisma.product.findUnique({
@@ -638,10 +643,19 @@ export async function setStockAction(
     return { error: "Le produit est introuvable." };
   }
 
+  const nextStockQuantity = computeAdjustedStockQuantity(
+    product.stockQuantity,
+    mode as StockAdjustmentMode,
+    stockQuantity
+  );
+  if (nextStockQuantity < 0) {
+    return { error: "Количество для списания больше текущего остатка." };
+  }
+
   await prisma.product.update({
     where: { id: productId },
     data: {
-      stockQuantity
+      stockQuantity: nextStockQuantity
     }
   });
 
@@ -653,7 +667,13 @@ export async function setStockAction(
   });
   revalidateAdminSurface();
 
-  return { success: "Le stock a ete mis a jour." };
+  if (mode === STOCK_ADJUSTMENT_MODE.add) {
+    return { success: "Остаток увеличен." };
+  }
+  if (mode === STOCK_ADJUSTMENT_MODE.remove) {
+    return { success: "Остаток уменьшен." };
+  }
+  return { success: "Остаток исправлен." };
 }
 
 export async function updateOrderAction(

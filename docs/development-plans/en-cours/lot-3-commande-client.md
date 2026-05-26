@@ -39,16 +39,22 @@ Validation :
 
 Construire le formulaire :
 
+- prenom ;
 - nom ;
 - telephone ou WhatsApp ;
 - adresse ou zone ;
 - paiement a la livraison ;
 - virement apres confirmation ;
-- recapitulatif panier.
+- recapitulatif panier ;
+- livraison limitee a la Republique tchetchene ;
+- delai estime 4 a 5 jours ;
+- frais de livraison confirmes par la boutique.
 
 Validation :
 
 - champs obligatoires refuses si vides ;
+- adresse trop courte ou inexploitable refusee ;
+- telephone russe exploitable accepte avec espaces, tirets, parentheses ou prefixe `+` ;
 - messages clients en russe ;
 - pas de paiement en ligne.
 
@@ -59,6 +65,7 @@ Creer l'action serveur de commande.
 Regles :
 
 - reverifier le panier ;
+- recalculer prix, disponibilite, stock et total avant validation finale ;
 - valider les donnees cliente ;
 - creer `Order` ;
 - creer `OrderItem` avec snapshots ;
@@ -69,7 +76,9 @@ Validation :
 
 - stock diminue uniquement apres commande reussie ;
 - une erreur ne cree pas de commande ;
-- les prix de commande restent figes.
+- les prix de commande restent figes ;
+- une commande est bloquee si un produit est devenu indisponible ;
+- une quantite trop elevee est bloquee sans afficher le stock exact.
 
 ### PUBLIC-302 - Confirmation `/checkout/confirmation`
 
@@ -113,3 +122,7 @@ Prevoir un test manuel ou automatise :
 - decrementer le stock hors transaction ;
 - exposer telephone ou adresse sur la confirmation ;
 - valider une commande avec un produit devenu masque.
+
+## Etat actuel
+
+Le lot est implemente et teste cote code. Il reste seulement la verification mobile manuelle pour valider le parcours complet dans un navigateur.

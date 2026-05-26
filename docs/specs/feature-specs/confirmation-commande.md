@@ -43,6 +43,9 @@ La cliente doit voir :
 - Un message clair indiquant que la commande a ete envoyee.
 - Un rappel indiquant que la boutique contactera la cliente par telephone ou WhatsApp pour confirmer.
 - Le numero WhatsApp public de la boutique : +7 988 906-41-06.
+- Un rappel que la livraison est limitee a la Republique tchetchene.
+- Le delai de livraison estime de 4 a 5 jours.
+- Une indication que les frais de livraison seront confirmes par la boutique.
 - Un lien ou bouton pour revenir au catalogue.
 - Un lien ou bouton pour contacter la boutique sur WhatsApp, si l'implementation le permet simplement.
 
@@ -79,6 +82,8 @@ La cliente ne peut pas :
 | Confirmation normale | Votre commande a ete envoyee. La boutique vous contactera par telephone ou WhatsApp pour confirmer. |
 | Numero de commande affiche | Numero de commande : ... |
 | Contact boutique | Vous pouvez aussi contacter la boutique sur WhatsApp : +7 988 906-41-06. |
+| Livraison | Livraison en Republique tchetchene, delai estime 4 a 5 jours. Les frais seront confirmes par la boutique. |
+| Modification ou annulation | Pour modifier ou annuler votre commande, contactez la boutique par WhatsApp. |
 | Acces direct sans commande recente | Aucune commande recente a confirmer. |
 
 Les messages visibles par les clientes doivent etre affiches en russe.
@@ -107,6 +112,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Le paiement reste hors ligne.
 - La boutique confirme la commande manuellement par telephone ou WhatsApp.
 - La cliente ne peut pas annuler ou modifier elle-meme la commande depuis la page de confirmation.
+- Toute modification ou annulation apres validation passe par contact direct avec la boutique, puis traitement admin.
 - Les textes visibles par les clientes doivent etre en russe.
 
 ## Critères d'acceptation
@@ -115,6 +121,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - La page indique que la commande a ete envoyee.
 - La page indique que la boutique contactera la cliente par telephone ou WhatsApp.
 - Le numero WhatsApp public +7 988 906-41-06 est visible.
+- La page indique le delai de livraison estime de 4 a 5 jours et que les frais seront confirmes par la boutique.
 - La page propose un retour au catalogue.
 - La page ne propose aucun paiement en ligne.
 - La page ne propose pas d'annulation cliente.

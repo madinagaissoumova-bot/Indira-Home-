@@ -148,11 +148,15 @@ Transformer un panier valide en commande.
 ### Taches
 
 - Creer le formulaire de commande.
-- Ajouter champs nom, telephone/WhatsApp, adresse ou zone.
+- Ajouter champs prenom, nom, telephone/WhatsApp, adresse ou zone.
 - Ajouter choix paiement a la livraison ou virement apres confirmation.
 - Ajouter recapitulatif de commande.
+- Afficher la livraison limitee a la Republique tchetchene.
+- Afficher le delai estime de 4 a 5 jours.
+- Afficher que les frais de livraison seront confirmes par la boutique.
 - Valider les champs obligatoires.
 - Reverifier le panier cote serveur.
+- Recalculer prix, disponibilite et total avant validation finale.
 - Creer la commande avec prix snapshots.
 - Diminuer le stock apres validation reussie.
 - Afficher la confirmation de commande.

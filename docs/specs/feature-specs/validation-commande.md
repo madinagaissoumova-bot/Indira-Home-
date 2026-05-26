@@ -19,6 +19,7 @@ La validation de commande doit enregistrer les informations de la cliente, les p
 | Quantites | Quantites choisies pour chaque produit | Oui |
 | Prix unitaires | Prix des produits au moment de la validation | Oui |
 | Total commande | Total calcule en roubles | Oui |
+| Prenom de la cliente | Prenom renseigne par la cliente | Oui |
 | Nom de la cliente | Nom renseigne par la cliente | Oui |
 | Telephone ou WhatsApp | Numero pour recontacter la cliente | Oui |
 | Adresse ou zone de livraison | Adresse ou zone situee en Republique tchetchene | Oui |
@@ -31,6 +32,10 @@ Les formats detailles des champs sont definis dans `docs/specs/validation-rules.
 ## Livraison V1
 
 La V1 limite la livraison a la Republique tchetchene.
+
+Le delai de livraison annonce aux clientes est de 4 a 5 jours.
+
+Les frais de livraison ne sont pas definis automatiquement dans la V1. Le site doit indiquer que la boutique confirmera les frais de livraison par telephone ou WhatsApp avant traitement de la commande.
 
 Pour rester simple, le formulaire utilise un champ texte libre pour l'adresse ou la zone de livraison. La validation automatique doit refuser un champ vide et afficher clairement que la livraison est limitee a la Republique tchetchene.
 
@@ -49,10 +54,14 @@ Avant de valider, la cliente doit voir :
 - Les produits du panier.
 - Les quantites.
 - Le total en roubles.
+- Une indication que les prix et disponibilites sont reverifies avant validation.
 - Son nom.
+- Son prenom.
 - Son telephone ou WhatsApp.
 - Son adresse ou zone de livraison.
 - Le mode de paiement prevu.
+- Le delai de livraison estime de 4 a 5 jours.
+- Le fait que les frais de livraison seront confirmes par la boutique.
 - Un rappel indiquant que la boutique la contactera pour confirmer la commande.
 
 ## Actions possibles
@@ -60,6 +69,7 @@ Avant de valider, la cliente doit voir :
 La cliente peut :
 
 - Ouvrir le formulaire de commande depuis un panier valide.
+- Renseigner son prenom.
 - Renseigner son nom.
 - Renseigner son telephone ou WhatsApp.
 - Renseigner son adresse ou sa zone de livraison en Republique tchetchene.
@@ -70,7 +80,7 @@ La cliente peut :
 - Recevoir une confirmation que la commande a ete envoyee.
 - Arriver sur `/checkout/confirmation` apres validation reussie.
 
-Apres validation, la cliente ne peut pas annuler elle-meme sa commande depuis le site. Si elle veut annuler ou modifier sa commande, elle doit contacter la boutique.
+Apres validation, la cliente ne peut pas annuler ou modifier elle-meme sa commande depuis le site. Si elle veut annuler ou modifier sa commande, elle doit contacter la boutique par telephone ou WhatsApp.
 
 L'admin peut, apres validation :
 
@@ -103,6 +113,9 @@ En V1 obligatoire, aucune notification automatique SMS ou WhatsApp n'est requise
 | Zone non livree | La livraison est disponible uniquement en Republique tchetchene pour le moment. |
 | Produit epuise avant validation | Un produit de votre panier est maintenant epuise. |
 | Quantite indisponible | La quantite demandee n'est plus disponible. |
+| Prix mis a jour | Le prix ou le total de votre panier a ete mis a jour avant validation. |
+| Frais de livraison | Les frais de livraison seront confirmes par la boutique. |
+| Modification ou annulation | Pour modifier ou annuler votre commande, contactez la boutique par WhatsApp. |
 
 Les messages visibles par les clientes doivent etre affiches en russe.
 
@@ -114,6 +127,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 | Produit epuise dans le panier | Bloquer la validation et demander de retirer ou corriger le produit. |
 | Produit masque ou supprime | Bloquer la validation et demander de retirer le produit. |
 | Quantite superieure au stock | Bloquer la validation et demander de corriger la quantite. |
+| Prenom vide | Bloquer la validation et demander le prenom. |
 | Nom vide | Bloquer la validation et demander le nom. |
 | Telephone ou WhatsApp vide | Bloquer la validation et demander un numero. |
 | Adresse ou zone vide | Bloquer la validation et demander l'information de livraison. |
@@ -132,7 +146,9 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Exemple : si le stock est 5 et que la cliente valide une commande de 2 unites, le stock devient 3.
 - Si le stock tombe a 0 apres validation, le produit reste publie mais devient epuise et non commandable.
 - Si la cliente revient en arriere avant validation, la commande ne doit pas etre creee.
-- Si le prix a change avant validation, le recapitulatif doit utiliser le prix actuel avant envoi.
+- Si le prix a change avant validation, le recapitulatif doit utiliser le prix actuel avant envoi et la cliente doit voir le total recalcule avant la validation finale.
+- Si un produit n'est plus disponible avant validation, la commande doit etre bloquee et la cliente doit retirer ou corriger le produit.
+- Si la quantite demandee depasse le stock disponible, la commande doit etre bloquee avec un message indiquant qu'une quantite plus faible est disponible, sans afficher le stock exact.
 - Une fois la commande validee, les prix enregistres dans cette commande ne doivent plus changer automatiquement si l'admin modifie les prix produit plus tard.
 - Une fois la commande validee, la cliente ne peut pas l'annuler directement depuis le site.
 - Si l'adresse saisie est ambigue mais non vide, la commande peut etre recue et la boutique confirme manuellement la livraison avec la cliente.
@@ -150,6 +166,8 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - La commande initiale doit avoir le statut "nouvelle".
 - Le paiement se fait hors ligne : paiement a la livraison ou virement apres confirmation.
 - La livraison V1 est limitee a la Republique tchetchene.
+- Le delai de livraison V1 annonce aux clientes est de 4 a 5 jours.
+- Les frais de livraison V1 sont confirmes manuellement par la boutique et ne sont pas calcules automatiquement par le site.
 - La boutique doit contacter la cliente avec le numero renseigne dans la commande.
 - Le numero WhatsApp public de la boutique affiche aux clientes est +7 988 906-41-06.
 - Les informations de commande doivent etre visibles dans le tableau de bord admin.
@@ -160,6 +178,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 
 - Une cliente peut valider une commande sans compte.
 - Une cliente peut valider une commande sans paiement en ligne.
+- Une cliente doit renseigner son prenom.
 - Une cliente doit renseigner son nom.
 - Une cliente doit renseigner son telephone ou WhatsApp.
 - Une cliente doit renseigner son adresse ou zone de livraison.
@@ -172,5 +191,6 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Apres validation, la commande apparait dans le tableau de bord admin.
 - Apres validation, la cliente voit un message indiquant que la boutique la contactera.
 - Apres validation, la cliente ne voit pas de bouton pour annuler elle-meme sa commande.
+- La cliente voit que la livraison est limitee a la Republique tchetchene, estimee a 4 a 5 jours, et que les frais seront confirmes par la boutique.
 - L'admin n'a pas besoin de recevoir une notification SMS ou WhatsApp automatique en V1 obligatoire.
 - Les textes visibles par les clientes sont en russe.

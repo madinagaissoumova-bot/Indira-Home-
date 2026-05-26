@@ -8,6 +8,7 @@ import { ru } from "@/lib/i18n/ru";
 import type { CartStorageItem } from "@/types";
 
 const CART_KEY = "indira-home-cart";
+const MAX_CART_QUANTITY_PER_PRODUCT = 99;
 
 type CartProduct = {
   id: string;
@@ -34,7 +35,8 @@ function readCart(): CartStorageItem[] {
       (item): item is CartStorageItem =>
         typeof item?.productId === "string" &&
         Number.isInteger(item?.quantity) &&
-        item.quantity > 0
+        item.quantity > 0 &&
+        item.quantity <= MAX_CART_QUANTITY_PER_PRODUCT
     );
   } catch {
     return [];
@@ -61,17 +63,15 @@ export function CartClient({ products }: CartClientProps) {
   const rows = items.map((item) => {
     const product = productById.get(item.productId);
     const isUnavailable = !product || product.stockQuantity <= 0;
-    const quantity = product
-      ? Math.max(1, Math.min(item.quantity, Math.max(product.stockQuantity, 1)))
-      : item.quantity;
-    const needsQuantityCorrection = !!product && !isUnavailable && quantity !== item.quantity;
-    const subtotal = product && !isUnavailable ? product.priceRub * quantity : 0;
+    const isQuantityTooHigh = !!product && !isUnavailable && item.quantity > product.stockQuantity;
+    const quantity = item.quantity;
+    const subtotal = product && !isUnavailable && !isQuantityTooHigh ? product.priceRub * quantity : 0;
 
-    return { item, product, isUnavailable, needsQuantityCorrection, quantity, subtotal };
+    return { item, product, isUnavailable, isQuantityTooHigh, quantity, subtotal };
   });
 
   const total = rows.reduce((sum, row) => sum + row.subtotal, 0);
-  const hasInvalidItems = rows.some((row) => row.isUnavailable || row.needsQuantityCorrection);
+  const hasInvalidItems = rows.some((row) => row.isUnavailable || row.isQuantityTooHigh);
 
   function updateQuantity(productId: string, quantity: number) {
     const next = items
@@ -88,13 +88,9 @@ export function CartClient({ products }: CartClientProps) {
     writeCart(next);
   }
 
-  function applyAvailableQuantity(productId: string, quantity: number) {
-    updateQuantity(productId, quantity);
-  }
-
   function cleanInvalidItems() {
     const next = rows
-      .filter((row) => row.product && !row.isUnavailable)
+      .filter((row) => row.product && !row.isUnavailable && !row.isQuantityTooHigh)
       .map((row) => ({
         productId: row.item.productId,
         quantity: row.quantity
@@ -123,7 +119,7 @@ export function CartClient({ products }: CartClientProps) {
   return (
     <section className="cart-layout" aria-label={ru.common.cart}>
       <div className="cart-list">
-        {rows.map(({ item, product, isUnavailable, needsQuantityCorrection, quantity, subtotal }) => (
+        {rows.map(({ item, product, isUnavailable, isQuantityTooHigh, quantity, subtotal }) => (
           <article className="cart-row" key={item.productId}>
             {product?.imageUrl ? (
               <Image
@@ -150,7 +146,7 @@ export function CartClient({ products }: CartClientProps) {
                 {product && !isUnavailable ? (
                   <>
                     <p>{formatRub(product.priceRub)}</p>
-                    {needsQuantityCorrection ? (
+                    {isQuantityTooHigh ? (
                       <p className="cart-warning">
                         {ru.cart.quantityChanged}
                       </p>
@@ -188,15 +184,6 @@ export function CartClient({ products }: CartClientProps) {
               <div className="cart-row-footer">
                 <strong>{formatRub(subtotal)}</strong>
                 <div className="cart-row-actions">
-                  {needsQuantityCorrection ? (
-                    <button
-                      className="text-button"
-                      onClick={() => applyAvailableQuantity(item.productId, quantity)}
-                      type="button"
-                    >
-                      {ru.cart.fix}
-                    </button>
-                  ) : null}
                   <button
                     className="text-button"
                     onClick={() => removeItem(item.productId)}

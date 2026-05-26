@@ -121,6 +121,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Si l'admin remet du stock sur un produit epuise, la cliente peut a nouveau l'ajouter au panier.
 - Si un produit est masque ou supprime par l'admin apres ajout au panier, il ne peut plus etre commande.
 - Si le prix change avant validation de commande, le panier doit utiliser le prix actuel.
+- Si le prix affiche dans le panier change apres une verification serveur, l'interface doit montrer le total recalcule avant la validation finale.
 - Le panier ne doit pas reserver definitivement le stock tant que la commande n'est pas validee.
 - Le stock diminue seulement lorsque la cliente valide la commande.
 - Si la cliente change de telephone ou vide les donnees du navigateur, le panier local peut etre perdu. C'est accepte en V1 car les clientes ne creent pas de compte.

@@ -30,8 +30,8 @@ Avant tout changement important de comportement, lire les documents pertinents :
 - `docs/specs/work-plan.md`
 - `docs/specs/technical/README.md`
 - `docs/specs/feature-specs/`
-- `docs/development-plans/status.md`
-- `docs/development-plans/tickets.md`
+- `docs/project-management/status.md`
+- `docs/project-management/tickets.md`
 - `docs/roadmap/README.md`
 - `docs/testing/test-plan.md`
 
@@ -135,9 +135,9 @@ Statuts de commande :
 
 ## Regles D'Implementation
 
-- Avant un changement significatif, creer ou utiliser un plan dans `docs/plans/en-cours/`.
+- Avant un changement significatif, creer ou utiliser un plan dans `docs/development-plans/en-cours/`.
 - Executer le travail selon ce plan en cours.
-- Quand le travail est termine et verifie, deplacer le plan dans `docs/plans/termines/`.
+- Quand le travail est termine et verifie, deplacer le plan dans `docs/development-plans/termines/`.
 - Ne pas pousser sur GitHub tant que le plan en cours lie au changement n'est pas termine, sauf demande explicite.
 - Garder les changements concentres sur le besoin en cours.
 - Preferer les patterns deja presents dans le projet.
@@ -177,7 +177,7 @@ Avant de terminer un changement significatif :
 
 - lancer `npm run lint` si le changement touche TypeScript ou React ;
 - lancer `npm run build` si le changement touche routes, actions serveur, Prisma, CSS global ou configuration ;
-- mettre a jour `docs/development-plans/tickets.md` et `docs/development-plans/status.md` si un ticket ou lot change d'etat ;
+- mettre a jour `docs/project-management/tickets.md` et `docs/project-management/status.md` si un ticket ou lot change d'etat ;
 - utiliser `docs/testing/test-plan.md` pour la validation V1.
 
 ## A Eviter

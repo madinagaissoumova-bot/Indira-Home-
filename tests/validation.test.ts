@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { hasLength, isValidProductImageUrl, isValidSlug } from "@/lib/validation";
+import {
+  hasLength,
+  isClearlyOutsideChechnya,
+  isValidProductImageUrl,
+  isValidRussianContactPhone,
+  isValidSlug,
+  normalizePhoneDigits
+} from "@/lib/validation";
 
 describe("validation helpers", () => {
   it("accepts only V1-safe slugs", () => {
@@ -23,5 +30,20 @@ describe("validation helpers", () => {
     assert.equal(hasLength("ab", 2, 4), true);
     assert.equal(hasLength("a", 2, 4), false);
     assert.equal(hasLength("abcde", 2, 4), false);
+  });
+
+  it("normalizes and validates Russian customer phones", () => {
+    assert.equal(normalizePhoneDigits("+7 988 906-41-06"), "79889064106");
+    assert.equal(isValidRussianContactPhone("+7 988 906-41-06"), true);
+    assert.equal(isValidRussianContactPhone("8 (988) 906-41-06"), true);
+    assert.equal(isValidRussianContactPhone("9889064106"), false);
+    assert.equal(isValidRussianContactPhone("+33 1 23 45 67 89"), false);
+  });
+
+  it("blocks only clearly outside Chechen delivery zones", () => {
+    assert.equal(isClearlyOutsideChechnya("Грозный, ул. Ленина, дом 1"), false);
+    assert.equal(isClearlyOutsideChechnya("Чеченская Республика, Шали"), false);
+    assert.equal(isClearlyOutsideChechnya("Москва, ул. Тверская"), true);
+    assert.equal(isClearlyOutsideChechnya("Грозный, доставка из Москвы обсуждается"), false);
   });
 });

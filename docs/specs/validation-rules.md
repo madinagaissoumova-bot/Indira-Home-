@@ -15,16 +15,20 @@ Ce fichier precise les validations communes a appliquer cote serveur. Les valida
 
 | Champ | Regle V1 |
 | --- | --- |
+| Prenom cliente | Obligatoire, 2 a 80 caracteres apres trim |
 | Nom cliente | Obligatoire, 2 a 80 caracteres apres trim |
 | Telephone ou WhatsApp | Obligatoire, 7 a 20 chiffres apres suppression des espaces, parentheses, tirets et `+` |
-| Adresse ou zone | Obligatoire, 5 a 240 caracteres apres trim |
+| Adresse ou zone | Obligatoire, 10 a 240 caracteres apres trim |
 | Mode de paiement | Obligatoire, uniquement `CASH_ON_DELIVERY` ou `TRANSFER_AFTER_CONFIRMATION` |
 
-Le telephone peut etre saisi avec espaces, tirets, parentheses ou prefixe `+`. Le serveur doit normaliser ou verifier le numero avant enregistrement, sans exiger un format russe strict si le numero reste exploitable par la boutique.
+Le telephone peut etre saisi avec espaces, tirets, parentheses ou prefixe `+`. Le serveur doit normaliser ou verifier le numero avant enregistrement. Pour une cliente en V1, le format attendu doit rester compatible avec un numero russe exploitable par la boutique, par exemple un numero commencant par `+7` ou `8`, sans bloquer inutilement les espaces ou tirets de saisie.
+
+L'adresse reste un champ texte libre en V1. Le libelle ou placeholder doit guider la cliente vers une adresse exploitable, par exemple : ville, rue, maison, appartement ou repere.
 
 Pour la V1, la validation de zone doit :
 
 - refuser un champ vide ;
+- refuser une adresse trop courte ou manifestement inexploitable ;
 - accepter une zone ambigue mais non vide ;
 - bloquer uniquement les zones clairement hors Republique tchetchene si une detection simple existe ;
 - afficher un message clair indiquant que la livraison V1 est limitee a la Republique tchetchene.

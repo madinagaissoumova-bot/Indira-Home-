@@ -22,3 +22,9 @@ export const ORDER_STATUS = {
   delivered: "DELIVERED",
   cancelled: "CANCELLED"
 } as const;
+
+export const STOCK_ADJUSTMENT_MODE = {
+  add: "ADD",
+  remove: "REMOVE",
+  set: "SET"
+} as const;

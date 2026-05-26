@@ -12,6 +12,7 @@ type AddToCartButtonProps = {
 };
 
 const CART_KEY = "indira-home-cart";
+const MAX_CART_QUANTITY_PER_PRODUCT = 99;
 
 function readCart(): CartStorageItem[] {
   try {
@@ -25,7 +26,8 @@ function readCart(): CartStorageItem[] {
         (item): item is CartStorageItem =>
           typeof item?.productId === "string" &&
           Number.isInteger(item?.quantity) &&
-          item.quantity > 0
+          item.quantity > 0 &&
+          item.quantity <= MAX_CART_QUANTITY_PER_PRODUCT
       )
       .map((item) => ({ productId: item.productId, quantity: item.quantity }));
   } catch {
@@ -61,7 +63,12 @@ export function AddToCartButton({
     const existing = cart.find((item) => item.productId === productId);
     const currentQuantity = existing?.quantity ?? 0;
 
-    if (maxQuantity != null && currentQuantity >= maxQuantity) {
+    const quantityLimit =
+      maxQuantity == null
+        ? MAX_CART_QUANTITY_PER_PRODUCT
+        : Math.min(maxQuantity, MAX_CART_QUANTITY_PER_PRODUCT);
+
+    if (currentQuantity >= quantityLimit) {
       setIsAdded(false);
       setIsLimitReached(true);
 

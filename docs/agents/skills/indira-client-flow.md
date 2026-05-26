@@ -19,7 +19,7 @@ Use the relevant files:
 - `docs/specs/feature-specs/confirmation-commande.md`
 - `docs/specs/visual-rules.md`
 - `docs/specs/content/ru-copy.md`
-- `docs/development-plans/tickets.md`
+- `docs/project-management/tickets.md`
 
 ## Routes
 

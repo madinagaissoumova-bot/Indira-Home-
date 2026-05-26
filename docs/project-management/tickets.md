@@ -57,9 +57,9 @@ Priorites :
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
 | SERVER-301 | P0 | DONE | Verification panier serveur reutilisable. |
-| PUBLIC-301 | P0 | ACTIVE | Formulaire checkout `/checkout`. |
-| SERVER-302 | P0 | ACTIVE | Creation commande transactionnelle. |
-| PUBLIC-302 | P0 | ACTIVE | Confirmation `/checkout/confirmation`. |
+| PUBLIC-301 | P0 | DONE | Formulaire checkout `/checkout`. |
+| SERVER-302 | P0 | DONE | Creation commande transactionnelle. |
+| PUBLIC-302 | P0 | DONE | Confirmation `/checkout/confirmation`. |
 | QA-301 | P0 | DONE | Test concurrence dernier stock. |
 | QA-302 | P0 | DONE | Test confirmation sans donnees personnelles. |
 
@@ -107,11 +107,11 @@ Priorites :
 | --- | --- | --- | --- |
 | UI-801 | P0 | DONE | Relecture textes russes client. |
 | UI-802 | P1 | DONE | Centralisation contenu client russe. |
-| UI-803 | P0 | ACTIVE | Audit mobile public. |
+| UI-803 | P0 | ACTIVE | Audit mobile public et navigation header. |
 | UI-804 | P1 | ACTIVE | Audit admin. |
 | QA-801 | P0 | ACTIVE | Checklist fonctionnelle V1. |
 | QA-802 | P0 | DONE | Build et verification production. |
 
 ## Regle de mise a jour
 
-Quand un ticket change de statut, mettre aussi a jour `docs/development-plans/status.md` si cela change l'etat d'un lot complet.
+Quand un ticket change de statut, mettre aussi a jour `docs/project-management/status.md` si cela change l'etat d'un lot complet.

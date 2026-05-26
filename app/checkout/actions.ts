@@ -5,21 +5,23 @@ import { ORDER_STATUS, PAYMENT_METHOD } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
 import { parseCartInput, verifyCartForOrder } from "@/lib/serverCart";
+import { isClearlyOutsideChechnya, isValidRussianContactPhone } from "@/lib/validation";
 
 export type CheckoutState = {
   error?: string;
   orderNumber?: string;
   totalRub?: number;
+  review?: {
+    items: {
+      productId: string;
+      name: string;
+      quantity: number;
+      unitPriceRub: number;
+      subtotalRub: number;
+    }[];
+    totalRub: number;
+  };
 };
-
-function isClearlyOutsideChechnya(address: string) {
-  const value = address.toLowerCase();
-  const chechnyaSignals = ["чеч", "гроз", "аргун", "шали", "гудермес", "урус", "chechen"];
-  const outsideSignals = ["москва", "санкт", "петербург", "дагестан", "ингуш", "ставроп", "краснодар"];
-
-  return outsideSignals.some((signal) => value.includes(signal)) &&
-    !chechnyaSignals.some((signal) => value.includes(signal));
-}
 
 function createOrderNumber() {
   const date = new Date();
@@ -29,12 +31,7 @@ function createOrderNumber() {
   return `IH-${stamp}-${random}`;
 }
 
-type CreatedOrderResult = {
-  orderNumber: string;
-  totalRub: number;
-};
-
-async function createOrderWithRetry(create: () => Promise<CreatedOrderResult>) {
+async function createOrderWithRetry(create: () => Promise<CheckoutState>) {
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
       return await create();
@@ -57,24 +54,28 @@ async function createOrderWithRetry(create: () => Promise<CreatedOrderResult>) {
 }
 
 export async function createOrder(_previousState: CheckoutState, formData: FormData) {
-  const customerName = String(formData.get("customerName") ?? "").trim();
+  const customerFirstName = String(formData.get("customerFirstName") ?? "").trim();
+  const customerLastName = String(formData.get("customerLastName") ?? "").trim();
   const customerPhone = String(formData.get("customerPhone") ?? "").trim();
   const deliveryAddressOrZone = String(formData.get("deliveryAddressOrZone") ?? "").trim();
   const paymentMethod = String(formData.get("paymentMethod") ?? "");
+  const expectedTotalRub = Number(formData.get("expectedTotalRub") ?? NaN);
   const cart = parseCartInput(formData.get("cart"));
-  const phoneDigits = customerPhone.replace(/[\s()+-]/g, "");
 
   if (cart.length === 0) {
     return { error: ru.checkout.errors.emptyCart };
   }
 
-  if (customerName.length < 2 || customerName.length > 80) {
-    return { error: ru.checkout.errors.missingName };
+  if (customerFirstName.length < 2 || customerFirstName.length > 80) {
+    return { error: ru.checkout.errors.missingFirstName };
   }
-  if (!/^[0-9]{7,20}$/.test(phoneDigits)) {
+  if (customerLastName.length < 2 || customerLastName.length > 80) {
+    return { error: ru.checkout.errors.missingLastName };
+  }
+  if (!isValidRussianContactPhone(customerPhone)) {
     return { error: ru.checkout.errors.invalidPhone };
   }
-  if (deliveryAddressOrZone.length < 5 || deliveryAddressOrZone.length > 240) {
+  if (deliveryAddressOrZone.length < 10 || deliveryAddressOrZone.length > 240) {
     return { error: ru.checkout.errors.missingAddress };
   }
   if (isClearlyOutsideChechnya(deliveryAddressOrZone)) {
@@ -93,6 +94,22 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
         const verifiedCart = await verifyCartForOrder(cart, tx);
         if (!verifiedCart.ok) {
           throw new Error(verifiedCart.reason);
+        }
+
+        if (!Number.isInteger(expectedTotalRub) || expectedTotalRub !== verifiedCart.totalRub) {
+          return {
+            error: ru.checkout.errors.priceUpdated,
+            review: {
+              items: verifiedCart.items.map((item) => ({
+                productId: item.product.id,
+                name: item.product.name,
+                quantity: item.quantity,
+                unitPriceRub: item.product.priceRub,
+                subtotalRub: item.subtotalRub
+              })),
+              totalRub: verifiedCart.totalRub
+            }
+          };
         }
 
         for (const item of verifiedCart.items) {
@@ -114,7 +131,7 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
         const created = await tx.order.create({
           data: {
             orderNumber: createOrderNumber(),
-            customerName,
+            customerName: `${customerFirstName} ${customerLastName}`,
             customerPhone: customerPhone.replace(/\s+/g, " "),
             deliveryAddressOrZone,
             paymentMethod,

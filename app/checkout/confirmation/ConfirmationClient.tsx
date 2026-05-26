@@ -51,7 +51,14 @@ export function ConfirmationClient({ initialOrderNumber }: ConfirmationClientPro
       ) : (
         <p>{ru.confirmation.noRecentOrder}</p>
       )}
-      <p>{ru.common.whatsappShop}</p>
+      {confirmation ? (
+        <>
+          <p>{ru.confirmation.delivery}</p>
+          <p>{ru.confirmation.deliveryFee}</p>
+          <p>{ru.confirmation.changeOrCancel}</p>
+          <p>{ru.common.whatsappShop}</p>
+        </>
+      ) : null}
       <Link className="button" href="/">
         {ru.common.backToCatalog}
       </Link>

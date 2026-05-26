@@ -107,6 +107,9 @@ export default async function SubcategoryPage({
       ) : (
         <div className="empty-state">
           <p>{ru.catalog.noSubcategoryProducts}</p>
+          <Link className="button secondary" href={`/category/${subcategory.category.slug}`}>
+            {ru.catalog.backToCategory}
+          </Link>
         </div>
       )}
     </main>
