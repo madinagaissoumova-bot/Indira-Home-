@@ -15,6 +15,8 @@ Permettre aux clientes de consulter et trouver les produits visibles.
 
 ### PUBLIC-101 - Page catalogue `/`
 
+Etat : implemente.
+
 Construire la page catalogue comme premiere experience utile.
 
 Inclus :
@@ -34,6 +36,8 @@ Validation :
 
 ### PUBLIC-102 - Navigation categories
 
+Etat : implemente.
+
 Construire :
 
 - liste categories visibles ;
@@ -48,6 +52,8 @@ Validation :
 - route directe vers une categorie ou sous-categorie masquee ne montre pas de produits publics.
 
 ### PUBLIC-103 - Recherche, filtres et tri
+
+Etat : implemente.
 
 Ajouter :
 
@@ -68,6 +74,8 @@ Validation :
 - les produits epuises sont masques seulement avec le filtre en stock.
 
 ### UI-101 - Mobile catalogue
+
+Etat : implemente cote CSS et structure, verification visuelle mobile manuelle encore a finaliser.
 
 Adapter l'experience mobile :
 

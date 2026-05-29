@@ -13,8 +13,8 @@ Statuts utilises :
 
 | Lot | Plan | Statut | Resume |
 | --- | --- | --- | --- |
-| Lot 0 | `lot-0-base-donnees.md` | ACTIF | Schema, constantes, seed et base Prisma existent, mais les validations/helpers serveur restent a consolider. |
-| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue, routes categorie/sous-categorie, recherche, filtres, tri et corrections mobile existent. Verification visuelle responsive reste a finaliser. |
+| Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
+| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri et regles publiques sont en place. Verification visuelle responsive manuelle reste a finaliser. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et verification serveur existent. Parcours mobile complet reste a tester visuellement. |
 | Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration et etats d'erreur sont en place. Verification mobile finale reste a finaliser. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
@@ -25,21 +25,6 @@ Statuts utilises :
 
 ## Plans actifs
 
-### Lot 0 - Base projet et donnees
-
-Pourquoi actif :
-
-- `prisma/schema.prisma` existe ;
-- `lib/constants.ts` existe ;
-- `prisma/seed.ts` existe ;
-- les modeles principaux sont presents.
-
-Reste a faire avant de marquer termine :
-
-- consolider les helpers de lecture publique ;
-- centraliser les validations critiques cote serveur ;
-- executer la checklist metier complete de `docs/testing/test-plan.md`.
-
 ### Lot 1 - Catalogue client
 
 Pourquoi actif :
@@ -48,11 +33,11 @@ Pourquoi actif :
 - `app/category/[slug]/page.tsx` existe ;
 - les produits publies et categories visibles sont filtres ;
 - les produits epuisees sont affiches non commandables.
+- les filtres d'accueil, le tri, la recherche et la reinitialisation existent.
 
 Reste a faire avant de marquer termine :
 
-- verifier les etats vides par categorie/sous-categorie ;
-- finaliser la verification visuelle responsive avec screenshots.
+- finaliser la verification visuelle responsive avec screenshots 360 px et 390 px.
 
 ### Lot 2 - Fiche produit et panier
 
@@ -86,9 +71,15 @@ Reste a faire avant de marquer termine :
 
 ## Plans termines
 
-Aucun lot complet n'est marque `TERMINE` pour le moment.
+### Lot 0 - Base projet et donnees
 
-Raison : plusieurs bases existent deja, mais aucun lot n'a encore ete valide contre tous ses criteres de sortie et contre `docs/testing/test-plan.md`.
+Validation effectuee :
+
+- constantes metier alignees avec les specs ;
+- schema Prisma compatible V1 ;
+- seed execute avec categories, sous-categories, produits publies, produit epuise, produit masque et produits nouveaux ;
+- helpers publics et validations serveur communes couverts par tests ;
+- `npm run prisma:generate`, `npm run prisma:seed`, `npm test`, `npm run lint` et `npm run build` passent.
 
 ## Suivi des lots
 

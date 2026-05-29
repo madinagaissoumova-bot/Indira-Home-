@@ -12,8 +12,7 @@ Mettre en ligne la V1 sans perdre de donnees, sans exposer les commandes et sans
 | --- | --- |
 | Framework | Next.js App Router |
 | ORM | Prisma |
-| Base locale | SQLite |
-| Base production | PostgreSQL compatible Prisma |
+| Base | Supabase PostgreSQL compatible Prisma |
 | Images V1 | URLs externes stables |
 | Upload image | Hors V1 |
 | Optimisation images | `next/image` avec `unoptimized` tant que les URLs admin sont libres |
@@ -21,7 +20,7 @@ Mettre en ligne la V1 sans perdre de donnees, sans exposer les commandes et sans
 | Paiement en ligne | Hors V1 |
 | Comptes clientes | Hors V1 |
 
-SQLite en production est seulement acceptable temporairement si l'hebergeur garantit un disque persistant, une sauvegarde et aucune perte au redeploiement.
+SQLite n'est plus le mode courant du projet. Les commandes Prisma attendent une URL PostgreSQL Supabase.
 
 ## Variables d'environnement
 
@@ -47,15 +46,15 @@ Regles :
 
 Avant mise en ligne :
 
-1. Creer la base PostgreSQL.
+1. Creer le projet Supabase PostgreSQL.
 2. Configurer `DATABASE_URL`.
-3. Executer les migrations Prisma.
+3. Executer `npm run prisma:migrate` pour initialiser le schema PostgreSQL.
 4. Executer `npm run prisma:generate`.
 5. Executer le seed initial si necessaire.
 6. Verifier que categories et sous-categories sont presentes.
 7. Verifier qu'au moins un compte admin est configurable via variables.
 
-## Migration depuis SQLite locale
+## Migration depuis ancienne SQLite locale
 
 Si des donnees reelles existent deja dans SQLite :
 
@@ -134,7 +133,7 @@ Une migration destructive ne doit pas etre lancee sans sauvegarde recente.
 
 ## Checklist go-live
 
-- `DATABASE_URL` production configure.
+- `DATABASE_URL` Supabase production configure.
 - `ADMIN_USERNAME` configure.
 - `ADMIN_PASSWORD_HASH` bcrypt configure.
 - `ADMIN_SESSION_SECRET` configure.

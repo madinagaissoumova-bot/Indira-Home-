@@ -4,6 +4,8 @@
 
 Stabiliser la base technique et les donnees metier avant de developper les parcours.
 
+Statut : termine et verifie.
+
 ## Dependances
 
 - `docs/specs/technical/README.md`
@@ -14,6 +16,8 @@ Stabiliser la base technique et les donnees metier avant de developper les parco
 ## Tickets
 
 ### DATA-001 - Verifier constantes metier
+
+Etat : implemente et verifie.
 
 Verifier que `lib/constants.ts` expose les valeurs suivantes :
 
@@ -28,6 +32,8 @@ Validation :
 - les specs et le code utilisent les memes valeurs.
 
 ### DATA-002 - Verifier modele Prisma V1
+
+Etat : implemente et verifie.
 
 Verifier ou ajuster les modeles :
 
@@ -53,6 +59,8 @@ Validation :
 
 ### DATA-003 - Seed categories et produits de test
 
+Etat : implemente et verifie.
+
 Creer ou verifier le seed de depart :
 
 - categories de depart ;
@@ -68,6 +76,8 @@ Validation :
 - les noms visibles cote cliente sont en russe ou clairement remplacables par du russe.
 
 ### SERVER-001 - Helpers de lecture publique
+
+Etat : implemente et verifie.
 
 Preparer des fonctions de lecture serveur :
 
@@ -86,16 +96,50 @@ Validation :
 
 - les helpers peuvent etre reutilises dans catalogue, fiche produit, panier et checkout.
 
-## Zones probables
+### SERVER-002 - Validations serveur communes
+
+Etat : implemente et verifie.
+
+Centraliser les validations serveur :
+
+- statuts produit ;
+- statuts de visibilite ;
+- modes de paiement ;
+- statuts commande ;
+- entiers positifs et entiers superieurs ou egaux a zero ;
+- slugs ;
+- URLs d'images produit ;
+- telephone cliente et zone de livraison.
+
+Validation :
+
+- les helpers sont testes dans `tests/validation.test.ts` ;
+- les actions admin produits, categories, stock et commandes utilisent les helpers communs.
+
+## Validation finale
+
+- `npm run prisma:generate` : OK.
+- `npm run prisma:seed` : OK.
+- Verification base locale apres seed : 4 categories, 15 sous-categories, 18 produits publies, 1 produit publie epuise, 1 produit masque ou brouillon, 17 produits nouveaux.
+- `npm test` : OK.
+- `npm run lint` : OK.
+- `npm run build` : OK.
+- `npm run check:docs` : OK.
+
+## Zones traitees
 
 - `lib/constants.ts`
-- `lib/db.ts`
+- `lib/publicCatalog.ts`
+- `lib/serverCart.ts`
+- `lib/validation.ts`
 - `prisma/schema.prisma`
 - `prisma/seed.ts`
-- nouveaux fichiers possibles dans `lib/`
+- `tests/public-catalog.test.ts`
+- `tests/validation.test.ts`
 
-## Risques
+## Risques couverts
 
-- laisser des valeurs de statut libres dans le code ;
-- oublier de bloquer les stocks negatifs cote serveur ;
-- rendre un produit accessible par URL directe alors que sa categorie est masquee.
+- valeurs de statut libres remplacees par helpers constants ;
+- stocks negatifs refuses cote serveur ;
+- produits publics et commandables verifies par helpers communs ;
+- produits epuise et masque presents dans les donnees de test.

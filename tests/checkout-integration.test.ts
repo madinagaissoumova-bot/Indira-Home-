@@ -9,6 +9,9 @@ const categorySlug = `qa-cat-${suffix}`;
 const subcategorySlug = `qa-sub-${suffix}`;
 const productSlug = `qa-product-${suffix}`;
 let createdOrderNumber: string | undefined;
+const hasPostgresDatabase =
+  process.env.DATABASE_URL?.startsWith("postgresql://") || process.env.DATABASE_URL?.startsWith("postgres://");
+const shouldRunDbIntegration = hasPostgresDatabase && process.env.RUN_DB_INTEGRATION === "1";
 
 function orderForm(productId: string, expectedTotalRub: number) {
   const formData = new FormData();
@@ -62,7 +65,7 @@ async function createPublishedProduct() {
   });
 }
 
-describe("checkout integration", () => {
+describe("checkout integration", { skip: !shouldRunDbIntegration }, () => {
   after(async () => {
     if (createdOrderNumber) {
       await prisma.order.deleteMany({ where: { orderNumber: createdOrderNumber } });

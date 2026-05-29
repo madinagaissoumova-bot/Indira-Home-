@@ -16,7 +16,7 @@ Le site cliente est en russe. L'admin peut etre en russe ou en francais pendant 
 - Framework : Next.js App Router
 - Langage : TypeScript
 - ORM : Prisma
-- Base locale : SQLite
+- Base : Supabase PostgreSQL
 - Styles : CSS global dans `app/globals.css`
 - Types partages : `types/`
 - Donnees metier : constantes dans `lib/constants.ts`

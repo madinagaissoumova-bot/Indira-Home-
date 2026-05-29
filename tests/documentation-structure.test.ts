@@ -8,6 +8,7 @@ const root = process.cwd();
 const ignoredDirs = new Set([".git", ".next", "node_modules"]);
 const oldDocsPath = "D" + "ocs/";
 const finderDuplicatePath = "D" + "ocs 2";
+const allowedDevelopmentPlanRootFiles = new Set(["README.md"]);
 
 function listProjectFiles(dir: string): string[] {
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -42,6 +43,17 @@ describe("documentation structure", () => {
 
   it("does not keep Finder-style duplicate documentation folders", () => {
     assert.equal(existsSync(join(root, finderDuplicatePath)), false);
+  });
+
+  it("keeps development plan root free of operational markdown files", () => {
+    const developmentPlansRoot = join(root, "docs", "development-plans");
+    const offenders = readdirSync(developmentPlansRoot, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((file) => file.endsWith(".md"))
+      .filter((file) => !allowedDevelopmentPlanRootFiles.has(file));
+
+    assert.deepEqual(offenders, []);
   });
 
   it("does not reference the old mixed-case docs path in text files", () => {

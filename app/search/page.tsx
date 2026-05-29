@@ -1,10 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
-import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
-import { formatRub } from "@/lib/format";
+import { ProductCard } from "@/components/catalog/ProductCard";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
-import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { publicProductOrderBy, publicProductWhere } from "@/lib/publicCatalog";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 export default async function SearchPage({
@@ -18,9 +16,7 @@ export default async function SearchPage({
   const products = query
     ? await prisma.product.findMany({
         where: {
-          status: PRODUCT_STATUS.published,
-          category: { status: VISIBILITY_STATUS.visible },
-          subcategory: { status: VISIBILITY_STATUS.visible },
+          ...publicProductWhere,
           OR: [
             { name: { contains: query } },
             { description: { contains: query } },
@@ -32,11 +28,7 @@ export default async function SearchPage({
           subcategory: true,
           images: { orderBy: { displayOrder: "asc" }, take: 1 }
         },
-        orderBy: [
-          { stockQuantity: "desc" },
-          { isNew: "desc" },
-          { createdAt: "desc" }
-        ]
+        orderBy: publicProductOrderBy
       })
     : [];
 
@@ -56,49 +48,9 @@ export default async function SearchPage({
 
       {query && products.length > 0 ? (
         <div className="product-grid compact">
-          {products.map((product) => {
-            const image = product.images[0];
-            const isSoldOut = product.stockQuantity <= 0;
-
-            return (
-              <article className="product-card compact" key={product.id}>
-                {image ? (
-                  <Image
-                    alt={image.alt}
-                    className="product-image"
-                    height={800}
-                    src={image.url}
-                    unoptimized
-                    width={600}
-                  />
-                ) : (
-                  <div className="product-image" />
-                )}
-                <div className="product-body">
-                  <div className="price-row">
-                    {product.isNew ? <span className="badge new">{ru.common.new}</span> : <span />}
-                    {isSoldOut ? <span className="badge sold-out">{ru.common.soldOut}</span> : null}
-                  </div>
-                  <h3 className="product-title">{product.name}</h3>
-                  <div className="product-meta">
-                    {product.category.name} / {product.subcategory.name}
-                  </div>
-                  <span className="price">{formatRub(product.priceRub)}</span>
-                  <div className="card-actions">
-                    <Link className="button secondary" href={`/product/${product.slug}`}>
-                      {ru.common.viewProduct}
-                    </Link>
-                    <AddToCartButton
-                      disabled={isSoldOut}
-                      label={ru.common.addToCart}
-                      maxQuantity={product.stockQuantity}
-                      productId={product.id}
-                    />
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       ) : (
         <div className="empty-state">

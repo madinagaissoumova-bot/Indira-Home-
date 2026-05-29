@@ -29,7 +29,7 @@ La V1 inclut le parcours cliente complet et l'admin complet. Le developpement pe
 
 - Utiliser Next.js App Router.
 - Utiliser Prisma pour acceder a la base.
-- Utiliser SQLite en local.
+- Utiliser Supabase PostgreSQL comme base principale.
 - Utiliser les constantes de `lib/constants.ts` pour les statuts et modes de paiement.
 - Garder les textes visibles par les clientes en russe.
 - Stocker le panier cote client avec seulement `productId` et `quantity`.

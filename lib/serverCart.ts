@@ -1,5 +1,5 @@
-import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
+import { publicProductWhere } from "@/lib/publicCatalog";
 import type { Prisma } from "@prisma/client";
 
 const MAX_CART_QUANTITY_PER_PRODUCT = 99;
@@ -77,9 +77,7 @@ export async function verifyCartForOrder(
   const products = await db.product.findMany({
     where: {
       id: { in: cart.map((item) => item.productId) },
-      status: PRODUCT_STATUS.published,
-      category: { status: VISIBILITY_STATUS.visible },
-      subcategory: { status: VISIBILITY_STATUS.visible }
+      ...publicProductWhere
     },
     include: {
       images: { orderBy: { displayOrder: "asc" }, take: 1 }

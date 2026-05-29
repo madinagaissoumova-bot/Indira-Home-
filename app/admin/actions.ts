@@ -3,10 +3,22 @@
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { ORDER_STATUS, PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
+import { PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
 import { computeAdjustedStockQuantity, type StockAdjustmentMode } from "@/lib/adminStock";
 import { prisma } from "@/lib/db";
-import { createSlugFallback, hasLength, isValidProductImageUrl, isValidSlug } from "@/lib/validation";
+import {
+  createSlugFallback,
+  hasLength,
+  isNonNegativeInteger,
+  isPositiveInteger,
+  isValidProductImageUrl,
+  isValidSlug,
+  parseAllowedValue,
+  parseInteger,
+  parseOrderStatus,
+  parseProductStatus,
+  parseVisibilityStatus
+} from "@/lib/validation";
 import {
   clearAdminSession,
   createAdminSession,
@@ -19,9 +31,6 @@ import type { FormActionState } from "@/types";
 
 export type AdminActionState = FormActionState;
 
-const PRODUCT_STATUSES = Object.values(PRODUCT_STATUS);
-const VISIBILITY_STATUSES = Object.values(VISIBILITY_STATUS);
-const ORDER_STATUSES = Object.values(ORDER_STATUS);
 const SYSTEM_DRAFT_CATEGORY_SLUG = "system-drafts";
 
 function text(value: FormDataEntryValue | null) {
@@ -30,15 +39,6 @@ function text(value: FormDataEntryValue | null) {
 
 function booleanValue(value: FormDataEntryValue | null) {
   return value === "on" || value === "true" || value === "1";
-}
-
-function integerValue(value: FormDataEntryValue | null) {
-  const parsed = Number(value);
-  return Number.isInteger(parsed) ? parsed : null;
-}
-
-function parseAllowed(value: string, allowed: readonly string[]) {
-  return allowed.includes(value) ? value : null;
 }
 
 function optionalTextIsTooLong(value: string | null, max: number) {
@@ -153,10 +153,10 @@ export async function saveProductAction(
   const imageAlt = text(formData.get("imageAlt")) || rawName || "Indira Home";
   const categoryId = text(formData.get("categoryId"));
   const subcategoryId = text(formData.get("subcategoryId"));
-  const status = parseAllowed(text(formData.get("status")), PRODUCT_STATUSES);
-  const priceRub = integerValue(formData.get("priceRub"));
-  const stockQuantity = integerValue(formData.get("stockQuantity"));
-  const displayOrder = integerValue(formData.get("displayOrder")) ?? 0;
+  const status = parseProductStatus(text(formData.get("status")));
+  const priceRub = parseInteger(formData.get("priceRub"));
+  const stockQuantity = parseInteger(formData.get("stockQuantity"));
+  const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
   const isNew = booleanValue(formData.get("isNew"));
 
   if (!status) {
@@ -164,10 +164,10 @@ export async function saveProductAction(
   }
   const requiresPublicFields = status === PRODUCT_STATUS.published;
   const canBeIncomplete = status === PRODUCT_STATUS.draft || status === PRODUCT_STATUS.hidden;
-  if (priceRub != null && priceRub < 0) {
+  if (priceRub != null && !isNonNegativeInteger(priceRub)) {
     return { error: "Le prix doit etre positif ou nul pour un brouillon ou produit masque." };
   }
-  if (stockQuantity != null && stockQuantity < 0) {
+  if (stockQuantity != null && !isNonNegativeInteger(stockQuantity)) {
     return { error: "Le stock doit etre un entier positif ou nul." };
   }
   if (requiresPublicFields && stockQuantity == null) {
@@ -205,7 +205,7 @@ export async function saveProductAction(
     if (!hasLength(name, 2, 120) || !hasLength(description, 10, 2000) || !slug) {
       return { error: "Completez les informations obligatoires avant de publier le produit." };
     }
-    if (normalizedPriceRub <= 0) {
+    if (!isPositiveInteger(normalizedPriceRub)) {
       return { error: "Le prix doit etre un entier strictement positif." };
     }
   }
@@ -380,8 +380,8 @@ export async function saveCategoryAction(
   const categoryId = text(formData.get("categoryId")) || null;
   const name = text(formData.get("name"));
   const slug = text(formData.get("slug"));
-  const status = parseAllowed(text(formData.get("status")), VISIBILITY_STATUSES);
-  const displayOrder = integerValue(formData.get("displayOrder")) ?? 0;
+  const status = parseVisibilityStatus(text(formData.get("status")));
+  const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
 
   if (!name || !slug) {
     return { error: "Le nom et le slug sont obligatoires." };
@@ -512,8 +512,8 @@ export async function saveSubcategoryAction(
   const categoryId = text(formData.get("categoryId"));
   const name = text(formData.get("name"));
   const slug = text(formData.get("slug"));
-  const status = parseAllowed(text(formData.get("status")), VISIBILITY_STATUSES);
-  const displayOrder = integerValue(formData.get("displayOrder")) ?? 0;
+  const status = parseVisibilityStatus(text(formData.get("status")));
+  const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
 
   if (!categoryId || !name || !slug) {
     return { error: "La categorie parente, le nom et le slug sont obligatoires." };
@@ -620,12 +620,12 @@ export async function adjustStockAction(
   await requireAdminSession();
 
   const productId = text(formData.get("productId"));
-  const stockQuantity = integerValue(formData.get("stockQuantity"));
-  const mode = parseAllowed(text(formData.get("mode")), Object.values(STOCK_ADJUSTMENT_MODE));
+  const stockQuantity = parseInteger(formData.get("stockQuantity"));
+  const mode = parseAllowedValue(text(formData.get("mode")), Object.values(STOCK_ADJUSTMENT_MODE));
   if (!productId) {
     return { error: "Товар не указан." };
   }
-  if (stockQuantity == null || stockQuantity < 0) {
+  if (!isNonNegativeInteger(stockQuantity)) {
     return { error: "Количество должно быть целым числом не ниже нуля." };
   }
   if (!mode) {
@@ -683,7 +683,7 @@ export async function updateOrderAction(
   await requireAdminSession();
 
   const orderId = text(formData.get("orderId"));
-  const status = parseAllowed(text(formData.get("status")), ORDER_STATUSES);
+  const status = parseOrderStatus(text(formData.get("status")));
   const adminNote = text(formData.get("adminNote")) || null;
 
   if (!orderId) {

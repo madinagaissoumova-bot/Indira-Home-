@@ -25,19 +25,19 @@ Priorites :
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| DATA-001 | P0 | ACTIVE | Verifier constantes metier et valeurs de stockage. |
-| DATA-002 | P0 | ACTIVE | Verifier modele Prisma V1 et relations. |
-| DATA-003 | P1 | ACTIVE | Seed categories, sous-categories et produits de test. |
-| SERVER-001 | P0 | TODO | Creer helpers de lecture publique reutilisables. |
-| SERVER-002 | P0 | TODO | Centraliser les validations serveur communes. |
+| DATA-001 | P0 | DONE | Verifier constantes metier et valeurs de stockage. |
+| DATA-002 | P0 | DONE | Verifier modele Prisma V1 et relations. |
+| DATA-003 | P1 | DONE | Seed categories, sous-categories et produits de test. |
+| SERVER-001 | P0 | DONE | Creer helpers de lecture publique reutilisables. |
+| SERVER-002 | P0 | DONE | Centraliser les validations serveur communes. |
 | SERVER-003 | P0 | DONE | Bloquer suppression definitive produit deja commande. |
 
 ## Lot 1 - Catalogue client
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| PUBLIC-101 | P0 | ACTIVE | Page catalogue `/` avec cartes produit. |
-| PUBLIC-102 | P0 | ACTIVE | Navigation categories visibles. |
+| PUBLIC-101 | P0 | DONE | Page catalogue `/` avec cartes produit. |
+| PUBLIC-102 | P0 | DONE | Navigation categories visibles. |
 | PUBLIC-103 | P0 | DONE | Recherche, filtres et tri catalogue. |
 | PUBLIC-104 | P0 | DONE | Route `/subcategory/:slug`. |
 | UI-101 | P1 | DONE | Mobile catalogue et filtres compacts. |

@@ -88,6 +88,16 @@ const productImages = [
     slug: "emkosti-lefard-med-sahar-250",
     url: "/uploads/products/emkosti-lefard-med-sahar-250-premium.png",
     alt: "Набор емкостей Lefard для меда и сахара, 250 мл"
+  },
+  {
+    slug: "test-serviz-epuise",
+    url: "/uploads/products/nabor-posudy-belyi-serviz-premium.png",
+    alt: "Тестовый сервиз без остатка"
+  },
+  {
+    slug: "test-skrytyi-tovar",
+    url: "/uploads/products/chaynyi-nabor-smeg-premium.png",
+    alt: "Тестовый скрытый товар"
   }
 ];
 
@@ -278,6 +288,82 @@ async function main() {
         create: {
           url: "/uploads/products/stolovyi-serviz-white-lui-laren-39-premium.png",
           alt: "Столовый сервиз WHITE Lui Laren",
+          displayOrder: 0
+        }
+      }
+    }
+  });
+
+  await prisma.product.upsert({
+    where: { slug: "test-serviz-epuise" },
+    update: {
+      name: "Тестовый сервиз без остатка",
+      description:
+        "Тестовый опубликованный товар без остатка. Он нужен для проверки, что товар остается видимым для клиентки, но не доступен для заказа.",
+      priceRub: 1200,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 0,
+      status: PRODUCT_STATUS.published,
+      isNew: false,
+      brand: "Indira Home",
+      characteristics: "Назначение: проверка состояния без остатка"
+    },
+    create: {
+      name: "Тестовый сервиз без остатка",
+      slug: "test-serviz-epuise",
+      description:
+        "Тестовый опубликованный товар без остатка. Он нужен для проверки, что товар остается видимым для клиентки, но не доступен для заказа.",
+      priceRub: 1200,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 0,
+      status: PRODUCT_STATUS.published,
+      isNew: false,
+      brand: "Indira Home",
+      characteristics: "Назначение: проверка состояния без остатка",
+      images: {
+        create: {
+          url: "/uploads/products/nabor-posudy-belyi-serviz-premium.png",
+          alt: "Тестовый сервиз без остатка",
+          displayOrder: 0
+        }
+      }
+    }
+  });
+
+  await prisma.product.upsert({
+    where: { slug: "test-skrytyi-tovar" },
+    update: {
+      name: "Тестовый скрытый товар",
+      description:
+        "Тестовый скрытый товар для проверки, что товары со статусом HIDDEN не появляются в клиентском каталоге.",
+      priceRub: 1500,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 2,
+      status: PRODUCT_STATUS.hidden,
+      isNew: false,
+      brand: "Indira Home",
+      characteristics: "Назначение: проверка скрытого статуса"
+    },
+    create: {
+      name: "Тестовый скрытый товар",
+      slug: "test-skrytyi-tovar",
+      description:
+        "Тестовый скрытый товар для проверки, что товары со статусом HIDDEN не появляются в клиентском каталоге.",
+      priceRub: 1500,
+      categoryId: category.id,
+      subcategoryId: subcategory.id,
+      stockQuantity: 2,
+      status: PRODUCT_STATUS.hidden,
+      isNew: false,
+      brand: "Indira Home",
+      characteristics: "Назначение: проверка скрытого статуса",
+      images: {
+        create: {
+          url: "/uploads/products/chaynyi-nabor-smeg-premium.png",
+          alt: "Тестовый скрытый товар",
           displayOrder: 0
         }
       }

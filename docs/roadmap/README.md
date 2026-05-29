@@ -39,7 +39,7 @@ Objectif : poser la base technique et les donnees centrales.
 Inclus :
 
 - Next.js App Router ;
-- Prisma avec SQLite en developpement ;
+- Prisma avec Supabase PostgreSQL ;
 - modeles Category, Subcategory, Product, Order, OrderItem ;
 - constantes de statuts et modes de paiement ;
 - seed de categories et sous-categories ;
@@ -291,4 +291,4 @@ Ces sujets ne doivent pas bloquer la V1 :
 - Donnees personnelles visibles dans logs ou pages publiques.
 - Textes client non traduits en russe.
 - Admin incomplet qui oblige a modifier les produits dans le code.
-- SQLite utilise en production sans disque persistant ni sauvegarde.
+- Base Supabase sans sauvegarde ou procedure de restauration verifiee.

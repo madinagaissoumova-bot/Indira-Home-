@@ -30,7 +30,7 @@ Mettre en place la base du projet applicatif.
 ### Taches
 
 - Utiliser Next.js App Router comme framework web.
-- Utiliser Prisma avec SQLite en developpement.
+- Utiliser Prisma avec Supabase PostgreSQL.
 - Commencer avec des URLs d'images produit en V1.
 - Creer la structure du projet.
 - Configurer les variables d'environnement.
@@ -60,7 +60,7 @@ Creer les donnees centrales avant l'interface.
 
 ### Verification
 
-- Les donnees peuvent etre creees localement.
+- Les donnees peuvent etre creees dans Supabase PostgreSQL.
 - Un produit publie ne peut pas etre incomplet.
 - Un stock negatif est refuse.
 

@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: ru.brand.metadataDescription
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children
 }: Readonly<{

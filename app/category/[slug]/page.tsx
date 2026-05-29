@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
+import { VISIBILITY_STATUS } from "@/lib/constants";
+import { ProductCard } from "@/components/catalog/ProductCard";
 import { getCategoryVisual, getCategoryVisualStyle } from "@/lib/categoryVisuals";
-import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
-import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { publicProductOrderBy, publicProductWhere } from "@/lib/publicCatalog";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 export default async function CategoryPage({
@@ -23,15 +23,13 @@ export default async function CategoryPage({
         orderBy: { displayOrder: "asc" }
       },
       products: {
-        where: {
-          status: PRODUCT_STATUS.published,
-          subcategory: { status: VISIBILITY_STATUS.visible }
-        },
+        where: publicProductWhere,
         include: {
+          category: true,
           subcategory: true,
           images: { orderBy: { displayOrder: "asc" }, take: 1 }
         },
-        orderBy: [{ stockQuantity: "desc" }, { isNew: "desc" }]
+        orderBy: publicProductOrderBy
       }
     }
   });
@@ -78,47 +76,9 @@ export default async function CategoryPage({
 
       {category.products.length > 0 ? (
         <div className="product-grid compact">
-          {category.products.map((product) => {
-            const image = product.images[0];
-            const isSoldOut = product.stockQuantity <= 0;
-
-            return (
-              <article className="product-card compact" key={product.id}>
-                {image ? (
-                  <Image
-                    alt={image.alt}
-                    className="product-image"
-                    height={800}
-                    src={image.url}
-                    unoptimized
-                    width={600}
-                  />
-                ) : (
-                  <div className="product-image" />
-                )}
-                <div className="product-body">
-                  <div className="price-row">
-                    {product.isNew ? <span className="badge new">{ru.common.new}</span> : <span />}
-                    {isSoldOut ? <span className="badge sold-out">{ru.common.soldOut}</span> : null}
-                  </div>
-                  <h3 className="product-title">{product.name}</h3>
-                  <div className="product-meta">{product.subcategory.name}</div>
-                  <span className="price">{formatRub(product.priceRub)}</span>
-                  <div className="card-actions">
-                    <Link className="button secondary" href={`/product/${product.slug}`}>
-                      {ru.common.viewProduct}
-                    </Link>
-                    <AddToCartButton
-                      disabled={isSoldOut}
-                      label={ru.common.addToCart}
-                      maxQuantity={product.stockQuantity}
-                      productId={product.id}
-                    />
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {category.products.map((product) => (
+            <ProductCard key={product.id} meta="subcategory" product={product} />
+          ))}
         </div>
       ) : (
         <div className="empty-state">

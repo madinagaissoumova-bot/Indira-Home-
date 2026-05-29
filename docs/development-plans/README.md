@@ -9,6 +9,8 @@ Ce dossier transforme la roadmap en plans de developpement executables.
 - `../project-management/` : tickets, statut projet et plan de production.
 - `../security/` : checklist securite V1.
 
+La racine de `docs/development-plans/` ne doit contenir que ce `README.md` et les sous-dossiers d'organisation. Ne pas y copier de plans de lot, de tickets, de statut, de plan de production ou de checklist securite.
+
 Les nouveaux plans de travail quotidiens se creent dans `en-cours/`, puis se deplacent dans `termines/` une fois verifies.
 
 Chaque plan de lot contient :
@@ -22,7 +24,7 @@ Chaque plan de lot contient :
 
 ## Ordre recommande
 
-1. `en-cours/lot-0-base-donnees.md`
+1. `termines/lot-0-base-donnees.md`
 2. `en-cours/lot-1-catalogue-client.md`
 3. `en-cours/lot-2-fiche-produit-panier.md`
 4. `en-cours/lot-3-commande-client.md`

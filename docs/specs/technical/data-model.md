@@ -33,7 +33,7 @@
 
 Pour la V1, les images produit sont stockees comme URLs dans une table dediee `ProductImage`. La premiere image par `displayOrder` sert d'image principale si aucun champ principal explicite n'existe.
 
-Pour la V1, `characteristics` est stocke comme texte JSON afin de rester compatible avec SQLite et Prisma. Le JSON attendu represente une liste simple de paires cle/valeur, par exemple `[{ "label": "...", "value": "..." }]`. Si les caracteristiques deviennent centrales plus tard, elles pourront etre migrees vers une table dediee ou un champ JSON selon la base de production.
+Pour la V1, `characteristics` est stocke comme texte JSON simple afin de rester facile a gerer avec Prisma. Le JSON attendu represente une liste simple de paires cle/valeur, par exemple `[{ "label": "...", "value": "..." }]`. Si les caracteristiques deviennent centrales plus tard, elles pourront etre migrees vers une table dediee ou un champ JSON PostgreSQL.
 
 ## Category
 

@@ -55,13 +55,12 @@ La decision finale dependra du framework choisi, mais la V1 doit prevoir :
 ## Decision V1 hebergement
 
 - Framework : Next.js App Router.
-- Base locale : SQLite avec Prisma pendant le developpement.
-- Base production V1 : PostgreSQL compatible Prisma.
-- SQLite en production est seulement acceptable comme solution temporaire si l'hebergeur garantit un disque persistant, une sauvegarde et aucune perte au redeploiement.
+- Base V1 : Supabase PostgreSQL compatible Prisma.
+- SQLite n'est plus le mode de base courant du projet.
 - Images V1 : URLs externes stables, puis stockage dedie plus tard.
 - Secrets : uniquement via variables d'environnement.
-- Deploiement : environnement Node.js compatible Next.js App Router et Prisma.
-- Sauvegarde : export regulier de la base de donnees avant et apres changements importants.
+- Deploiement : environnement Node.js compatible Next.js App Router, Prisma et Supabase PostgreSQL.
+- Sauvegarde : export regulier de la base de donnees Supabase avant et apres changements importants.
 - Logs : erreurs serveur generales autorisees, mais sans numero de telephone, adresse complete ou secrets.
 
 ## Sauvegarde et export V1
