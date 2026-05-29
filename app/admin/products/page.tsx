@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { requireAdminSession } from "@/lib/adminAuth";
+import { getAdminProductStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
@@ -47,13 +48,13 @@ export default async function AdminProductsPage() {
       <ProductEditor categories={categories} />
 
       <section className="form-panel admin-list-panel">
-        <h2>Produits existants</h2>
+        <h2>{ru.admin.products.existing}</h2>
         {products.length > 0 ? (
           <div className="checkout-items">
             {products.map((product) => (
               <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
                 <span>
-                  {product.name} · <span className="admin-badge">{product.status}</span> · {product.category.name} / {product.subcategory.name}
+                  {product.name} · <span className="admin-badge">{getAdminProductStatusLabel(product.status)}</span> · {product.category.name} / {product.subcategory.name}
                 </span>
                 <strong>{formatRub(product.priceRub)}</strong>
               </Link>

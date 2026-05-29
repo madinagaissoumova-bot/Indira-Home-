@@ -10,3 +10,10 @@ export function getAdminProductStatusLabel(status: string) {
   );
 }
 
+export function getAdminVisibilityStatusLabel(status: string) {
+  return (
+    ru.admin.common.visibilityStatusLabels[
+      status as keyof typeof ru.admin.common.visibilityStatusLabels
+    ] ?? status
+  );
+}

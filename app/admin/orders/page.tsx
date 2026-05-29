@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { requireAdminSession } from "@/lib/adminAuth";
+import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
@@ -31,7 +32,7 @@ export default async function AdminOrdersPage() {
             {orders.map((order) => (
               <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
                 <span>
-                  {order.orderNumber} · <span className="admin-badge">{order.status}</span> · {order.customerName} · {order.items.length}
+                  {order.orderNumber} · <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span> · {order.customerName} · {order.items.length}
                 </span>
                 <strong>{formatRub(order.totalRub)}</strong>
               </Link>

@@ -199,7 +199,7 @@ export const ru = {
   },
   admin: {
     login: {
-      eyebrow: "Espace admin",
+      eyebrow: "Админ-панель",
       title: "Вход в админку",
       text: "Введите данные администратора, чтобы управлять каталогом и заказами.",
       username: "Логин",
@@ -210,7 +210,7 @@ export const ru = {
       notConfigured: "Админ-доступ не настроен. Проверьте переменные окружения."
     },
     dashboard: {
-      eyebrow: "Espace admin",
+      eyebrow: "Админ-панель",
       title: "Панель управления",
       text: "Центральный экран для заказов, товаров, склада и категорий.",
       logout: "Выйти",
@@ -267,18 +267,55 @@ export const ru = {
         DRAFT: "Черновик",
         PUBLISHED: "Опубликован",
         HIDDEN: "Скрыт"
+      },
+      visibilityStatusLabels: {
+        VISIBLE: "Видимый",
+        HIDDEN: "Скрытый"
       }
     },
     products: {
       title: "Товары",
       text: "Создание, редактирование, публикация, скрытие и удаление товаров доступны прямо здесь.",
       empty: "Товаров пока нет.",
-      open: "Открыть товар"
+      open: "Открыть товар",
+      existing: "Существующие товары",
+      edit: "Изменить товар",
+      create: "Создать товар",
+      name: "Название",
+      slug: "Slug",
+      description: "Описание",
+      brand: "Бренд",
+      characteristics: "Характеристики",
+      characteristicsPlaceholder: "Одна характеристика на строку",
+      priceRub: "Цена в рублях",
+      displayOrder: "Порядок",
+      noCategory: "Без категории",
+      noSubcategory: "Без подкатегории",
+      mainImage: "Главное изображение",
+      imageAlt: "Альтернативный текст",
+      newCollection: "Новая коллекция",
+      deleteTitle: "Удаление",
+      deleteHelp: "Товар можно удалить только если он не встречается в подтвержденных заказах.",
+      delete: "Удалить товар",
+      back: "Назад"
     },
     categories: {
       title: "Категории",
       text: "Создание, редактирование, скрытие и удаление категорий и подкатегорий.",
-      empty: "Категорий пока нет."
+      empty: "Категорий пока нет.",
+      existing: "Существующие категории",
+      edit: "Изменить категорию",
+      create: "Создать категорию",
+      editSubcategory: "Изменить подкатегорию",
+      createSubcategory: "Создать подкатегорию",
+      name: "Название",
+      slug: "Slug",
+      visibility: "Видимость",
+      displayOrder: "Порядок",
+      delete: "Удалить категорию",
+      deleteSubcategory: "Удалить подкатегорию",
+      confirmDelete: "Подтвердить окончательное удаление?",
+      productCount: (count: number) => `${count} товаров`
     },
     stock: {
       title: "Склад",

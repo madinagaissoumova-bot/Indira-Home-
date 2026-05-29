@@ -3,7 +3,9 @@
 import Link from "next/link";
 import type { FormEvent } from "react";
 import { useActionState, useState } from "react";
+import { getAdminProductStatusLabel } from "@/lib/adminLabels";
 import { PRODUCT_STATUS } from "@/lib/constants";
+import { ru } from "@/lib/i18n/ru";
 import type { AdminActionState } from "../actions";
 import { deleteProductAction, saveProductAction } from "../actions";
 import type { AdminCategoryOption, AdminProductEditorProduct } from "@/types";
@@ -18,7 +20,7 @@ function emptyState(): AdminActionState {
 }
 
 function confirmDelete(event: FormEvent<HTMLFormElement>) {
-  if (!window.confirm("Confirmer la suppression definitive ?")) {
+  if (!window.confirm(ru.admin.categories.confirmDelete)) {
     event.preventDefault();
   }
 }
@@ -39,13 +41,13 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
   return (
     <div className="checkout-layout">
       <form action={saveAction} className="form-panel">
-        <h2>{product ? "Modifier le produit" : "Créer un produit"}</h2>
+        <h2>{product ? ru.admin.products.edit : ru.admin.products.create}</h2>
         {saveState.error ? <p className="form-error">{saveState.error}</p> : null}
         {saveState.success ? <p>{saveState.success}</p> : null}
         {product ? <input name="productId" type="hidden" value={product.id} /> : null}
 
         <div className="field">
-          <label htmlFor={`name-${product?.id ?? "new"}`}>Nom</label>
+          <label htmlFor={`name-${product?.id ?? "new"}`}>{ru.admin.products.name}</label>
           <input
             className="input"
             defaultValue={product?.name ?? ""}
@@ -55,7 +57,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`slug-${product?.id ?? "new"}`}>Slug</label>
+          <label htmlFor={`slug-${product?.id ?? "new"}`}>{ru.admin.products.slug}</label>
           <input
             className="input"
             defaultValue={product?.slug ?? ""}
@@ -65,7 +67,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`description-${product?.id ?? "new"}`}>Description</label>
+          <label htmlFor={`description-${product?.id ?? "new"}`}>{ru.admin.products.description}</label>
           <textarea
             className="input textarea"
             defaultValue={product?.description ?? ""}
@@ -75,7 +77,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`brand-${product?.id ?? "new"}`}>Marque</label>
+          <label htmlFor={`brand-${product?.id ?? "new"}`}>{ru.admin.products.brand}</label>
           <input
             className="input"
             defaultValue={product?.brand ?? ""}
@@ -85,18 +87,18 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`characteristics-${product?.id ?? "new"}`}>Caracteristiques</label>
+          <label htmlFor={`characteristics-${product?.id ?? "new"}`}>{ru.admin.products.characteristics}</label>
           <textarea
             className="input textarea"
             defaultValue={product?.characteristics ?? ""}
             id={`characteristics-${product?.id ?? "new"}`}
             name="characteristics"
-            placeholder={"Une ligne par caracteristique"}
+            placeholder={ru.admin.products.characteristicsPlaceholder}
           />
         </div>
 
         <div className="field">
-          <label htmlFor={`priceRub-${product?.id ?? "new"}`}>Prix en roubles</label>
+          <label htmlFor={`priceRub-${product?.id ?? "new"}`}>{ru.admin.products.priceRub}</label>
           <input
             className="input"
             defaultValue={product?.priceRub ?? 0}
@@ -108,7 +110,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`stockQuantity-${product?.id ?? "new"}`}>Stock</label>
+          <label htmlFor={`stockQuantity-${product?.id ?? "new"}`}>{ru.admin.common.stock}</label>
           <input
             className="input"
             defaultValue={product?.stockQuantity ?? 0}
@@ -121,7 +123,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`displayOrder-${product?.id ?? "new"}`}>Ordre</label>
+          <label htmlFor={`displayOrder-${product?.id ?? "new"}`}>{ru.admin.products.displayOrder}</label>
           <input
             className="input"
             defaultValue={product?.displayOrder ?? 0}
@@ -133,16 +135,16 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`status-${product?.id ?? "new"}`}>Statut</label>
+          <label htmlFor={`status-${product?.id ?? "new"}`}>{ru.admin.common.status}</label>
           <select className="input" defaultValue={product?.status ?? PRODUCT_STATUS.draft} id={`status-${product?.id ?? "new"}`} name="status">
-            <option value={PRODUCT_STATUS.draft}>Brouillon</option>
-            <option value={PRODUCT_STATUS.published}>Publié</option>
-            <option value={PRODUCT_STATUS.hidden}>Masqué</option>
+            <option value={PRODUCT_STATUS.draft}>{getAdminProductStatusLabel(PRODUCT_STATUS.draft)}</option>
+            <option value={PRODUCT_STATUS.published}>{getAdminProductStatusLabel(PRODUCT_STATUS.published)}</option>
+            <option value={PRODUCT_STATUS.hidden}>{getAdminProductStatusLabel(PRODUCT_STATUS.hidden)}</option>
           </select>
         </div>
 
         <div className="field">
-          <label htmlFor={`categoryId-${product?.id ?? "new"}`}>Catégorie</label>
+          <label htmlFor={`categoryId-${product?.id ?? "new"}`}>{ru.admin.common.category}</label>
           <select
             className="input"
             id={`categoryId-${product?.id ?? "new"}`}
@@ -155,7 +157,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             }}
             value={selectedCategoryId}
           >
-            <option value="">Sans categorie</option>
+            <option value="">{ru.admin.products.noCategory}</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -165,7 +167,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`subcategoryId-${product?.id ?? "new"}`}>Sous-catégorie</label>
+          <label htmlFor={`subcategoryId-${product?.id ?? "new"}`}>{ru.catalog.subcategoryLabel}</label>
           <select
             className="input"
             id={`subcategoryId-${product?.id ?? "new"}`}
@@ -173,7 +175,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             onChange={(event) => setSelectedSubcategoryId(event.target.value)}
             value={selectedSubcategoryId}
           >
-            <option value="">Sans sous-categorie</option>
+            <option value="">{ru.admin.products.noSubcategory}</option>
             {availableSubcategories.map((subcategory) => (
               <option key={subcategory.id} value={subcategory.id}>
                 {subcategory.name}
@@ -183,7 +185,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`imageUrl-${product?.id ?? "new"}`}>Image principale</label>
+          <label htmlFor={`imageUrl-${product?.id ?? "new"}`}>{ru.admin.products.mainImage}</label>
           <input
             className="input"
             defaultValue={currentImage?.url ?? ""}
@@ -195,7 +197,7 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
         </div>
 
         <div className="field">
-          <label htmlFor={`imageAlt-${product?.id ?? "new"}`}>Texte alternatif</label>
+          <label htmlFor={`imageAlt-${product?.id ?? "new"}`}>{ru.admin.products.imageAlt}</label>
           <input
             className="input"
             defaultValue={currentImage?.alt ?? product?.name ?? ""}
@@ -206,16 +208,16 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
 
         <label className="checkbox-row">
           <input defaultChecked={product?.isNew ?? false} name="isNew" type="checkbox" />
-          <span>Nouvelle collection</span>
+          <span>{ru.admin.products.newCollection}</span>
         </label>
 
         <div className="form-actions">
           <button className="button" disabled={isSaving} type="submit">
-            {product ? "Enregistrer" : "Créer"}
+            {product ? ru.admin.common.save : ru.admin.products.create}
           </button>
           {product ? (
             <Link className="button secondary" href="/admin/products">
-              Retour
+              {ru.admin.products.back}
             </Link>
           ) : null}
         </div>
@@ -223,13 +225,13 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
 
       {product ? (
         <form action={deleteAction} className="form-panel" onSubmit={confirmDelete}>
-          <h2>Suppression</h2>
+          <h2>{ru.admin.products.deleteTitle}</h2>
           {deleteState.error ? <p className="form-error">{deleteState.error}</p> : null}
           {deleteState.success ? <p>{deleteState.success}</p> : null}
           <input name="productId" type="hidden" value={product.id} />
-          <p>Ce produit ne peut être supprimé que s’il n’apparaît dans aucune commande validée.</p>
+          <p>{ru.admin.products.deleteHelp}</p>
           <button className="button secondary" disabled={isDeleting} type="submit">
-            Supprimer le produit
+            {ru.admin.products.delete}
           </button>
         </form>
       ) : null}

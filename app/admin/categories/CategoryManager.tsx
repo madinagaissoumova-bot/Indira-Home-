@@ -2,6 +2,9 @@
 
 import type { FormEvent } from "react";
 import { useActionState } from "react";
+import { getAdminVisibilityStatusLabel } from "@/lib/adminLabels";
+import { VISIBILITY_STATUS } from "@/lib/constants";
+import { ru } from "@/lib/i18n/ru";
 import type { AdminActionState } from "../actions";
 import {
   deleteCategoryAction,
@@ -20,7 +23,7 @@ function initialState(): AdminActionState {
 }
 
 function confirmDelete(event: FormEvent<HTMLFormElement>) {
-  if (!window.confirm("Confirmer la suppression definitive ?")) {
+  if (!window.confirm(ru.admin.categories.confirmDelete)) {
     event.preventDefault();
   }
 }
@@ -30,12 +33,12 @@ function CategoryForm({ category }: { category?: AdminCategoryManagerItem }) {
 
   return (
     <form action={action} className="form-panel">
-      <h2>{category ? "Modifier la categorie" : "Créer une categorie"}</h2>
+      <h2>{category ? ru.admin.categories.edit : ru.admin.categories.create}</h2>
       {state.error ? <p className="form-error">{state.error}</p> : null}
       {state.success ? <p>{state.success}</p> : null}
       {category ? <input name="categoryId" type="hidden" value={category.id} /> : null}
       <div className="field">
-        <label htmlFor={`category-name-${category?.id ?? "new"}`}>Nom</label>
+        <label htmlFor={`category-name-${category?.id ?? "new"}`}>{ru.admin.categories.name}</label>
         <input
           className="input"
           defaultValue={category?.name ?? ""}
@@ -45,7 +48,7 @@ function CategoryForm({ category }: { category?: AdminCategoryManagerItem }) {
         />
       </div>
       <div className="field">
-        <label htmlFor={`category-slug-${category?.id ?? "new"}`}>Slug</label>
+        <label htmlFor={`category-slug-${category?.id ?? "new"}`}>{ru.admin.categories.slug}</label>
         <input
           className="input"
           defaultValue={category?.slug ?? ""}
@@ -55,19 +58,19 @@ function CategoryForm({ category }: { category?: AdminCategoryManagerItem }) {
         />
       </div>
       <div className="field">
-        <label htmlFor={`category-status-${category?.id ?? "new"}`}>Visibilite</label>
+        <label htmlFor={`category-status-${category?.id ?? "new"}`}>{ru.admin.categories.visibility}</label>
         <select
           className="input"
-          defaultValue={category?.status ?? "VISIBLE"}
+          defaultValue={category?.status ?? VISIBILITY_STATUS.visible}
           id={`category-status-${category?.id ?? "new"}`}
           name="status"
         >
-          <option value="VISIBLE">Visible</option>
-          <option value="HIDDEN">Masquee</option>
+          <option value={VISIBILITY_STATUS.visible}>{getAdminVisibilityStatusLabel(VISIBILITY_STATUS.visible)}</option>
+          <option value={VISIBILITY_STATUS.hidden}>{getAdminVisibilityStatusLabel(VISIBILITY_STATUS.hidden)}</option>
         </select>
       </div>
       <div className="field">
-        <label htmlFor={`category-order-${category?.id ?? "new"}`}>Ordre</label>
+        <label htmlFor={`category-order-${category?.id ?? "new"}`}>{ru.admin.categories.displayOrder}</label>
         <input
           className="input"
           defaultValue={category?.displayOrder ?? 0}
@@ -78,7 +81,7 @@ function CategoryForm({ category }: { category?: AdminCategoryManagerItem }) {
         />
       </div>
       <button className="button" disabled={isPending} type="submit">
-        {category ? "Enregistrer" : "Créer"}
+        {category ? ru.admin.common.save : ru.admin.products.create}
       </button>
     </form>
   );
@@ -95,13 +98,13 @@ function SubcategoryForm({
 
   return (
     <form action={action} className="form-panel">
-      <h3>{subcategory ? "Modifier la sous-categorie" : "Créer une sous-categorie"}</h3>
+      <h3>{subcategory ? ru.admin.categories.editSubcategory : ru.admin.categories.createSubcategory}</h3>
       {state.error ? <p className="form-error">{state.error}</p> : null}
       {state.success ? <p>{state.success}</p> : null}
       <input name="categoryId" type="hidden" value={categoryId} />
       {subcategory ? <input name="subcategoryId" type="hidden" value={subcategory.id} /> : null}
       <div className="field">
-        <label htmlFor={`subcategory-name-${subcategory?.id ?? categoryId}`}>Nom</label>
+        <label htmlFor={`subcategory-name-${subcategory?.id ?? categoryId}`}>{ru.admin.categories.name}</label>
         <input
           className="input"
           defaultValue={subcategory?.name ?? ""}
@@ -111,7 +114,7 @@ function SubcategoryForm({
         />
       </div>
       <div className="field">
-        <label htmlFor={`subcategory-slug-${subcategory?.id ?? categoryId}`}>Slug</label>
+        <label htmlFor={`subcategory-slug-${subcategory?.id ?? categoryId}`}>{ru.admin.categories.slug}</label>
         <input
           className="input"
           defaultValue={subcategory?.slug ?? ""}
@@ -121,19 +124,19 @@ function SubcategoryForm({
         />
       </div>
       <div className="field">
-        <label htmlFor={`subcategory-status-${subcategory?.id ?? categoryId}`}>Visibilite</label>
+        <label htmlFor={`subcategory-status-${subcategory?.id ?? categoryId}`}>{ru.admin.categories.visibility}</label>
         <select
           className="input"
-          defaultValue={subcategory?.status ?? "VISIBLE"}
+          defaultValue={subcategory?.status ?? VISIBILITY_STATUS.visible}
           id={`subcategory-status-${subcategory?.id ?? categoryId}`}
           name="status"
         >
-          <option value="VISIBLE">Visible</option>
-          <option value="HIDDEN">Masquee</option>
+          <option value={VISIBILITY_STATUS.visible}>{getAdminVisibilityStatusLabel(VISIBILITY_STATUS.visible)}</option>
+          <option value={VISIBILITY_STATUS.hidden}>{getAdminVisibilityStatusLabel(VISIBILITY_STATUS.hidden)}</option>
         </select>
       </div>
       <div className="field">
-        <label htmlFor={`subcategory-order-${subcategory?.id ?? categoryId}`}>Ordre</label>
+        <label htmlFor={`subcategory-order-${subcategory?.id ?? categoryId}`}>{ru.admin.categories.displayOrder}</label>
         <input
           className="input"
           defaultValue={subcategory?.displayOrder ?? 0}
@@ -144,7 +147,7 @@ function SubcategoryForm({
         />
       </div>
       <button className="button" disabled={isPending} type="submit">
-        {subcategory ? "Enregistrer" : "Créer"}
+        {subcategory ? ru.admin.common.save : ru.admin.products.create}
       </button>
     </form>
   );
@@ -167,10 +170,10 @@ function SubcategoryCard({
         {deleteState.success ? <p>{deleteState.success}</p> : null}
         <input name="subcategoryId" type="hidden" value={subcategory.id} />
         <button className="button secondary" disabled={isDeleting} type="submit">
-          Supprimer la sous-categorie
+          {ru.admin.categories.deleteSubcategory}
         </button>
       </form>
-      <p>{subcategory.products.length} produit(s)</p>
+      <p>{ru.admin.categories.productCount(subcategory.products.length)}</p>
     </div>
   );
 }
@@ -186,7 +189,7 @@ function CategoryCard({ category }: { category: AdminCategoryManagerItem }) {
         {deleteState.success ? <p>{deleteState.success}</p> : null}
         <input name="categoryId" type="hidden" value={category.id} />
         <button className="button secondary" disabled={isDeleting} type="submit">
-          Supprimer la categorie
+          {ru.admin.categories.delete}
         </button>
       </form>
       <div className="subcategory-strip">
@@ -205,35 +208,35 @@ export function CategoryManager({ categories }: CategoryManagerProps) {
   return (
     <div className="checkout-layout">
       <form action={action} className="form-panel">
-        <h2>Créer une categorie</h2>
+        <h2>{ru.admin.categories.create}</h2>
         {state.error ? <p className="form-error">{state.error}</p> : null}
         {state.success ? <p>{state.success}</p> : null}
         <div className="field">
-          <label htmlFor="new-category-name">Nom</label>
+          <label htmlFor="new-category-name">{ru.admin.categories.name}</label>
           <input className="input" id="new-category-name" name="name" required />
         </div>
         <div className="field">
-          <label htmlFor="new-category-slug">Slug</label>
+          <label htmlFor="new-category-slug">{ru.admin.categories.slug}</label>
           <input className="input" id="new-category-slug" name="slug" required />
         </div>
         <div className="field">
-          <label htmlFor="new-category-status">Visibilite</label>
-          <select className="input" defaultValue="VISIBLE" id="new-category-status" name="status">
-            <option value="VISIBLE">Visible</option>
-            <option value="HIDDEN">Masquee</option>
+          <label htmlFor="new-category-status">{ru.admin.categories.visibility}</label>
+          <select className="input" defaultValue={VISIBILITY_STATUS.visible} id="new-category-status" name="status">
+            <option value={VISIBILITY_STATUS.visible}>{getAdminVisibilityStatusLabel(VISIBILITY_STATUS.visible)}</option>
+            <option value={VISIBILITY_STATUS.hidden}>{getAdminVisibilityStatusLabel(VISIBILITY_STATUS.hidden)}</option>
           </select>
         </div>
         <div className="field">
-          <label htmlFor="new-category-order">Ordre</label>
+          <label htmlFor="new-category-order">{ru.admin.categories.displayOrder}</label>
           <input className="input" defaultValue={0} id="new-category-order" min={0} name="displayOrder" type="number" />
         </div>
         <button className="button" disabled={isPending} type="submit">
-          Créer
+          {ru.admin.products.create}
         </button>
       </form>
 
       <section className="form-panel">
-        <h2>Categories existantes</h2>
+        <h2>{ru.admin.categories.existing}</h2>
         {categories.length > 0 ? (
           <div className="checkout-items">
             {categories.map((category) => (
@@ -241,7 +244,7 @@ export function CategoryManager({ categories }: CategoryManagerProps) {
             ))}
           </div>
         ) : (
-          <p>Aucune categorie pour le moment.</p>
+          <p>{ru.admin.categories.empty}</p>
         )}
       </section>
     </div>

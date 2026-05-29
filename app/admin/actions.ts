@@ -160,53 +160,53 @@ export async function saveProductAction(
   const isNew = booleanValue(formData.get("isNew"));
 
   if (!status) {
-    return { error: "Le statut du produit est invalide." };
+    return { error: "Некорректный статус товара." };
   }
   const requiresPublicFields = status === PRODUCT_STATUS.published;
   const canBeIncomplete = status === PRODUCT_STATUS.draft || status === PRODUCT_STATUS.hidden;
   if (priceRub != null && !isNonNegativeInteger(priceRub)) {
-    return { error: "Le prix doit etre positif ou nul pour un brouillon ou produit masque." };
+    return { error: "Цена должна быть положительным числом или нулем." };
   }
   if (stockQuantity != null && !isNonNegativeInteger(stockQuantity)) {
-    return { error: "Le stock doit etre un entier positif ou nul." };
+    return { error: "Остаток должен быть целым числом не меньше нуля." };
   }
   if (requiresPublicFields && stockQuantity == null) {
-    return { error: "Le stock doit etre renseigne avant publication." };
+    return { error: "Перед публикацией нужно указать остаток." };
   }
   if (displayOrder < 0) {
-    return { error: "L'ordre d'affichage doit etre positif ou nul." };
+    return { error: "Порядок отображения должен быть не меньше нуля." };
   }
   if (rawSlug && !isValidSlug(rawSlug)) {
-    return { error: "Le slug doit contenir seulement des lettres latines minuscules, chiffres et tirets." };
+    return { error: "Slug должен содержать только латинские строчные буквы, цифры и дефисы." };
   }
   if (rawName && !hasLength(rawName, 2, 120)) {
-    return { error: "Le nom du produit doit contenir entre 2 et 120 caracteres." };
+    return { error: "Название товара должно содержать от 2 до 120 символов." };
   }
   if (rawDescription && !hasLength(rawDescription, 10, 2000)) {
-    return { error: "La description doit contenir entre 10 et 2000 caracteres." };
+    return { error: "Описание должно содержать от 10 до 2000 символов." };
   }
   if (optionalTextIsTooLong(brand, 80)) {
-    return { error: "La marque ne doit pas depasser 80 caracteres." };
+    return { error: "Бренд не должен быть длиннее 80 символов." };
   }
   if (imageUrl && !isValidProductImageUrl(imageUrl)) {
-    return { error: "L'image doit etre une URL valide en http, https ou /uploads/." };
+    return { error: "Изображение должно быть корректной ссылкой http, https или /uploads/." };
   }
 
-  const name = rawName || (canBeIncomplete ? "Brouillon sans nom" : "");
+  const name = rawName || (canBeIncomplete ? "Черновик без названия" : "");
   const slug = rawSlug || (canBeIncomplete ? createSlugFallback("draft-product") : "");
-  const description = rawDescription || (canBeIncomplete ? "Brouillon en preparation." : "");
+  const description = rawDescription || (canBeIncomplete ? "Черновик в подготовке." : "");
   const normalizedPriceRub = priceRub ?? 0;
   const normalizedStockQuantity = stockQuantity ?? 0;
 
   if (requiresPublicFields) {
     if (!categoryId || !subcategoryId) {
-      return { error: "La categorie et la sous-categorie sont obligatoires avant publication." };
+      return { error: "Перед публикацией нужно выбрать категорию и подкатегорию." };
     }
     if (!hasLength(name, 2, 120) || !hasLength(description, 10, 2000) || !slug) {
-      return { error: "Completez les informations obligatoires avant de publier le produit." };
+      return { error: "Заполните обязательные данные перед публикацией товара." };
     }
     if (!isPositiveInteger(normalizedPriceRub)) {
-      return { error: "Le prix doit etre un entier strictement positif." };
+      return { error: "Цена должна быть целым числом больше нуля." };
     }
   }
 
@@ -219,7 +219,7 @@ export async function saveProductAction(
       (categorySelection.category.status !== VISIBILITY_STATUS.visible ||
         categorySelection.subcategory.status !== VISIBILITY_STATUS.visible)
     ) {
-      return { error: "La categorie et la sous-categorie doivent etre visibles avant publication." };
+      return { error: "Категория и подкатегория должны быть видимыми перед публикацией." };
     }
     const existing = productId
       ? await prisma.product.findUnique({
@@ -229,14 +229,14 @@ export async function saveProductAction(
       : null;
 
     if (productId && !existing) {
-      return { error: "Le produit a modifier est introuvable." };
+      return { error: "Товар для изменения не найден." };
     }
 
     const hasValidImageAfterUpdate = imageUrl
       ? isValidProductImageUrl(imageUrl)
       : existing?.images.some((image) => isValidProductImageUrl(image.url)) ?? false;
     if (status === PRODUCT_STATUS.published && !hasValidImageAfterUpdate) {
-      return { error: "Un produit publie doit avoir au moins une image." };
+      return { error: "У опубликованного товара должно быть хотя бы одно изображение." };
     }
 
     const finalProduct = await prisma.$transaction(async (tx) => {
@@ -311,25 +311,25 @@ export async function saveProductAction(
     revalidateAdminSurface();
 
     return {
-      success: productId ? "Le produit a ete mis a jour." : "Le produit a ete cree."
+      success: productId ? "Товар обновлен." : "Товар создан."
     };
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === "CATEGORY_NOT_FOUND") {
-        return { error: "La categorie choisie est introuvable." };
+        return { error: "Выбранная категория не найдена." };
       }
       if (error.message === "SUBCATEGORY_NOT_FOUND") {
-        return { error: "La sous-categorie choisie est introuvable." };
+        return { error: "Выбранная подкатегория не найдена." };
       }
       if (error.message === "CATEGORY_MISMATCH") {
-        return { error: "La sous-categorie n'appartient pas a cette categorie." };
+        return { error: "Подкатегория не относится к выбранной категории." };
       }
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-        return { error: "Ce slug est deja utilise." };
+        return { error: "Этот slug уже используется." };
       }
     }
 
-    return { error: "Impossible d'enregistrer le produit." };
+    return { error: "Не удалось сохранить товар." };
   }
 }
 
@@ -341,7 +341,7 @@ export async function deleteProductAction(
 
   const productId = text(formData.get("productId"));
   if (!productId) {
-    return { error: "Produit manquant." };
+    return { error: "Товар не указан." };
   }
 
   const product = await prisma.product.findUnique({
@@ -356,7 +356,7 @@ export async function deleteProductAction(
     where: { productId }
   });
   if (orderedCount > 0) {
-    return { error: "Ce produit ne peut pas etre supprime car il apparait dans une commande." };
+    return { error: "Этот товар нельзя удалить, потому что он есть в заказе." };
   }
 
   await prisma.product.delete({ where: { id: productId } });
@@ -368,7 +368,7 @@ export async function deleteProductAction(
   });
   revalidateAdminSurface();
 
-  return { success: "Le produit a ete supprime." };
+  return { success: "Товар удален." };
 }
 
 export async function saveCategoryAction(
@@ -384,19 +384,19 @@ export async function saveCategoryAction(
   const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
 
   if (!name || !slug) {
-    return { error: "Le nom et le slug sont obligatoires." };
+    return { error: "Название и slug обязательны." };
   }
   if (!hasLength(name, 2, 80)) {
-    return { error: "Le nom de categorie doit contenir entre 2 et 80 caracteres." };
+    return { error: "Название категории должно содержать от 2 до 80 символов." };
   }
   if (!isValidSlug(slug)) {
-    return { error: "Le slug doit contenir seulement des lettres latines minuscules, chiffres et tirets." };
+    return { error: "Slug должен содержать только латинские строчные буквы, цифры и дефисы." };
   }
   if (!status) {
-    return { error: "Le statut de visibilite est invalide." };
+    return { error: "Некорректный статус видимости." };
   }
   if (displayOrder < 0) {
-    return { error: "L'ordre d'affichage doit etre positif ou nul." };
+    return { error: "Порядок отображения должен быть не меньше нуля." };
   }
 
   try {
@@ -410,7 +410,7 @@ export async function saveCategoryAction(
       : null;
 
     if (categoryId && !existing) {
-      return { error: "La categorie a modifier est introuvable." };
+      return { error: "Категория для изменения не найдена." };
     }
 
     const saved = categoryId
@@ -441,12 +441,12 @@ export async function saveCategoryAction(
     }
     revalidateAdminSurface();
 
-    return { success: categoryId ? "La categorie a ete mise a jour." : "La categorie a ete creee." };
+    return { success: categoryId ? "Категория обновлена." : "Категория создана." };
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-      return { error: "Ce slug est deja utilise." };
+      return { error: "Этот slug уже используется." };
     }
-    return { error: "Impossible d'enregistrer la categorie." };
+    return { error: "Не удалось сохранить категорию." };
   }
 }
 
@@ -458,7 +458,7 @@ export async function deleteCategoryAction(
 
   const categoryId = text(formData.get("categoryId"));
   if (!categoryId) {
-    return { error: "Categorie manquante." };
+    return { error: "Категория не указана." };
   }
 
   const category = await prisma.category.findUnique({
@@ -474,13 +474,13 @@ export async function deleteCategoryAction(
   });
 
   if (!category) {
-    return { error: "La categorie est introuvable." };
+    return { error: "Категория не найдена." };
   }
 
   const hasProducts = category.products.length > 0;
   const hasSubcategoryProducts = category.subcategories.some((subcategory) => subcategory.products.length > 0);
   if (hasProducts || hasSubcategoryProducts) {
-    return { error: "La categorie ne peut pas etre supprimee tant qu'elle contient des produits." };
+    return { error: "Категорию нельзя удалить, пока в ней есть товары." };
   }
 
   await prisma.$transaction(async (tx) => {
@@ -499,7 +499,7 @@ export async function deleteCategoryAction(
   });
   revalidateAdminSurface();
 
-  return { success: "La categorie a ete supprimee." };
+  return { success: "Категория удалена." };
 }
 
 export async function saveSubcategoryAction(
@@ -516,24 +516,24 @@ export async function saveSubcategoryAction(
   const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
 
   if (!categoryId || !name || !slug) {
-    return { error: "La categorie parente, le nom et le slug sont obligatoires." };
+    return { error: "Родительская категория, название и slug обязательны." };
   }
   if (!hasLength(name, 2, 80)) {
-    return { error: "Le nom de sous-categorie doit contenir entre 2 et 80 caracteres." };
+    return { error: "Название подкатегории должно содержать от 2 до 80 символов." };
   }
   if (!isValidSlug(slug)) {
-    return { error: "Le slug doit contenir seulement des lettres latines minuscules, chiffres et tirets." };
+    return { error: "Slug должен содержать только латинские строчные буквы, цифры и дефисы." };
   }
   if (!status) {
-    return { error: "Le statut de visibilite est invalide." };
+    return { error: "Некорректный статус видимости." };
   }
   if (displayOrder < 0) {
-    return { error: "L'ordre d'affichage doit etre positif ou nul." };
+    return { error: "Порядок отображения должен быть не меньше нуля." };
   }
 
   const category = await prisma.category.findUnique({ where: { id: categoryId } });
   if (!category) {
-    return { error: "La categorie parente est introuvable." };
+    return { error: "Родительская категория не найдена." };
   }
 
   const existing = subcategoryId
@@ -543,7 +543,7 @@ export async function saveSubcategoryAction(
       })
     : null;
   if (subcategoryId && !existing) {
-    return { error: "La sous-categorie a modifier est introuvable." };
+    return { error: "Подкатегория для изменения не найдена." };
   }
 
   try {
@@ -567,12 +567,12 @@ export async function saveSubcategoryAction(
     });
     revalidateAdminSurface();
 
-    return { success: existing ? "La sous-categorie a ete mise a jour." : "La sous-categorie a ete creee." };
+    return { success: existing ? "Подкатегория обновлена." : "Подкатегория создана." };
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-      return { error: "Ce slug est deja utilise." };
+      return { error: "Этот slug уже используется." };
     }
-    return { error: "Impossible d'enregistrer la sous-categorie." };
+    return { error: "Не удалось сохранить подкатегорию." };
   }
 }
 
@@ -584,7 +584,7 @@ export async function deleteSubcategoryAction(
 
   const subcategoryId = text(formData.get("subcategoryId"));
   if (!subcategoryId) {
-    return { error: "Sous-categorie manquante." };
+    return { error: "Подкатегория не указана." };
   }
 
   const subcategory = await prisma.subcategory.findUnique({
@@ -595,10 +595,10 @@ export async function deleteSubcategoryAction(
     }
   });
   if (!subcategory) {
-    return { error: "La sous-categorie est introuvable." };
+    return { error: "Подкатегория не найдена." };
   }
   if (subcategory.products.length > 0) {
-    return { error: "La sous-categorie ne peut pas etre supprimee tant qu'elle contient des produits." };
+    return { error: "Подкатегорию нельзя удалить, пока в ней есть товары." };
   }
 
   await prisma.subcategory.delete({ where: { id: subcategoryId } });
@@ -610,7 +610,7 @@ export async function deleteSubcategoryAction(
   });
   revalidateAdminSurface();
 
-  return { success: "La sous-categorie a ete supprimee." };
+  return { success: "Подкатегория удалена." };
 }
 
 export async function adjustStockAction(
@@ -640,7 +640,7 @@ export async function adjustStockAction(
     }
   });
   if (!product) {
-    return { error: "Le produit est introuvable." };
+    return { error: "Товар не найден." };
   }
 
   const nextStockQuantity = computeAdjustedStockQuantity(
@@ -687,15 +687,15 @@ export async function updateOrderAction(
   const adminNote = text(formData.get("adminNote")) || null;
 
   if (!orderId) {
-    return { error: "Commande manquante." };
+    return { error: "Заказ не указан." };
   }
   if (!status) {
-    return { error: "Le statut de commande est invalide." };
+    return { error: "Некорректный статус заказа." };
   }
 
   const order = await prisma.order.findUnique({ where: { id: orderId } });
   if (!order) {
-    return { error: "La commande est introuvable." };
+    return { error: "Заказ не найден." };
   }
 
   await prisma.order.update({
@@ -709,5 +709,5 @@ export async function updateOrderAction(
   revalidatePath(`/admin/orders/${orderId}`);
   revalidateAdminSurface();
 
-  return { success: "La commande a ete mise a jour." };
+  return { success: "Заказ обновлен." };
 }
