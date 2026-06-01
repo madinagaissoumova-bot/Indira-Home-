@@ -223,6 +223,45 @@ Blocage restant :
 - Mini-plan 1 partiellement debloque : `npm run prisma:generate` passe apres chargement de `.env` par `scripts/require-supabase-url.mjs`.
 - L'audit visuel reel sur navigateur et l'audit admin connecte restent bloques par l'authentification Supabase : la base repond, mais refuse les identifiants de `DATABASE_URL`.
 
+### 2026-06-01 - Reprise verification V1
+
+- Verification de l'etat Git : aucun changement local avant reprise.
+- `npm run prisma:generate` passe avec la configuration locale.
+- `npm run lint` passe.
+- `npm test` passe : 28 tests OK, integration checkout DB ignoree sans `RUN_DB_INTEGRATION=1`.
+- `npm run build` passe.
+- `npm run prisma:migrate` atteint Supabase avec acces reseau, mais echoue encore avec `P1000 Authentication failed`.
+
+Blocage restant :
+
+- Mini-plan 1 reste bloque par les identifiants Supabase de `DATABASE_URL`.
+- Tant que l'authentification DB echoue, `npm run prisma:migrate`, `npm run prisma:seed`, l'audit admin connecte et la checklist V1 avec donnees reelles ne peuvent pas etre termines.
+
+### 2026-06-01 - Supabase debloque
+
+- Remplacement local de `DATABASE_URL` par la connexion directe Supabase valide.
+- Suppression du dossier local vide non suivi `prisma/migrations/20260512120000_init`, qui bloquait Prisma avec `P3015`.
+- `npm run prisma:migrate` passe : migration `20260529090000_init_supabase` appliquee sur Supabase.
+- `npm run prisma:seed` passe : donnees V1 creees dans la base.
+
+Validation :
+
+- Mini-plan 1 est debloque cote base de donnees.
+- La suite peut reprendre avec le lancement local, l'audit mobile public et l'audit admin connecte.
+
+### 2026-06-01 - Verification locale apres seed
+
+- `npm run dev` demarre sur `http://localhost:3000`.
+- Routes publiques verifiees en HTTP 200 : `/`, `/category/posuda`, `/subcategory/servizy`, `/product/stolovyi-serviz-white-lui-laren-39`, `/search?q=serviz`, `/cart`, `/checkout`, `/admin/login`.
+- Protection admin verifiee : `/admin` redirige vers `/admin/login` sans session.
+- Donnees seed verifiees dans Supabase : 4 categories, 15 sous-categories, 19 produits, 18 produits publies, 0 commande initiale.
+
+Reste a faire :
+
+- audit visuel responsive reel sur mobile et desktop ;
+- connexion admin et verification des ecrans admin avec les variables admin locales ;
+- checklist fonctionnelle complete `docs/testing/test-plan.md`.
+
 ## Risques
 
 - finir avec un parcours fonctionnel mais peu utilisable sur mobile ;
