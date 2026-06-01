@@ -17,9 +17,9 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. `UI-803` Audit mobile public.
-2. `QA-801` Checklist fonctionnelle V1.
-3. Parcours admin connecte avec variables `.env` de production.
+1. Lot 2 - Fiche produit et panier.
+2. `UI-803` Audit mobile public.
+3. `QA-801` Checklist fonctionnelle V1.
 
 ## Lot 0 - Base projet et donnees
 

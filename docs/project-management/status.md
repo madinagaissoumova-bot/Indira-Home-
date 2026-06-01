@@ -14,7 +14,7 @@ Statuts utilises :
 | Lot | Plan | Statut | Resume |
 | --- | --- | --- | --- |
 | Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
-| Lot 1 | `lot-1-catalogue-client.md` | ACTIF | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri et regles publiques sont en place. Verification visuelle responsive manuelle reste a finaliser. |
+| Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et verification serveur existent. Parcours mobile complet reste a tester visuellement. |
 | Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration et etats d'erreur sont en place. Verification mobile finale reste a finaliser. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
@@ -24,20 +24,6 @@ Statuts utilises :
 | Lot 8 | `lot-8-polish-verification.md` | ACTIF | Polish mobile public, textes russes, build production et verification HTTP locale effectues. Screenshots responsive et parcours admin connecte restent a finaliser. |
 
 ## Plans actifs
-
-### Lot 1 - Catalogue client
-
-Pourquoi actif :
-
-- `app/page.tsx` affiche un catalogue ;
-- `app/category/[slug]/page.tsx` existe ;
-- les produits publies et categories visibles sont filtres ;
-- les produits epuisees sont affiches non commandables.
-- les filtres d'accueil, le tri, la recherche et la reinitialisation existent.
-
-Reste a faire avant de marquer termine :
-
-- finaliser la verification visuelle responsive avec screenshots 360 px et 390 px.
 
 ### Lot 2 - Fiche produit et panier
 
@@ -80,6 +66,18 @@ Validation effectuee :
 - seed execute avec categories, sous-categories, produits publies, produit epuise, produit masque et produits nouveaux ;
 - helpers publics et validations serveur communes couverts par tests ;
 - `npm run prisma:generate`, `npm run prisma:seed`, `npm test`, `npm run lint` et `npm run build` passent.
+
+### Lot 1 - Catalogue client
+
+Validation effectuee :
+
+- catalogue d'accueil avec recherche, filtres, tri et reset ;
+- navigation categorie et sous-categorie ;
+- produits publics filtres par helper commun ;
+- produits epuisees visibles mais non commandables ;
+- stock exact absent cote cliente ;
+- routes `/`, `/category/posuda`, `/subcategory/servizy` et `/search?q=serviz` verifiees en HTTP local production avec Supabase ;
+- `npm run build`, `npm run lint` et `npm run check:docs` passent.
 
 ## Suivi des lots
 
