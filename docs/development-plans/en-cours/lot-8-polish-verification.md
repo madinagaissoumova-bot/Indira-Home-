@@ -262,6 +262,23 @@ Reste a faire :
 - connexion admin et verification des ecrans admin avec les variables admin locales ;
 - checklist fonctionnelle complete `docs/testing/test-plan.md`.
 
+### 2026-06-01 - Verification admin connecte HTTP
+
+- Session admin locale generee a partir des variables `.env`, sans exposer le mot de passe en clair.
+- Pages admin verifiees avec session valide : `/admin`, `/admin/products`, `/admin/categories`, `/admin/stock`, `/admin/orders`.
+- Detail produit admin verifie avec un produit seed : `/admin/products/cmpuyk726000zi2yigcfxez7a`.
+- Detail commande non verifie : la base seedee ne contient pas encore de commande.
+
+Validation :
+
+- La protection admin fonctionne sans session.
+- Les ecrans admin principaux repondent avec session valide.
+
+Reste a faire :
+
+- creer une commande via le parcours checkout pour verifier `/admin/orders/:id` avec une vraie commande ;
+- effectuer l'audit visuel manuel des ecrans admin.
+
 ## Risques
 
 - finir avec un parcours fonctionnel mais peu utilisable sur mobile ;
