@@ -21,7 +21,7 @@ Statuts utilises :
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
 | Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
 | Lot 7 | `lot-7-admin-commandes.md` | ACTIF | Les commandes peuvent etre consultees et mises a jour. |
-| Lot 8 | `lot-8-polish-verification.md` | ACTIF | Polish mobile public, textes russes, build production et verification HTTP locale effectues. Screenshots responsive et parcours admin connecte restent a finaliser. |
+| Lot 8 | `lot-8-polish-verification.md` | ACTIF | Textes russes, centralisation contenu, audit mobile public, build production et verification HTTP locale effectues. Audit admin connecte et checklist V1 restent a finaliser. |
 
 ## Plans actifs
 

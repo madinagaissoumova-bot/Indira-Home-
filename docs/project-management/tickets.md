@@ -107,7 +107,7 @@ Priorites :
 | --- | --- | --- | --- |
 | UI-801 | P0 | DONE | Relecture textes russes client. |
 | UI-802 | P1 | DONE | Centralisation contenu client russe. |
-| UI-803 | P0 | ACTIVE | Audit mobile public et navigation header. |
+| UI-803 | P0 | DONE | Audit mobile public et navigation header. |
 | UI-804 | P1 | ACTIVE | Audit admin. |
 | QA-801 | P0 | ACTIVE | Checklist fonctionnelle V1. |
 | QA-802 | P0 | DONE | Build et verification production. |

@@ -40,6 +40,12 @@ a {
   text-decoration: none;
 }
 
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
 button,
 input,
 select,
@@ -766,6 +772,7 @@ p {
   font-weight: 650;
   justify-content: center;
   min-height: 42px;
+  overflow-wrap: anywhere;
   padding: 11px 22px;
   box-shadow: none;
   text-transform: uppercase;
@@ -1207,6 +1214,7 @@ p {
   font-size: clamp(34px, 4.2vw, 56px);
   font-weight: 500;
   line-height: 1.04;
+  overflow-wrap: anywhere;
 }
 
 .product-brand {
@@ -1480,6 +1488,7 @@ p {
   line-height: 1.35;
   margin: 0;
   min-height: 2.5em;
+  overflow-wrap: anywhere;
 }
 
 .product-meta {
@@ -1622,6 +1631,7 @@ p {
 .cart-title {
   font-size: 18px;
   line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .quantity-controls {
@@ -1666,6 +1676,7 @@ p {
 .summary-line {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   justify-content: space-between;
 }
@@ -1966,6 +1977,12 @@ p {
     padding: 20px 16px 52px;
   }
 
+  .form-panel,
+  .cart-summary,
+  .empty-state {
+    max-width: 100%;
+  }
+
   .home-page {
     height: auto;
     overflow: visible;
@@ -2129,7 +2146,7 @@ p {
   }
 
   .product-panel-heading h1 {
-    font-size: 34px;
+    font-size: 32px;
   }
 
   .product-spec-row {
@@ -2252,6 +2269,11 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .form-actions .button,
+  .form-actions button {
+    width: 100%;
+  }
+
   .cart-summary {
     position: static;
   }
@@ -2330,6 +2352,10 @@ p {
     padding: 10px;
   }
 
+  .cart-row-actions {
+    gap: 8px;
+  }
+
   .cart-title {
     font-size: 16px;
   }
@@ -2355,6 +2381,10 @@ p {
 
   .summary-line {
     gap: 8px;
+  }
+
+  .summary-line strong {
+    text-align: left;
   }
 
   .checkout-note {

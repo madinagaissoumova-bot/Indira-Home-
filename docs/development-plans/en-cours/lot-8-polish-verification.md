@@ -279,6 +279,28 @@ Reste a faire :
 - creer une commande via le parcours checkout pour verifier `/admin/orders/:id` avec une vraie commande ;
 - effectuer l'audit visuel manuel des ecrans admin.
 
+### 2026-06-01 - Audit mobile public UI-803
+
+- Parcours public audite : accueil, recherche, categorie, sous-categorie, fiche produit, panier, checkout et confirmation.
+- Correction CSS des risques de debordement mobile :
+  - medias limites a la largeur disponible ;
+  - titres produit, titres panier et boutons autorisent le retour a la ligne ;
+  - lignes de resume panier plus souples sur mobile ;
+  - panneaux formulaire, recapitulatif et etats vides limites a la largeur disponible ;
+  - actions de formulaire pleine largeur sur mobile.
+- Nettoyage de `.next` apres incoherence de cache dev/production locale, puis reconstruction propre.
+
+Validations executees :
+
+- `npm run lint` : OK.
+- `npm test` : OK, 28 tests passent, integration checkout DB ignoree sans `RUN_DB_INTEGRATION=1`.
+- `npm run build` : OK apres suppression du cache `.next`.
+- Routes publiques verifiees en HTTP production locale 200 : `/`, `/category/posuda`, `/subcategory/servizy`, `/product/stolovyi-serviz-white-lui-laren-39`, `/search?q=serviz`, `/cart`, `/checkout`, `/checkout/confirmation`.
+
+Limite :
+
+- Le redimensionnement automatique de Safari en largeur 390 px a ete bloque par l'autorisation macOS Acces d'aide. L'audit a donc ete complete par corrections CSS ciblees et verification HTTP production locale, sans capture responsive pilotee automatiquement.
+
 ## Risques
 
 - finir avec un parcours fonctionnel mais peu utilisable sur mobile ;
