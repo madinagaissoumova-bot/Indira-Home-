@@ -3,19 +3,18 @@
 Ce fichier donne une vue produit de la progression du projet.
 
 Le minimum indispensable de la V1 est detaille dans `docs/roadmap/v1.md`.
-Les evolutions suivantes sont detaillees dans `docs/roadmap/v2.md` et `docs/roadmap/v3.md`.
+Les evolutions suivantes sont detaillees dans `docs/roadmap/v2.md`.
 
 Le detail d'execution reste dans `docs/specs/work-plan.md`. Les regles fonctionnelles restent dans les fiches de `docs/specs/feature-specs/`.
 
-## Vue simple V1 / V2 / V3
+## Vue simple V1 / V2
 
 | Version | Objectif | Statut |
 | --- | --- | --- |
 | V1 | Lancer une boutique fonctionnelle : catalogue, panier, commande sans paiement en ligne, admin complet. | En finalisation |
-| V2 | Ameliorer l'exploitation quotidienne : images, exports, filtres admin, notifications, confort de gestion. | A planifier apres V1 |
-| V3 | Croissance commerciale : paiement en ligne, livraison et services avances si le besoin est confirme. | Idee future |
+| V2 | Ajouter le paiement en ligne et ameliorer l'exploitation quotidienne : images, exports, filtres admin, notifications, livraison et confort de gestion. | A planifier apres V1 |
 
-La V1 reste la priorite absolue. V2 et V3 ne doivent pas retarder la livraison V1.
+La V1 reste la priorite absolue. La V2 ne doit pas retarder la livraison V1.
 
 ## Objectif V1
 
@@ -272,33 +271,21 @@ Ces sujets ne doivent pas bloquer la V1 :
 
 ## Roadmap apres V1
 
-### V2 - Exploitation et confort
+### V2 - Paiement en ligne, exploitation et confort
 
 Voir `docs/roadmap/v2.md`.
 
-Objectif : rendre la gestion quotidienne plus confortable sans changer le modele simple de boutique unique.
+Objectif : ajouter le paiement en ligne apres une V1 stable, puis rendre la gestion quotidienne plus confortable sans changer le modele simple de boutique unique.
 
 Exemples :
 
+- paiement en ligne avec statuts de paiement separes ;
 - upload d'images admin ;
 - exports commandes ;
 - filtres admin plus avances ;
 - notifications automatiques simples ;
+- zones et frais de livraison configurables ;
 - sauvegardes et operations plus robustes.
-
-### V3 - Croissance commerciale
-
-Voir `docs/roadmap/v3.md`.
-
-Objectif : ajouter des fonctions commerciales plus ambitieuses uniquement si la boutique en a vraiment besoin.
-
-Exemples :
-
-- paiement en ligne ;
-- livraison hors Republique tchetchene ;
-- compte cliente ;
-- favoris ou avis clients ;
-- promotions ou fidelite.
 
 ## Risques a surveiller
 
