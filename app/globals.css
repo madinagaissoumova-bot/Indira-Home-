@@ -1289,6 +1289,15 @@ p {
   width: 100%;
 }
 
+.add-to-cart-with-quantity {
+  display: grid;
+  gap: 10px;
+}
+
+.add-to-cart-with-quantity .quantity-controls {
+  justify-content: center;
+}
+
 .category-list {
   display: flex;
   gap: 10px;
@@ -1622,6 +1631,13 @@ p {
   grid-template-columns: 38px 32px 38px;
   justify-items: center;
   width: max-content;
+}
+
+.quantity-controls.compact {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 4px;
 }
 
 .icon-button {

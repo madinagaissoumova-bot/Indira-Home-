@@ -15,7 +15,7 @@ Statuts utilises :
 | --- | --- | --- | --- |
 | Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
 | Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
-| Lot 2 | `lot-2-fiche-produit-panier.md` | ACTIF | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et verification serveur existent. Parcours mobile complet reste a tester visuellement. |
+| Lot 2 | `lot-2-fiche-produit-panier.md` | TERMINE | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et filtres publics serveur sont verifies. |
 | Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration et etats d'erreur sont en place. Verification mobile finale reste a finaliser. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
@@ -24,21 +24,6 @@ Statuts utilises :
 | Lot 8 | `lot-8-polish-verification.md` | ACTIF | Polish mobile public, textes russes, build production et verification HTTP locale effectues. Screenshots responsive et parcours admin connecte restent a finaliser. |
 
 ## Plans actifs
-
-### Lot 2 - Fiche produit et panier
-
-Pourquoi actif :
-
-- `app/product/[slug]/page.tsx` existe ;
-- la fiche filtre produit publie, categorie visible, sous-categorie visible ;
-- `components/AddToCartButton.tsx` existe ;
-- `app/cart/page.tsx` et `app/cart/CartClient.tsx` existent ;
-- le panier utilise `localStorage`.
-
-Reste a faire avant de marquer termine :
-
-- verifier les produits masques, supprimes ou rendus invisibles par categorie/sous-categorie masquee dans un panier ancien ;
-- tester le parcours mobile complet dans le navigateur.
 
 ### Lot 3 - Commande client
 
@@ -78,6 +63,19 @@ Validation effectuee :
 - stock exact absent cote cliente ;
 - routes `/`, `/category/posuda`, `/subcategory/servizy` et `/search?q=serviz` verifiees en HTTP local production avec Supabase ;
 - `npm run build`, `npm run lint` et `npm run check:docs` passent.
+
+### Lot 2 - Fiche produit et panier
+
+Validation effectuee :
+
+- fiche produit publique filtree par le helper public commun ;
+- produits brouillons, masques ou lies a une taxonomie masquee inaccessibles ;
+- produits epuisees visibles mais non commandables ;
+- ajout panier depuis catalogue et fiche produit avec quantite bornee ;
+- page panier robuste avec produits devenus indisponibles bloques ;
+- stock exact absent cote cliente ;
+- routes `/product/stolovyi-serviz-white-lui-laren-39`, `/product/test-skrytyi-tovar` et `/cart` verifiees en HTTP local production avec Supabase ;
+- `npm test` avec `RUN_DB_INTEGRATION=1`, `npm run build`, `npm run lint` et `npm run check:docs` passent.
 
 ## Suivi des lots
 
@@ -131,8 +129,8 @@ Premier ticket :
 
 Le prochain focus recommande est :
 
-1. finir l'audit mobile public Lot 8 ;
-2. lancer l'audit admin connecte ;
-3. garder la checklist fonctionnelle V1 comme filtre final avant V1.
+1. verrouiller le Lot 3 commande client avec la checklist manuelle ;
+2. finir l'audit mobile public Lot 8 ;
+3. lancer l'audit admin connecte.
 
-Cette sequence garde le parcours client stable et recentre maintenant l'effort sur l'admin et la verification finale. Le lot 3 est implante et automatise, mais la validation mobile doit encore etre vue en conditions reelles.
+Cette sequence garde le parcours client stable et recentre maintenant l'effort sur la validation commande, l'admin et la verification finale.

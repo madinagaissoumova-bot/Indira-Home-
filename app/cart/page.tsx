@@ -1,6 +1,6 @@
-import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
+import { publicProductWhere } from "@/lib/publicCatalog";
 import { CartClient } from "./CartClient";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
@@ -8,11 +8,7 @@ export const dynamic = "force-dynamic";
 
 async function getCartProducts() {
   const products = await prisma.product.findMany({
-    where: {
-      status: PRODUCT_STATUS.published,
-      category: { status: VISIBILITY_STATUS.visible },
-      subcategory: { status: VISIBILITY_STATUS.visible }
-    },
+    where: publicProductWhere,
     include: {
       images: { orderBy: { displayOrder: "asc" }, take: 1 }
     }

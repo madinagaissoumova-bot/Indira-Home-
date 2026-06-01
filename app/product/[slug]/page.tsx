@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
+import { publicProductOrderBy, publicProductWhere } from "@/lib/publicCatalog";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
@@ -17,9 +17,7 @@ export default async function ProductPage({
   const product = await prisma.product.findFirst({
     where: {
       slug,
-      status: PRODUCT_STATUS.published,
-      category: { status: VISIBILITY_STATUS.visible },
-      subcategory: { status: VISIBILITY_STATUS.visible }
+      ...publicProductWhere
     },
     include: {
       category: true,
@@ -46,21 +44,16 @@ export default async function ProductPage({
   const relatedProducts = await prisma.product.findMany({
     where: {
       id: { not: product.id },
-      status: PRODUCT_STATUS.published,
-      category: { status: VISIBILITY_STATUS.visible, slug: product.category.slug },
-      subcategory: { status: VISIBILITY_STATUS.visible, slug: product.subcategory.slug }
+      ...publicProductWhere,
+      category: { slug: product.category.slug, status: product.category.status },
+      subcategory: { slug: product.subcategory.slug, status: product.subcategory.status }
     },
     include: {
       category: true,
       subcategory: true,
       images: { orderBy: { displayOrder: "asc" }, take: 1 }
     },
-    orderBy: [
-      { stockQuantity: "desc" },
-      { isNew: "desc" },
-      { displayOrder: "asc" },
-      { createdAt: "desc" }
-    ],
+    orderBy: publicProductOrderBy,
     take: 4
   });
 
@@ -149,6 +142,7 @@ export default async function ProductPage({
               disabled={isSoldOut}
               maxQuantity={product.stockQuantity}
               productId={product.id}
+              withQuantity
             />
             <a className="button secondary whatsapp-button" href={whatsappHref} target="_blank" rel="noreferrer">
               {ru.product.whatsappButton}

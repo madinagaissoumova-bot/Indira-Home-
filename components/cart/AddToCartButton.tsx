@@ -9,6 +9,7 @@ type AddToCartButtonProps = {
   disabled?: boolean;
   label?: string;
   maxQuantity?: number;
+  withQuantity?: boolean;
 };
 
 const CART_KEY = "indira-home-cart";
@@ -44,11 +45,17 @@ export function AddToCartButton({
   productId,
   disabled = false,
   label = ru.common.addToCartLong,
-  maxQuantity
+  maxQuantity,
+  withQuantity = false
 }: AddToCartButtonProps) {
   const [isAdded, setIsAdded] = useState(false);
   const [isLimitReached, setIsLimitReached] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const resetTimer = useRef<number | null>(null);
+  const quantityLimit =
+    maxQuantity == null
+      ? MAX_CART_QUANTITY_PER_PRODUCT
+      : Math.max(0, Math.min(maxQuantity, MAX_CART_QUANTITY_PER_PRODUCT));
 
   useEffect(() => {
     return () => {
@@ -62,13 +69,9 @@ export function AddToCartButton({
     const cart = readCart();
     const existing = cart.find((item) => item.productId === productId);
     const currentQuantity = existing?.quantity ?? 0;
+    const quantityToAdd = withQuantity ? selectedQuantity : 1;
 
-    const quantityLimit =
-      maxQuantity == null
-        ? MAX_CART_QUANTITY_PER_PRODUCT
-        : Math.min(maxQuantity, MAX_CART_QUANTITY_PER_PRODUCT);
-
-    if (currentQuantity >= quantityLimit) {
+    if (disabled || quantityLimit < 1 || currentQuantity + quantityToAdd > quantityLimit) {
       setIsAdded(false);
       setIsLimitReached(true);
 
@@ -83,9 +86,9 @@ export function AddToCartButton({
     }
 
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity += quantityToAdd;
     } else {
-      cart.push({ productId, quantity: 1 });
+      cart.push({ productId, quantity: quantityToAdd });
     }
 
     writeCart(cart);
@@ -101,14 +104,19 @@ export function AddToCartButton({
     }, 1600);
   }
 
-  return (
+  function updateSelectedQuantity(quantity: number) {
+    setSelectedQuantity(Math.min(Math.max(quantity, 1), Math.max(quantityLimit, 1)));
+    setIsLimitReached(false);
+  }
+
+  const button = (
     <button
       className={`button add-to-cart-button${isAdded ? " is-added" : ""}`}
-      disabled={disabled}
+      disabled={disabled || quantityLimit < 1}
       onClick={addToCart}
       type="button"
     >
-      {disabled
+      {disabled || quantityLimit < 1
         ? ru.common.unavailable
         : isLimitReached
           ? ru.cart.maxReached
@@ -117,4 +125,33 @@ export function AddToCartButton({
             : label}
     </button>
   );
+
+  if (withQuantity && !disabled && quantityLimit > 1) {
+    return (
+      <div className="add-to-cart-with-quantity">
+        <div className="quantity-controls compact" aria-label={ru.common.quantity}>
+          <button
+            className="icon-button"
+            disabled={selectedQuantity <= 1}
+            onClick={() => updateSelectedQuantity(selectedQuantity - 1)}
+            type="button"
+          >
+            -
+          </button>
+          <span>{selectedQuantity}</span>
+          <button
+            className="icon-button"
+            disabled={selectedQuantity >= quantityLimit}
+            onClick={() => updateSelectedQuantity(selectedQuantity + 1)}
+            type="button"
+          >
+            +
+          </button>
+        </div>
+        {button}
+      </div>
+    );
+  }
+
+  return button;
 }

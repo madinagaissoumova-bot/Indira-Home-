@@ -14,7 +14,7 @@ Permettre a la cliente de consulter un produit puis de preparer sa commande dans
 
 ### PUBLIC-201 - Fiche produit `/product/:slug`
 
-Construire la fiche produit publique.
+Statut : termine.
 
 Inclus :
 
@@ -37,26 +37,29 @@ Validation :
 
 ### PUBLIC-202 - Ajout panier
 
-Implementer l'ajout au panier depuis :
+Statut : termine.
+
+Ajout implemente depuis :
 
 - catalogue ;
 - fiche produit.
 
 Regles :
 
-- stocker seulement `productId` et `quantity` dans `localStorage` ;
-- minimum 1 ;
-- ne pas ajouter un produit epuise ;
-- ne pas faire confiance au navigateur pour stock/prix.
+- le navigateur stocke seulement `productId` et `quantity` dans `localStorage` ;
+- quantite minimum 1 ;
+- produit epuise non ajoutable ;
+- le navigateur n'est pas source fiable pour prix, stock ou statut.
 
 Validation :
 
 - le panier persiste au rechargement ;
-- le panier ne contient pas de prix comme source fiable.
+- le panier ne contient pas de prix comme source fiable ;
+- la fiche produit permet de choisir une quantite avant ajout.
 
 ### PUBLIC-203 - Page panier `/cart`
 
-Construire la page panier.
+Statut : termine.
 
 Inclus :
 
@@ -80,7 +83,9 @@ Validation :
 
 ### PUBLIC-204 - Quantites panier
 
-Ajouter les controles :
+Statut : termine.
+
+Controles :
 
 - augmenter ;
 - diminuer ;
@@ -93,17 +98,28 @@ Validation :
 - impossible de valider une quantite invalide ;
 - message russe clair.
 
-## Zones probables
+## Zones touchees
 
 - `app/product/[slug]/page.tsx`
 - `app/cart/page.tsx`
 - `app/cart/CartClient.tsx`
-- `components/AddToCartButton.tsx`
+- `components/cart/AddToCartButton.tsx`
 - `app/globals.css`
-- `lib/`
+- `lib/publicCatalog.ts`
 
-## Risques
+## Validation finale
 
-- dupliquer la logique panier dans plusieurs composants ;
-- exposer le stock exact par erreur ;
-- laisser un produit masque commandable depuis un panier ancien.
+- `npm run lint` passe.
+- `npm run build` passe.
+- `npm run check:docs` passe.
+- `RUN_DB_INTEGRATION=1 npm test` passe contre Supabase.
+- `/product/stolovyi-serviz-white-lui-laren-39` repond en HTTP local production.
+- `/product/test-skrytyi-tovar` repond en `404`, ce qui confirme l'exclusion publique du produit masque.
+- `/cart` repond en HTTP local production.
+- Le scan client ne montre pas d'affichage public du stock exact.
+
+## Risques surveilles
+
+- La logique panier reste limitee au stockage local `{ productId, quantity }`.
+- Les prix, statuts, disponibilites et stocks restent recalcules cote serveur avant commande.
+- Les produits masques, brouillons ou rendus invisibles par categorie/sous-categorie ne restent pas commandables depuis un panier ancien.

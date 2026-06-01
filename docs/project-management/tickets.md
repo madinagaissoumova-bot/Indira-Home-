@@ -17,7 +17,7 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. Lot 2 - Fiche produit et panier.
+1. Lot 3 - Commande client.
 2. `UI-803` Audit mobile public.
 3. `QA-801` Checklist fonctionnelle V1.
 
@@ -46,9 +46,9 @@ Priorites :
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| PUBLIC-201 | P0 | ACTIVE | Fiche produit `/product/:slug`. |
-| PUBLIC-202 | P0 | ACTIVE | Ajout panier depuis catalogue et fiche. |
-| PUBLIC-203 | P0 | ACTIVE | Page panier `/cart`. |
+| PUBLIC-201 | P0 | DONE | Fiche produit `/product/:slug`. |
+| PUBLIC-202 | P0 | DONE | Ajout panier depuis catalogue et fiche. |
+| PUBLIC-203 | P0 | DONE | Page panier `/cart`. |
 | PUBLIC-204 | P0 | DONE | Quantites panier robustes et corrections invalides. |
 | PUBLIC-205 | P1 | DONE | Galerie produit et caracteristiques facultatives. |
 
