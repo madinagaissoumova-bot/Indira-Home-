@@ -1,6 +1,22 @@
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
-const databaseUrl = process.env.DATABASE_URL ?? "";
+function readDatabaseUrlFromDotEnv() {
+  try {
+    const env = readFileSync(".env", "utf8");
+    const line = env.split(/\n/).find((entry) => entry.startsWith("DATABASE_URL="));
+    if (!line) return "";
+
+    return line
+      .slice(line.indexOf("=") + 1)
+      .trim()
+      .replace(/^['"]|['"]$/g, "");
+  } catch {
+    return "";
+  }
+}
+
+const databaseUrl = process.env.DATABASE_URL ?? readDatabaseUrlFromDotEnv();
 const [command, ...args] = process.argv.slice(2);
 
 if (!command) {
@@ -25,6 +41,10 @@ if (databaseUrl.includes("PASSWORD") || databaseUrl.includes("PROJECT_REF")) {
 }
 
 const result = spawnSync(command, args, {
+  env: {
+    ...process.env,
+    DATABASE_URL: databaseUrl
+  },
   shell: process.platform === "win32",
   stdio: "inherit"
 });

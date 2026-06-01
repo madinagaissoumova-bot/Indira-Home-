@@ -220,8 +220,8 @@ Validations executees :
 
 Blocage restant :
 
-- Mini-plan 1 non termine : `npm run prisma:generate` refuse encore `DATABASE_URL=file:./dev.db`.
-- L'audit visuel reel sur navigateur et l'audit admin connecte restent bloques tant que `.env` ne contient pas une URL PostgreSQL Supabase valide.
+- Mini-plan 1 partiellement debloque : `npm run prisma:generate` passe apres chargement de `.env` par `scripts/require-supabase-url.mjs`.
+- L'audit visuel reel sur navigateur et l'audit admin connecte restent bloques par l'authentification Supabase : la base repond, mais refuse les identifiants de `DATABASE_URL`.
 
 ## Risques
 

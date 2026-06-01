@@ -3,8 +3,19 @@
 Ce fichier donne une vue produit de la progression du projet.
 
 Le minimum indispensable de la V1 est detaille dans `docs/roadmap/v1.md`.
+Les evolutions suivantes sont detaillees dans `docs/roadmap/v2.md` et `docs/roadmap/v3.md`.
 
 Le detail d'execution reste dans `docs/specs/work-plan.md`. Les regles fonctionnelles restent dans les fiches de `docs/specs/feature-specs/`.
+
+## Vue simple V1 / V2 / V3
+
+| Version | Objectif | Statut |
+| --- | --- | --- |
+| V1 | Lancer une boutique fonctionnelle : catalogue, panier, commande sans paiement en ligne, admin complet. | En finalisation |
+| V2 | Ameliorer l'exploitation quotidienne : images, exports, filtres admin, notifications, confort de gestion. | A planifier apres V1 |
+| V3 | Croissance commerciale : paiement en ligne, livraison et services avances si le besoin est confirme. | Idee future |
+
+La V1 reste la priorite absolue. V2 et V3 ne doivent pas retarder la livraison V1.
 
 ## Objectif V1
 
@@ -259,30 +270,35 @@ Ces sujets ne doivent pas bloquer la V1 :
 - notifications automatiques SMS ou WhatsApp ;
 - upload image avance vers stockage dedie.
 
-## Roadmap post-V1
+## Roadmap apres V1
 
-### V1.1 - Exploitation plus confortable
+### V2 - Exploitation et confort
 
-- Export commandes.
-- Recherche et filtres admin plus avances.
-- Historique de stock complet.
-- Meilleurs liens de contact WhatsApp.
-- Amelioration des sauvegardes.
+Voir `docs/roadmap/v2.md`.
 
-### V1.2 - Images et contenu
+Objectif : rendre la gestion quotidienne plus confortable sans changer le modele simple de boutique unique.
 
-- Upload d'images admin vers stockage dedie.
-- Optimisation automatique des images.
-- Gestion plus fine de la photo principale.
-- Redirections si un slug produit change.
+Exemples :
 
-### V2 - Croissance commerciale
+- upload d'images admin ;
+- exports commandes ;
+- filtres admin plus avances ;
+- notifications automatiques simples ;
+- sauvegardes et operations plus robustes.
 
-- Paiement en ligne si la boutique le souhaite.
-- Livraison vers d'autres regions.
-- Compte cliente si un vrai besoin apparait.
-- Notifications automatiques apres commande.
-- Avis clients ou favoris si cela sert la boutique.
+### V3 - Croissance commerciale
+
+Voir `docs/roadmap/v3.md`.
+
+Objectif : ajouter des fonctions commerciales plus ambitieuses uniquement si la boutique en a vraiment besoin.
+
+Exemples :
+
+- paiement en ligne ;
+- livraison hors Republique tchetchene ;
+- compte cliente ;
+- favoris ou avis clients ;
+- promotions ou fidelite.
 
 ## Risques a surveiller
 
