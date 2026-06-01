@@ -2,14 +2,7 @@ import { ru } from "@/lib/i18n/ru";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { ConfirmationClient } from "./ConfirmationClient";
 
-export default async function ConfirmationPage({
-  searchParams
-}: {
-  searchParams?: Promise<{ order?: string }>;
-}) {
-  const params = await searchParams;
-  const orderNumber = typeof params?.order === "string" ? params.order : undefined;
-
+export default function ConfirmationPage() {
   return (
     <main className="page">
       <Breadcrumbs
@@ -25,7 +18,7 @@ export default async function ConfirmationPage({
         <p>{ru.confirmation.message}</p>
       </section>
 
-      <ConfirmationClient initialOrderNumber={orderNumber} />
+      <ConfirmationClient />
     </main>
   );
 }

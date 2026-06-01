@@ -16,7 +16,7 @@ Statuts utilises :
 | Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
 | Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | TERMINE | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et filtres publics serveur sont verifies. |
-| Lot 3 | `lot-3-commande-client.md` | ACTIF | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration et etats d'erreur sont en place. Verification mobile finale reste a finaliser. |
+| Lot 3 | `lot-3-commande-client.md` | TERMINE | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration Supabase et verification HTTP locale sont termines. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
 | Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
@@ -24,21 +24,6 @@ Statuts utilises :
 | Lot 8 | `lot-8-polish-verification.md` | ACTIF | Polish mobile public, textes russes, build production et verification HTTP locale effectues. Screenshots responsive et parcours admin connecte restent a finaliser. |
 
 ## Plans actifs
-
-### Lot 3 - Commande client
-
-Pourquoi actif :
-
-- `app/checkout/page.tsx` existe ;
-- `app/checkout/CheckoutClient.tsx` existe ;
-- `app/checkout/actions.ts` cree une commande ;
-- la transaction decremente le stock ;
-- `app/checkout/confirmation/page.tsx` existe.
-
-Reste a faire avant de marquer termine :
-
-- verifier le parcours complet sur mobile ;
-- executer les tests manuels commande du `docs/testing/test-plan.md`.
 
 ## Plans termines
 
@@ -76,6 +61,22 @@ Validation effectuee :
 - stock exact absent cote cliente ;
 - routes `/product/stolovyi-serviz-white-lui-laren-39`, `/product/test-skrytyi-tovar` et `/cart` verifiees en HTTP local production avec Supabase ;
 - `npm test` avec `RUN_DB_INTEGRATION=1`, `npm run build`, `npm run lint` et `npm run check:docs` passent.
+
+### Lot 3 - Commande client
+
+Validation effectuee :
+
+- verification panier serveur centralisee ;
+- checkout sans compte et sans paiement en ligne ;
+- validation nom, prenom, telephone, adresse ou zone et mode de paiement ;
+- livraison limitee a la Republique tchetchene avec messages russes ;
+- creation commande transactionnelle avec snapshots prix, image et lignes ;
+- decrement de stock dans la transaction uniquement apres validation reussie ;
+- test d'integration Supabase couvrant total mis a jour, creation commande et decrement stock ;
+- confirmation publique sans donnees personnelles et sans recreation de commande au rechargement ;
+- acces direct a `/checkout/confirmation?order=...` affiche un etat neutre sans rendre le numero comme confirmation recente ;
+- routes `/checkout`, `/checkout/confirmation` et `/checkout/confirmation?order=IH-TEST-DIRECT` verifiees en HTTP local production avec Supabase ;
+- `RUN_DB_INTEGRATION=1 npm test`, `npm run build`, `npm run lint` et `npm run check:docs` passent.
 
 ## Suivi des lots
 
@@ -129,8 +130,8 @@ Premier ticket :
 
 Le prochain focus recommande est :
 
-1. verrouiller le Lot 3 commande client avec la checklist manuelle ;
-2. finir l'audit mobile public Lot 8 ;
-3. lancer l'audit admin connecte.
+1. finir l'audit mobile public Lot 8 ;
+2. lancer l'audit admin connecte ;
+3. garder la checklist fonctionnelle V1 comme filtre final avant V1.
 
-Cette sequence garde le parcours client stable et recentre maintenant l'effort sur la validation commande, l'admin et la verification finale.
+Cette sequence garde le parcours client stable et recentre maintenant l'effort sur l'admin et la verification finale.

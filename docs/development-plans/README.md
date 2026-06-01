@@ -27,7 +27,7 @@ Chaque plan de lot contient :
 1. `termines/lot-0-base-donnees.md`
 2. `termines/lot-1-catalogue-client.md`
 3. `termines/lot-2-fiche-produit-panier.md`
-4. `en-cours/lot-3-commande-client.md`
+4. `termines/lot-3-commande-client.md`
 5. `en-cours/lot-4-auth-dashboard-admin.md`
 6. `en-cours/lot-5-admin-catalogue.md`
 7. `en-cours/lot-6-admin-stock.md`

@@ -80,7 +80,7 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
     );
     window.localStorage.removeItem(CART_KEY);
     window.dispatchEvent(new Event("indira-home-cart-updated"));
-    router.push(`/checkout/confirmation?order=${encodeURIComponent(state.orderNumber)}`);
+    router.push("/checkout/confirmation");
   }, [router, state.orderNumber, state.totalRub]);
 
   if (cart.length === 0) {

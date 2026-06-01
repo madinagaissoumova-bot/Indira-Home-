@@ -17,8 +17,8 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. Lot 3 - Commande client.
-2. `UI-803` Audit mobile public.
+1. `UI-803` Audit mobile public.
+2. Lot 4 - Auth admin et dashboard.
 3. `QA-801` Checklist fonctionnelle V1.
 
 ## Lot 0 - Base projet et donnees
