@@ -21,7 +21,7 @@ Statuts utilises :
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
 | Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
 | Lot 7 | `lot-7-admin-commandes.md` | ACTIF | Les commandes peuvent etre consultees, mises a jour et contactees par telephone ou WhatsApp depuis le detail admin. |
-| Lot 8 | `lot-8-polish-verification.md` | ACTIF | Textes russes, centralisation contenu, audits mobile public et admin connecte, build production et verification HTTP locale effectues. Checklist V1 reste a finaliser. |
+| Lot 8 | `lot-8-polish-verification.md` | TERMINE | Textes russes, centralisation contenu, audits mobile public et admin connecte, build production, Supabase, securite et checklist V1 sont verifies. |
 
 ## Plans actifs
 
@@ -78,6 +78,23 @@ Validation effectuee :
 - routes `/checkout`, `/checkout/confirmation` et `/checkout/confirmation?order=IH-TEST-DIRECT` verifiees en HTTP local production avec Supabase ;
 - `RUN_DB_INTEGRATION=1 npm test`, `npm run build`, `npm run lint` et `npm run check:docs` passent.
 
+### Lot 8 - Polish mobile et verification V1
+
+Validation effectuee :
+
+- textes client russes et contenu client centralise ;
+- audit mobile public effectue avec corrections CSS anti-debordement ;
+- audit admin connecte effectue sur dashboard, produits, categories, stock, commandes, detail produit et detail commande ;
+- liens telephone et WhatsApp disponibles dans le detail commande admin ;
+- confirmation avant annulation de commande admin ;
+- routes publiques et admin verifiees en HTTP local production ;
+- `/admin` redirige vers `/admin/login` sans session ;
+- confirmation publique directe affiche un etat neutre sans donnees personnelles ;
+- Supabase verifie : migrations appliquees, donnees V1 presentes, commande de test presente ;
+- absence de paiement en ligne verifiee ;
+- secrets `.env` non suivis par Git ;
+- `npm run prisma:generate`, `npm run prisma:migrate`, `RUN_DB_INTEGRATION=1 npm test`, `npm run lint`, `npm run build` et `npm run check:docs` passent.
+
 ## Suivi des lots
 
 ### Lot 4 - Auth admin et dashboard
@@ -130,8 +147,8 @@ Premier ticket :
 
 Le prochain focus recommande est :
 
-1. finir l'audit mobile public Lot 8 ;
-2. lancer l'audit admin connecte ;
-3. garder la checklist fonctionnelle V1 comme filtre final avant V1.
+1. preparer la mise en ligne avec sauvegarde Supabase recente ;
+2. verifier les variables de production hors depot ;
+3. effectuer un dernier test commande apres deploiement.
 
-Cette sequence garde le parcours client stable et recentre maintenant l'effort sur l'admin et la verification finale.
+Cette sequence garde la V1 stable et evite de lancer la production sans sauvegarde ni secrets de production controles.

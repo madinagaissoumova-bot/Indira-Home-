@@ -318,6 +318,23 @@ Validations executees :
 - `npm run build` : OK.
 - Rendu du detail commande verifie : liens `Позвонить`, `WhatsApp`, `tel:+79889064106` et `https://wa.me/79889064106` presents.
 
+### 2026-06-01 - Checklist finale V1 QA-801
+
+- `npm run prisma:generate` : OK.
+- `npm run prisma:migrate` : OK, aucune migration en attente sur Supabase.
+- `RUN_DB_INTEGRATION=1 npm test` : OK, 29 tests passent avec creation commande et decrement stock.
+- `npm run lint` : OK.
+- `npm run build` : OK.
+- `npm run check:docs` : OK.
+- `npm run prisma:seed` non relance pendant cette passe finale afin d'eviter de reecrire les stocks de demonstration alors qu'une commande de test existe deja ; le seed avait deja ete execute apres deblocage Supabase et les compteurs finaux confirment 4 categories, 15 sous-categories, 19 produits et 1 commande.
+- Routes publiques verifiees en HTTP production locale 200 : `/`, `/category/posuda`, `/subcategory/servizy`, `/product/stolovyi-serviz-white-lui-laren-39`, `/search?q=serviz`, `/cart`, `/checkout`, `/checkout/confirmation`, `/privacy`.
+- Routes admin verifiees avec session valide : `/admin`, `/admin/products`, `/admin/products/cmpuyk726000zi2yigcfxez7a`, `/admin/categories`, `/admin/stock`, `/admin/orders`, `/admin/orders/cmpuzimoj0001wn5q0ikmq7td`.
+- Protection admin verifiee : `/admin` sans session redirige vers `/admin/login`.
+- Confirmation publique directe sans query verifiee : etat neutre, pas de numero de commande, pas de telephone, pas d'adresse, pas de nom cliente.
+- Secrets verifies : `.env`, `.env.local` et `.env.production` ne sont pas suivis par Git.
+- Absence de paiement en ligne verifiee dans le code : seuls les modes hors ligne V1 sont presents.
+- Sauvegarde et rollback documentes dans `docs/project-management/production-plan.md`; une sauvegarde Supabase recente reste a faire juste avant mise en ligne reelle.
+
 ## Risques
 
 - finir avec un parcours fonctionnel mais peu utilisable sur mobile ;

@@ -109,7 +109,7 @@ Priorites :
 | UI-802 | P1 | DONE | Centralisation contenu client russe. |
 | UI-803 | P0 | DONE | Audit mobile public et navigation header. |
 | UI-804 | P1 | DONE | Audit admin. |
-| QA-801 | P0 | ACTIVE | Checklist fonctionnelle V1. |
+| QA-801 | P0 | DONE | Checklist fonctionnelle V1. |
 | QA-802 | P0 | DONE | Build et verification production. |
 
 ## Regle de mise a jour

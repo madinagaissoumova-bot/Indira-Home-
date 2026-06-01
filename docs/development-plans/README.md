@@ -32,7 +32,7 @@ Chaque plan de lot contient :
 6. `en-cours/lot-5-admin-catalogue.md`
 7. `en-cours/lot-6-admin-stock.md`
 8. `en-cours/lot-7-admin-commandes.md`
-9. `en-cours/lot-8-polish-verification.md`
+9. `termines/lot-8-polish-verification.md`
 
 ## Suivi actif / termine
 
