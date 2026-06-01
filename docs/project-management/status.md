@@ -20,8 +20,8 @@ Statuts utilises :
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
 | Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
 | Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
-| Lot 7 | `lot-7-admin-commandes.md` | ACTIF | Les commandes peuvent etre consultees et mises a jour. |
-| Lot 8 | `lot-8-polish-verification.md` | ACTIF | Textes russes, centralisation contenu, audit mobile public, build production et verification HTTP locale effectues. Audit admin connecte et checklist V1 restent a finaliser. |
+| Lot 7 | `lot-7-admin-commandes.md` | ACTIF | Les commandes peuvent etre consultees, mises a jour et contactees par telephone ou WhatsApp depuis le detail admin. |
+| Lot 8 | `lot-8-polish-verification.md` | ACTIF | Textes russes, centralisation contenu, audits mobile public et admin connecte, build production et verification HTTP locale effectues. Checklist V1 reste a finaliser. |
 
 ## Plans actifs
 

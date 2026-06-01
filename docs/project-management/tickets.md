@@ -99,7 +99,7 @@ Priorites :
 | ADMIN-702 | P0 | ACTIVE | Detail commande `/admin/orders/:id`. |
 | ADMIN-703 | P0 | ACTIVE | Changement statut commande. |
 | ADMIN-704 | P1 | ACTIVE | Note interne admin. |
-| ADMIN-705 | P1 | ACTIVE | Liens telephone et WhatsApp. |
+| ADMIN-705 | P1 | DONE | Liens telephone et WhatsApp. |
 
 ## Lot 8 - Polish et verification
 
@@ -108,7 +108,7 @@ Priorites :
 | UI-801 | P0 | DONE | Relecture textes russes client. |
 | UI-802 | P1 | DONE | Centralisation contenu client russe. |
 | UI-803 | P0 | DONE | Audit mobile public et navigation header. |
-| UI-804 | P1 | ACTIVE | Audit admin. |
+| UI-804 | P1 | DONE | Audit admin. |
 | QA-801 | P0 | ACTIVE | Checklist fonctionnelle V1. |
 | QA-802 | P0 | DONE | Build et verification production. |
 

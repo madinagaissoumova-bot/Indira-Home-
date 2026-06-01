@@ -1800,6 +1800,10 @@ p {
   transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
+.admin-list-row span {
+  overflow-wrap: anywhere;
+}
+
 .admin-list-row:hover {
   background: rgba(242, 225, 223, 0.58);
   border-color: rgba(142, 63, 76, 0.24);
@@ -1828,6 +1832,16 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   padding: 12px 0;
+}
+
+.admin-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-contact-actions .button {
+  min-width: 128px;
 }
 
 .stock-controls {

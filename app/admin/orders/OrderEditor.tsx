@@ -1,5 +1,6 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { useActionState } from "react";
 import { ORDER_STATUS } from "@/lib/constants";
 import type { AdminActionState } from "../actions";
@@ -16,12 +17,28 @@ function initialState(): AdminActionState {
   return {};
 }
 
+function normalizePhoneForLink(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length === 11 && digits.startsWith("8")) return `7${digits.slice(1)}`;
+  return digits;
+}
+
+function confirmCancellation(event: FormEvent<HTMLFormElement>) {
+  const formData = new FormData(event.currentTarget);
+  if (formData.get("status") === ORDER_STATUS.cancelled && !window.confirm(ru.admin.orders.confirmCancel)) {
+    event.preventDefault();
+  }
+}
+
 export function OrderEditor({ order }: OrderEditorProps) {
   const [state, action, isPending] = useActionState(updateOrderAction, initialState());
   const paymentLabel =
     ru.admin.common.paymentLabels[
       order.paymentMethod as keyof typeof ru.admin.common.paymentLabels
     ] ?? order.paymentMethod;
+  const contactPhone = normalizePhoneForLink(order.customerPhone);
+  const contactHref = contactPhone ? `tel:+${contactPhone}` : undefined;
+  const whatsappHref = contactPhone ? `https://wa.me/${contactPhone}` : undefined;
 
   return (
     <div className="checkout-layout">
@@ -35,6 +52,20 @@ export function OrderEditor({ order }: OrderEditorProps) {
           <span>{ru.admin.common.phone}</span>
           <strong>{order.customerPhone}</strong>
         </div>
+        {contactHref || whatsappHref ? (
+          <div className="admin-contact-actions">
+            {contactHref ? (
+              <a className="button secondary" href={contactHref}>
+                {ru.admin.orders.callCustomer}
+              </a>
+            ) : null}
+            {whatsappHref ? (
+              <a className="button secondary whatsapp-button" href={whatsappHref} target="_blank" rel="noreferrer">
+                {ru.admin.orders.whatsappCustomer}
+              </a>
+            ) : null}
+          </div>
+        ) : null}
         <div className="summary-line">
           <span>{ru.admin.common.address}</span>
           <strong>{order.deliveryAddressOrZone}</strong>
@@ -63,7 +94,7 @@ export function OrderEditor({ order }: OrderEditorProps) {
         </div>
       </section>
 
-      <form action={action} className="form-panel">
+      <form action={action} className="form-panel" onSubmit={confirmCancellation}>
         <h2>{ru.admin.orders.editOrder}</h2>
         {state.error ? <p className="form-error">{state.error}</p> : null}
         {state.success ? <p>{state.success}</p> : null}

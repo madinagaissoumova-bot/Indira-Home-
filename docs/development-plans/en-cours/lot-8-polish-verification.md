@@ -301,6 +301,23 @@ Limite :
 
 - Le redimensionnement automatique de Safari en largeur 390 px a ete bloque par l'autorisation macOS Acces d'aide. L'audit a donc ete complete par corrections CSS ciblees et verification HTTP production locale, sans capture responsive pilotee automatiquement.
 
+### 2026-06-01 - Audit admin connecte UI-804
+
+- Session admin locale generee a partir des variables `.env`, sans exposer les secrets.
+- Protection admin verifiee : `/admin` redirige vers `/admin/login` sans session.
+- Routes admin verifiees avec session valide : `/admin`, `/admin/products`, `/admin/products/cmpuyk726000zi2yigcfxez7a`, `/admin/categories`, `/admin/stock`, `/admin/orders`, `/admin/orders/cmpuzimoj0001wn5q0ikmq7td`.
+- Detail commande verifie avec une vraie commande de test existante dans Supabase : `IH-20260601-TEST-120989`.
+- Ajout des liens admin `tel:` et WhatsApp sur le detail commande.
+- Ajout d'une confirmation navigateur avant passage d'une commande au statut `CANCELLED`.
+- Correction CSS pour limiter les debordements des lignes admin longues.
+
+Validations executees :
+
+- `npm run lint` : OK.
+- `npm test` : OK, 28 tests passent, integration checkout DB ignoree sans `RUN_DB_INTEGRATION=1`.
+- `npm run build` : OK.
+- Rendu du detail commande verifie : liens `Позвонить`, `WhatsApp`, `tel:+79889064106` et `https://wa.me/79889064106` presents.
+
 ## Risques
 
 - finir avec un parcours fonctionnel mais peu utilisable sur mobile ;
