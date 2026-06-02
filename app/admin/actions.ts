@@ -22,6 +22,7 @@ import {
 import {
   clearAdminSession,
   createAdminSession,
+  getMissingAdminAuthEnvVars,
   isAdminAuthConfigured,
   requireAdminSession,
   verifyAdminCredentials
@@ -117,7 +118,10 @@ export async function loginAdmin(_previousState: AdminActionState, formData: For
   const password = String(formData.get("password") ?? "");
 
   if (!isAdminAuthConfigured()) {
-    return { error: ru.admin.login.notConfigured };
+    const missingEnvVars = getMissingAdminAuthEnvVars();
+    return {
+      error: `${ru.admin.login.notConfigured} Не найдены: ${missingEnvVars.join(", ")}.`
+    };
   }
   if (!username || !password) {
     return { error: ru.admin.login.missing };

@@ -21,9 +21,19 @@ function getAdminConfig() {
   };
 }
 
-export function isAdminAuthConfigured() {
+export function getMissingAdminAuthEnvVars() {
   const config = getAdminConfig();
-  return Boolean(config.username && config.passwordHash && config.sessionSecret);
+  const missing: string[] = [];
+
+  if (!config.username) missing.push("ADMIN_USERNAME");
+  if (!config.passwordHash) missing.push("ADMIN_PASSWORD_HASH");
+  if (!config.sessionSecret) missing.push("ADMIN_SESSION_SECRET");
+
+  return missing;
+}
+
+export function isAdminAuthConfigured() {
+  return getMissingAdminAuthEnvVars().length === 0;
 }
 
 function sign(value: string, secret: string) {
