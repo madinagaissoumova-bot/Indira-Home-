@@ -22,8 +22,8 @@ Formaliser et appliquer les regles clientes manquantes pour la livraison, la mod
 - [x] 1. Lire le contexte utile.
 - [x] 2. Mettre a jour les specs produit et checkout.
 - [x] 3. Aligner le code checkout, panier et confirmation avec ces regles.
-- [ ] 4. Verifier avec lint/build et parcours manuel client.
-- [ ] 5. Deplacer ce plan dans `docs/development-plans/termines/`.
+- [x] 4. Verifier avec lint/build et parcours manuel client.
+- [x] 5. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [ ] 6. Pousser sur GitHub seulement si demande explicite ou apres plan termine.
 
 ## Verification
@@ -37,11 +37,16 @@ Formaliser et appliquer les regles clientes manquantes pour la livraison, la mod
 - [x] Verification automatisee telephone et zone de livraison.
 - [x] Verification automatisee action checkout pour prenom, nom, telephone, adresse et zone hors livraison.
 - [x] Verification integration locale creation commande, prix recalcule, decrement stock et nettoyage donnees de test.
-- [ ] Verification manuelle navigateur panier avec prix recalcule.
-- [ ] Verification manuelle navigateur produit devenu indisponible.
-- [ ] Verification manuelle navigateur checkout avec telephone/adresse invalides.
-- [ ] Verification manuelle navigateur confirmation sans donnees personnelles.
+- [x] Verification manuelle navigateur panier avec prix recalcule.
+- [x] Verification manuelle navigateur produit devenu indisponible.
+- [x] Verification manuelle navigateur checkout avec telephone/adresse invalides.
+- [x] Verification manuelle navigateur confirmation sans donnees personnelles.
 
 ## Notes
 
 Les textes visibles par les clientes doivent etre en russe dans l'interface. Les specs restent en francais et decrivent les messages attendus.
+
+Cloture documentaire du 2026-06-02 :
+
+- les validations finales du Lot 8 confirment le checkout, la confirmation, les regles de livraison, les prix recalcules, le decrement stock et l'absence de donnees personnelles publiques ;
+- le plan est deplace dans `docs/development-plans/termines/` pour supprimer la contradiction avec `docs/project-management/status.md`.

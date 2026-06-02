@@ -17,9 +17,9 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. `UI-803` Audit mobile public.
-2. Lot 4 - Auth admin et dashboard.
-3. `QA-801` Checklist fonctionnelle V1.
+1. Preparatifs de mise en ligne V1.
+2. Sauvegarde Supabase recente avant production.
+3. Dernier test commande apres deploiement.
 
 ## Lot 0 - Base projet et donnees
 
@@ -67,38 +67,38 @@ Priorites :
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| ADMIN-401 | P0 | ACTIVE | Auth admin avec cookie signe HTTP-only. |
-| ADMIN-402 | P0 | ACTIVE | Protection routes et actions admin. |
-| ADMIN-403 | P0 | ACTIVE | Deconnexion admin. |
-| ADMIN-404 | P0 | ACTIVE | Dashboard avec vrais compteurs et commandes recentes. |
+| ADMIN-401 | P0 | DONE | Auth admin avec cookie signe HTTP-only. |
+| ADMIN-402 | P0 | DONE | Protection routes et actions admin. |
+| ADMIN-403 | P0 | DONE | Deconnexion admin. |
+| ADMIN-404 | P0 | DONE | Dashboard avec vrais compteurs et commandes recentes. |
 
 ## Lot 5 - Admin catalogue
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| ADMIN-501 | P0 | ACTIVE | Liste produits `/admin/products`. |
-| ADMIN-502 | P0 | ACTIVE | Formulaire produit `/admin/products/:id`. |
-| ADMIN-503 | P0 | ACTIVE | Actions publier, masquer, remettre visible, supprimer si autorise. |
-| ADMIN-504 | P0 | ACTIVE | Gestion categories `/admin/categories`. |
+| ADMIN-501 | P0 | DONE | Liste produits `/admin/products`. |
+| ADMIN-502 | P0 | DONE | Formulaire produit `/admin/products/:id`. |
+| ADMIN-503 | P0 | DONE | Actions publier, masquer, remettre visible, supprimer si autorise. |
+| ADMIN-504 | P0 | DONE | Gestion categories `/admin/categories`. |
 
 ## Lot 6 - Admin stock
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| ADMIN-601 | P0 | ACTIVE | Page stock `/admin/stock`. |
-| ADMIN-602 | P0 | ACTIVE | Ajouter du stock. |
-| ADMIN-603 | P0 | ACTIVE | Retirer du stock. |
-| ADMIN-604 | P0 | ACTIVE | Corriger stock. |
-| ADMIN-605 | P2 | TODO | Historique minimal de stock optionnel. |
+| ADMIN-601 | P0 | DONE | Page stock `/admin/stock`. |
+| ADMIN-602 | P0 | DONE | Ajouter du stock. |
+| ADMIN-603 | P0 | DONE | Retirer du stock. |
+| ADMIN-604 | P0 | DONE | Corriger stock. |
+| ADMIN-605 | P2 | TODO | Historique minimal de stock optionnel, hors blocage V1. |
 
 ## Lot 7 - Admin commandes
 
 | Ticket | Priorite | Statut | Description |
 | --- | --- | --- | --- |
-| ADMIN-701 | P0 | ACTIVE | Liste commandes `/admin/orders`. |
-| ADMIN-702 | P0 | ACTIVE | Detail commande `/admin/orders/:id`. |
-| ADMIN-703 | P0 | ACTIVE | Changement statut commande. |
-| ADMIN-704 | P1 | ACTIVE | Note interne admin. |
+| ADMIN-701 | P0 | DONE | Liste commandes `/admin/orders`. |
+| ADMIN-702 | P0 | DONE | Detail commande `/admin/orders/:id`. |
+| ADMIN-703 | P0 | DONE | Changement statut commande. |
+| ADMIN-704 | P1 | DONE | Note interne admin. |
 | ADMIN-705 | P1 | DONE | Liens telephone et WhatsApp. |
 
 ## Lot 8 - Polish et verification

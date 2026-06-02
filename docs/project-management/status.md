@@ -17,13 +17,15 @@ Statuts utilises :
 | Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | TERMINE | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et filtres publics serveur sont verifies. |
 | Lot 3 | `lot-3-commande-client.md` | TERMINE | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration Supabase et verification HTTP locale sont termines. |
-| Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | Auth admin, logout, protection, dashboard et compteurs existent. |
-| Lot 5 | `lot-5-admin-catalogue.md` | ACTIF | Produits et categories admin sont gerables depuis l'interface. |
-| Lot 6 | `lot-6-admin-stock.md` | ACTIF | Le stock est consultable et corrigeable depuis l'interface admin. |
-| Lot 7 | `lot-7-admin-commandes.md` | ACTIF | Les commandes peuvent etre consultees, mises a jour et contactees par telephone ou WhatsApp depuis le detail admin. |
+| Lot 4 | `lot-4-auth-dashboard-admin.md` | TERMINE | Auth admin, logout, protection serveur, dashboard et compteurs sont verifies. |
+| Lot 5 | `lot-5-admin-catalogue.md` | TERMINE | Produits, categories et sous-categories admin sont gerables et verifies. |
+| Lot 6 | `lot-6-admin-stock.md` | TERMINE | Le stock est consultable, ajoutable, retirable et corrigeable depuis l'interface admin. |
+| Lot 7 | `lot-7-admin-commandes.md` | TERMINE | Les commandes peuvent etre consultees, mises a jour, annotees et contactees depuis l'admin. |
 | Lot 8 | `lot-8-polish-verification.md` | TERMINE | Textes russes, centralisation contenu, audits mobile public et admin connecte, build production, Supabase, securite et checklist V1 sont verifies. |
 
 ## Plans actifs
+
+Aucun plan actif ne bloque la V1. Les prochains travaux documentes concernent la preparation de mise en ligne et les verifications de production.
 
 ## Plans termines
 
@@ -78,6 +80,54 @@ Validation effectuee :
 - routes `/checkout`, `/checkout/confirmation` et `/checkout/confirmation?order=IH-TEST-DIRECT` verifiees en HTTP local production avec Supabase ;
 - `RUN_DB_INTEGRATION=1 npm test`, `npm run build`, `npm run lint` et `npm run check:docs` passent.
 
+### Lot 4 - Auth admin et dashboard
+
+Validation effectuee :
+
+- connexion admin avec cookie signe HTTP-only ;
+- deconnexion admin disponible ;
+- routes et actions admin protegees cote serveur ;
+- `/admin` redirige vers `/admin/login` sans session ;
+- dashboard connecte avec compteurs, commandes recentes, alertes stock et raccourcis ;
+- routes `/admin`, `/admin/products`, `/admin/categories`, `/admin/stock` et `/admin/orders` verifiees avec session valide.
+
+### Lot 5 - Admin catalogue
+
+Validation effectuee :
+
+- liste produits admin disponible ;
+- creation et edition produit disponibles ;
+- actions publication, masquage, remise visible et suppression autorisee disponibles ;
+- categories et sous-categories gerables depuis `/admin/categories` ;
+- routes detail produit admin verifiees avec session valide ;
+- protections admin confirmees sur les ecrans catalogue.
+
+### Lot 6 - Admin stock
+
+Validation effectuee :
+
+- page `/admin/stock` disponible et protegee ;
+- stock exact visible uniquement cote admin ;
+- ajout, retrait et correction de stock valides par les helpers metier ;
+- valeurs negatives ou non entieres refusees ;
+- reassort et stock 0 se refletent dans l'etat commandable cote client sans exposer la quantite exacte.
+
+Note :
+
+- `ADMIN-605` historique minimal de stock reste optionnel et hors blocage V1.
+
+### Lot 7 - Admin commandes
+
+Validation effectuee :
+
+- liste commandes `/admin/orders` disponible et protegee ;
+- detail commande `/admin/orders/:id` disponible et protege ;
+- statuts commande modifiables parmi les valeurs V1 ;
+- note interne admin enregistrable et non publique ;
+- liens telephone et WhatsApp disponibles dans le detail commande admin ;
+- confirmation avant annulation de commande admin ;
+- detail commande verifie avec une vraie commande de test Supabase.
+
 ### Lot 8 - Polish mobile et verification V1
 
 Validation effectuee :
@@ -95,53 +145,17 @@ Validation effectuee :
 - secrets `.env` non suivis par Git ;
 - `npm run prisma:generate`, `npm run prisma:migrate`, `RUN_DB_INTEGRATION=1 npm test`, `npm run lint`, `npm run build` et `npm run check:docs` passent.
 
-## Suivi des lots
+### Passe navigateur V1 - 2026-06-02
 
-### Lot 4 - Auth admin et dashboard
+Validation effectuee :
 
-Priorite : haute.
-
-Premiers tickets :
-
-- `ADMIN-401` Auth admin ;
-- `ADMIN-402` Protection routes/actions ;
-- `ADMIN-404` Dashboard avec vrais compteurs.
-
-### Lot 5 - Admin catalogue
-
-Priorite : haute.
-
-Premiers tickets :
-
-- `ADMIN-501` Liste produits ;
-- `ADMIN-502` Formulaire produit ;
-- `ADMIN-504` Gestion categories.
-
-### Lot 6 - Admin stock
-
-Priorite : moyenne-haute.
-
-Premier ticket :
-
-- `ADMIN-601` Page stock.
-
-### Lot 7 - Admin commandes
-
-Priorite : haute apres creation commande.
-
-Premiers tickets :
-
-- `ADMIN-701` Liste commandes ;
-- `ADMIN-702` Detail commande ;
-- `ADMIN-703` Changement statut.
-
-### Lot 8 - Polish mobile et verification V1
-
-Priorite : finale.
-
-Premier ticket :
-
-- `QA-801` Checklist fonctionnelle.
+- passe Chromium locale avec captures dans `/private/tmp/indira-browser-qa` ;
+- mobile 390 px verifie sur accueil, categorie, sous-categorie, recherche, fiche produit, panier, checkout, confirmation et confidentialite ;
+- admin connecte desktop verifie sur dashboard, produits, detail produit, categories, stock, commandes et detail commande ;
+- protection admin sans session verifiee : `/admin` redirige vers `/admin/login` ;
+- confirmation publique comparee aux donnees de la commande de test Supabase, sans fuite de nom, telephone prive ou adresse ;
+- aucun debordement horizontal detecte sur les pages auditees ;
+- correction CSS appliquee sur `/admin/stock` pour eviter les boutons d'action coupes.
 
 ## Prochain focus recommande
 

@@ -45,9 +45,14 @@ Le hash bcrypt local a ete verifie avec le mot de passe de developpement. En pro
 
 ## Points encore a verifier manuellement
 
-- Test visuel responsive reel a 360 px, 390 px, 768 px et 1280 px avec screenshots.
-- Parcours commande complet dans le navigateur : ajout panier, checkout, confirmation, vidage panier.
-- Parcours admin connecte complet dans le navigateur : dashboard, produits, categories, stock, commandes.
-- Checklist metier complete de `docs/testing/test-plan.md`, surtout snapshots prix/images et transaction avec ligne invalide.
+- [x] Test responsive public traite pendant le Lot 8 avec corrections CSS anti-debordement et verification HTTP production locale.
+- [x] Parcours commande couvert par les validations Lot 8, incluant checkout, confirmation et test d'integration Supabase avec decrement stock.
+- [x] Parcours admin connecte verifie pendant le Lot 8 : dashboard, produits, categories, stock, commandes, detail produit et detail commande.
+- [x] Checklist metier complete de `docs/testing/test-plan.md` executee pendant le Lot 8.
 
-Le plugin Browser etait disponible dans les instructions, mais l'outil Node REPL requis pour le piloter n'etait pas expose dans cette session. La verification visuelle screenshot reste donc a faire dans une session ou le navigateur integre est pilotable.
+Le plugin Browser etait disponible dans les instructions, mais l'outil Node REPL requis pour le piloter n'etait pas expose dans cette session. La verification visuelle screenshot automatisee n'a pas ete produite ; la verification V1 finale repose sur les corrections CSS ciblees, les routes HTTP production locale, les tests automatises et l'audit admin connecte consignes dans `docs/development-plans/termines/lot-8-polish-verification.md`.
+
+Cloture documentaire du 2026-06-02 :
+
+- ce plan de verification est cloture par la checklist finale V1 du Lot 8 ;
+- il est deplace dans `docs/development-plans/termines/` pour que `docs/development-plans/en-cours/` ne contienne plus d'ancien plan V1 deja resolu.
