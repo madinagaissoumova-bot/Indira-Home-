@@ -31,10 +31,15 @@ export default async function AdminOrdersPage() {
           <div className="checkout-items">
             {orders.map((order) => (
               <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
-                <span>
-                  {order.orderNumber} · <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span> · {order.customerName} · {order.items.length}
+                <span className="admin-list-main">
+                  <strong>{order.orderNumber}</strong>
+                  <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
                 </span>
-                <strong>{formatRub(order.totalRub)}</strong>
+                <span className="admin-list-meta">
+                  <span>{order.customerName}</span>
+                  <span>{order.items.length} шт.</span>
+                </span>
+                <strong className="admin-list-value">{formatRub(order.totalRub)}</strong>
               </Link>
             ))}
           </div>

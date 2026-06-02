@@ -5,7 +5,6 @@ import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
 import { requireAdminSession } from "@/lib/adminAuth";
 import { formatRub } from "@/lib/format";
-import { logoutAdmin } from "./actions";
 import { AdminNav } from "./AdminNav";
 
 const adminSections = [
@@ -107,11 +106,6 @@ export default async function AdminPage() {
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
         <h1>{ru.admin.dashboard.title}</h1>
         <p>{ru.admin.dashboard.text}</p>
-        <form action={logoutAdmin}>
-          <button className="button secondary" type="submit">
-            {ru.admin.dashboard.logout}
-          </button>
-        </form>
       </section>
 
       <section className="admin-grid" aria-label={ru.admin.dashboard.title}>
@@ -130,10 +124,14 @@ export default async function AdminPage() {
             <div className="checkout-items">
               {dashboard.recentOrders.map((order) => (
                 <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
-                  <span>
-                    {order.orderNumber} · <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span> · {order.items.length}
+                  <span className="admin-list-main">
+                    <strong>{order.orderNumber}</strong>
+                    <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
                   </span>
-                  <strong>{formatRub(order.totalRub)}</strong>
+                  <span className="admin-list-meta">
+                    <span>{order.items.length} шт.</span>
+                  </span>
+                  <strong className="admin-list-value">{formatRub(order.totalRub)}</strong>
                 </Link>
               ))}
             </div>
@@ -148,8 +146,10 @@ export default async function AdminPage() {
             <div className="checkout-items">
               {dashboard.stockAlerts.map((product) => (
                 <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
-                  <span>{product.name}</span>
-                  <strong>{ru.admin.dashboard.stockQuantity(product.stockQuantity)}</strong>
+                  <span className="admin-list-main">
+                    <strong>{product.name}</strong>
+                  </span>
+                  <strong className="admin-list-value">{ru.admin.dashboard.stockQuantity(product.stockQuantity)}</strong>
                 </Link>
               ))}
             </div>

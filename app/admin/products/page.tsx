@@ -53,10 +53,15 @@ export default async function AdminProductsPage() {
           <div className="checkout-items">
             {products.map((product) => (
               <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
-                <span>
-                  {product.name} · <span className="admin-badge">{getAdminProductStatusLabel(product.status)}</span> · {product.category.name} / {product.subcategory.name}
+                <span className="admin-list-main">
+                  <strong>{product.name}</strong>
+                  <span className="admin-badge">{getAdminProductStatusLabel(product.status)}</span>
                 </span>
-                <strong>{formatRub(product.priceRub)}</strong>
+                <span className="admin-list-meta">
+                  <span>{product.category.name}</span>
+                  <span>{product.subcategory.name}</span>
+                </span>
+                <strong className="admin-list-value">{formatRub(product.priceRub)}</strong>
               </Link>
             ))}
           </div>

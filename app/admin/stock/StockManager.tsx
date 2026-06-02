@@ -21,14 +21,18 @@ function StockRow({ product }: { product: AdminStockProductItem }) {
   const statusLabel = getAdminProductStatusLabel(product.status);
 
   return (
-    <form action={action} className="summary-line">
+    <form action={action} className="summary-line admin-stock-row">
       <input name="productId" type="hidden" value={product.id} />
-      <span>
-        {product.name} · {product.category.name} / {product.subcategory.name}
-        <br />
-        <small>
-          {statusLabel} · {ru.admin.stock.current}: {product.stockQuantity}
-        </small>
+      <span className="admin-list-main">
+        <strong>{product.name}</strong>
+        <span className="admin-badge">{statusLabel}</span>
+      </span>
+      <span className="admin-list-meta">
+        <span>{product.category.name}</span>
+        <span>{product.subcategory.name}</span>
+        <span>
+          {ru.admin.stock.current}: {product.stockQuantity}
+        </span>
       </span>
       <div className="stock-controls">
         <div className="field">
