@@ -25,7 +25,7 @@ export default async function AdminCategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <main className="page">
+    <main className="page admin-page">
       <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>

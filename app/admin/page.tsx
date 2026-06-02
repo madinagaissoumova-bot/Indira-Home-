@@ -100,7 +100,7 @@ export default async function AdminPage() {
   const dashboard = await getDashboardData();
 
   return (
-    <main className="page">
+    <main className="page admin-page">
       <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>

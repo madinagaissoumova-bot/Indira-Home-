@@ -8,7 +8,7 @@ export default async function AdminLoginPage() {
   if (session) redirect("/admin");
 
   return (
-    <main className="page">
+    <main className="page admin-page">
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.login.eyebrow}</span>
         <h1>{ru.admin.login.title}</h1>

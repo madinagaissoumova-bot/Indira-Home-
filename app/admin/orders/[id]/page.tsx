@@ -23,7 +23,7 @@ export default async function AdminOrderDetailPage({
   if (!order) notFound();
 
   return (
-    <main className="page">
+    <main className="page admin-page">
       <AdminNav />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.admin.orders.title}</span>
