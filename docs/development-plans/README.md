@@ -6,10 +6,11 @@ Ce dossier transforme la roadmap en plans de developpement executables.
 
 - `en-cours/` : plans actifs, lots encore ouverts et verifications en attente.
 - `termines/` : plans termines et verifies.
-- `../project-management/` : tickets, statut projet et plan de production.
-- `../security/` : checklist securite V1.
+- `status.md` : statut courant des lots.
+- `tickets.md` : backlog priorise et etat des tickets.
+- `../specs/technical/` : specs techniques, Supabase, production, sauvegarde, rollback et securite.
 
-La racine de `docs/development-plans/` ne doit contenir que ce `README.md` et les sous-dossiers d'organisation. Ne pas y copier de plans de lot, de tickets, de statut, de plan de production ou de checklist securite.
+La racine de `docs/development-plans/` contient seulement les fichiers de suivi (`README.md`, `status.md`, `tickets.md`) et les sous-dossiers d'organisation. Ne pas y copier de plans de lot, de plan de production ou de checklist securite.
 
 Les nouveaux plans de travail quotidiens se creent dans `en-cours/`, puis se deplacent dans `termines/` une fois verifies.
 
@@ -36,9 +37,9 @@ Chaque plan de lot contient :
 
 ## Suivi actif / termine
 
-Le statut courant des plans est suivi dans `../project-management/status.md`.
+Le statut courant des plans est suivi dans `status.md`.
 
-Le backlog detaille des tickets est suivi dans `../project-management/tickets.md`.
+Le backlog detaille des tickets est suivi dans `tickets.md`.
 
 Pour changer un lot en `TERMINE`, verifier d'abord :
 
@@ -50,10 +51,10 @@ Pour changer un lot en `TERMINE`, verifier d'abord :
 
 | Fichier | Role |
 | --- | --- |
-| `../project-management/status.md` | Suivi actif, termine, a faire ou bloque par lot |
-| `../project-management/tickets.md` | Backlog priorise par ticket |
-| `../project-management/production-plan.md` | Plan de mise en production, sauvegarde et rollback |
-| `../security/security-checklist.md` | Checklist securite minimale V1 |
+| `status.md` | Suivi actif, termine, a faire ou bloque par lot |
+| `tickets.md` | Backlog priorise par ticket |
+| `../specs/technical/production-plan.md` | Plan de mise en production, sauvegarde et rollback |
+| `../specs/technical/security-checklist.md` | Checklist securite minimale V1 |
 | `../specs/content/ru-copy.md` | Base des textes russes cote cliente |
 
 ## Regle d'utilisation

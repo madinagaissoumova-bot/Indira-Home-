@@ -8,7 +8,7 @@ const root = process.cwd();
 const ignoredDirs = new Set([".git", ".next", "node_modules"]);
 const oldDocsPath = "D" + "ocs/";
 const finderDuplicatePath = "D" + "ocs 2";
-const allowedDevelopmentPlanRootFiles = new Set(["README.md"]);
+const allowedDevelopmentPlanRootFiles = new Set(["README.md", "status.md", "tickets.md"]);
 
 function listProjectFiles(dir: string): string[] {
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -45,7 +45,7 @@ describe("documentation structure", () => {
     assert.equal(existsSync(join(root, finderDuplicatePath)), false);
   });
 
-  it("keeps development plan root free of operational markdown files", () => {
+  it("keeps development plan root limited to tracking markdown files", () => {
     const developmentPlansRoot = join(root, "docs", "development-plans");
     const offenders = readdirSync(developmentPlansRoot, { withFileTypes: true })
       .filter((entry) => entry.isFile())

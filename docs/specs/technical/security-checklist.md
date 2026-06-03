@@ -78,7 +78,7 @@ Cette checklist couvre le minimum securite attendu pour la V1.
 - Variables production differentes du developpement.
 - Sauvegarde base disponible avant lancement.
 - Migrations executees de facon controlee.
-- Rollback documente dans `../project-management/production-plan.md`.
+- Rollback documente dans `production-plan.md`.
 
 ## Verification avant livraison V1
 

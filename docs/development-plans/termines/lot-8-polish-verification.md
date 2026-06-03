@@ -192,7 +192,7 @@ Execution :
 
 - suivre `docs/testing/test-plan.md` ;
 - verifier les cas stock, snapshots, confidentialite et absence de paiement en ligne ;
-- mettre a jour `docs/project-management/tickets.md` et `docs/project-management/status.md`.
+- mettre a jour `docs/development-plans/tickets.md` et `docs/development-plans/status.md`.
 
 Validation :
 
@@ -333,7 +333,7 @@ Validations executees :
 - Confirmation publique directe sans query verifiee : etat neutre, pas de numero de commande, pas de telephone, pas d'adresse, pas de nom cliente.
 - Secrets verifies : `.env`, `.env.local` et `.env.production` ne sont pas suivis par Git.
 - Absence de paiement en ligne verifiee dans le code : seuls les modes hors ligne V1 sont presents.
-- Sauvegarde et rollback documentes dans `docs/project-management/production-plan.md`; une sauvegarde Supabase recente reste a faire juste avant mise en ligne reelle.
+- Sauvegarde et rollback documentes dans `docs/specs/technical/production-plan.md`; une sauvegarde Supabase recente reste a faire juste avant mise en ligne reelle.
 
 ## Risques
 

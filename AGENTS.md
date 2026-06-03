@@ -29,9 +29,12 @@ Avant tout changement important de comportement, lire les documents pertinents :
 - `docs/specs/functional-map.md`
 - `docs/specs/work-plan.md`
 - `docs/specs/technical/README.md`
+- `docs/specs/technical/production-plan.md`
+- `docs/specs/technical/security-checklist.md`
+- `docs/specs/technical/supabase.md`
 - `docs/specs/feature-specs/`
-- `docs/project-management/status.md`
-- `docs/project-management/tickets.md`
+- `docs/development-plans/status.md`
+- `docs/development-plans/tickets.md`
 - `docs/roadmap/README.md`
 - `docs/testing/test-plan.md`
 
@@ -177,7 +180,7 @@ Avant de terminer un changement significatif :
 
 - lancer `npm run lint` si le changement touche TypeScript ou React ;
 - lancer `npm run build` si le changement touche routes, actions serveur, Prisma, CSS global ou configuration ;
-- mettre a jour `docs/project-management/tickets.md` et `docs/project-management/status.md` si un ticket ou lot change d'etat ;
+- mettre a jour `docs/development-plans/tickets.md` et `docs/development-plans/status.md` si un ticket ou lot change d'etat ;
 - utiliser `docs/testing/test-plan.md` pour la validation V1.
 
 ## A Eviter
