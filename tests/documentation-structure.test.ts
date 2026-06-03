@@ -8,6 +8,7 @@ const root = process.cwd();
 const ignoredDirs = new Set([".git", ".next", "node_modules"]);
 const oldDocsPath = "D" + "ocs/";
 const finderDuplicatePath = "D" + "ocs 2";
+const allowedDocsRootDirs = ["development-plans", "roadmap", "specs", "testing"];
 const allowedDevelopmentPlanRootFiles = new Set(["README.md", "status.md", "tickets.md"]);
 
 function listProjectFiles(dir: string): string[] {
@@ -43,6 +44,16 @@ describe("documentation structure", () => {
 
   it("does not keep Finder-style duplicate documentation folders", () => {
     assert.equal(existsSync(join(root, finderDuplicatePath)), false);
+  });
+
+  it("keeps the simplified docs root structure stable", () => {
+    const docsRoot = join(root, "docs");
+    const rootDirs = readdirSync(docsRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort();
+
+    assert.deepEqual(rootDirs, allowedDocsRootDirs);
   });
 
   it("keeps development plan root limited to tracking markdown files", () => {

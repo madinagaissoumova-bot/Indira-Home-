@@ -19,6 +19,8 @@ fait, et comment exploiter la V1 en conditions reelles.
 
 ## Regles de rangement
 
+- Ne pas ajouter de nouveau dossier a la racine de `docs/` sans decision explicite.
+- La racine de `docs/` doit rester limitee a `specs/`, `development-plans/`, `roadmap/` et `testing/`.
 - Mettre les besoins produit, les regles metier et les criteres d'acceptation dans `specs/`.
 - Mettre l'avancement, les tickets et le statut courant dans `development-plans/status.md` et `development-plans/tickets.md`.
 - Mettre les instructions d'exploitation reelle dans `specs/technical/`.
