@@ -112,6 +112,9 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 ## Cas speciaux
 
 - Une commande validee par la cliente doit apparaitre dans l'espace admin.
+- Le detail commande doit rester lisible en une structure simple et lineaire, sans panneaux d'informations dupliques.
+- Les donnees personnelles necessaires au traitement restent visibles uniquement dans l'admin protege, mais l'interface doit eviter les repetitions inutiles.
+- Le telephone peut etre presente principalement via les actions de contact `Appeler` et `WhatsApp` pour reduire la surcharge visuelle.
 - Une commande conserve les prix enregistres au moment de sa validation, meme si l'admin modifie ensuite le prix d'un produit.
 - Une commande conserve les produits et quantites enregistres au moment de sa validation.
 - Si un produit commande est ensuite masque, la commande deja validee doit rester lisible par l'admin.
@@ -147,6 +150,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Une commande validee par une cliente apparait automatiquement dans l'espace admin.
 - L'admin peut ouvrir le detail d'une commande.
 - L'admin voit le nom, le telephone ou WhatsApp, l'adresse ou la zone de livraison de la cliente.
+- Le detail commande presente les informations essentielles sans doublons visuels.
 - L'admin voit les produits, quantites, prix unitaires et total.
 - L'admin voit le mode de paiement prevu.
 - L'admin peut changer le statut d'une commande.

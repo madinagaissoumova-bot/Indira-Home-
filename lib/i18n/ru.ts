@@ -212,29 +212,31 @@ export const ru = {
     dashboard: {
       eyebrow: "Админ-панель",
       title: "Панель управления",
-      text: "Центральный экран для заказов, товаров, склада и категорий.",
       logout: "Выйти",
-      newOrders: "Новые заказы",
-      activeOrders: "Заказы в работе",
-      publishedProducts: "Опубликованные товары",
-      visibleProducts: "Видны клиенткам",
-      soldOutProducts: "Товары без наличия",
-      hiddenProducts: "Скрытые товары",
+      metrics: "Показатели",
+      revenue: "Оборот",
+      orderCount: "Заказы",
+      productCount: "Товары",
+      outOfStockCount: "Нет в наличии",
       recentOrders: "Последние заказы",
+      recentProducts: "Недавно добавленные товары",
+      orderNumber: "Номер",
+      tableAction: "Действие",
       noOrders: "Пока нет заказов.",
-      stockAlerts: "Товары без наличия",
-      stockQuantity: (quantity: number) => `${quantity} шт.`,
-      noStockAlerts: "Нет опубликованных товаров без наличия.",
-      sections: {
-        products: "Товары",
-        productsText: "Создание, публикация, скрытие, редактирование и удаление товаров.",
-        categories: "Категории",
-        categoriesText: "Управление категориями и подкатегориями каталога.",
-        stock: "Склад",
-        stockText: "Просмотр и корректировка количества товаров.",
-        orders: "Заказы",
-        ordersText: "Заказы, статусы, контакты клиентов и заметки."
+      actions: {
+        viewOrders: "Все заказы"
       }
+    },
+    nav: {
+      label: "Навигация админ-панели",
+      panel: "Админ-панель",
+      dashboard: "Dashboard",
+      products: "Продукты",
+      categories: "Категории",
+      orders: "Заказы",
+      clients: "Клиенты",
+      stock: "Склад",
+      settings: "Настройки"
     },
     common: {
       backDashboard: "Вернуться в панель",

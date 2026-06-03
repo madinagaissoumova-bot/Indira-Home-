@@ -56,25 +56,25 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 
 - Les pages admin sont accessibles uniquement apres connexion.
 - Une admin non connectee est redirigee vers la connexion.
-- La navigation admin doit separer clairement : produits, categories, stock, commandes.
+- La navigation admin doit separer clairement : dashboard, produits, categories, commandes, clients, stock, parametres.
+- Les acces admin ne doivent pas etre dupliques dans plusieurs zones visibles du meme ecran.
 - L'admin doit pouvoir revenir a la liste apres avoir ouvert un produit ou une commande.
 - Le tableau de bord admin est la page d'arrivee apres connexion.
-- Le tableau de bord doit donner des acces rapides vers les commandes recentes, les produits et les alertes de stock.
+- Le tableau de bord ne doit pas afficher les sections admin comme gros boutons principaux ; la navigation admin porte cette fonction.
+- Les sections admin non implementees en V1 peuvent etre affichees comme elements desactives si elles n'ont pas encore de route.
 - La liste des commandes recentes du tableau de bord doit afficher les 5 a 10 elements les plus recents, pas tout l'historique.
 
 ## Tableau de bord admin
 
 Le tableau de bord doit afficher au minimum :
 
-- Le nombre de commandes nouvelles.
-- Le nombre de commandes en cours.
-- Le nombre de produits publies.
-- Le nombre de produits visibles cote cliente si different du nombre de produits publies.
-- Le nombre de produits epuises.
-- Le nombre de produits masques.
+- Le chiffre d'affaires, calcule hors commandes annulees.
+- Le nombre total de commandes.
+- Le nombre total de produits.
+- Le nombre de produits publies en rupture de stock.
 - Les commandes recentes, avec un lien vers chaque detail.
-- Une alerte visuelle si des produits publies sont a stock 0.
-- Des raccourcis vers `/admin/orders`, `/admin/products`, `/admin/stock` et `/admin/categories`.
+- Les produits recemment ajoutes.
+- Une action de deconnexion disponible, separee des raccourcis metier.
 
 ## Composants publics
 
@@ -98,9 +98,10 @@ Le tableau de bord doit afficher au minimum :
 | Composant | Role |
 | --- | --- |
 | Formulaire connexion | Connecter l'admin |
-| Bandeau navigation admin | Permettre d'aller vers dashboard, produits, stock, categories et commandes |
-| Cartes resume dashboard | Afficher compteurs et alertes principales |
-| Liste commandes recentes | Afficher les nouvelles commandes depuis le dashboard |
+| Navigation admin | Permettre d'aller vers dashboard, produits, categories, commandes et stock sans doublon |
+| Indicateurs dashboard | Afficher chiffre d'affaires, commandes, produits et ruptures |
+| Tableau commandes recentes | Afficher numero, cliente, date, statut, total et action d'ouverture |
+| Tableau produits recents | Afficher les derniers produits ajoutes |
 | Tableau produits | Lister les produits avec statut, stock, prix et actions |
 | Formulaire produit | Creer ou modifier un produit |
 | Gestion photos | Ajouter, remplacer ou supprimer les photos produit |

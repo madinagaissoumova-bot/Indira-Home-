@@ -190,10 +190,11 @@ En tant qu'admin, je veux voir un tableau de bord central apres connexion, afin 
 
 ### Verification
 
-- Le tableau de bord affiche les commandes nouvelles.
-- Le tableau de bord affiche des resumes utiles : produits publies, produits epuises, produits masques.
+- Le tableau de bord affiche chiffre d'affaires, nombre de commandes, nombre de produits et produits en rupture.
+- Le tableau de bord affiche les commandes recentes dans un tableau.
+- Le tableau de bord affiche les produits recemment ajoutes.
 - L'admin peut ouvrir les commandes recentes depuis le tableau de bord.
-- L'admin peut acceder rapidement aux produits, au stock et aux categories.
+- L'admin peut acceder rapidement aux produits, categories, commandes et stock via la navigation admin.
 - Une cliente ne voit jamais ce tableau de bord.
 
 ## Admin - gerer un produit

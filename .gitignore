@@ -9,3 +9,5 @@ dist
 coverage
 tsconfig.tsbuildinfo
 backups
+.env
+.env.local

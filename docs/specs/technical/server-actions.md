@@ -16,7 +16,7 @@
 | --- | --- |
 | Se connecter | Authentifier l'admin |
 | Se deconnecter | Fermer la session admin |
-| Lire le tableau de bord | Retourner les compteurs, commandes recentes et alertes de stock |
+| Lire le tableau de bord | Retourner chiffre d'affaires, commandes, produits, ruptures et commandes recentes |
 | Gerer les produits | Creer, modifier, publier, masquer, supprimer |
 | Gerer les photos | Ajouter, remplacer ou supprimer les images produit |
 | Gerer les categories | Creer, modifier, masquer, afficher, supprimer si autorise, ordonner |

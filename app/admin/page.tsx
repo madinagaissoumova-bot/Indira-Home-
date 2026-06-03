@@ -1,97 +1,62 @@
 import Link from "next/link";
-import { ORDER_STATUS, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constants";
-import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
+import { ORDER_STATUS, PRODUCT_STATUS } from "@/lib/constants";
+import { getAdminOrderStatusLabel, getAdminProductStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
 import { ru } from "@/lib/i18n/ru";
 import { requireAdminSession } from "@/lib/adminAuth";
 import { formatRub } from "@/lib/format";
 import { AdminNav } from "./AdminNav";
 
-const adminSections = [
-  {
-    title: ru.admin.dashboard.sections.products,
-    text: ru.admin.dashboard.sections.productsText,
-    href: "/admin/products"
-  },
-  {
-    title: ru.admin.dashboard.sections.categories,
-    text: ru.admin.dashboard.sections.categoriesText,
-    href: "/admin/categories"
-  },
-  {
-    title: ru.admin.dashboard.sections.stock,
-    text: ru.admin.dashboard.sections.stockText,
-    href: "/admin/stock"
-  },
-  {
-    title: ru.admin.dashboard.sections.orders,
-    text: ru.admin.dashboard.sections.ordersText,
-    href: "/admin/orders"
-  }
-];
+const dashboardDateFormat = new Intl.DateTimeFormat("ru-RU", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric"
+});
+
+function formatDashboardDate(date: Date) {
+  return dashboardDateFormat.format(date);
+}
 
 async function getDashboardData() {
-  const [
-    newOrders,
-    activeOrders,
-    publishedProducts,
-    visibleProducts,
-    soldOutProducts,
-    hiddenProducts,
-    recentOrders,
-    stockAlerts
-  ] = await Promise.all([
-    prisma.order.count({ where: { status: ORDER_STATUS.new } }),
-    prisma.order.count({
+  const [revenue, orderCount, productCount, outOfStockCount, recentOrders, recentProducts] = await Promise.all([
+    prisma.order.aggregate({
       where: {
-        status: {
-          in: [ORDER_STATUS.toConfirm, ORDER_STATUS.confirmed, ORDER_STATUS.preparing]
-        }
+        status: { not: ORDER_STATUS.cancelled }
+      },
+      _sum: {
+        totalRub: true
       }
     }),
-    prisma.product.count({ where: { status: PRODUCT_STATUS.published } }),
-    prisma.product.count({
-      where: {
-        status: PRODUCT_STATUS.published,
-        category: { status: VISIBILITY_STATUS.visible },
-        subcategory: { status: VISIBILITY_STATUS.visible }
-      }
-    }),
+    prisma.order.count(),
+    prisma.product.count(),
     prisma.product.count({
       where: {
         status: PRODUCT_STATUS.published,
         stockQuantity: 0
       }
     }),
-    prisma.product.count({ where: { status: PRODUCT_STATUS.hidden } }),
     prisma.order.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 6
+    }),
+    prisma.product.findMany({
       orderBy: { createdAt: "desc" },
       take: 6,
       include: {
-        items: true
+        category: true
       }
-    }),
-    prisma.product.findMany({
-      where: {
-        status: PRODUCT_STATUS.published,
-        stockQuantity: { lte: 2 }
-      },
-      orderBy: [{ stockQuantity: "asc" }, { updatedAt: "desc" }],
-      take: 8
     })
   ]);
 
   return {
-    cards: [
-      { label: ru.admin.dashboard.newOrders, value: newOrders },
-      { label: ru.admin.dashboard.activeOrders, value: activeOrders },
-      { label: ru.admin.dashboard.publishedProducts, value: publishedProducts },
-      { label: ru.admin.dashboard.visibleProducts, value: visibleProducts },
-      { label: ru.admin.dashboard.soldOutProducts, value: soldOutProducts },
-      { label: ru.admin.dashboard.hiddenProducts, value: hiddenProducts }
+    metrics: [
+      { label: ru.admin.dashboard.revenue, value: formatRub(revenue._sum.totalRub ?? 0) },
+      { label: ru.admin.dashboard.orderCount, value: orderCount },
+      { label: ru.admin.dashboard.productCount, value: productCount },
+      { label: ru.admin.dashboard.outOfStockCount, value: outOfStockCount }
     ],
     recentOrders,
-    stockAlerts
+    recentProducts
   };
 }
 
@@ -101,71 +66,111 @@ export default async function AdminPage() {
 
   return (
     <main className="page admin-page">
-      <AdminNav />
-      <section className="hero hero-compact">
-        <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
-        <h1>{ru.admin.dashboard.title}</h1>
-        <p>{ru.admin.dashboard.text}</p>
-      </section>
-
-      <section className="admin-grid" aria-label={ru.admin.dashboard.title}>
-        {dashboard.cards.map((card) => (
-          <article className="admin-panel admin-stat-card" key={card.label}>
-            <span className="eyebrow">{card.label}</span>
-            <h2>{card.value}</h2>
-          </article>
-        ))}
-      </section>
-
-      <div className="checkout-layout">
-        <section className="form-panel">
-          <h2>{ru.admin.dashboard.recentOrders}</h2>
-          {dashboard.recentOrders.length > 0 ? (
-            <div className="checkout-items">
-              {dashboard.recentOrders.map((order) => (
-                <Link className="summary-line admin-list-row" href={`/admin/orders/${order.id}`} key={order.id}>
-                  <span className="admin-list-main">
-                    <strong>{order.orderNumber}</strong>
-                    <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
-                  </span>
-                  <span className="admin-list-meta">
-                    <span>{order.items.length} шт.</span>
-                  </span>
-                  <strong className="admin-list-value">{formatRub(order.totalRub)}</strong>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <p>{ru.admin.dashboard.noOrders}</p>
-          )}
-        </section>
-
-        <aside className="cart-summary">
-          <h2>{ru.admin.dashboard.stockAlerts}</h2>
-          {dashboard.stockAlerts.length > 0 ? (
-            <div className="checkout-items">
-              {dashboard.stockAlerts.map((product) => (
-                <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
-                  <span className="admin-list-main">
-                    <strong>{product.name}</strong>
-                  </span>
-                  <strong className="admin-list-value">{ru.admin.dashboard.stockQuantity(product.stockQuantity)}</strong>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <p>{ru.admin.dashboard.noStockAlerts}</p>
-          )}
+      <div className="admin-shell">
+        <aside className="admin-sidebar">
+          <AdminNav />
         </aside>
-      </div>
 
-      <div className="admin-grid">
-        {adminSections.map((section) => (
-          <Link className="admin-panel admin-section-card" href={section.href} key={section.href}>
-            <h2>{section.title}</h2>
-            <p>{section.text}</p>
-          </Link>
-        ))}
+        <div className="admin-content">
+          <div className="admin-dashboard-stack">
+            <section className="admin-dashboard-metrics" aria-label={ru.admin.dashboard.metrics}>
+              {dashboard.metrics.map((metric) => (
+                <div className="admin-dashboard-metric" key={metric.label}>
+                  <span>{metric.label}</span>
+                  <strong>{metric.value}</strong>
+                </div>
+              ))}
+            </section>
+
+            <section className="admin-dashboard-section">
+              <div className="admin-section-heading">
+                <h2>{ru.admin.dashboard.recentOrders}</h2>
+                <Link className="text-link" href="/admin/orders">
+                  {ru.admin.dashboard.actions.viewOrders}
+                </Link>
+              </div>
+              {dashboard.recentOrders.length > 0 ? (
+                <div className="admin-table-wrap">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>{ru.admin.dashboard.orderNumber}</th>
+                        <th>{ru.admin.common.customer}</th>
+                        <th>{ru.admin.common.createdAt}</th>
+                        <th>{ru.admin.common.status}</th>
+                        <th>{ru.admin.common.total}</th>
+                        <th>{ru.admin.dashboard.tableAction}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dashboard.recentOrders.map((order) => (
+                        <tr key={order.id}>
+                          <td data-label={ru.admin.dashboard.orderNumber}>
+                            <strong>{order.orderNumber}</strong>
+                          </td>
+                          <td data-label={ru.admin.common.customer}>{order.customerName}</td>
+                          <td data-label={ru.admin.common.createdAt}>{formatDashboardDate(order.createdAt)}</td>
+                          <td data-label={ru.admin.common.status}>
+                            <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
+                          </td>
+                          <td data-label={ru.admin.common.total}>{formatRub(order.totalRub)}</td>
+                          <td data-label={ru.admin.dashboard.tableAction}>
+                            <Link className="admin-table-action" href={`/admin/orders/${order.id}`}>
+                              {ru.common.viewProduct}
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p>{ru.admin.dashboard.noOrders}</p>
+              )}
+            </section>
+
+            <section className="admin-dashboard-section">
+              <div className="admin-section-heading">
+                <h2>{ru.admin.dashboard.recentProducts}</h2>
+                <Link className="text-link" href="/admin/products">
+                  {ru.admin.nav.products}
+                </Link>
+              </div>
+              {dashboard.recentProducts.length > 0 ? (
+                <div className="admin-table-wrap">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>{ru.admin.products.name}</th>
+                        <th>{ru.admin.common.category}</th>
+                        <th>{ru.admin.common.status}</th>
+                        <th>{ru.admin.common.price}</th>
+                        <th>{ru.admin.common.createdAt}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dashboard.recentProducts.map((product) => (
+                        <tr key={product.id}>
+                          <td data-label={ru.admin.products.name}>
+                            <strong>{product.name}</strong>
+                          </td>
+                          <td data-label={ru.admin.common.category}>{product.category.name}</td>
+                          <td data-label={ru.admin.common.status}>
+                            <span className="admin-badge">{getAdminProductStatusLabel(product.status)}</span>
+                          </td>
+                          <td data-label={ru.admin.common.price}>{formatRub(product.priceRub)}</td>
+                          <td data-label={ru.admin.common.createdAt}>{formatDashboardDate(product.createdAt)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p>{ru.admin.products.empty}</p>
+              )}
+            </section>
+          </div>
+        </div>
       </div>
     </main>
   );

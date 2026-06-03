@@ -200,9 +200,10 @@ Donner a l'admin une vue centrale apres connexion.
 ### Taches
 
 - Creer la page tableau de bord admin.
-- Afficher les commandes nouvelles.
-- Afficher les resumes utiles : produits publies, produits epuises, produits masques.
-- Ajouter les acces rapides vers commandes, produits, stock et categories.
+- Afficher les indicateurs essentiels : chiffre d'affaires hors commandes annulees, nombre de commandes, nombre de produits et produits en rupture.
+- Afficher les commandes recentes dans un tableau.
+- Afficher les produits recemment ajoutes.
+- Ajouter une navigation admin simple vers dashboard, produits, categories, commandes, clients, stock et parametres.
 - Ajouter la deconnexion depuis le tableau de bord.
 
 ### Verification

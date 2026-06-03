@@ -3,6 +3,7 @@
 import type { FormEvent } from "react";
 import { useActionState } from "react";
 import { ORDER_STATUS } from "@/lib/constants";
+import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import type { AdminActionState } from "../actions";
 import { updateOrderAction } from "../actions";
 import { formatRub } from "@/lib/format";
@@ -41,16 +42,35 @@ export function OrderEditor({ order }: OrderEditorProps) {
   const whatsappHref = contactPhone ? `https://wa.me/${contactPhone}` : undefined;
 
   return (
-    <div className="checkout-layout">
-      <section className="form-panel">
-        <h2>{ru.admin.orders.customerInfo}</h2>
-        <div className="summary-line">
-          <span>{ru.admin.common.customer}</span>
-          <strong>{order.customerName}</strong>
+    <div className="admin-order-detail">
+      <section className="admin-order-header">
+        <div>
+          <span className="eyebrow">{ru.admin.orders.title}</span>
+          <h1>{order.orderNumber}</h1>
         </div>
-        <div className="summary-line">
-          <span>{ru.admin.common.phone}</span>
-          <strong>{order.customerPhone}</strong>
+        <div className="admin-order-meta">
+          <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
+          <strong>{formatRub(order.totalRub)}</strong>
+        </div>
+      </section>
+
+      <section className="admin-dashboard-section">
+        <div className="admin-section-heading">
+          <h2>{ru.admin.orders.customerInfo}</h2>
+        </div>
+        <div className="admin-order-info">
+          <div>
+            <span>{ru.admin.common.customer}</span>
+            <strong>{order.customerName}</strong>
+          </div>
+          <div>
+            <span>{ru.admin.common.address}</span>
+            <strong>{order.deliveryAddressOrZone}</strong>
+          </div>
+          <div>
+            <span>{ru.admin.common.payment}</span>
+            <strong>{paymentLabel}</strong>
+          </div>
         </div>
         {contactHref || whatsappHref ? (
           <div className="admin-contact-actions">
@@ -66,21 +86,15 @@ export function OrderEditor({ order }: OrderEditorProps) {
             ) : null}
           </div>
         ) : null}
-        <div className="summary-line">
-          <span>{ru.admin.common.address}</span>
-          <strong>{order.deliveryAddressOrZone}</strong>
-        </div>
-        <div className="summary-line">
-          <span>{ru.admin.common.payment}</span>
-          <strong>{paymentLabel}</strong>
-        </div>
       </section>
 
-      <section className="cart-summary">
-        <h2>{ru.admin.orders.orderedProducts}</h2>
+      <section className="admin-dashboard-section">
+        <div className="admin-section-heading">
+          <h2>{ru.admin.orders.orderedProducts}</h2>
+        </div>
         <div className="checkout-items">
           {order.items.map((item) => (
-            <div className="summary-line" key={item.id}>
+            <div className="admin-list-row admin-order-item-row" key={item.id}>
               <span>
                 {item.productNameSnapshot} x {item.quantity}
               </span>
@@ -94,8 +108,10 @@ export function OrderEditor({ order }: OrderEditorProps) {
         </div>
       </section>
 
-      <form action={action} className="form-panel" onSubmit={confirmCancellation}>
-        <h2>{ru.admin.orders.editOrder}</h2>
+      <form action={action} className="admin-dashboard-section" onSubmit={confirmCancellation}>
+        <div className="admin-section-heading">
+          <h2>{ru.admin.orders.editOrder}</h2>
+        </div>
         {state.error ? <p className="form-error">{state.error}</p> : null}
         {state.success ? <p>{state.success}</p> : null}
         <input name="orderId" type="hidden" value={order.id} />
