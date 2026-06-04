@@ -23,3 +23,5 @@ Pour la V1, l'authentification admin utilise :
 Il n'y a pas de table `AdminUser` obligatoire en V1. Si plusieurs admins deviennent necessaires plus tard, une table dediee pourra etre ajoutee.
 
 Les actions admin qui modifient des donnees doivent verifier la session cote serveur a chaque appel. Si l'implementation utilise des formulaires ou actions serveur Next.js, la verification de session serveur est obligatoire avant toute mutation. Si une route API admin est exposee, elle doit refuser les requetes sans cookie valide et eviter les mutations GET.
+
+La connexion admin doit limiter les tentatives repetees dans un intervalle court, ou appliquer un delai progressif equivalent, afin de reduire les essais automatises de mot de passe. Le message d'erreur ne doit pas permettre de distinguer un identifiant inconnu d'un mot de passe incorrect.

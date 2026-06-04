@@ -110,6 +110,15 @@ La cliente peut :
 
 La cliente ne peut pas annuler ou modifier elle-meme une commande validee depuis le site. Elle doit contacter la boutique par telephone ou WhatsApp si elle veut demander une annulation ou une modification.
 
+### Comprendre la confidentialite
+
+La cliente peut :
+
+- Ouvrir une page publique de confidentialite.
+- Comprendre quelles donnees sont collectees pour traiter sa commande.
+- Comprendre que ses donnees de commande ne sont pas affichees publiquement.
+- Contacter la boutique sur WhatsApp pour toute question concernant ses donnees.
+
 ## Fonctions admin
 
 ### Acceder a l'espace admin

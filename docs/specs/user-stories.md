@@ -132,6 +132,7 @@ En tant que cliente, je veux envoyer ma commande sans creer de compte et sans pa
 ### Verification
 
 - La cliente peut acceder au formulaire depuis un panier valide.
+- Elle doit renseigner son prenom.
 - Elle doit renseigner son nom.
 - Elle doit renseigner son telephone ou WhatsApp.
 - Elle doit renseigner son adresse ou zone de livraison.
@@ -139,6 +140,7 @@ En tant que cliente, je veux envoyer ma commande sans creer de compte et sans pa
 - Elle voit un recapitulatif avant validation.
 - La commande est creee sans paiement en ligne.
 - Le message de confirmation indique que la boutique contactera la cliente.
+- Un double envoi de la meme tentative ne cree pas une seconde commande.
 
 ## Cliente - voir la confirmation
 
@@ -156,6 +158,21 @@ En tant que cliente, je veux voir une confirmation apres l'envoi de ma commande,
 - La page ne propose pas d'annulation cliente.
 - La page n'affiche pas l'adresse complete ou le telephone de la cliente.
 - Recharger la page ne cree pas une nouvelle commande.
+
+## Cliente - comprendre la confidentialite
+
+### Story
+
+En tant que cliente, je veux comprendre quelles donnees sont collectees pour ma commande, afin de savoir comment la boutique les utilise.
+
+### Verification
+
+- La cliente peut ouvrir `/privacy` depuis une zone publique stable.
+- La page explique quelles donnees sont collectees et pourquoi.
+- La page indique que les donnees de commande ne sont pas publiques.
+- La page affiche le numero WhatsApp public de la boutique.
+- La page ne montre aucune donnee personnelle cliente.
+- Les textes sont en russe.
 
 ## Cliente - livraison hors zone V1
 

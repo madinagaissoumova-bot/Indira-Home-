@@ -66,6 +66,8 @@ Les URLs d'images doivent etre stockees comme texte. En V1, il n'est pas obligat
 
 Une sous-categorie doit toujours appartenir a une categorie existante.
 
+Lorsqu'un produit contient a la fois `categoryId` et `subcategoryId`, la sous-categorie doit appartenir a cette categorie. Toute combinaison incoherente doit etre refusee cote serveur.
+
 ## Slugs
 
 Les slugs servent aux routes publiques. Pour la V1 :
@@ -89,6 +91,7 @@ Si un slug public change, l'ancien lien peut retourner une page introuvable en V
 | Total commande | Calcule cote serveur uniquement |
 | Prix commande | Snapshot du prix produit au moment de la validation reussie |
 | Statut commande | Uniquement les statuts definis dans `lib/constants.ts` |
+| Numero commande | Genere cote serveur, unique, stable et sans donnee personnelle |
 
 Le serveur doit refuser une commande si :
 
@@ -96,9 +99,14 @@ Le serveur doit refuser une commande si :
 - un produit n'existe plus ;
 - un produit est masque ou brouillon ;
 - une categorie ou sous-categorie du produit est masquee ;
+- la sous-categorie du produit n'appartient pas a sa categorie ;
 - le stock est insuffisant ;
 - un prix est invalide ;
 - une donnee cliente obligatoire manque.
+
+Le checkout collecte le prenom et le nom separement. Apres validation, le serveur les concatene dans `Order.customerName` sous la forme `Prenom Nom`.
+
+La creation de commande doit etre idempotente pour une meme tentative de validation. Un double clic, un retry reseau ou un renvoi du meme formulaire ne doit pas creer deux commandes ni decrementer deux fois le stock.
 
 ## Securite des entrees
 

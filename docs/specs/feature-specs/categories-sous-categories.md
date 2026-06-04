@@ -17,6 +17,7 @@ Cette fonctionnalite couvre la gestion des categories et sous-categories. Elle n
 | --- | --- | --- |
 | Nom de categorie | Nom de la categorie visible dans l'admin et sur le site client | Oui |
 | Nom de sous-categorie | Nom de la sous-categorie visible dans l'admin et sur le site client | Oui |
+| Slug | Identifiant de route genere automatiquement a partir du nom | Oui, mais jamais saisi directement dans l'interface |
 | Statut de categorie | Visible ou masquee | Oui |
 | Statut de sous-categorie | Visible ou masquee | Oui |
 | Ordre d'affichage | Position de la categorie ou sous-categorie dans le catalogue | Non |
@@ -47,7 +48,7 @@ L'admin peut :
 - Ajouter une categorie.
 - Modifier une categorie.
 - Masquer une categorie.
-- Supprimer une categorie si elle ne contient aucun produit et aucune sous-categorie avec produits.
+- Supprimer une categorie si elle ne contient aucun produit et si ses sous-categories ne contiennent aucun produit.
 - Ajouter une sous-categorie dans une categorie.
 - Modifier une sous-categorie.
 - Masquer une sous-categorie.
@@ -79,6 +80,8 @@ La cliente peut :
 | Enregistrer | Sauvegarder les changements |
 | Annuler | Quitter sans enregistrer |
 
+L'interface admin V1 doit rester simple : liste compacte des categories a gauche, formulaire unique a droite, champs visibles limités au nom, a la visibilite et a l'ordre d'affichage. Le slug est genere automatiquement cote serveur et n'apparait pas dans le formulaire.
+
 ## Messages
 
 | Situation | Message attendu |
@@ -102,7 +105,7 @@ Les messages visibles par les clientes doivent etre en russe. Les messages admin
 | --- | --- |
 | Nom vide | Refuser l'enregistrement et demander un nom. |
 | Nom deja utilise dans le meme niveau | Refuser l'enregistrement pour eviter les doublons. |
-| Suppression d'une categorie contenant des produits | Refuser la suppression et proposer de masquer ou de deplacer les produits. |
+| Suppression d'une categorie contenant des produits ou des sous-categories avec produits | Refuser la suppression et proposer de masquer ou de deplacer les produits. |
 | Suppression d'une sous-categorie contenant des produits | Refuser la suppression et proposer de masquer ou de deplacer les produits. |
 | Sous-categorie sans categorie parente | Refuser l'enregistrement. |
 | Ordre d'affichage invalide | Conserver l'ordre actuel et demander une correction. |
@@ -118,7 +121,7 @@ Les messages visibles par les clientes doivent etre en russe. Les messages admin
 - Une categorie vide peut etre masquee automatiquement ou rester visible selon le choix de l'admin.
 - Une sous-categorie vide peut etre masquee automatiquement ou rester visible selon le choix de l'admin.
 - Supprimer une categorie doit etre impossible si elle contient des produits ou des sous-categories avec produits.
-- Si une categorie contient seulement des sous-categories vides, l'implementation peut demander de supprimer ou de deplacer ces sous-categories avant de supprimer la categorie.
+- Si une categorie contient seulement des sous-categories vides, ces sous-categories peuvent etre supprimees automatiquement avec la categorie.
 - Supprimer une sous-categorie doit etre impossible si elle contient des produits.
 
 ## Regles metier
@@ -137,6 +140,7 @@ Les messages visibles par les clientes doivent etre en russe. Les messages admin
 - L'admin peut masquer et afficher une categorie.
 - L'admin peut supprimer une categorie vide.
 - L'admin ne peut pas supprimer une categorie contenant des produits.
+- L'admin peut supprimer une categorie contenant uniquement des sous-categories vides.
 - L'admin peut ajouter une sous-categorie.
 - L'admin peut modifier une sous-categorie.
 - L'admin peut masquer et afficher une sous-categorie.
@@ -145,3 +149,4 @@ Les messages visibles par les clientes doivent etre en russe. Les messages admin
 - La cliente voit uniquement les categories et sous-categories visibles.
 - Les categories et sous-categories masquees ne sont pas visibles dans le catalogue client.
 - Les textes visibles par les clientes sont en russe.
+- Le slug de categorie et de sous-categorie est genere automatiquement a partir du nom.

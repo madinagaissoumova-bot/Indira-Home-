@@ -15,6 +15,8 @@
 
 Pour eviter de bloquer le developpement sur un systeme d'upload, la V1 peut commencer avec des URLs d'images saisies ou collees dans l'admin. Les images doivent etre servies depuis une source stable et optimisee.
 
+Les chemins locaux deja presents dans `public/uploads/` sont aussi autorises sous la forme `/uploads/...`.
+
 Dans le code Next.js, les images produit peuvent etre rendues avec `next/image` en mode `unoptimized` tant que l'admin peut saisir des URLs libres. Si la boutique choisit plus tard un fournisseur stable, les domaines devront etre declares dans `next.config.ts` pour beneficier de l'optimisation Next.js.
 
 Une evolution ulterieure pourra ajouter un vrai upload admin vers un stockage dedie comme Cloudinary, S3 ou un stockage equivalent. Les regles de formats acceptes s'appliquent seulement si cet upload est ajoute.

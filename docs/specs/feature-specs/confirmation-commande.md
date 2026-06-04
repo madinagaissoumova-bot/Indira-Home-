@@ -100,6 +100,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 
 - Si la cliente recharge la page, aucune nouvelle commande ne doit etre creee.
 - Si la cliente revient en arriere vers le formulaire, la commande deja creee ne doit pas etre recreee automatiquement.
+- Si le navigateur renvoie la meme tentative apres une reponse reseau perdue, le serveur ne doit pas creer une seconde commande.
 - Si le panier a ete valide avec succes, le panier local doit etre vide ou marque comme traite pour eviter un renvoi accidentel.
 - Si la page est ouverte sans contexte de commande recente, elle ne doit pas afficher de donnees d'une autre commande.
 - Le numero de commande peut etre affiche seulement s'il ne permet pas d'acceder a des donnees personnelles sans authentification.

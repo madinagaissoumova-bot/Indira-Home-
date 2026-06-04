@@ -38,6 +38,7 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 - La cliente doit pouvoir passer du catalogue a une fiche produit, puis revenir au catalogue.
 - Les filtres de catalogue doivent etre conserves si possible au retour depuis une fiche produit.
 - Le panier doit etre accessible depuis toutes les pages publiques.
+- La page confidentialite doit etre accessible depuis une zone publique stable, par exemple le footer.
 - La validation de commande doit etre accessible uniquement depuis un panier valide.
 - Apres validation reussie, la cliente arrive sur une page de confirmation.
 

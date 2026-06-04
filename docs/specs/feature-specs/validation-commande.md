@@ -29,6 +29,8 @@ La validation de commande doit enregistrer les informations de la cliente, les p
 
 Les formats detailles des champs sont definis dans `docs/specs/validation-rules.md`.
 
+Le formulaire collecte le prenom et le nom separement. Apres validation serveur, la V1 les stocke dans `Order.customerName` sous la forme `Prenom Nom`.
+
 ## Livraison V1
 
 La V1 limite la livraison a la Republique tchetchene.
@@ -153,6 +155,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Une fois la commande validee, la cliente ne peut pas l'annuler directement depuis le site.
 - Si l'adresse saisie est ambigue mais non vide, la commande peut etre recue et la boutique confirme manuellement la livraison avec la cliente.
 - Apres validation reussie, le panier local doit etre vide ou marque comme traite pour eviter une nouvelle validation accidentelle.
+- Un double clic, un retry reseau ou un renvoi de la meme tentative ne doit pas creer une seconde commande ni diminuer le stock une seconde fois.
 
 ## Regles metier
 
@@ -171,6 +174,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - La boutique doit contacter la cliente avec le numero renseigne dans la commande.
 - Le numero WhatsApp public de la boutique affiche aux clientes est +7 988 906-41-06.
 - Les informations de commande doivent etre visibles dans le tableau de bord admin.
+- La creation de commande doit etre idempotente pour une meme tentative cliente.
 - Une annulation apres validation doit etre traitee par contact avec la boutique, puis par l'admin dans l'espace admin.
 - Les donnees personnelles de commande servent uniquement au traitement de la commande et ne doivent jamais etre affichees cote public.
 
@@ -188,6 +192,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Une cliente ne peut pas valider une quantite superieure au stock disponible.
 - Le stock diminue seulement apres validation reussie.
 - Le stock ne diminue pas si la validation echoue.
+- Une meme tentative de validation ne cree qu'une seule commande, meme si la requete est envoyee plusieurs fois.
 - Apres validation, la commande apparait dans le tableau de bord admin.
 - Apres validation, la cliente voit un message indiquant que la boutique la contactera.
 - Apres validation, la cliente ne voit pas de bouton pour annuler elle-meme sa commande.

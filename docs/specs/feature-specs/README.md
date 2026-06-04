@@ -23,6 +23,7 @@ Les fiches sont redigees progressivement, une fonctionnalite a la fois.
 - `panier.md`
 - `validation-commande.md`
 - `confirmation-commande.md`
+- `confidentialite.md`
 - `admin-produits.md`
 - `admin-stock.md`
 - `admin-commandes.md`
