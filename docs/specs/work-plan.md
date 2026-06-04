@@ -159,7 +159,9 @@ Transformer un panier valide en commande.
 - Recalculer prix, disponibilite et total avant validation finale.
 - Creer la commande avec prix snapshots.
 - Diminuer le stock apres validation reussie.
+- Rendre la creation de commande idempotente pour eviter les doubles soumissions.
 - Afficher la confirmation de commande.
+- Ajouter la page publique de confidentialite.
 - Vider ou marquer le panier local comme traite apres validation reussie.
 
 ### Verification
@@ -169,7 +171,9 @@ Transformer un panier valide en commande.
 - Une validation echouee ne diminue pas le stock.
 - Les prix de commande sont figes.
 - La page de confirmation ne recree pas la commande au rechargement.
+- Une meme tentative envoyee plusieurs fois ne cree qu'une commande.
 - La page de confirmation n'expose pas les donnees personnelles de la cliente.
+- La page confidentialite explique les donnees collectees sans exposer de commande.
 
 ## Phase 6 - Authentification admin
 

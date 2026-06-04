@@ -16,8 +16,8 @@ Statuts utilises :
 | Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
 | Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | TERMINE | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et filtres publics serveur sont verifies. |
-| Lot 3 | `lot-3-commande-client.md` | TERMINE | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration Supabase et verification HTTP locale sont termines. |
-| Lot 4 | `lot-4-auth-dashboard-admin.md` | TERMINE | Auth admin, logout, protection serveur, dashboard et compteurs sont verifies. |
+| Lot 3 | `lot-3-commande-client.md` | ACTIF | Le parcours fonctionne, mais l'idempotence d'une meme tentative checkout reste a implementer et verifier. |
+| Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | L'auth fonctionne, mais la limitation des tentatives de connexion repetees reste a implementer et verifier. |
 | Lot 5 | `lot-5-admin-catalogue.md` | TERMINE | Produits, categories et sous-categories admin sont gerables et verifies. |
 | Lot 6 | `lot-6-admin-stock.md` | TERMINE | Le stock est consultable, ajoutable, retirable et corrigeable depuis l'interface admin. |
 | Lot 7 | `lot-7-admin-commandes.md` | TERMINE | Les commandes peuvent etre consultees, mises a jour, annotees et contactees depuis l'admin. |
@@ -25,9 +25,22 @@ Statuts utilises :
 
 ## Plans actifs
 
-Aucun plan actif ne bloque la V1. Les prochains travaux documentes concernent la preparation de mise en ligne et les verifications de production.
+Aucun plan actif. Le prochain plan doit etre discute et valide avec l'utilisatrice avant creation d'une nouvelle branche.
+
+Les tickets `SERVER-303` et `ADMIN-405` doivent etre traites avant de redeclarer les lots 3 et 4 termines.
 
 ## Plans termines
+
+### Completer les specs V1 - 2026-06-04
+
+Validation effectuee :
+
+- audit des specs V1 et suppression des principales ambiguities documentaires ;
+- ajout de la feature spec confidentialite et de sa tracabilite dans les user stories et tests ;
+- clarification de l'identite cliente, de la taxonomie produit, du numero de commande, des statuts et des images ;
+- ajout des exigences d'idempotence checkout et de limitation des tentatives de connexion admin ;
+- formalisation du workflow Development Plan, nouvelle branche, Pull Request et validation explicite ;
+- `npm run check:docs` passe.
 
 ### Lot 0 - Base projet et donnees
 
@@ -161,8 +174,8 @@ Validation effectuee :
 
 Le prochain focus recommande est :
 
-1. preparer la mise en ligne avec sauvegarde Supabase recente ;
-2. verifier les variables de production hors depot ;
-3. effectuer un dernier test commande apres deploiement.
+1. implementer et tester l'idempotence checkout ;
+2. limiter les tentatives de connexion admin repetees ;
+3. reprendre la preparation de mise en ligne avec sauvegarde Supabase recente.
 
-Cette sequence garde la V1 stable et evite de lancer la production sans sauvegarde ni secrets de production controles.
+Cette sequence ferme les nouveaux ecarts de securite et de stock avant la mise en production.

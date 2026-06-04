@@ -39,6 +39,8 @@ Une liste stricte de villes ou zones autorisees pourra etre ajoutee plus tard si
 - Les logs serveur ne doivent pas exposer inutilement les numeros de telephone ou adresses.
 - Un export ou une sauvegarde des commandes doit rester protege.
 - Une page publique de confidentialite doit expliquer simplement quelles donnees sont collectees et pourquoi.
+- La page confidentialite ne doit pas promettre un delai de suppression automatique non implemente.
+- Les commandes peuvent etre conservees aussi longtemps que necessaire pour le suivi commercial et les obligations applicables.
 
 ## Hebergement et configuration
 

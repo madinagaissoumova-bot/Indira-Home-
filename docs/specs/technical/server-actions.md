@@ -29,6 +29,7 @@
 ## Regles de validation serveur
 
 - Un produit publie doit avoir nom, description, prix valide, au moins une photo, categorie, sous-categorie et stock entier non negatif.
+- La sous-categorie d'un produit doit appartenir a la categorie selectionnee.
 - Le prix doit etre un entier en roubles et strictement superieur a 0.
 - Le stock doit etre un entier egal ou superieur a 0.
 - Un produit est commandable uniquement s'il est publie, non masque, dans une categorie visible, dans une sous-categorie visible et avec stock superieur a 0.
@@ -40,6 +41,7 @@
 - Les commandes sont limitees a une adresse ou zone de livraison en Republique tchetchene pour la V1.
 - Une commande validee doit creer les lignes `OrderItem` avec snapshots de nom, image et prix.
 - Une commande validee doit decrementer le stock dans la meme transaction que la creation de commande, apres les verifications serveur.
+- La creation de commande doit utiliser une cle d'idempotence ou un mecanisme equivalent afin qu'une meme tentative cliente ne puisse creer qu'une seule commande.
 - Les listes du dashboard doivent pouvoir afficher au maximum les 10 commandes recentes.
 
 ## Concurrence et stock
@@ -55,5 +57,14 @@ Pour chaque ligne de panier, le serveur doit :
 - annuler toute la transaction si une ligne ne peut pas etre decrementee.
 
 La commande et ses `OrderItem` ne doivent etre crees que si tous les decrements de stock ont reussi. Si deux clientes essaient de commander le dernier exemplaire, une seule transaction doit reussir.
+
+## Idempotence de commande
+
+Le serveur doit distinguer une nouvelle tentative de commande d'un renvoi de la meme tentative. Pour une meme cle d'idempotence :
+
+- une seule commande peut etre creee ;
+- le stock ne peut etre decremente qu'une seule fois ;
+- un retry apres une reponse reseau perdue doit retourner le resultat de la commande deja creee ou un resultat neutre equivalent ;
+- la cle ne doit pas etre consideree comme une source fiable pour les prix, le stock ou les donnees cliente.
 
 Les formats detailles des champs, slugs, URLs d'images, paniers et donnees de commande sont definis dans `docs/specs/validation-rules.md`.

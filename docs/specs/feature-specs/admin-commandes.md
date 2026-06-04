@@ -52,6 +52,8 @@ Le statut initial apres validation est `NEW`.
 
 Les valeurs stockees doivent toujours venir de `lib/constants.ts`. Les labels visibles dans l'admin peuvent etre traduits, mais ils ne doivent jamais remplacer les enums techniques en base.
 
+En V1, l'admin peut choisir librement un autre statut parmi les valeurs autorisees. Il n'y a pas de matrice de transitions obligatoire. Cette souplesse permet de corriger une erreur de traitement manuellement. Une annulation demande toujours confirmation et aucun changement de statut ne modifie automatiquement le stock.
+
 ## Actions possibles
 
 L'admin peut :
@@ -139,6 +141,8 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Une commande validee arrive d'abord avec le statut `NEW`.
 - Une commande validee doit apparaitre dans l'espace admin sans action manuelle.
 - Les statuts de commande sont modifies manuellement par l'admin.
+- Tout changement vers une valeur absente de `lib/constants.ts` est refuse.
+- Une commande `DELIVERED` ou `CANCELLED` peut etre corrigee manuellement vers un autre statut autorise en V1.
 - Annuler une commande ne remet pas automatiquement le stock : la correction du stock reste manuelle en V1.
 - Une commande ne peut pas etre annulee directement par la cliente depuis le site.
 - Les clientes ne se connectent pas pour passer commande.

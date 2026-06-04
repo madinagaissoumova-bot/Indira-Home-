@@ -13,7 +13,7 @@ La direction visuelle doit etre basee sur un rose tres clair, tres doux, presque
 ## Architecture De L'Interface
 
 - L'accueil doit rester court et servir d'entree vers le catalogue, pas de long empilement de blocs.
-- L'accueil desktop doit tenir sur un seul ecran quand c'est possible : navbar, mega-menu en overlay si ouvert, et hero principal.
+- L'accueil desktop doit garder un hero compact afin que le catalogue reste visible rapidement apres la premiere zone editoriale.
 - L'accueil doit servir d'entree vers le catalogue : la cliente doit pouvoir chercher depuis la navbar ou ouvrir une categorie sans passer par un contenu intermediaire lourd.
 - L'accueil peut commencer par un hero editorial premium si les CTA mènent clairement aux collections et au catalogue.
 - Le header doit contenir les pages principales du site et un acces discret aux categories.
@@ -80,7 +80,7 @@ Eviter :
 
 - Le catalogue est la premiere experience utile.
 - L'accueil doit etre une page d'entree compacte, avec peu de sections et peu de texte : hero editorial, navigation categories dans la navbar et CTA vers le catalogue.
-- Sur desktop, l'accueil ne doit pas afficher de sections sous le hero si cela cree un scroll inutile.
+- Sur desktop, l'accueil doit eviter les sections marketing inutiles entre le hero et le catalogue.
 - Les photos produit doivent etre grandes assez pour identifier l'article.
 - Les cartes produit doivent avoir des dimensions stables pour eviter les sauts de layout.
 - Les informations essentielles sur une carte : photo, nom, prix, etat epuise si necessaire, action.
