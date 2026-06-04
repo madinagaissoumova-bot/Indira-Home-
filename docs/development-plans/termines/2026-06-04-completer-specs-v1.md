@@ -30,7 +30,7 @@ Completer les specs V1 apres audit afin de supprimer les ambiguities metier, cou
 - [x] 3. Verifier la coherence des documents.
 - [x] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [x] 5. Creer un commit clair.
-- [ ] 6. Pousser la branche sur GitHub.
+- [x] 6. Pousser la branche sur GitHub.
 - [ ] 7. Ouvrir une Pull Request vers `develop`.
 - [ ] 8. Attendre la validation explicite de l'utilisatrice.
 - [ ] 9. Merger la Pull Request.
@@ -43,4 +43,5 @@ Completer les specs V1 apres audit afin de supprimer les ambiguities metier, cou
 
 - Le checkout V1 collecte prenom et nom separement, puis les stocke concatenes dans `Order.customerName`.
 - Les nouvelles exigences non encore garanties par le code doivent apparaitre comme tickets a traiter.
-- Le commit et le push restent en attente afin de ne pas melanger des modifications utilisateur deja presentes dans le worktree.
+- Le commit et le push excluent les modifications applicatives et les plans admin non suivis deja presents dans le worktree.
+- L'ouverture automatique de la Pull Request reste en attente car `gh` et Homebrew ne sont pas disponibles dans l'environnement.
