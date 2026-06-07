@@ -5,15 +5,17 @@ import { PAYMENT_METHOD, PRODUCT_STATUS, VISIBILITY_STATUS } from "@/lib/constan
 import { prisma } from "@/lib/db";
 
 const suffix = Date.now().toString(36);
-const categorySlug = `qa-cat-${suffix}`;
-const subcategorySlug = `qa-sub-${suffix}`;
-const productSlug = `qa-product-${suffix}`;
+let productIndex = 0;
 let createdOrderNumber: string | undefined;
+let createdIdempotentOrderNumber: string | undefined;
+const createdProductSlugs: string[] = [];
+const createdSubcategorySlugs: string[] = [];
+const createdCategorySlugs: string[] = [];
 const hasPostgresDatabase =
   process.env.DATABASE_URL?.startsWith("postgresql://") || process.env.DATABASE_URL?.startsWith("postgres://");
 const shouldRunDbIntegration = hasPostgresDatabase && process.env.RUN_DB_INTEGRATION === "1";
 
-function orderForm(productId: string, expectedTotalRub: number) {
+function orderForm(productId: string, expectedTotalRub: number, checkoutAttemptId = `checkout-attempt-${suffix}`) {
   const formData = new FormData();
 
   formData.set("cart", JSON.stringify([{ productId, quantity: 1 }]));
@@ -23,11 +25,20 @@ function orderForm(productId: string, expectedTotalRub: number) {
   formData.set("customerPhone", "+7 988 906-41-06");
   formData.set("deliveryAddressOrZone", "Грозный, ул. Ленина, дом 1");
   formData.set("paymentMethod", PAYMENT_METHOD.cashOnDelivery);
+  formData.set("checkoutAttemptId", checkoutAttemptId);
 
   return formData;
 }
 
 async function createPublishedProduct() {
+  productIndex += 1;
+  const categorySlug = `qa-cat-${suffix}-${productIndex}`;
+  const subcategorySlug = `qa-sub-${suffix}-${productIndex}`;
+  const productSlug = `qa-product-${suffix}-${productIndex}`;
+  createdCategorySlugs.push(categorySlug);
+  createdSubcategorySlugs.push(subcategorySlug);
+  createdProductSlugs.push(productSlug);
+
   const category = await prisma.category.create({
     data: {
       name: "QA Category",
@@ -70,10 +81,13 @@ describe("checkout integration", { skip: !shouldRunDbIntegration }, () => {
     if (createdOrderNumber) {
       await prisma.order.deleteMany({ where: { orderNumber: createdOrderNumber } });
     }
+    if (createdIdempotentOrderNumber) {
+      await prisma.order.deleteMany({ where: { orderNumber: createdIdempotentOrderNumber } });
+    }
 
-    await prisma.product.deleteMany({ where: { slug: productSlug } });
-    await prisma.subcategory.deleteMany({ where: { slug: subcategorySlug } });
-    await prisma.category.deleteMany({ where: { slug: categorySlug } });
+    await prisma.product.deleteMany({ where: { slug: { in: createdProductSlugs } } });
+    await prisma.subcategory.deleteMany({ where: { slug: { in: createdSubcategorySlugs } } });
+    await prisma.category.deleteMany({ where: { slug: { in: createdCategorySlugs } } });
     await prisma.$disconnect();
   });
 
@@ -88,6 +102,30 @@ describe("checkout integration", { skip: !shouldRunDbIntegration }, () => {
     assert.ok(created.orderNumber);
     assert.equal(created.totalRub, 1000);
     createdOrderNumber = created.orderNumber;
+
+    const reloadedProduct = await prisma.product.findUniqueOrThrow({
+      where: { id: product.id }
+    });
+    assert.equal(reloadedProduct.stockQuantity, 1);
+  });
+
+  it("returns the existing order for the same checkout attempt without decrementing stock twice", async () => {
+    const product = await createPublishedProduct();
+    const attemptId = `checkout-attempt-repeat-${suffix}`;
+
+    const first = await createOrder({}, orderForm(product.id, 1000, attemptId));
+    assert.ok(first.orderNumber);
+    assert.equal(first.totalRub, 1000);
+    createdIdempotentOrderNumber = first.orderNumber;
+
+    const second = await createOrder({}, orderForm(product.id, 1000, attemptId));
+    assert.equal(second.orderNumber, first.orderNumber);
+    assert.equal(second.totalRub, first.totalRub);
+
+    const orderCount = await prisma.order.count({
+      where: { checkoutAttemptId: attemptId }
+    });
+    assert.equal(orderCount, 1);
 
     const reloadedProduct = await prisma.product.findUniqueOrThrow({
       where: { id: product.id }

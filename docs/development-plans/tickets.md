@@ -17,9 +17,8 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. Implementer l'idempotence de creation de commande.
-2. Limiter les tentatives de connexion admin repetees.
-3. Reprendre les preparatifs de mise en ligne V1.
+1. Limiter les tentatives de connexion admin repetees.
+2. Reprendre les preparatifs de mise en ligne V1.
 
 ## Lot 0 - Base projet et donnees
 
@@ -59,7 +58,7 @@ Priorites :
 | SERVER-301 | P0 | DONE | Verification panier serveur reutilisable. |
 | PUBLIC-301 | P0 | DONE | Formulaire checkout `/checkout`. |
 | SERVER-302 | P0 | DONE | Creation commande transactionnelle. |
-| SERVER-303 | P0 | TODO | Rendre la creation de commande idempotente pour une meme tentative checkout. |
+| SERVER-303 | P0 | DONE | Rendre la creation de commande idempotente pour une meme tentative checkout. |
 | PUBLIC-302 | P0 | DONE | Confirmation `/checkout/confirmation`. |
 | QA-301 | P0 | DONE | Test concurrence dernier stock. |
 | QA-302 | P0 | DONE | Test confirmation sans donnees personnelles. |

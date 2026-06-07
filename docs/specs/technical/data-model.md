@@ -85,6 +85,7 @@ Pour la V1, le panier est stocke dans `localStorage` cote navigateur sous forme 
 | customerPhone | Texte | Telephone ou WhatsApp |
 | deliveryAddressOrZone | Texte | Republique tchetchene uniquement en V1 |
 | paymentMethod | Enum | CASH_ON_DELIVERY, TRANSFER_AFTER_CONFIRMATION |
+| checkoutAttemptId | Texte unique optionnel | Cle technique d'idempotence, sans donnee personnelle |
 | status | Enum | NEW, TO_CONFIRM, CONFIRMED, PREPARING, DELIVERED, CANCELLED |
 | totalRub | Nombre entier | Total fige a la validation |
 | adminNote | Texte | Optionnel |
@@ -94,6 +95,8 @@ Pour la V1, le panier est stocke dans `localStorage` cote navigateur sous forme 
 Le checkout collecte le prenom et le nom dans deux champs distincts pour faciliter la validation et l'ergonomie. La V1 les stocke ensuite dans `customerName` sous la forme `Prenom Nom`.
 
 `orderNumber` doit etre unique en base, genere cote serveur, stable apres creation et ne doit pas contenir de donnee personnelle. Le format V1 est `IH-YYYYMMDD-NNNNNN`, avec une partie aleatoire a six chiffres et une nouvelle tentative en cas de collision.
+
+`checkoutAttemptId` est genere cote navigateur pour une tentative de validation et stocke cote serveur avec une contrainte unique. Si la meme tentative est renvoyee, le serveur retourne la commande existante au lieu d'en creer une nouvelle. Ce champ ne remplace jamais les validations serveur du panier, du total, du stock ou des donnees cliente.
 
 ## OrderItem
 

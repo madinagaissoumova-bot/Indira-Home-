@@ -74,6 +74,7 @@ model Order {
   customerPhone         String
   deliveryAddressOrZone String
   paymentMethod         String
+  checkoutAttemptId     String?       @unique
   status                String        @default("NEW")
   totalRub              Int
   adminNote             String?

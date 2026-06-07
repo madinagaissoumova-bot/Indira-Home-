@@ -16,7 +16,7 @@ Statuts utilises :
 | Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
 | Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | TERMINE | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et filtres publics serveur sont verifies. |
-| Lot 3 | `lot-3-commande-client.md` | ACTIF | Le parcours fonctionne, mais l'idempotence d'une meme tentative checkout reste a implementer et verifier. |
+| Lot 3 | `lot-3-commande-client.md` | TERMINE | Le parcours commande client est verifie, avec idempotence d'une meme tentative checkout. |
 | Lot 4 | `lot-4-auth-dashboard-admin.md` | ACTIF | L'auth fonctionne, mais la limitation des tentatives de connexion repetees reste a implementer et verifier. |
 | Lot 5 | `lot-5-admin-catalogue.md` | TERMINE | Produits, categories et sous-categories admin sont gerables et verifies. |
 | Lot 6 | `lot-6-admin-stock.md` | TERMINE | Le stock est consultable, ajoutable, retirable et corrigeable depuis l'interface admin. |
@@ -27,7 +27,7 @@ Statuts utilises :
 
 Aucun plan actif. Le prochain plan doit etre discute et valide avec l'utilisatrice avant creation d'une nouvelle branche.
 
-Les tickets `SERVER-303` et `ADMIN-405` doivent etre traites avant de redeclarer les lots 3 et 4 termines.
+Le ticket `ADMIN-405` doit etre traite avant de redeclarer le lot 4 termine.
 
 ## Plans termines
 
@@ -42,6 +42,20 @@ Validation effectuee :
 - alignement des specs commandes, stock, operations, functional map et plan de test ;
 - ajout d'un test unitaire sur la regle de restauration du stock ;
 - `npm run check:docs`, `npm test`, `npm run lint` et `npm run build` passent.
+
+### Idempotence checkout SERVER-303 - 2026-06-07
+
+Validation effectuee :
+
+- ajout d'une cle technique `checkoutAttemptId` unique sur les commandes ;
+- generation d'une cle de tentative checkout cote formulaire client sans modifier le format du panier `localStorage` ;
+- retour de la commande existante quand une meme tentative checkout est renvoyee ;
+- protection contre le double decrement de stock pour une meme tentative ;
+- ajout d'une migration Prisma dediee ;
+- ajout d'un test d'integration couvrant le renvoi d'une meme tentative ;
+- migration Supabase appliquee avec `npm run prisma:migrate` ;
+- `npm run check:docs`, `npm test`, `npm run lint`, `npm run build` et `RUN_DB_INTEGRATION=1 npm test` passent ;
+- `SERVER-303` passe a `DONE`.
 
 ### Completer les specs V1 - 2026-06-04
 
@@ -186,8 +200,7 @@ Validation effectuee :
 
 Le prochain focus recommande est :
 
-1. implementer et tester l'idempotence checkout ;
-2. limiter les tentatives de connexion admin repetees ;
-3. reprendre la preparation de mise en ligne avec sauvegarde Supabase recente.
+1. limiter les tentatives de connexion admin repetees ;
+2. reprendre la preparation de mise en ligne avec sauvegarde Supabase recente.
 
 Cette sequence ferme les nouveaux ecarts de securite et de stock avant la mise en production.
