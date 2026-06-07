@@ -2,6 +2,41 @@ import { ORDER_STATUS, PAYMENT_METHOD, PRODUCT_STATUS, VISIBILITY_STATUS } from 
 
 const SLUG_PATTERN = /^(?!-)(?!.*--)[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const RUSSIAN_PHONE_PATTERN = /^(7|8)[0-9]{6,19}$/;
+const CYRILLIC_TO_LATIN: Record<string, string> = {
+  а: "a",
+  б: "b",
+  в: "v",
+  г: "g",
+  д: "d",
+  е: "e",
+  ё: "yo",
+  ж: "zh",
+  з: "z",
+  и: "i",
+  й: "y",
+  к: "k",
+  л: "l",
+  м: "m",
+  н: "n",
+  о: "o",
+  п: "p",
+  р: "r",
+  с: "s",
+  т: "t",
+  у: "u",
+  ф: "f",
+  х: "h",
+  ц: "ts",
+  ч: "ch",
+  ш: "sh",
+  щ: "shch",
+  ъ: "",
+  ы: "y",
+  ь: "",
+  э: "e",
+  ю: "yu",
+  я: "ya"
+};
 
 export function parseInteger(value: FormDataEntryValue | null) {
   if (typeof value !== "string" || value.trim() === "") {
@@ -80,4 +115,24 @@ export function isValidProductImageUrl(value: string) {
 
 export function createSlugFallback(prefix: string) {
   return `${prefix}-${Date.now().toString(36)}`;
+}
+
+export function createSlugFromText(value: string, prefix?: string) {
+  const normalized = value
+    .trim()
+    .normalize("NFKD")
+    .toLowerCase()
+    .replace(/[\u0300-\u036f]/g, "");
+
+  const transliterated = Array.from(normalized, (character) => CYRILLIC_TO_LATIN[character] ?? character)
+    .join("")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  if (transliterated) {
+    return transliterated;
+  }
+
+  return prefix ? createSlugFallback(prefix) : "";
 }

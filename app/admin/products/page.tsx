@@ -35,42 +35,32 @@ export default async function AdminProductsPage() {
 
   return (
     <main className="page admin-page">
-      <div className="admin-shell">
-        <aside className="admin-sidebar">
-          <AdminNav />
-          <section className="admin-sidebar-card">
-            <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
-            <h1>{ru.admin.products.title}</h1>
-            <p>{ru.admin.products.text}</p>
-          </section>
-        </aside>
+      <AdminNav />
+      <div className="admin-content">
+        <ProductEditor categories={categories} />
 
-        <div className="admin-content">
-          <ProductEditor categories={categories} />
-
-          <section className="admin-list-panel">
-            <h2>{ru.admin.products.existing}</h2>
-            {products.length > 0 ? (
-              <div className="checkout-items">
-                {products.map((product) => (
-                  <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
-                    <span className="admin-list-main">
-                      <strong>{product.name}</strong>
-                      <span className="admin-badge">{getAdminProductStatusLabel(product.status)}</span>
-                    </span>
-                    <span className="admin-list-meta">
-                      <span>{product.category.name}</span>
-                      <span>{product.subcategory.name}</span>
-                    </span>
-                    <strong className="admin-list-value">{formatRub(product.priceRub)}</strong>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <p>{ru.admin.products.empty}</p>
-            )}
-          </section>
-        </div>
+        <section className="admin-list-panel">
+          <h2>{ru.admin.products.existing}</h2>
+          {products.length > 0 ? (
+            <div className="checkout-items">
+              {products.map((product) => (
+                <Link className="summary-line admin-list-row" href={`/admin/products/${product.id}`} key={product.id}>
+                  <span className="admin-list-main">
+                    <strong>{product.name}</strong>
+                    <span className="admin-badge">{getAdminProductStatusLabel(product.status)}</span>
+                  </span>
+                  <span className="admin-list-meta">
+                    <span>{product.category.name}</span>
+                    <span>{product.subcategory.name}</span>
+                  </span>
+                  <strong className="admin-list-value">{formatRub(product.priceRub)}</strong>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p>{ru.admin.products.empty}</p>
+          )}
+        </section>
       </div>
     </main>
   );

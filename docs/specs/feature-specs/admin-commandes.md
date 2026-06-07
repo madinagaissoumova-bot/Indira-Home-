@@ -52,7 +52,7 @@ Le statut initial apres validation est `NEW`.
 
 Les valeurs stockees doivent toujours venir de `lib/constants.ts`. Les labels visibles dans l'admin peuvent etre traduits, mais ils ne doivent jamais remplacer les enums techniques en base.
 
-En V1, l'admin peut choisir librement un autre statut parmi les valeurs autorisees. Il n'y a pas de matrice de transitions obligatoire. Cette souplesse permet de corriger une erreur de traitement manuellement. Une annulation demande toujours confirmation et aucun changement de statut ne modifie automatiquement le stock.
+En V1, l'admin peut choisir librement un autre statut parmi les valeurs autorisees. Il n'y a pas de matrice de transitions obligatoire. Cette souplesse permet de corriger une erreur de traitement manuellement. Une annulation demande toujours confirmation. Quand une commande passe pour la premiere fois au statut `CANCELLED`, le stock des lignes associees est remis automatiquement en ligne.
 
 ## Actions possibles
 
@@ -72,6 +72,17 @@ L'admin peut :
 - Marquer une commande comme annulee si elle ne doit pas etre traitee.
 
 La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulation est une action admin apres contact avec la boutique.
+
+### Commande preparee, cliente injoignable ou absente
+
+- La boutique, via l'admin qui traite et livre la commande en V1, contacte la cliente avec le telephone ou WhatsApp renseigne dans la commande.
+- Si la commande est deja preparee mais que la cliente ne repond pas a l'appel, l'admin lui laisse un message vocal sur WhatsApp.
+- Le message vocal indique que la commande est prete et que la cliente a 24 heures pour repondre afin de confirmer ou replanifier la remise.
+- Si la cliente etait absente au moment convenu, l'admin peut appliquer la meme procedure : appel, message vocal WhatsApp, attente de 24 heures.
+- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin annule la commande avec le bouton d'annulation admin, qui passe la commande au statut `CANCELLED`.
+- L'admin doit ajouter une note interne indiquant la raison de l'annulation, l'appel effectue, le message vocal WhatsApp et l'heure limite de reponse.
+- L'annulation par le bouton admin remet automatiquement en ligne les articles de la commande en reincrementant le stock des produits concernes.
+- Si la commande etait deja payee par virement, la boutique doit traiter manuellement une nouvelle remise ou un remboursement hors site avant de cloturer le dossier.
 
 ## Boutons / commandes
 
@@ -122,7 +133,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si un produit commande est ensuite masque, la commande deja validee doit rester lisible par l'admin.
 - En V1, un produit deja present dans une commande validee ne doit pas etre supprime definitivement. Si une fiche produit n'existe plus a cause d'une migration, d'une erreur technique ou d'une evolution future, les snapshots de commande doivent quand meme garder la commande lisible.
 - Pour garantir cette lisibilite, chaque ligne de commande doit conserver au minimum le nom produit, le prix unitaire, la quantite et si possible l'image principale au moment de la validation.
-- Si une commande est annulee, le stock peut etre remis manuellement dans `admin-stock.md`.
+- Si une commande passe au statut `CANCELLED`, le stock des articles de la commande est remis automatiquement en ligne une seule fois.
 - Si une cliente demande une annulation apres validation, l'admin peut passer la commande au statut "Annulee".
 - Si une commande est modifiee avec la cliente par telephone ou WhatsApp, l'admin peut corriger le stock manuellement dans `admin-stock.md`.
 - Le site ne doit pas encaisser de paiement en ligne en V1.
@@ -143,7 +154,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Les statuts de commande sont modifies manuellement par l'admin.
 - Tout changement vers une valeur absente de `lib/constants.ts` est refuse.
 - Une commande `DELIVERED` ou `CANCELLED` peut etre corrigee manuellement vers un autre statut autorise en V1.
-- Annuler une commande ne remet pas automatiquement le stock : la correction du stock reste manuelle en V1.
+- Annuler une commande remet automatiquement le stock en ligne uniquement lors du premier passage au statut `CANCELLED`.
 - Une commande ne peut pas etre annulee directement par la cliente depuis le site.
 - Les clientes ne se connectent pas pour passer commande.
 - Les commandes sont confirmees par contact telephone ou WhatsApp apres validation.
@@ -159,6 +170,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - L'admin voit le mode de paiement prevu.
 - L'admin peut changer le statut d'une commande.
 - L'admin peut annuler une commande apres confirmation.
+- L'annulation admin remet automatiquement le stock de la commande en ligne une seule fois.
 - Une cliente ne peut pas annuler elle-meme une commande validee depuis le site.
 - L'admin peut ajouter une note interne.
 - Une commande validee conserve ses prix meme si les prix produits changent ensuite.

@@ -43,6 +43,7 @@ Si des scripts de lint, test ou migration existent dans `package.json`, executer
 | Action protegee | Une action admin appelee sans session ne modifie aucune donnee |
 | Deconnexion | Apres logout, les pages admin redeviennent bloquees |
 | Dashboard | Compteurs, commandes recentes et alertes stock sont coherents |
+| Annulation admin | Le bouton d'annulation admin passe la commande a `CANCELLED` et remet le stock en ligne une seule fois |
 | Produits | Creation brouillon, publication complete, masquage et suppression autorisee fonctionnent |
 | Publication | Un produit incomplet ne peut pas etre publie |
 | Images | Un produit sans image valide ne peut pas etre publie |

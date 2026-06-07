@@ -31,6 +31,18 @@ Les tickets `SERVER-303` et `ADMIN-405` doivent etre traites avant de redeclarer
 
 ## Plans termines
 
+### Stabilisation annulation admin et stock - 2026-06-07
+
+Validation effectuee :
+
+- creation d'une branche dediee `stabilisation-annulation-admin-stock` depuis `develop` ;
+- conservation du bouton admin d'annulation de commande ;
+- restauration automatique du stock lors du premier passage d'une commande au statut `CANCELLED` ;
+- protection contre une double remise en stock si la commande etait deja annulee ;
+- alignement des specs commandes, stock, operations, functional map et plan de test ;
+- ajout d'un test unitaire sur la regle de restauration du stock ;
+- `npm run check:docs`, `npm test`, `npm run lint` et `npm run build` passent.
+
 ### Completer les specs V1 - 2026-06-04
 
 Validation effectuee :

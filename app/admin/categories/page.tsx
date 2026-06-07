@@ -25,19 +25,13 @@ export default async function AdminCategoriesPage() {
 
   return (
     <main className="page admin-page">
-      <div className="admin-shell">
-        <aside className="admin-sidebar">
-          <AdminNav />
-          <section className="admin-sidebar-card">
-            <span className="eyebrow">{ru.admin.dashboard.eyebrow}</span>
-            <h1>{ru.admin.categories.title}</h1>
-            <p>{ru.admin.categories.text}</p>
-          </section>
-        </aside>
-
-        <div className="admin-content">
-          <CategoryManager categories={categories} />
-        </div>
+      <AdminNav />
+      <div className="admin-content">
+        <section className="admin-page-intro">
+          <h1>{ru.admin.categories.title}</h1>
+          <p>{ru.admin.categories.text}</p>
+        </section>
+        <CategoryManager categories={categories} />
       </div>
     </main>
   );
