@@ -81,9 +81,9 @@ La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulatio
 - Si la commande est deja preparee mais que la cliente ne repond pas a l'appel, l'admin lui laisse un message vocal sur WhatsApp.
 - Le message vocal indique que la commande est prete et que la cliente a 24 heures pour repondre afin de confirmer ou replanifier la remise.
 - Si la cliente etait absente au moment convenu, l'admin peut appliquer la meme procedure : appel, message vocal WhatsApp, attente de 24 heures.
-- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin annule la commande avec le statut `CANCELLED`.
+- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin annule la commande avec le bouton d'annulation admin, qui passe la commande au statut `CANCELLED`.
 - L'admin doit ajouter une note interne indiquant la raison de l'annulation, l'appel effectue, le message vocal WhatsApp et l'heure limite de reponse.
-- Une annulation ne remet pas automatiquement le stock. L'admin corrige le stock manuellement pour remettre les articles en ligne si les produits doivent redevenir disponibles.
+- L'annulation par le bouton admin remet automatiquement en ligne les articles de la commande en reincrementant le stock des produits concernes.
 - Si la commande etait deja payee par virement, la boutique doit traiter manuellement une nouvelle remise ou un remboursement hors site avant de cloturer le dossier.
 
 ### Paiement en especes ou par virement
@@ -154,7 +154,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si un produit commande est ensuite masque, la commande deja validee doit rester lisible par l'admin.
 - En V1, un produit deja present dans une commande validee ne doit pas etre supprime definitivement. Si une fiche produit n'existe plus a cause d'une migration, d'une erreur technique ou d'une evolution future, les snapshots de commande doivent quand meme garder la commande lisible.
 - Pour garantir cette lisibilite, chaque ligne de commande doit conserver au minimum le nom produit, le prix unitaire, la quantite et si possible l'image principale au moment de la validation.
-- Si une commande est annulee, le stock peut etre remis manuellement dans `admin-stock.md`.
+- Si une commande est annulee par le bouton admin d'annulation, le stock des articles de la commande est remis automatiquement en ligne.
 - Si une cliente demande une annulation apres validation, l'admin peut passer la commande au statut "Annulee".
 - Si une commande est modifiee avec la cliente par telephone ou WhatsApp, l'admin peut corriger le stock manuellement dans `admin-stock.md`.
 - Le site ne doit pas encaisser de paiement en ligne en V1.
@@ -176,7 +176,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Les statuts de commande sont modifies manuellement par l'admin.
 - Tout changement vers une valeur absente de `lib/constants.ts` est refuse.
 - Une commande `DELIVERED` ou `CANCELLED` peut etre corrigee manuellement vers un autre statut autorise en V1.
-- Annuler une commande ne remet pas automatiquement le stock : la correction du stock reste manuelle en V1.
+- Annuler une commande avec le bouton admin d'annulation remet automatiquement le stock des articles de la commande en ligne.
 - Une commande ne peut pas etre annulee directement par la cliente depuis le site.
 - Les clientes ne se connectent pas pour passer commande.
 - Les commandes sont confirmees par contact telephone ou WhatsApp apres validation.

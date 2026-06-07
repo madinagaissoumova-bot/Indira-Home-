@@ -187,10 +187,10 @@ Apres validation par la cliente, la commande est traitee manuellement par la bou
 - Si une commande est preparee mais que la cliente ne repond pas a l'appel, l'admin lui laisse un message vocal sur WhatsApp.
 - Le message vocal indique que la commande est prete et que la cliente a 24 heures pour repondre afin de confirmer ou replanifier la remise.
 - Si la cliente est absente au moment convenu, l'admin peut appliquer la meme procedure : appel, message vocal WhatsApp, attente de 24 heures.
-- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin passe la commande au statut `CANCELLED` et ajoute une note interne indiquant l'appel, le message vocal et l'heure limite de reponse.
+- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin utilise le bouton d'annulation admin pour passer la commande au statut `CANCELLED` et ajoute une note interne indiquant l'appel, le message vocal et l'heure limite de reponse.
 - Si la commande n'a pas ete payee, aucun remboursement n'est necessaire.
 - Si la commande a deja ete payee par virement, la boutique ne doit pas annuler silencieusement : elle doit contacter la cliente pour convenir d'une nouvelle remise ou d'un remboursement manuel hors site.
-- Le stock est ajuste manuellement par l'admin pour remettre les articles en ligne si les produits doivent redevenir disponibles.
+- Le bouton d'annulation admin remet automatiquement les articles en ligne en reincrementant le stock des produits concernes.
 
 ### Paiement hors ligne
 

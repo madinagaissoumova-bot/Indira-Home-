@@ -3,7 +3,7 @@
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
+import { ORDER_STATUS, PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
 import { computeAdjustedStockQuantity, type StockAdjustmentMode } from "@/lib/adminStock";
 import { prisma } from "@/lib/db";
 import {
@@ -687,7 +687,9 @@ export async function updateOrderAction(
   await requireAdminSession();
 
   const orderId = text(formData.get("orderId"));
-  const status = parseOrderStatus(text(formData.get("status")));
+  const intent = text(formData.get("intent"));
+  const requestedStatus = parseOrderStatus(text(formData.get("status")));
+  const status = intent === "cancelOrder" ? ORDER_STATUS.cancelled : requestedStatus;
   const adminNote = text(formData.get("adminNote")) || null;
 
   if (!orderId) {
@@ -697,21 +699,53 @@ export async function updateOrderAction(
     return { error: "Некорректный статус заказа." };
   }
 
-  const order = await prisma.order.findUnique({ where: { id: orderId } });
+  const order = await prisma.order.findUnique({
+    where: { id: orderId },
+    include: {
+      items: {
+        select: {
+          productId: true,
+          quantity: true
+        }
+      }
+    }
+  });
   if (!order) {
     return { error: "Заказ не найден." };
   }
 
-  await prisma.order.update({
-    where: { id: orderId },
-    data: {
-      status,
-      adminNote
+  const shouldRestoreStock = intent === "cancelOrder" && order.status !== ORDER_STATUS.cancelled;
+  await prisma.$transaction(async (tx) => {
+    await tx.order.update({
+      where: { id: orderId },
+      data: {
+        status,
+        adminNote
+      }
+    });
+
+    if (shouldRestoreStock) {
+      for (const item of order.items) {
+        if (!item.productId) continue;
+        await tx.product.update({
+          where: { id: item.productId },
+          data: {
+            stockQuantity: {
+              increment: item.quantity
+            }
+          }
+        });
+      }
     }
   });
 
   revalidatePath(`/admin/orders/${orderId}`);
+  revalidatePath("/");
+  revalidatePath("/search");
   revalidateAdminSurface();
 
+  if (shouldRestoreStock) {
+    return { success: "Заказ отменен. Товары возвращены в наличие." };
+  }
   return { success: "Заказ обновлен." };
 }

@@ -35,7 +35,7 @@ Une liste stricte de villes ou zones autorisees pourra etre ajoutee plus tard si
 - La boutique traite les commandes depuis l'espace admin et contacte les clientes par telephone ou WhatsApp.
 - En V1, la livraison est effectuee par l'admin. Elle remet la commande et recupere l'argent en especes lorsque le mode de paiement est `CASH_ON_DELIVERY`.
 - Si une commande preparee ne peut pas etre remise car la cliente ne repond pas a l'appel ou est absente, l'admin laisse un message vocal sur WhatsApp et attend 24 heures.
-- Sans reponse de la cliente apres ce delai de 24 heures, l'admin annule la commande, ajoute une note interne et corrige le stock manuellement pour remettre les articles en ligne si besoin.
+- Sans reponse de la cliente apres ce delai de 24 heures, l'admin annule la commande avec le bouton d'annulation admin, ajoute une note interne et les articles de la commande sont remis automatiquement en ligne par reincrementation du stock.
 - Si un paiement a deja ete recu, la boutique doit organiser manuellement une nouvelle remise ou un remboursement hors site avant de cloturer la commande.
 - Les paiements V1 sont uniquement hors ligne : especes a la remise ou virement apres confirmation.
 - La V1 ne verifie pas automatiquement les paiements et ne gere pas de preuves televersees obligatoires.

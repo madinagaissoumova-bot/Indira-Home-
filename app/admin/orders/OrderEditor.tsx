@@ -156,8 +156,10 @@ export function OrderEditor({ order }: OrderEditorProps) {
           <button
             className="button secondary"
             disabled={isPending || isCancelled}
+            name="intent"
             onClick={markOrderCancelled}
             type="submit"
+            value="cancelOrder"
           >
             Отменить заказ
           </button>
