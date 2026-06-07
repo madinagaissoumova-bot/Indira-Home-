@@ -178,6 +178,40 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Une annulation apres validation doit etre traitee par contact avec la boutique, puis par l'admin dans l'espace admin.
 - Les donnees personnelles de commande servent uniquement au traitement de la commande et ne doivent jamais etre affichees cote public.
 
+## Regles operationnelles apres validation
+
+Apres validation par la cliente, la commande est traitee manuellement par la boutique dans l'espace admin. La boutique contacte la cliente par telephone ou WhatsApp avant de finaliser la preparation et la remise.
+
+### Cliente injoignable ou absente
+
+- Si une commande est preparee mais que la cliente ne repond pas, la boutique tente de la joindre par telephone ou WhatsApp au moins deux fois sur une periode d'environ 24 heures.
+- Si la cliente est absente au moment convenu, la boutique tente un nouveau contact pour replanifier une remise.
+- Si aucun contact n'est obtenu apres ces tentatives, l'admin peut passer la commande au statut `CANCELLED` et ajouter une note interne expliquant les tentatives effectuees.
+- Si la commande n'a pas ete payee, aucun remboursement n'est necessaire.
+- Si la commande a deja ete payee par virement, la boutique ne doit pas annuler silencieusement : elle doit contacter la cliente pour convenir d'une nouvelle remise ou d'un remboursement manuel hors site.
+- Le stock et la remise en vente des produits sont ajustes manuellement par l'admin si necessaire.
+
+### Paiement hors ligne
+
+- Pour `CASH_ON_DELIVERY`, l'argent est accepte au moment de la remise par la boutique ou par la personne qui remet la commande.
+- Pour `TRANSFER_AFTER_CONFIRMATION`, la boutique confirme manuellement que le virement est recu avant de considerer la commande comme payee.
+- En V1, le site ne verifie pas automatiquement les paiements et ne stocke pas de preuve bancaire obligatoire.
+- L'admin doit utiliser la note interne pour indiquer les informations utiles : paiement recu, mode reel, date approximative, personne qui a confirme, ou reference de virement si disponible.
+- Si un paiement a ete recu mais que la commande doit etre annulee, le remboursement se fait manuellement hors site. L'admin note la situation dans la commande et ajuste le stock manuellement si besoin.
+
+### Produit indisponible ou prix modifie apres confirmation
+
+- Les prix de la commande restent ceux enregistres lors de la validation reussie. Une modification ulterieure du prix produit ne change pas automatiquement la commande.
+- Si une erreur de stock est decouverte apres validation ou confirmation, la boutique contacte la cliente et propose une solution avant de poursuivre.
+- Les solutions autorisees en V1 sont : remplacer le produit avec accord explicite de la cliente, retirer le produit de la commande avec correction manuelle du montant, ou annuler toute la commande.
+- Si un paiement a deja ete recu et que le montant final diminue, la difference est remboursee manuellement hors site.
+- Si aucune solution n'est acceptee par la cliente, l'admin annule la commande et documente la raison dans la note interne.
+- L'admin ou la vendeuse responsable du traitement de la commande est responsable de ces corrections.
+
+## Hors perimetre V1
+
+La V1 ne prevoit pas de samovyvoz / retrait en boutique, QR-code, paiement en ligne, gestion de coursiers, commission plateforme, remboursement automatise ou livraison complexe. La livraison reste une organisation manuelle limitee a la Republique tchetchene, confirmee par telephone ou WhatsApp.
+
 ## Critères d'acceptation
 
 - Une cliente peut valider une commande sans compte.

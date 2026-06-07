@@ -60,6 +60,21 @@ La V1 doit aussi inclure un espace admin complet pour gerer les produits, les ca
 
 La livraison V1 est limitee a la Republique tchetchene. Le delai annonce aux clientes est de 4 a 5 jours. Les frais de livraison ne sont pas calcules automatiquement dans la V1 : la boutique les confirme manuellement avec la cliente par telephone ou WhatsApp.
 
+## Exclusions V1 explicites
+
+Pour eviter toute ambiguite, la V1 ne contient pas :
+
+- de paiement en ligne ;
+- de compte cliente ;
+- de marketplace ou de commission plateforme ;
+- de samovyvoz / retrait en boutique ;
+- de QR-code de paiement, de retrait ou de suivi ;
+- de gestion de coursiers, livreurs, tournees ou affectations de livraison ;
+- de calcul automatique de frais de livraison complexes ;
+- de remboursement automatise.
+
+Ces sujets pourront etre etudies plus tard, mais ils ne doivent pas etre ajoutes dans la V1 ni supposes par les specs existantes.
+
 ## Nom de la boutique
 
 - Indira Home

@@ -73,6 +73,37 @@ L'admin peut :
 
 La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulation est une action admin apres contact avec la boutique.
 
+## Procedures operationnelles V1
+
+### Commande preparee, cliente injoignable ou absente
+
+- La boutique, via l'admin ou la vendeuse qui traite la commande, contacte la cliente avec le telephone ou WhatsApp renseigne dans la commande.
+- Si la commande est deja preparee mais que la cliente ne repond pas, la boutique effectue au moins deux tentatives de contact sur environ 24 heures.
+- Si la cliente etait absente au moment convenu, la boutique tente de replanifier une remise par telephone ou WhatsApp.
+- Si aucun contact n'est obtenu apres ces tentatives, l'admin peut annuler la commande avec le statut `CANCELLED`.
+- L'admin doit ajouter une note interne indiquant la raison de l'annulation et les tentatives de contact.
+- Une annulation ne remet pas automatiquement le stock. L'admin corrige le stock manuellement si les produits doivent redevenir disponibles.
+- Si la commande etait deja payee par virement, la boutique doit traiter manuellement une nouvelle remise ou un remboursement hors site avant de cloturer le dossier.
+
+### Paiement en especes ou par virement
+
+- `CASH_ON_DELIVERY` signifie paiement en especes au moment de la remise.
+- `TRANSFER_AFTER_CONFIRMATION` signifie virement seulement apres confirmation avec la boutique.
+- La personne qui remet la commande peut accepter les especes. La boutique reste responsable de confirmer que l'argent a bien ete recu.
+- Pour un virement, l'admin ne marque pas la commande comme payee automatiquement : elle verifie manuellement la reception du virement ou une preuve fiable communiquee par la cliente.
+- La V1 ne contient pas de statut de paiement separe, de preuve obligatoire televersee, de reconciliation bancaire, ni de remboursement automatique.
+- La note interne sert de trace minimale : paiement recu, mode reel, date approximative, personne ayant confirme, reference de virement si disponible.
+- Si l'argent a ete pris mais que la commande doit etre annulee, la boutique gere le remboursement manuellement hors site, note l'action dans la commande, puis ajuste le statut et le stock si necessaire.
+
+### Produit manquant ou prix modifie apres confirmation
+
+- Les prix et lignes enregistres dans la commande restent le snapshot de validation.
+- Si un produit manque apres confirmation, la boutique contacte la cliente avant toute modification operationnelle.
+- Les options V1 autorisees sont : remplacement accepte par la cliente, retrait du produit avec montant corrige hors site, ou annulation de toute la commande.
+- Si le prix produit a augmente apres validation, la boutique ne peut pas imposer ce nouveau prix sur la commande deja validee.
+- Si le prix final diminue apres retrait ou remplacement, le remboursement ou l'ajustement est manuel hors site.
+- Toute modification convenue doit etre documentee dans la note interne. Si le stock reel change, l'admin le corrige dans l'ecran stock.
+
 ## Boutons / commandes
 
 | Bouton / commande | Role |
@@ -127,6 +158,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si une commande est modifiee avec la cliente par telephone ou WhatsApp, l'admin peut corriger le stock manuellement dans `admin-stock.md`.
 - Le site ne doit pas encaisser de paiement en ligne en V1.
 - Le paiement se fait hors site : paiement a la livraison ou virement apres confirmation avec la boutique.
+- La V1 ne gere pas de samovyvoz / retrait en boutique, QR-code, coursiers, commission plateforme, remboursement automatise ou livraison complexe.
 - Le numero WhatsApp de la boutique affiche aux clientes pour confirmer les commandes est +7 988 906-41-06.
 - L'admin ne recoit pas automatiquement de SMS ou de message WhatsApp en V1 obligatoire ; elle consulte les nouvelles commandes dans l'espace admin.
 

@@ -30,6 +30,33 @@ Le statut `archived` n'est pas obligatoire en V1. Il pourra etre ajoute plus tar
 
 Une liste stricte de villes ou zones autorisees pourra etre ajoutee plus tard si la boutique veut automatiser ce controle.
 
+## Traitement manuel des commandes V1
+
+- La boutique traite les commandes depuis l'espace admin et contacte les clientes par telephone ou WhatsApp.
+- Si une commande preparee ne peut pas etre remise car la cliente ne repond pas ou est absente, la boutique effectue au moins deux tentatives de contact sur environ 24 heures.
+- Sans retour de la cliente apres ces tentatives, l'admin peut annuler la commande, ajouter une note interne et corriger le stock manuellement si besoin.
+- Si un paiement a deja ete recu, la boutique doit organiser manuellement une nouvelle remise ou un remboursement hors site avant de cloturer la commande.
+- Les paiements V1 sont uniquement hors ligne : especes a la remise ou virement apres confirmation.
+- La V1 ne verifie pas automatiquement les paiements et ne gere pas de preuves televersees obligatoires.
+- La note interne de commande sert de trace minimale pour les confirmations de paiement, annulations, remboursements manuels, remplacements et corrections.
+- Si un produit manque apres confirmation ou si une erreur de prix est decouverte, la boutique contacte la cliente. Les options V1 sont remplacement accepte, retrait du produit avec ajustement manuel, ou annulation.
+
+## Hors perimetre operationnel V1
+
+La V1 ne contient pas :
+
+- de samovyvoz / retrait en boutique ;
+- de QR-code de paiement, retrait ou suivi ;
+- de gestion de coursiers, livreurs, tournees ou affectations ;
+- de commission plateforme ;
+- de paiement en ligne ;
+- de statut de paiement separe ;
+- de reconciliation bancaire automatique ;
+- de remboursement automatise ;
+- de calcul complexe des frais de livraison.
+
+Ces sujets ne doivent pas etre implementes par deduction. Ils pourront etre ajoutes seulement dans un plan futur valide.
+
 ## Confidentialite des donnees
 
 - Le site collecte uniquement les informations necessaires a la commande : nom, telephone ou WhatsApp, adresse ou zone de livraison.
