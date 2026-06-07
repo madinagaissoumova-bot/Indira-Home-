@@ -219,7 +219,6 @@ export const ru = {
       productCount: "Товары",
       outOfStockCount: "Нет в наличии",
       recentOrders: "Последние заказы",
-      recentProducts: "Недавно добавленные товары",
       orderNumber: "Номер",
       tableAction: "Действие",
       noOrders: "Пока нет заказов.",
