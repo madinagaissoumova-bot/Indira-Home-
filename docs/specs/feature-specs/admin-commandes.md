@@ -78,11 +78,12 @@ La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulatio
 ### Commande preparee, cliente injoignable ou absente
 
 - La boutique, via l'admin qui traite et livre la commande en V1, contacte la cliente avec le telephone ou WhatsApp renseigne dans la commande.
-- Si la commande est deja preparee mais que la cliente ne repond pas, la boutique effectue au moins deux tentatives de contact sur environ 24 heures.
-- Si la cliente etait absente au moment convenu, la boutique tente de replanifier une remise par telephone ou WhatsApp.
-- Si aucun contact n'est obtenu apres ces tentatives, l'admin peut annuler la commande avec le statut `CANCELLED`.
-- L'admin doit ajouter une note interne indiquant la raison de l'annulation et les tentatives de contact.
-- Une annulation ne remet pas automatiquement le stock. L'admin corrige le stock manuellement si les produits doivent redevenir disponibles.
+- Si la commande est deja preparee mais que la cliente ne repond pas a l'appel, l'admin lui laisse un message vocal sur WhatsApp.
+- Le message vocal indique que la commande est prete et que la cliente a 24 heures pour repondre afin de confirmer ou replanifier la remise.
+- Si la cliente etait absente au moment convenu, l'admin peut appliquer la meme procedure : appel, message vocal WhatsApp, attente de 24 heures.
+- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin annule la commande avec le statut `CANCELLED`.
+- L'admin doit ajouter une note interne indiquant la raison de l'annulation, l'appel effectue, le message vocal WhatsApp et l'heure limite de reponse.
+- Une annulation ne remet pas automatiquement le stock. L'admin corrige le stock manuellement pour remettre les articles en ligne si les produits doivent redevenir disponibles.
 - Si la commande etait deja payee par virement, la boutique doit traiter manuellement une nouvelle remise ou un remboursement hors site avant de cloturer le dossier.
 
 ### Paiement en especes ou par virement

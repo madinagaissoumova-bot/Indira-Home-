@@ -184,12 +184,13 @@ Apres validation par la cliente, la commande est traitee manuellement par la bou
 
 ### Cliente injoignable ou absente
 
-- Si une commande est preparee mais que la cliente ne repond pas, la boutique tente de la joindre par telephone ou WhatsApp au moins deux fois sur une periode d'environ 24 heures.
-- Si la cliente est absente au moment convenu, la boutique tente un nouveau contact pour replanifier une remise.
-- Si aucun contact n'est obtenu apres ces tentatives, l'admin peut passer la commande au statut `CANCELLED` et ajouter une note interne expliquant les tentatives effectuees.
+- Si une commande est preparee mais que la cliente ne repond pas a l'appel, l'admin lui laisse un message vocal sur WhatsApp.
+- Le message vocal indique que la commande est prete et que la cliente a 24 heures pour repondre afin de confirmer ou replanifier la remise.
+- Si la cliente est absente au moment convenu, l'admin peut appliquer la meme procedure : appel, message vocal WhatsApp, attente de 24 heures.
+- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin passe la commande au statut `CANCELLED` et ajoute une note interne indiquant l'appel, le message vocal et l'heure limite de reponse.
 - Si la commande n'a pas ete payee, aucun remboursement n'est necessaire.
 - Si la commande a deja ete payee par virement, la boutique ne doit pas annuler silencieusement : elle doit contacter la cliente pour convenir d'une nouvelle remise ou d'un remboursement manuel hors site.
-- Le stock et la remise en vente des produits sont ajustes manuellement par l'admin si necessaire.
+- Le stock est ajuste manuellement par l'admin pour remettre les articles en ligne si les produits doivent redevenir disponibles.
 
 ### Paiement hors ligne
 
