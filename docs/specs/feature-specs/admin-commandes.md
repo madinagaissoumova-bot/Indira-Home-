@@ -77,7 +77,7 @@ La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulatio
 
 ### Commande preparee, cliente injoignable ou absente
 
-- La boutique, via l'admin ou la vendeuse qui traite la commande, contacte la cliente avec le telephone ou WhatsApp renseigne dans la commande.
+- La boutique, via l'admin qui traite et livre la commande en V1, contacte la cliente avec le telephone ou WhatsApp renseigne dans la commande.
 - Si la commande est deja preparee mais que la cliente ne repond pas, la boutique effectue au moins deux tentatives de contact sur environ 24 heures.
 - Si la cliente etait absente au moment convenu, la boutique tente de replanifier une remise par telephone ou WhatsApp.
 - Si aucun contact n'est obtenu apres ces tentatives, l'admin peut annuler la commande avec le statut `CANCELLED`.
@@ -89,7 +89,7 @@ La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulatio
 
 - `CASH_ON_DELIVERY` signifie paiement en especes au moment de la remise.
 - `TRANSFER_AFTER_CONFIRMATION` signifie virement seulement apres confirmation avec la boutique.
-- La personne qui remet la commande peut accepter les especes. La boutique reste responsable de confirmer que l'argent a bien ete recu.
+- L'admin effectue la livraison V1 et recupere les especes au moment de la remise. La boutique reste responsable de confirmer que l'argent a bien ete recu.
 - Pour un virement, l'admin ne marque pas la commande comme payee automatiquement : elle verifie manuellement la reception du virement ou une preuve fiable communiquee par la cliente.
 - La V1 ne contient pas de statut de paiement separe, de preuve obligatoire televersee, de reconciliation bancaire, ni de remboursement automatique.
 - La note interne sert de trace minimale : paiement recu, mode reel, date approximative, personne ayant confirme, reference de virement si disponible.

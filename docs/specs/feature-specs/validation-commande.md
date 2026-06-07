@@ -193,7 +193,7 @@ Apres validation par la cliente, la commande est traitee manuellement par la bou
 
 ### Paiement hors ligne
 
-- Pour `CASH_ON_DELIVERY`, l'argent est accepte au moment de la remise par la boutique ou par la personne qui remet la commande.
+- Pour `CASH_ON_DELIVERY`, l'argent est accepte au moment de la remise par l'admin, car en V1 l'admin effectue elle-meme la livraison.
 - Pour `TRANSFER_AFTER_CONFIRMATION`, la boutique confirme manuellement que le virement est recu avant de considerer la commande comme payee.
 - En V1, le site ne verifie pas automatiquement les paiements et ne stocke pas de preuve bancaire obligatoire.
 - L'admin doit utiliser la note interne pour indiquer les informations utiles : paiement recu, mode reel, date approximative, personne qui a confirme, ou reference de virement si disponible.

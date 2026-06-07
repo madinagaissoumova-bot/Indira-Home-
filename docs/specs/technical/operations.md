@@ -33,6 +33,7 @@ Une liste stricte de villes ou zones autorisees pourra etre ajoutee plus tard si
 ## Traitement manuel des commandes V1
 
 - La boutique traite les commandes depuis l'espace admin et contacte les clientes par telephone ou WhatsApp.
+- En V1, la livraison est effectuee par l'admin. Elle remet la commande et recupere l'argent en especes lorsque le mode de paiement est `CASH_ON_DELIVERY`.
 - Si une commande preparee ne peut pas etre remise car la cliente ne repond pas ou est absente, la boutique effectue au moins deux tentatives de contact sur environ 24 heures.
 - Sans retour de la cliente apres ces tentatives, l'admin peut annuler la commande, ajouter une note interne et corriger le stock manuellement si besoin.
 - Si un paiement a deja ete recu, la boutique doit organiser manuellement une nouvelle remise ou un remboursement hors site avant de cloturer la commande.
