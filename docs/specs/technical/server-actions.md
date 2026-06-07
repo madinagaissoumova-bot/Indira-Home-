@@ -65,6 +65,7 @@ Le serveur doit distinguer une nouvelle tentative de commande d'un renvoi de la 
 - une seule commande peut etre creee ;
 - le stock ne peut etre decremente qu'une seule fois ;
 - un retry apres une reponse reseau perdue doit retourner le resultat de la commande deja creee ou un resultat neutre equivalent ;
+- une collision concurrente sur la meme cle doit recuperer la commande existante au lieu de decrementer le stock une deuxieme fois ;
 - la cle ne doit pas etre consideree comme une source fiable pour les prix, le stock ou les donnees cliente.
 
 Les formats detailles des champs, slugs, URLs d'images, paniers et donnees de commande sont definis dans `docs/specs/validation-rules.md`.

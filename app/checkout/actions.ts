@@ -23,6 +23,8 @@ export type CheckoutState = {
   };
 };
 
+const CHECKOUT_ATTEMPT_ID_PATTERN = /^[a-zA-Z0-9_-]{16,80}$/;
+
 function createOrderNumber() {
   const date = new Date();
   const stamp = date.toISOString().slice(0, 10).replaceAll("-", "");
@@ -36,6 +38,10 @@ async function createOrderWithRetry(create: () => Promise<CheckoutState>) {
     try {
       return await create();
     } catch (error) {
+      if (isUniqueConstraintError(error, "checkoutAttemptId")) {
+        throw error;
+      }
+
       if (
         error &&
         typeof error === "object" &&
@@ -53,14 +59,41 @@ async function createOrderWithRetry(create: () => Promise<CheckoutState>) {
   throw new Error("ORDER_NUMBER_COLLISION");
 }
 
+function isUniqueConstraintError(error: unknown, field: string) {
+  if (!error || typeof error !== "object" || !("code" in error) || error.code !== "P2002") {
+    return false;
+  }
+
+  const target = "meta" in error && error.meta && typeof error.meta === "object" && "target" in error.meta
+    ? error.meta.target
+    : undefined;
+
+  return Array.isArray(target) && target.includes(field);
+}
+
+async function getOrderByCheckoutAttemptId(checkoutAttemptId: string) {
+  return prisma.order.findUnique({
+    where: { checkoutAttemptId },
+    select: {
+      orderNumber: true,
+      totalRub: true
+    }
+  });
+}
+
 export async function createOrder(_previousState: CheckoutState, formData: FormData) {
   const customerFirstName = String(formData.get("customerFirstName") ?? "").trim();
   const customerLastName = String(formData.get("customerLastName") ?? "").trim();
   const customerPhone = String(formData.get("customerPhone") ?? "").trim();
   const deliveryAddressOrZone = String(formData.get("deliveryAddressOrZone") ?? "").trim();
   const paymentMethod = String(formData.get("paymentMethod") ?? "");
+  const checkoutAttemptId = String(formData.get("checkoutAttemptId") ?? "").trim();
   const expectedTotalRub = Number(formData.get("expectedTotalRub") ?? NaN);
   const cart = parseCartInput(formData.get("cart"));
+
+  if (!CHECKOUT_ATTEMPT_ID_PATTERN.test(checkoutAttemptId)) {
+    return { error: ru.checkout.errors.general };
+  }
 
   if (cart.length === 0) {
     return { error: ru.checkout.errors.emptyCart };
@@ -86,6 +119,14 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
     paymentMethod !== PAYMENT_METHOD.transferAfterConfirmation
   ) {
     return { error: ru.checkout.errors.missingPayment };
+  }
+
+  const existingOrder = await getOrderByCheckoutAttemptId(checkoutAttemptId);
+  if (existingOrder) {
+    return {
+      orderNumber: existingOrder.orderNumber,
+      totalRub: existingOrder.totalRub
+    };
   }
 
   try {
@@ -135,6 +176,7 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
             customerPhone: customerPhone.replace(/\s+/g, " "),
             deliveryAddressOrZone,
             paymentMethod,
+            checkoutAttemptId,
             status: ORDER_STATUS.new,
             totalRub: verifiedCart.totalRub,
             items: {
@@ -159,6 +201,16 @@ export async function createOrder(_previousState: CheckoutState, formData: FormD
 
     return createdOrder;
   } catch (error) {
+    if (isUniqueConstraintError(error, "checkoutAttemptId")) {
+      const existing = await getOrderByCheckoutAttemptId(checkoutAttemptId);
+      if (existing) {
+        return {
+          orderNumber: existing.orderNumber,
+          totalRub: existing.totalRub
+        };
+      }
+    }
+
     if (error instanceof Error && error.message === "EMPTY_CART") {
       return { error: ru.checkout.errors.emptyCart };
     }
