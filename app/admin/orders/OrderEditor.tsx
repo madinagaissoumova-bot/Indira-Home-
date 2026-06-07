@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useActionState } from "react";
+import { useActionState, useRef } from "react";
 import { ORDER_STATUS } from "@/lib/constants";
 import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import type { AdminActionState } from "../actions";
@@ -33,6 +33,7 @@ function confirmCancellation(event: FormEvent<HTMLFormElement>) {
 
 export function OrderEditor({ order }: OrderEditorProps) {
   const [state, action, isPending] = useActionState(updateOrderAction, initialState());
+  const statusSelectRef = useRef<HTMLSelectElement>(null);
   const paymentLabel =
     ru.admin.common.paymentLabels[
       order.paymentMethod as keyof typeof ru.admin.common.paymentLabels
@@ -40,6 +41,13 @@ export function OrderEditor({ order }: OrderEditorProps) {
   const contactPhone = normalizePhoneForLink(order.customerPhone);
   const contactHref = contactPhone ? `tel:+${contactPhone}` : undefined;
   const whatsappHref = contactPhone ? `https://wa.me/${contactPhone}` : undefined;
+  const isCancelled = order.status === ORDER_STATUS.cancelled;
+
+  function markOrderCancelled() {
+    if (statusSelectRef.current) {
+      statusSelectRef.current.value = ORDER_STATUS.cancelled;
+    }
+  }
 
   return (
     <div className="admin-order-detail">
@@ -117,7 +125,13 @@ export function OrderEditor({ order }: OrderEditorProps) {
         <input name="orderId" type="hidden" value={order.id} />
         <div className="field">
           <label htmlFor={`status-${order.id}`}>{ru.admin.common.status}</label>
-          <select className="input" defaultValue={order.status} id={`status-${order.id}`} name="status">
+          <select
+            className="input"
+            defaultValue={order.status}
+            id={`status-${order.id}`}
+            name="status"
+            ref={statusSelectRef}
+          >
             <option value={ORDER_STATUS.new}>{ru.admin.common.statusLabels.NEW}</option>
             <option value={ORDER_STATUS.toConfirm}>{ru.admin.common.statusLabels.TO_CONFIRM}</option>
             <option value={ORDER_STATUS.confirmed}>{ru.admin.common.statusLabels.CONFIRMED}</option>
@@ -135,9 +149,21 @@ export function OrderEditor({ order }: OrderEditorProps) {
             name="adminNote"
           />
         </div>
-        <button className="button" disabled={isPending} type="submit">
-          {ru.admin.common.save}
-        </button>
+        <div className="admin-contact-actions">
+          <button className="button" disabled={isPending} type="submit">
+            {ru.admin.common.save}
+          </button>
+          <button
+            className="button secondary"
+            disabled={isPending || isCancelled}
+            name="intent"
+            onClick={markOrderCancelled}
+            type="submit"
+            value="cancelOrder"
+          >
+            {ru.admin.orders.cancelOrder}
+          </button>
+        </div>
       </form>
     </div>
   );

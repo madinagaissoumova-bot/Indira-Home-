@@ -89,6 +89,6 @@ Pour la V1, un export CSV des commandes depuis l'admin peut etre ajoute plus tar
 - Authentification admin : acces refuse sans session.
 - Admin produit : publication impossible si champs obligatoires manquants.
 - Admin categorie : suppression impossible si produits associes.
-- Admin commande : changement de statut et conservation des prix snapshots.
+- Admin commande : changement de statut, conservation des prix snapshots et restauration du stock au premier passage au statut `CANCELLED`.
 
 La checklist complete de verification V1 est definie dans `docs/testing/test-plan.md`.
