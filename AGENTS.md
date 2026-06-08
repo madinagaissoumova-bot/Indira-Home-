@@ -168,6 +168,8 @@ Pour chaque nouveau sujet de travail :
 11. Attendre la validation explicite de l'utilisatrice avant de merger la Pull Request.
 12. Merger la Pull Request.
 
+L'etape d'ouverture de Pull Request est obligatoire. Si `gh` n'est pas disponible, ne pas s'arreter a un lien manuel : essayer une autre methode disponible et sure, par exemple l'API GitHub avec le credential Git local, ou le navigateur deja connecte. Ne declarer l'ouverture manuelle necessaire qu'apres avoir verifie ces alternatives et explique le blocage concret.
+
 Un seul Development Plan peut etre actif a la fois, sauf instruction contraire explicite. Chaque nouveau Development Plan exige la creation d'une nouvelle branche qui n'existait pas auparavant, meme si une branche existante concerne le meme sujet ou porte un nom proche. Un Development Plan actif = une nouvelle branche = une Pull Request. Ne pas reutiliser une ancienne branche pour un nouveau plan et ne pas regrouper plusieurs plans independants dans une meme Pull Request.
 
 ## Frontend Et UX
