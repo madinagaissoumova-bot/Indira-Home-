@@ -16,18 +16,17 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 - `app/admin/` : espace admin.
 - `components/cart/` : composants liés au panier.
 - `components/navigation/` : composants de navigation partagés.
-- `docs/` : documents du projet, specs, plans de developpement, roadmap, tests et instructions agent.
+- `docs/` : documents du projet, specs, plans de developpement, suivi, exploitation, roadmap et tests.
 - `lib/` : constantes, formatage, Prisma et helpers visuels.
 - `prisma/` : schéma, base locale et seed.
 - `public/uploads/brand/` : visuels de marque.
 - `public/uploads/products/` : photos produits.
-- `docs/agents/` : instructions locales pour les assistants de developpement.
 - `docs/specs/` : source de vérité produit, UX et technique.
 - `docs/development-plans/` : plans de developpement.
 - `docs/development-plans/en-cours/` : lots actifs et plans quotidiens ouverts.
 - `docs/development-plans/termines/` : plans termines et verifies.
-- `docs/project-management/` : tickets, statut projet et plan de production.
-- `docs/security/` : checklist securite V1.
+- `docs/development-plans/status.md` : statut projet et lots.
+- `docs/development-plans/tickets.md` : backlog et tickets.
 - `docs/roadmap/` : vision et sequence globale de la V1.
 - `docs/testing/test-plan.md` : checklist de verification V1.
 
@@ -41,9 +40,10 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 6. `docs/specs/user-stories.md` : verification des parcours comme une vraie utilisatrice.
 7. `docs/specs/work-plan.md` : plan de developpement progressif avant de coder.
 8. `docs/development-plans/en-cours/` : plans de lots et travaux actifs.
-9. `docs/project-management/` : execution, tickets et suivi des lots.
-10. `docs/roadmap/` : priorites et sequence globale de la V1.
-11. `docs/testing/test-plan.md` : validation finale et verifications manuelles.
+9. `docs/development-plans/status.md` et `docs/development-plans/tickets.md` : execution, tickets et suivi des lots.
+10. `docs/specs/technical/` : technique, exploitation, Supabase, production et securite.
+11. `docs/roadmap/` : priorites et sequence globale de la V1.
+12. `docs/testing/test-plan.md` : validation finale et verifications manuelles.
 
 ## Principe de travail
 

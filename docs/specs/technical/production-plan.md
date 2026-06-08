@@ -142,8 +142,10 @@ Une migration destructive ne doit pas etre lancee sans sauvegarde recente.
 - Categories de depart presentes.
 - Produit de test commande avec succes.
 - Stock diminue apres commande.
+- Double soumission de la meme tentative ne cree qu'une commande.
 - Commande visible dans admin.
 - Routes admin bloquees sans session.
+- Tentatives de connexion admin repetees limitees ou ralenties.
 - Textes client en russe.
 - Paiement en ligne absent.
 - Livraison limitee a la Republique tchetchene visible.

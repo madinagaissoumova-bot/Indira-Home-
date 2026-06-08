@@ -121,6 +121,7 @@ Inclus :
 - snapshots nom, image et prix ;
 - decrement stock dans la meme transaction ;
 - route `/checkout/confirmation` ;
+- route `/privacy` ;
 - vidage ou marquage du panier local apres validation.
 
 Sortie attendue :
@@ -129,6 +130,7 @@ Sortie attendue :
 - les prix sont figes ;
 - le stock diminue uniquement apres validation reussie ;
 - recharger la confirmation ne recree pas de commande ;
+- une meme tentative checkout ne cree qu'une commande ;
 - aucune donnee personnelle n'est exposee sur la page de confirmation.
 
 ### Lot 4 - Auth admin et dashboard

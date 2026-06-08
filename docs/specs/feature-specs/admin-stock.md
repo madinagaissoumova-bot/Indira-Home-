@@ -50,7 +50,7 @@ L'admin peut :
 - Voir si un produit est en stock ou epuise.
 - Voir les produits a stock faible.
 - Voir quand une commande diminue le stock.
-- Corriger le stock apres une annulation de commande.
+- Verifier que le stock a ete remis automatiquement apres une annulation de commande.
 - Corriger le stock apres une modification de commande.
 
 ## Boutons / commandes
@@ -95,7 +95,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si une commande est validee, le stock diminue automatiquement selon les quantites commandees.
 - Si une validation de commande echoue, le stock ne doit pas diminuer.
 - Si deux clientes essaient de commander le dernier produit, seule la premiere commande validee doit diminuer le stock.
-- Si une commande est annulee par l'admin, le stock peut etre remis manuellement.
+- Si une commande passe au statut `CANCELLED`, le stock des articles de la commande est remis automatiquement en ligne une seule fois.
 - Si une commande est modifiee par l'admin, le stock peut etre corrige manuellement.
 - Si un historique de stock existe, les corrections manuelles doivent y etre tracees.
 - La quantite exacte en stock ne doit pas etre affichee aux clientes.
@@ -113,7 +113,8 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Un produit epuise n'est pas supprime automatiquement.
 - L'admin peut remettre du stock sur un produit epuise.
 - La validation de commande est le seul moment ou le stock diminue automatiquement.
-- Les corrections apres annulation, erreur ou modification de commande sont manuelles.
+- Les corrections apres erreur ou modification de commande restent manuelles.
+- La correction apres annulation standard est automatique lors du premier passage de la commande au statut `CANCELLED`.
 - Le stock est une information admin et ne doit pas etre affiche aux clientes.
 
 ## Critères d'acceptation
@@ -127,5 +128,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Un produit epuise reste visible s'il est publie et non masque.
 - Un produit epuise redevient commandable si l'admin ajoute du stock.
 - Une commande validee diminue le stock.
+- Une commande annulee par l'admin remet automatiquement le stock en ligne une seule fois.
 - Une validation echouee ne diminue pas le stock.
 - Les clientes ne voient pas la quantite exacte en stock.

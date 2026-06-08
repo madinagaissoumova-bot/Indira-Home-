@@ -17,9 +17,7 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. Preparatifs de mise en ligne V1.
-2. Sauvegarde Supabase recente avant production.
-3. Dernier test commande apres deploiement.
+1. Reprendre les preparatifs de mise en ligne V1.
 
 ## Lot 0 - Base projet et donnees
 
@@ -59,6 +57,7 @@ Priorites :
 | SERVER-301 | P0 | DONE | Verification panier serveur reutilisable. |
 | PUBLIC-301 | P0 | DONE | Formulaire checkout `/checkout`. |
 | SERVER-302 | P0 | DONE | Creation commande transactionnelle. |
+| SERVER-303 | P0 | DONE | Rendre la creation de commande idempotente pour une meme tentative checkout. |
 | PUBLIC-302 | P0 | DONE | Confirmation `/checkout/confirmation`. |
 | QA-301 | P0 | DONE | Test concurrence dernier stock. |
 | QA-302 | P0 | DONE | Test confirmation sans donnees personnelles. |
@@ -71,6 +70,7 @@ Priorites :
 | ADMIN-402 | P0 | DONE | Protection routes et actions admin. |
 | ADMIN-403 | P0 | DONE | Deconnexion admin. |
 | ADMIN-404 | P0 | DONE | Dashboard avec vrais compteurs et commandes recentes. |
+| ADMIN-405 | P1 | DONE | Limiter ou ralentir les tentatives de connexion admin repetees. |
 
 ## Lot 5 - Admin catalogue
 
@@ -114,4 +114,4 @@ Priorites :
 
 ## Regle de mise a jour
 
-Quand un ticket change de statut, mettre aussi a jour `docs/project-management/status.md` si cela change l'etat d'un lot complet.
+Quand un ticket change de statut, mettre aussi a jour `docs/development-plans/status.md` si cela change l'etat d'un lot complet.

@@ -14,6 +14,7 @@ function checkoutForm(overrides: Record<string, string> = {}) {
   formData.set("customerPhone", "+7 988 906-41-06");
   formData.set("deliveryAddressOrZone", "Грозный, ул. Ленина, дом 1");
   formData.set("paymentMethod", PAYMENT_METHOD.cashOnDelivery);
+  formData.set("checkoutAttemptId", "checkout-attempt-validation-1");
 
   for (const [key, value] of Object.entries(overrides)) {
     formData.set(key, value);

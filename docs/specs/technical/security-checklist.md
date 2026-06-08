@@ -16,6 +16,8 @@ Cette checklist couvre le minimum securite attendu pour la V1.
 - Le cookie admin utilise `SameSite=Lax`.
 - La session a une duree limitee.
 - Logout invalide ou supprime la session.
+- Les tentatives de connexion repetees sont limitees ou ralenties cote serveur.
+- Le message d'echec ne distingue pas identifiant inconnu et mot de passe incorrect.
 
 ## Protection admin
 
@@ -78,12 +80,13 @@ Cette checklist couvre le minimum securite attendu pour la V1.
 - Variables production differentes du developpement.
 - Sauvegarde base disponible avant lancement.
 - Migrations executees de facon controlee.
-- Rollback documente dans `../project-management/production-plan.md`.
+- Rollback documente dans `production-plan.md`.
 
 ## Verification avant livraison V1
 
 - Tester acces admin sans session.
 - Tester action admin sans session.
+- Tester tentatives de connexion admin repetees.
 - Tester commande avec produit masque.
 - Tester commande avec categorie masquee.
 - Tester commande avec stock insuffisant.

@@ -1,10 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdminSession } from "@/lib/adminAuth";
-import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
-import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/i18n/ru";
 import { OrderEditor } from "../OrderEditor";
 import { AdminNav } from "../../AdminNav";
 
@@ -24,19 +20,15 @@ export default async function AdminOrderDetailPage({
 
   return (
     <main className="page admin-page">
-      <AdminNav />
-      <section className="hero hero-compact">
-        <span className="eyebrow">{ru.admin.orders.title}</span>
-        <h1>{order.orderNumber}</h1>
-        <p>
-          {getAdminOrderStatusLabel(order.status)} · {formatRub(order.totalRub)}
-        </p>
-        <Link className="button secondary" href="/admin/orders">
-          {ru.admin.orders.title}
-        </Link>
-      </section>
+      <div className="admin-shell">
+        <aside className="admin-sidebar">
+          <AdminNav />
+        </aside>
 
-      <OrderEditor order={order} />
+        <div className="admin-content">
+          <OrderEditor order={order} />
+        </div>
+      </div>
     </main>
   );
 }

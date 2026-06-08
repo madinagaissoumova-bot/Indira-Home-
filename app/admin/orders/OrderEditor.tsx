@@ -1,8 +1,9 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useActionState } from "react";
+import { useActionState, useRef } from "react";
 import { ORDER_STATUS } from "@/lib/constants";
+import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import type { AdminActionState } from "../actions";
 import { updateOrderAction } from "../actions";
 import { formatRub } from "@/lib/format";
@@ -32,6 +33,7 @@ function confirmCancellation(event: FormEvent<HTMLFormElement>) {
 
 export function OrderEditor({ order }: OrderEditorProps) {
   const [state, action, isPending] = useActionState(updateOrderAction, initialState());
+  const statusSelectRef = useRef<HTMLSelectElement>(null);
   const paymentLabel =
     ru.admin.common.paymentLabels[
       order.paymentMethod as keyof typeof ru.admin.common.paymentLabels
@@ -39,18 +41,44 @@ export function OrderEditor({ order }: OrderEditorProps) {
   const contactPhone = normalizePhoneForLink(order.customerPhone);
   const contactHref = contactPhone ? `tel:+${contactPhone}` : undefined;
   const whatsappHref = contactPhone ? `https://wa.me/${contactPhone}` : undefined;
+  const isCancelled = order.status === ORDER_STATUS.cancelled;
+
+  function markOrderCancelled() {
+    if (statusSelectRef.current) {
+      statusSelectRef.current.value = ORDER_STATUS.cancelled;
+    }
+  }
 
   return (
-    <div className="checkout-layout">
-      <section className="form-panel">
-        <h2>{ru.admin.orders.customerInfo}</h2>
-        <div className="summary-line">
-          <span>{ru.admin.common.customer}</span>
-          <strong>{order.customerName}</strong>
+    <div className="admin-order-detail">
+      <section className="admin-order-header">
+        <div>
+          <span className="eyebrow">{ru.admin.orders.title}</span>
+          <h1>{order.orderNumber}</h1>
         </div>
-        <div className="summary-line">
-          <span>{ru.admin.common.phone}</span>
-          <strong>{order.customerPhone}</strong>
+        <div className="admin-order-meta">
+          <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
+          <strong>{formatRub(order.totalRub)}</strong>
+        </div>
+      </section>
+
+      <section className="admin-dashboard-section">
+        <div className="admin-section-heading">
+          <h2>{ru.admin.orders.customerInfo}</h2>
+        </div>
+        <div className="admin-order-info">
+          <div>
+            <span>{ru.admin.common.customer}</span>
+            <strong>{order.customerName}</strong>
+          </div>
+          <div>
+            <span>{ru.admin.common.address}</span>
+            <strong>{order.deliveryAddressOrZone}</strong>
+          </div>
+          <div>
+            <span>{ru.admin.common.payment}</span>
+            <strong>{paymentLabel}</strong>
+          </div>
         </div>
         {contactHref || whatsappHref ? (
           <div className="admin-contact-actions">
@@ -66,21 +94,15 @@ export function OrderEditor({ order }: OrderEditorProps) {
             ) : null}
           </div>
         ) : null}
-        <div className="summary-line">
-          <span>{ru.admin.common.address}</span>
-          <strong>{order.deliveryAddressOrZone}</strong>
-        </div>
-        <div className="summary-line">
-          <span>{ru.admin.common.payment}</span>
-          <strong>{paymentLabel}</strong>
-        </div>
       </section>
 
-      <section className="cart-summary">
-        <h2>{ru.admin.orders.orderedProducts}</h2>
+      <section className="admin-dashboard-section">
+        <div className="admin-section-heading">
+          <h2>{ru.admin.orders.orderedProducts}</h2>
+        </div>
         <div className="checkout-items">
           {order.items.map((item) => (
-            <div className="summary-line" key={item.id}>
+            <div className="admin-list-row admin-order-item-row" key={item.id}>
               <span>
                 {item.productNameSnapshot} x {item.quantity}
               </span>
@@ -94,14 +116,22 @@ export function OrderEditor({ order }: OrderEditorProps) {
         </div>
       </section>
 
-      <form action={action} className="form-panel" onSubmit={confirmCancellation}>
-        <h2>{ru.admin.orders.editOrder}</h2>
+      <form action={action} className="admin-dashboard-section" onSubmit={confirmCancellation}>
+        <div className="admin-section-heading">
+          <h2>{ru.admin.orders.editOrder}</h2>
+        </div>
         {state.error ? <p className="form-error">{state.error}</p> : null}
         {state.success ? <p>{state.success}</p> : null}
         <input name="orderId" type="hidden" value={order.id} />
         <div className="field">
           <label htmlFor={`status-${order.id}`}>{ru.admin.common.status}</label>
-          <select className="input" defaultValue={order.status} id={`status-${order.id}`} name="status">
+          <select
+            className="input"
+            defaultValue={order.status}
+            id={`status-${order.id}`}
+            name="status"
+            ref={statusSelectRef}
+          >
             <option value={ORDER_STATUS.new}>{ru.admin.common.statusLabels.NEW}</option>
             <option value={ORDER_STATUS.toConfirm}>{ru.admin.common.statusLabels.TO_CONFIRM}</option>
             <option value={ORDER_STATUS.confirmed}>{ru.admin.common.statusLabels.CONFIRMED}</option>
@@ -119,9 +149,21 @@ export function OrderEditor({ order }: OrderEditorProps) {
             name="adminNote"
           />
         </div>
-        <button className="button" disabled={isPending} type="submit">
-          {ru.admin.common.save}
-        </button>
+        <div className="admin-contact-actions">
+          <button className="button" disabled={isPending} type="submit">
+            {ru.admin.common.save}
+          </button>
+          <button
+            className="button secondary"
+            disabled={isPending || isCancelled}
+            name="intent"
+            onClick={markOrderCancelled}
+            type="submit"
+            value="cancelOrder"
+          >
+            {ru.admin.orders.cancelOrder}
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -110,6 +110,15 @@ La cliente peut :
 
 La cliente ne peut pas annuler ou modifier elle-meme une commande validee depuis le site. Elle doit contacter la boutique par telephone ou WhatsApp si elle veut demander une annulation ou une modification.
 
+### Comprendre la confidentialite
+
+La cliente peut :
+
+- Ouvrir une page publique de confidentialite.
+- Comprendre quelles donnees sont collectees pour traiter sa commande.
+- Comprendre que ses donnees de commande ne sont pas affichees publiquement.
+- Contacter la boutique sur WhatsApp pour toute question concernant ses donnees.
+
 ## Fonctions admin
 
 ### Acceder a l'espace admin
@@ -165,7 +174,8 @@ L'admin peut :
 - Modifier manuellement la quantite disponible.
 - Voir si un produit est en stock ou epuise.
 - Le stock determine si un produit est commandable ou epuise.
-- Corriger le stock apres une erreur, une modification de commande, une annulation ou un reassort.
+- Corriger le stock apres une erreur, une modification de commande ou un reassort.
+- Verifier que l'annulation admin remet automatiquement le stock en ligne une seule fois.
 - Voir le stock diminuer automatiquement lorsqu'une commande est validee sur le site.
 - Exemple : si le stock d'un produit est N et qu'une cliente commande 1 unite, le stock devient N - 1.
 
@@ -186,6 +196,7 @@ L'admin peut :
 - Marquer une commande comme confirmee.
 - Marquer une commande comme livree.
 - Marquer une commande comme annulee.
+- Remettre automatiquement le stock en ligne au premier passage d'une commande au statut annule.
 - Contacter la cliente par telephone ou WhatsApp avec le numero renseigne dans la commande.
 
 ## Fonctions hors V1

@@ -13,6 +13,14 @@ const CART_KEY = "indira-home-cart";
 const CONFIRMATION_KEY = "indira-home-last-order-confirmation";
 const MAX_CART_QUANTITY_PER_PRODUCT = 99;
 
+function createCheckoutAttemptId() {
+  if (typeof window.crypto?.randomUUID === "function") {
+    return window.crypto.randomUUID();
+  }
+
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 18)}`;
+}
+
 type CheckoutProduct = {
   id: string;
   name: string;
@@ -46,6 +54,7 @@ function readCart(): CartStorageItem[] {
 export function CheckoutClient({ products }: CheckoutClientProps) {
   const router = useRouter();
   const [cart, setCart] = useState<CartStorageItem[]>([]);
+  const [checkoutAttemptId, setCheckoutAttemptId] = useState("");
   const [state, formAction, isPending] = useActionState<CheckoutState, FormData>(createOrder, {});
   const productById = useMemo(
     () => new Map(products.map((product) => [product.id, product])),
@@ -54,6 +63,7 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
 
   useEffect(() => {
     setCart(readCart());
+    setCheckoutAttemptId(createCheckoutAttemptId());
   }, []);
 
   const rows = cart.map((item) => {
@@ -98,6 +108,7 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
     <form action={formAction} className="checkout-layout">
       <input name="cart" type="hidden" value={JSON.stringify(cart)} />
       <input name="expectedTotalRub" type="hidden" value={displayedTotal} />
+      <input name="checkoutAttemptId" type="hidden" value={checkoutAttemptId} />
 
       <section className="form-panel" aria-labelledby="checkout-form-title">
         <h2 id="checkout-form-title">{ru.checkout.contactTitle}</h2>
@@ -177,7 +188,7 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
           <Link className="button secondary" href="/cart">
             {ru.cart.backToCart}
           </Link>
-          <button className="button" disabled={isInvalid || isPending} type="submit">
+          <button className="button" disabled={isInvalid || isPending || !checkoutAttemptId} type="submit">
             {isPending ? ru.checkout.submitting : ru.checkout.submit}
           </button>
         </div>

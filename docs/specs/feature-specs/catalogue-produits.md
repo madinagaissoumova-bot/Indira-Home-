@@ -85,7 +85,7 @@ La cliente doit pouvoir, depuis l'accueil :
 - ouvrir une fiche produit ;
 - ajouter un produit commandable au panier.
 
-Les categories ne doivent pas etre repetees comme de gros blocs sur l'accueil si elles sont deja accessibles dans le mega-menu. Sur desktop, l'accueil peut etre limite au hero principal afin de tenir au-dessus de la ligne de flottaison ; le catalogue detaille reste accessible depuis la recherche, le mega-menu et les pages categorie/sous-categorie.
+Les categories ne doivent pas etre repetees comme de gros blocs sur l'accueil si elles sont deja accessibles dans le mega-menu. Sur desktop, le hero doit rester compact afin que les controles du catalogue et le debut de la grille produits soient accessibles rapidement.
 
 Si aucun produit ne correspond aux filtres, l'accueil doit afficher un etat vide clair en russe et proposer une reinitialisation accessible.
 

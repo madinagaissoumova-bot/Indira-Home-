@@ -16,8 +16,8 @@ Statuts utilises :
 | Lot 0 | `lot-0-base-donnees.md` | TERMINE | Constantes, schema Prisma, seed V1, helpers publics, validations serveur communes et garde-fous critiques sont verifies. |
 | Lot 1 | `lot-1-catalogue-client.md` | TERMINE | Catalogue d'accueil, routes categorie/sous-categorie, recherche, filtres, tri, mobile CSS et regles publiques sont verifies. |
 | Lot 2 | `lot-2-fiche-produit-panier.md` | TERMINE | Fiche produit, galerie, caracteristiques, ajout panier, page panier, corrections de quantites et filtres publics serveur sont verifies. |
-| Lot 3 | `lot-3-commande-client.md` | TERMINE | Checkout, action serveur, verification panier centralisee, confirmation, tests d'integration Supabase et verification HTTP locale sont termines. |
-| Lot 4 | `lot-4-auth-dashboard-admin.md` | TERMINE | Auth admin, logout, protection serveur, dashboard et compteurs sont verifies. |
+| Lot 3 | `lot-3-commande-client.md` | TERMINE | Le parcours commande client est verifie, avec idempotence d'une meme tentative checkout. |
+| Lot 4 | `lot-4-auth-dashboard-admin.md` | TERMINE | Auth admin, protection serveur, dashboard et limitation des tentatives de connexion repetees sont verifies. |
 | Lot 5 | `lot-5-admin-catalogue.md` | TERMINE | Produits, categories et sous-categories admin sont gerables et verifies. |
 | Lot 6 | `lot-6-admin-stock.md` | TERMINE | Le stock est consultable, ajoutable, retirable et corrigeable depuis l'interface admin. |
 | Lot 7 | `lot-7-admin-commandes.md` | TERMINE | Les commandes peuvent etre consultees, mises a jour, annotees et contactees depuis l'admin. |
@@ -25,9 +25,57 @@ Statuts utilises :
 
 ## Plans actifs
 
-Aucun plan actif ne bloque la V1. Les prochains travaux documentes concernent la preparation de mise en ligne et les verifications de production.
+Aucun plan actif. Le prochain plan doit etre discute et valide avec l'utilisatrice avant creation d'une nouvelle branche.
 
 ## Plans termines
+
+### Limitation des tentatives admin ADMIN-405 - 2026-06-08
+
+Validation effectuee :
+
+- creation d'une branche dediee `admin-405-login-rate-limit` depuis `develop` ;
+- ajout d'une limitation temporaire apres tentatives repetees de connexion admin echouees ;
+- conservation d'un message generique pour les echecs de connexion ;
+- remise a zero de la limitation apres connexion reussie ;
+- ajout d'un test unitaire couvrant blocage temporaire, expiration et remise a zero ;
+- `ADMIN-405` passe a `DONE` et le lot 4 repasse a `TERMINE`.
+
+### Stabilisation annulation admin et stock - 2026-06-07
+
+Validation effectuee :
+
+- creation d'une branche dediee `stabilisation-annulation-admin-stock` depuis `develop` ;
+- conservation du bouton admin d'annulation de commande ;
+- restauration automatique du stock lors du premier passage d'une commande au statut `CANCELLED` ;
+- protection contre une double remise en stock si la commande etait deja annulee ;
+- alignement des specs commandes, stock, operations, functional map et plan de test ;
+- ajout d'un test unitaire sur la regle de restauration du stock ;
+- `npm run check:docs`, `npm test`, `npm run lint` et `npm run build` passent.
+
+### Idempotence checkout SERVER-303 - 2026-06-07
+
+Validation effectuee :
+
+- ajout d'une cle technique `checkoutAttemptId` unique sur les commandes ;
+- generation d'une cle de tentative checkout cote formulaire client sans modifier le format du panier `localStorage` ;
+- retour de la commande existante quand une meme tentative checkout est renvoyee ;
+- protection contre le double decrement de stock pour une meme tentative ;
+- ajout d'une migration Prisma dediee ;
+- ajout d'un test d'integration couvrant le renvoi d'une meme tentative ;
+- migration Supabase appliquee avec `npm run prisma:migrate` ;
+- `npm run check:docs`, `npm test`, `npm run lint`, `npm run build` et `RUN_DB_INTEGRATION=1 npm test` passent ;
+- `SERVER-303` passe a `DONE`.
+
+### Completer les specs V1 - 2026-06-04
+
+Validation effectuee :
+
+- audit des specs V1 et suppression des principales ambiguities documentaires ;
+- ajout de la feature spec confidentialite et de sa tracabilite dans les user stories et tests ;
+- clarification de l'identite cliente, de la taxonomie produit, du numero de commande, des statuts et des images ;
+- ajout des exigences d'idempotence checkout et de limitation des tentatives de connexion admin ;
+- formalisation du workflow Development Plan, nouvelle branche, Pull Request et validation explicite ;
+- `npm run check:docs` passe.
 
 ### Lot 0 - Base projet et donnees
 
@@ -161,8 +209,7 @@ Validation effectuee :
 
 Le prochain focus recommande est :
 
-1. preparer la mise en ligne avec sauvegarde Supabase recente ;
-2. verifier les variables de production hors depot ;
-3. effectuer un dernier test commande apres deploiement.
+1. limiter les tentatives de connexion admin repetees ;
+2. reprendre la preparation de mise en ligne avec sauvegarde Supabase recente.
 
-Cette sequence garde la V1 stable et evite de lancer la production sans sauvegarde ni secrets de production controles.
+Cette sequence ferme les nouveaux ecarts de securite et de stock avant la mise en production.
