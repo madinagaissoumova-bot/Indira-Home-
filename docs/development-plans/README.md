@@ -83,8 +83,6 @@ Quand le travail est termine :
 6. Attendre la validation explicite de l'utilisatrice.
 7. Merger la Pull Request.
 
-L'ouverture de la Pull Request fait partie de la livraison, au meme titre que le commit et le push. Si la CLI GitHub `gh` n'est pas disponible, tenter une alternative disponible et sure avant de s'arreter : API GitHub avec le credential Git local, navigateur connecte, ou autre outil explicitement accessible dans l'environnement. Ne demander une creation manuelle a l'utilisatrice qu'apres avoir verifie ces alternatives et nomme le blocage concret.
-
 Un seul plan peut etre actif a la fois, sauf instruction contraire explicite. Chaque nouveau plan doit creer une branche qui n'existait pas auparavant, meme si une branche existante concerne le meme sujet ou porte un nom proche. Plusieurs plans independants ne doivent pas etre regroupes dans la meme Pull Request.
 
 ## Definition commune de fin de ticket
