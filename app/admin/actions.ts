@@ -29,6 +29,11 @@ import {
   requireAdminSession,
   verifyAdminCredentials
 } from "@/lib/adminAuth";
+import {
+  clearAdminLoginRateLimit,
+  getAdminLoginRateLimitState,
+  recordFailedAdminLogin
+} from "@/lib/adminLoginRateLimit";
 import { ru } from "@/lib/i18n/ru";
 import type { FormActionState } from "@/types";
 
@@ -129,11 +134,18 @@ export async function loginAdmin(_previousState: AdminActionState, formData: For
     return { error: ru.admin.login.missing };
   }
 
-  const isValid = await verifyAdminCredentials(username, password);
-  if (!isValid) {
+  const rateLimit = getAdminLoginRateLimitState(username);
+  if (rateLimit.isLimited) {
     return { error: ru.admin.login.invalid };
   }
 
+  const isValid = await verifyAdminCredentials(username, password);
+  if (!isValid) {
+    recordFailedAdminLogin(username);
+    return { error: ru.admin.login.invalid };
+  }
+
+  clearAdminLoginRateLimit(username);
   await createAdminSession(username);
   redirect("/admin");
 }
