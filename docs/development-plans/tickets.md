@@ -17,8 +17,7 @@ Priorites :
 
 ## Prochain focus recommande
 
-1. Limiter les tentatives de connexion admin repetees.
-2. Reprendre les preparatifs de mise en ligne V1.
+1. Reprendre les preparatifs de mise en ligne V1.
 
 ## Lot 0 - Base projet et donnees
 
@@ -71,7 +70,7 @@ Priorites :
 | ADMIN-402 | P0 | DONE | Protection routes et actions admin. |
 | ADMIN-403 | P0 | DONE | Deconnexion admin. |
 | ADMIN-404 | P0 | DONE | Dashboard avec vrais compteurs et commandes recentes. |
-| ADMIN-405 | P1 | TODO | Limiter ou ralentir les tentatives de connexion admin repetees. |
+| ADMIN-405 | P1 | DONE | Limiter ou ralentir les tentatives de connexion admin repetees. |
 
 ## Lot 5 - Admin catalogue
 
