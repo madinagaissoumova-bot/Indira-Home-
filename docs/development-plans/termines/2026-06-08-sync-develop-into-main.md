@@ -29,3 +29,12 @@ Integrer dans `main` le travail deja valide et present dans `develop`, afin que 
 - `npm run lint` passe.
 - `npm run build` passe.
 - Une Pull Request est ouverte vers `main`.
+
+## Validation effectuee
+
+- Branche dediee `sync-develop-into-main` creee depuis `main`.
+- `origin/develop` integre dans la branche sans conflit.
+- Le plan actif a ete deplace dans `termines`.
+- `npm run check:docs` passe.
+- `npm run lint` passe.
+- `npm run build` passe.
