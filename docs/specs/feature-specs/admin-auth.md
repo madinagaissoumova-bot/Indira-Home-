@@ -87,6 +87,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si plusieurs admins deviennent necessaires plus tard, une table `AdminUser` pourra etre ajoutee.
 - Les actions de modification admin ne doivent pas etre executees avec des requetes GET.
 - Une action admin qui echoue pour cause de session expiree ne doit pas appliquer de modification partielle.
+- Les tentatives de connexion repetees doivent etre limitees ou ralenties cote serveur.
 
 ## Regles metier
 
@@ -102,6 +103,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Le cookie admin est HTTP-only et signe cote serveur.
 - Le cookie admin utilise `Secure` en production.
 - Les mutations admin doivent verifier la session avant toute ecriture.
+- Les erreurs de connexion ne doivent pas reveler si l'identifiant admin existe.
 
 ## Critères d'acceptation
 
@@ -112,3 +114,4 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Une session expiree renvoie vers la connexion.
 - Une cliente ne peut pas acceder a l'espace admin.
 - Une requete de modification admin sans session valide ne modifie aucune donnee.
+- Des tentatives de connexion repetees dans un intervalle court sont limitees ou ralenties.

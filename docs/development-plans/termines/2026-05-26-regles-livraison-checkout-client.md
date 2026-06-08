@@ -49,4 +49,4 @@ Les textes visibles par les clientes doivent etre en russe dans l'interface. Les
 Cloture documentaire du 2026-06-02 :
 
 - les validations finales du Lot 8 confirment le checkout, la confirmation, les regles de livraison, les prix recalcules, le decrement stock et l'absence de donnees personnelles publiques ;
-- le plan est deplace dans `docs/development-plans/termines/` pour supprimer la contradiction avec `docs/project-management/status.md`.
+- le plan est deplace dans `docs/development-plans/termines/` pour supprimer la contradiction avec `docs/development-plans/status.md`.

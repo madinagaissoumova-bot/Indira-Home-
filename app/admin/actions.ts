@@ -3,10 +3,12 @@
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
+import { ORDER_STATUS, PRODUCT_STATUS, STOCK_ADJUSTMENT_MODE, VISIBILITY_STATUS } from "@/lib/constants";
+import { shouldRestoreStockOnOrderStatusChange } from "@/lib/adminOrders";
 import { computeAdjustedStockQuantity, type StockAdjustmentMode } from "@/lib/adminStock";
 import { prisma } from "@/lib/db";
 import {
+  createSlugFromText,
   createSlugFallback,
   hasLength,
   isNonNegativeInteger,
@@ -27,6 +29,11 @@ import {
   requireAdminSession,
   verifyAdminCredentials
 } from "@/lib/adminAuth";
+import {
+  clearAdminLoginRateLimit,
+  getAdminLoginRateLimitState,
+  recordFailedAdminLogin
+} from "@/lib/adminLoginRateLimit";
 import { ru } from "@/lib/i18n/ru";
 import type { FormActionState } from "@/types";
 
@@ -127,11 +134,18 @@ export async function loginAdmin(_previousState: AdminActionState, formData: For
     return { error: ru.admin.login.missing };
   }
 
-  const isValid = await verifyAdminCredentials(username, password);
-  if (!isValid) {
+  const rateLimit = getAdminLoginRateLimitState(username);
+  if (rateLimit.isLimited) {
     return { error: ru.admin.login.invalid };
   }
 
+  const isValid = await verifyAdminCredentials(username, password);
+  if (!isValid) {
+    recordFailedAdminLogin(username);
+    return { error: ru.admin.login.invalid };
+  }
+
+  clearAdminLoginRateLimit(username);
   await createAdminSession(username);
   redirect("/admin");
 }
@@ -383,18 +397,15 @@ export async function saveCategoryAction(
 
   const categoryId = text(formData.get("categoryId")) || null;
   const name = text(formData.get("name"));
-  const slug = text(formData.get("slug"));
   const status = parseVisibilityStatus(text(formData.get("status")));
   const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
+  const slug = createSlugFromText(name, "category");
 
-  if (!name || !slug) {
-    return { error: "Название и slug обязательны." };
+  if (!name) {
+    return { error: "Название категории обязательно." };
   }
   if (!hasLength(name, 2, 80)) {
     return { error: "Название категории должно содержать от 2 до 80 символов." };
-  }
-  if (!isValidSlug(slug)) {
-    return { error: "Slug должен содержать только латинские строчные буквы, цифры и дефисы." };
   }
   if (!status) {
     return { error: "Некорректный статус видимости." };
@@ -417,6 +428,7 @@ export async function saveCategoryAction(
       return { error: "Категория для изменения не найдена." };
     }
 
+    const previousSlug = existing?.slug;
     const saved = categoryId
       ? await prisma.category.update({
           where: { id: categoryId },
@@ -427,6 +439,9 @@ export async function saveCategoryAction(
         });
 
     if (existing) {
+      if (previousSlug && previousSlug !== saved.slug) {
+        revalidatePath(`/category/${previousSlug}`);
+      }
       revalidatePath(`/category/${existing.slug}`);
       for (const subcategory of existing.subcategories) {
         revalidatePath(`/subcategory/${subcategory.slug}`);
@@ -515,18 +530,15 @@ export async function saveSubcategoryAction(
   const subcategoryId = text(formData.get("subcategoryId")) || null;
   const categoryId = text(formData.get("categoryId"));
   const name = text(formData.get("name"));
-  const slug = text(formData.get("slug"));
   const status = parseVisibilityStatus(text(formData.get("status")));
   const displayOrder = parseInteger(formData.get("displayOrder")) ?? 0;
+  const slug = createSlugFromText(name, "subcategory");
 
-  if (!categoryId || !name || !slug) {
-    return { error: "Родительская категория, название и slug обязательны." };
+  if (!categoryId || !name) {
+    return { error: "Родительская категория и название обязательны." };
   }
   if (!hasLength(name, 2, 80)) {
     return { error: "Название подкатегории должно содержать от 2 до 80 символов." };
-  }
-  if (!isValidSlug(slug)) {
-    return { error: "Slug должен содержать только латинские строчные буквы, цифры и дефисы." };
   }
   if (!status) {
     return { error: "Некорректный статус видимости." };
@@ -551,6 +563,7 @@ export async function saveSubcategoryAction(
   }
 
   try {
+    const previousSlug = existing?.slug;
     const saved = existing
       ? await prisma.subcategory.update({
           where: { id: subcategoryId as string },
@@ -561,6 +574,9 @@ export async function saveSubcategoryAction(
         });
 
     if (existing) {
+      if (previousSlug && previousSlug !== saved.slug) {
+        revalidatePath(`/subcategory/${previousSlug}`);
+      }
       revalidatePath(`/subcategory/${existing.slug}`);
       revalidatePath(`/category/${existing.category.slug}`);
     }
@@ -687,7 +703,9 @@ export async function updateOrderAction(
   await requireAdminSession();
 
   const orderId = text(formData.get("orderId"));
-  const status = parseOrderStatus(text(formData.get("status")));
+  const intent = text(formData.get("intent"));
+  const requestedStatus = parseOrderStatus(text(formData.get("status")));
+  const status = intent === "cancelOrder" ? ORDER_STATUS.cancelled : requestedStatus;
   const adminNote = text(formData.get("adminNote")) || null;
 
   if (!orderId) {
@@ -697,16 +715,44 @@ export async function updateOrderAction(
     return { error: "Некорректный статус заказа." };
   }
 
-  const order = await prisma.order.findUnique({ where: { id: orderId } });
+  const order = await prisma.order.findUnique({
+    where: { id: orderId },
+    include: {
+      items: {
+        select: {
+          productId: true,
+          quantity: true
+        }
+      }
+    }
+  });
   if (!order) {
     return { error: "Заказ не найден." };
   }
 
-  await prisma.order.update({
-    where: { id: orderId },
-    data: {
-      status,
-      adminNote
+  const shouldRestoreStock = shouldRestoreStockOnOrderStatusChange(order.status, status);
+
+  await prisma.$transaction(async (tx) => {
+    await tx.order.update({
+      where: { id: orderId },
+      data: {
+        status,
+        adminNote
+      }
+    });
+
+    if (shouldRestoreStock) {
+      for (const item of order.items) {
+        if (!item.productId) continue;
+        await tx.product.update({
+          where: { id: item.productId },
+          data: {
+            stockQuantity: {
+              increment: item.quantity
+            }
+          }
+        });
+      }
     }
   });
 

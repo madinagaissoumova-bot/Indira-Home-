@@ -63,14 +63,11 @@ Construire le dashboard.
 
 Inclus :
 
-- commandes nouvelles ;
-- commandes en cours ;
-- produits publies ;
-- produits visibles cote cliente si different ;
-- produits epuises ;
-- produits masques ;
+- chiffre d'affaires hors commandes annulees ;
+- nombre total de commandes ;
+- nombre total de produits ;
+- produits publies en rupture ;
 - commandes recentes ;
-- alertes stock 0 ;
 - raccourcis admin.
 
 Validation :
@@ -78,6 +75,8 @@ Validation :
 - dashboard accessible apres login ;
 - commandes recentes limitees a 5-10 ;
 - liens rapides fonctionnent.
+
+Note : ce lot termine a ete aligne avec la version simplifiee du dashboard admin. Les anciens compteurs detailles par statut produit et les alertes separees ne sont plus attendus sur `/admin`.
 
 ## Zones probables
 

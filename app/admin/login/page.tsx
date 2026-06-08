@@ -9,14 +9,16 @@ export default async function AdminLoginPage() {
 
   return (
     <main className="page admin-page">
-      <section className="hero hero-compact">
-        <span className="eyebrow">{ru.admin.login.eyebrow}</span>
-        <h1>{ru.admin.login.title}</h1>
-        <p>{ru.admin.login.text}</p>
-      </section>
+      <div className="admin-login-shell">
+        <section className="admin-login-intro">
+          <span className="eyebrow">{ru.admin.login.eyebrow}</span>
+          <h1>{ru.admin.login.title}</h1>
+          <p>{ru.admin.login.text}</p>
+        </section>
 
-      <div className="checkout-layout">
-        <LoginForm />
+        <div className="admin-login-form-wrap">
+          <LoginForm />
+        </div>
       </div>
     </main>
   );

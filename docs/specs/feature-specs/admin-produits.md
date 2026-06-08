@@ -102,6 +102,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 | Prix invalide | Refuser un prix vide, negatif ou egal a 0. |
 | Categorie manquante | Refuser la publication et demander une categorie. |
 | Sous-categorie manquante | Refuser la publication et demander une sous-categorie. |
+| Sous-categorie incompatible | Refuser l'enregistrement si la sous-categorie n'appartient pas a la categorie choisie. |
 | Description manquante | Refuser la publication et demander une description. |
 | Stock initial invalide | Refuser un stock negatif ou non entier avant publication. |
 | Suppression accidentelle | Demander confirmation avant suppression. |
@@ -110,6 +111,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 
 - Un produit peut etre enregistre en brouillon meme si toutes les informations obligatoires ne sont pas encore remplies.
 - Un produit ne peut etre publie que si les informations obligatoires sont completes.
+- La sous-categorie choisie doit appartenir a la categorie choisie.
 - Un produit masque n'apparait pas cote cliente, meme s'il a du stock.
 - Un produit supprime ne doit plus apparaitre cote cliente.
 - Si un produit est supprime alors qu'il existe dans un panier client, la validation de ce panier doit etre bloquee.
@@ -122,6 +124,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 
 - L'admin doit etre connectee pour gerer les produits.
 - Un produit publie doit avoir un nom, une photo, un prix, une categorie, une sous-categorie, une description et un stock valide.
+- Un produit ne peut pas etre enregistre avec une categorie et une sous-categorie incoherentes.
 - La quantite exacte en stock est geree cote admin et n'est pas affichee aux clientes.
 - Le stock determine si un produit est commandable ou epuise, selon les regles de `admin-stock.md`.
 - Masquer un produit est different de supprimer un produit.
@@ -144,4 +147,5 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - L'admin ne peut pas supprimer definitivement un produit deja present dans une commande validee.
 - Un produit masque n'apparait pas cote cliente.
 - Un produit avec un stock invalide ne peut pas etre publie.
+- Une categorie et une sous-categorie incompatibles sont refusees cote serveur.
 - Les commandes deja validees ne changent pas si l'admin modifie le prix du produit ensuite.

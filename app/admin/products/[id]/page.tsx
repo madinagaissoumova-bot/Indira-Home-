@@ -39,17 +39,23 @@ export default async function AdminProductDetailPage({
 
   return (
     <main className="page admin-page">
-      <AdminNav />
-      <section className="hero hero-compact">
-        <span className="eyebrow">{ru.admin.products.title}</span>
-        <h1>{product.name}</h1>
-        <p>{product.description}</p>
-        <Link className="button secondary" href="/admin/products">
-          {ru.admin.products.title}
-        </Link>
-      </section>
+      <div className="admin-shell">
+        <aside className="admin-sidebar">
+          <AdminNav />
+          <section className="admin-sidebar-card">
+            <span className="eyebrow">{ru.admin.products.title}</span>
+            <h1>{product.name}</h1>
+            <p>{product.description}</p>
+            <Link className="button secondary" href="/admin/products">
+              {ru.admin.products.title}
+            </Link>
+          </section>
+        </aside>
 
-      <ProductEditor categories={categories} product={product} />
+        <div className="admin-content">
+          <ProductEditor categories={categories} product={product} />
+        </div>
+      </div>
     </main>
   );
 }

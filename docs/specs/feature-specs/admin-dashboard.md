@@ -4,7 +4,7 @@
 
 Permettre a l'admin de voir une vue centrale de l'activite de la boutique Indira Home apres connexion.
 
-Le tableau de bord sert de point d'entree vers les commandes, les produits, le stock et les categories.
+Le tableau de bord sert de resume simple de l'activite. La navigation admin separee sert de point d'entree vers les sections de gestion.
 
 ## Utilisatrices concernees
 
@@ -14,41 +14,28 @@ Le tableau de bord sert de point d'entree vers les commandes, les produits, le s
 
 | Donnee | Description | Obligatoire |
 | --- | --- | --- |
-| Nombre de commandes nouvelles | Nombre de commandes a traiter | Non |
-| Nombre de commandes en cours | Nombre de commandes deja prises en charge | Non |
-| Nombre de produits publies | Nombre de produits avec statut publie | Non |
-| Nombre de produits visibles cote cliente | Nombre de produits publies dans des categories et sous-categories visibles | Non |
-| Nombre de produits epuises | Nombre de produits publies mais sans stock | Non |
-| Nombre de produits masques | Nombre de produits caches cote cliente | Non |
-| Nombre de categories | Nombre de categories actives ou gerees | Non |
-| Nombre de sous-categories | Nombre de sous-categories gerees | Non |
-| Alertes stock | Produits a surveiller, par exemple stock faible ou zero | Non |
-| Commandes recentes | Liste des dernieres commandes recues | Non |
+| Chiffre d'affaires | Somme des commandes non annulees | Oui |
+| Nombre de commandes | Total des commandes recues | Oui |
+| Nombre de produits | Total des produits geres | Oui |
+| Produits en rupture | Nombre de produits publies avec stock `0` | Oui |
+| Commandes recentes | Liste des dernieres commandes recues | Oui |
+| Produits recemment ajoutes | Liste courte des derniers produits crees | Oui |
 
 ## Actions possibles
 
 L'admin peut :
 
-- Voir un resume de l'activite de la boutique.
-- Voir les nouvelles commandes.
+- Voir les indicateurs essentiels de la boutique.
 - Ouvrir une commande depuis le tableau de bord.
-- Ouvrir la gestion des produits.
-- Ouvrir la gestion du stock.
-- Ouvrir la gestion des categories.
-- Ouvrir la liste des commandes.
-- Ouvrir la liste des produits.
-- Ouvrir la liste des categories.
+- Voir les derniers produits ajoutes.
+- Utiliser la navigation admin pour aller vers les produits, categories, commandes, stock et autres sections.
 - Se deconnecter.
 
 ## Boutons / commandes
 
 | Bouton / commande | Role |
 | --- | --- |
-| Voir les commandes | Aller vers la liste des commandes |
-| Voir les produits | Aller vers la gestion des produits |
-| Voir le stock | Aller vers la gestion du stock |
-| Voir les categories | Aller vers la gestion des categories |
-| Nouvelle commande | Ouvrir le detail de la commande la plus recente |
+| Ligne de commande recente | Ouvrir le detail de la commande correspondante |
 | Deconnexion | Quitter la session admin |
 
 ## Messages
@@ -73,10 +60,13 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 ## Cas speciaux
 
 - Le tableau de bord n'est accessible qu'apres connexion.
-- Les compteurs et listes doivent se mettre a jour apres creation, modification ou suppression d'un element.
+- Les indicateurs et listes doivent se mettre a jour apres creation, modification ou suppression d'un element.
 - Les commandes recentes visibles depuis le tableau de bord doivent renvoyer vers la commande correspondante.
-- Les alertes de stock sont purement informatives et ne remplacent pas la fiche `admin-stock.md`.
 - Le tableau de bord ne remplace pas `admin-commandes.md`, `admin-produits.md`, `admin-stock.md` ou `categories-sous-categories.md`.
+- Les raccourcis metier ne doivent pas etre affiches comme gros boutons principaux sur le dashboard.
+- La navigation admin doit rester simple et claire : Dashboard, Produits, Categories, Commandes, Clients, Stock, Parametres.
+- Les sections non implementees en V1 peuvent apparaitre comme elements desactives, sans creer de route inutile.
+- La deconnexion peut etre placee a part des raccourcis metier, par exemple en bas a droite de l'interface admin.
 
 ## Regles metier
 
@@ -84,13 +74,17 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Le tableau de bord est une vue centrale, pas une source de donnees distincte.
 - Les informations affichees proviennent des modules de gestion existants.
 - Les clientes ne voient pas le tableau de bord admin.
-- Les compteurs ne doivent pas etre presents si une donnee n'existe pas encore.
+- Le chiffre d'affaires du dashboard exclut les commandes annulees.
+- Le dashboard doit rester simple et lineaire : indicateurs essentiels, commandes recentes, produits recemment ajoutes.
+- Les statistiques doivent etre affichees sous forme de cartes propres et alignees.
+- Les commandes recentes doivent etre affichees en tableau avec numero, cliente, date, statut, total et action d'ouverture.
 
 ## Critères d'acceptation
 
-- L'admin peut voir un resume de l'activite de la boutique.
-- L'admin peut voir les nouvelles commandes.
+- L'admin peut voir le chiffre d'affaires, le nombre de commandes, le nombre de produits et le nombre de produits en rupture.
+- L'admin peut voir les commandes recentes dans un tableau clair.
+- L'admin peut voir les produits recemment ajoutes.
 - L'admin peut ouvrir une commande depuis le tableau de bord.
-- L'admin peut acceder aux produits, au stock et aux categories depuis le tableau de bord.
+- L'admin peut acceder aux produits, categories, commandes et stock via la navigation admin.
 - L'admin peut se deconnecter depuis le tableau de bord.
 - Une cliente ne peut pas acceder au tableau de bord.

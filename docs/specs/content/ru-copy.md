@@ -83,7 +83,8 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | --- | --- |
 | Titre checkout | Оформление заказа |
 | Contact title | Контактные данные |
-| Nom label | Имя |
+| Prenom label | Имя |
+| Nom label | Фамилия |
 | Telephone label | Телефон или WhatsApp |
 | Telephone placeholder | +7 ... |
 | Adresse label | Адрес или зона доставки |
@@ -106,7 +107,8 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Situation | Texte russe |
 | --- | --- |
 | Panier vide | Корзина пуста или в ней есть товары, которые нужно исправить. |
-| Nom manquant | Пожалуйста, укажите имя. |
+| Prenom manquant | Пожалуйста, укажите имя. |
+| Nom manquant | Пожалуйста, укажите фамилию. |
 | Telephone invalide | Укажите корректный номер телефона или WhatsApp. |
 | Adresse manquante | Укажите полный адрес доставки в Чеченской Республике. |
 | Zone hors livraison | Доставка пока доступна только по Чеченской Республике. |
@@ -130,6 +132,19 @@ Les textes admin peuvent aussi etre en russe, mais cette liste priorise les text
 | Contact WhatsApp | WhatsApp магазина: +7 988 906-41-06 |
 | Retour catalogue | Вернуться в каталог |
 | Acces direct sans commande | Нет недавнего заказа. |
+
+## Confidentialite
+
+| Usage | Texte russe |
+| --- | --- |
+| Lien navigation | Конфиденциальность |
+| Eyebrow | Конфиденциальность |
+| Titre | Как мы используем ваши данные |
+| Introduction | Мы собираем только данные, необходимые для оформления и доставки заказа. |
+| Donnees collectees | Имя и фамилия, номер телефона или WhatsApp, адрес или зона доставки, состав и сумма заказа. |
+| Utilisation | Эти данные нужны, чтобы связаться с вами, подтвердить заказ и организовать доставку. |
+| Protection | Данные заказа не публикуются на сайте и доступны только в защищенном разделе магазина. |
+| Contact | По вопросам о ваших данных свяжитесь с нами в WhatsApp: +7 988 906-41-06. |
 
 ## Regles de style texte
 

@@ -39,6 +39,8 @@ Une liste stricte de villes ou zones autorisees pourra etre ajoutee plus tard si
 - Les logs serveur ne doivent pas exposer inutilement les numeros de telephone ou adresses.
 - Un export ou une sauvegarde des commandes doit rester protege.
 - Une page publique de confidentialite doit expliquer simplement quelles donnees sont collectees et pourquoi.
+- La page confidentialite ne doit pas promettre un delai de suppression automatique non implemente.
+- Les commandes peuvent etre conservees aussi longtemps que necessaire pour le suivi commercial et les obligations applicables.
 
 ## Hebergement et configuration
 
@@ -87,6 +89,6 @@ Pour la V1, un export CSV des commandes depuis l'admin peut etre ajoute plus tar
 - Authentification admin : acces refuse sans session.
 - Admin produit : publication impossible si champs obligatoires manquants.
 - Admin categorie : suppression impossible si produits associes.
-- Admin commande : changement de statut et conservation des prix snapshots.
+- Admin commande : changement de statut, conservation des prix snapshots et restauration du stock au premier passage au statut `CANCELLED`.
 
 La checklist complete de verification V1 est definie dans `docs/testing/test-plan.md`.

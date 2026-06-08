@@ -24,6 +24,9 @@ La V1 inclut le parcours cliente complet et l'admin complet. Le developpement pe
 | `docs/specs/technical/admin-auth.md` | Authentification admin, session et protection des routes |
 | `docs/specs/technical/images-content.md` | Images produit, contenu russe et snapshots de commande |
 | `docs/specs/technical/operations.md` | Suppression, livraison, confidentialite, hebergement et tests |
+| `docs/specs/technical/supabase.md` | Connexion Supabase PostgreSQL, commandes Prisma et sauvegardes base |
+| `docs/specs/technical/production-plan.md` | Preparation production, variables d'environnement, backup et rollback |
+| `docs/specs/technical/security-checklist.md` | Checklist securite V1 avant livraison |
 
 ## Regles techniques transversales
 
