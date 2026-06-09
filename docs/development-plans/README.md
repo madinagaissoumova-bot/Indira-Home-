@@ -61,13 +61,15 @@ Pour changer un lot en `TERMINE`, verifier d'abord :
 
 Pour chaque nouveau Development Plan :
 
-1. Discuter du besoin et rediger le contenu du plan avec l'utilisatrice dans la conversation.
-2. Attendre la validation explicite du plan par l'utilisatrice.
-3. Creer une nouvelle branche depuis `develop`, avec un nom qui correspond au plan.
-4. Enregistrer le plan valide dans `en-cours/` sur cette branche.
-5. Lire les specs et tickets lies.
-6. Garder les changements limites au plan actif.
-7. Mettre a jour les specs si l'implementation revele une incoherence.
+1. Verifier la branche courante et se placer sur `main`.
+2. Verifier que `main` est synchronisee avec `origin/main`.
+3. Discuter du besoin et rediger le contenu du plan avec l'utilisatrice dans la conversation.
+4. Attendre la validation explicite du plan par l'utilisatrice.
+5. Creer une nouvelle branche depuis `main`, avec un nom qui correspond au plan.
+6. Enregistrer le plan valide dans `en-cours/` sur cette branche.
+7. Lire les specs et tickets lies.
+8. Garder les changements limites au plan actif.
+9. Mettre a jour les specs si l'implementation revele une incoherence.
 
 ## Cycle De Livraison
 
@@ -79,11 +81,14 @@ Quand le travail est termine :
 2. Deplacer le plan dans `termines/`.
 3. Creer un commit clair.
 4. Pousser la branche sur GitHub.
-5. Ouvrir une Pull Request vers `develop`.
+5. Ouvrir une Pull Request vers `main`.
 6. Attendre la validation explicite de l'utilisatrice.
-7. Merger la Pull Request.
+7. Merger la Pull Request vers `main`.
+8. Revenir sur `main` et synchroniser la branche locale avec `origin/main`.
 
 Un seul plan peut etre actif a la fois, sauf instruction contraire explicite. Chaque nouveau plan doit creer une branche qui n'existait pas auparavant, meme si une branche existante concerne le meme sujet ou porte un nom proche. Plusieurs plans independants ne doivent pas etre regroupes dans la meme Pull Request.
+
+Une petite correction, une correction de methode, une modification documentaire ou un ajustement annexe est un nouveau sujet si ce n'etait pas explicitement prevu dans le plan actif. Dans ce cas, il faut repartir de `main`, creer une nouvelle branche, rediger un nouveau plan, puis suivre tout le cycle commit, Pull Request et merge vers `main`.
 
 ## Definition commune de fin de ticket
 
