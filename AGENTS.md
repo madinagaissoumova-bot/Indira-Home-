@@ -155,20 +155,25 @@ Statuts de commande :
 
 Pour chaque nouveau sujet de travail :
 
-1. Discuter du besoin et rediger le contenu du Development Plan avec l'utilisatrice dans la conversation.
-2. Attendre la validation explicite du plan par l'utilisatrice avant toute implementation.
-3. Creer une nouvelle branche depuis `develop`, avec un nom qui correspond clairement au plan.
-4. Enregistrer le plan valide dans `docs/development-plans/en-cours/` sur cette branche.
-5. Implementer uniquement le perimetre du plan actif.
-6. Verifier le comportement, les specs, les tests et les documents de suivi.
-7. Deplacer le plan dans `docs/development-plans/termines/`.
-8. Creer un commit clair contenant le travail du plan.
-9. Pousser la branche sur GitHub.
-10. Ouvrir une Pull Request correspondant au plan vers `develop`.
-11. Attendre la validation explicite de l'utilisatrice avant de merger la Pull Request.
-12. Merger la Pull Request.
+1. Verifier la branche courante et se placer sur `main`.
+2. Verifier que `main` est synchronisee avec `origin/main`.
+3. Discuter du besoin et rediger le contenu du Development Plan avec l'utilisatrice dans la conversation.
+4. Attendre la validation explicite du plan par l'utilisatrice avant toute implementation.
+5. Creer une nouvelle branche depuis `main`, avec un nom qui correspond clairement au plan.
+6. Enregistrer le plan valide dans `docs/development-plans/en-cours/` sur cette branche.
+7. Implementer uniquement le perimetre du plan actif.
+8. Verifier le comportement, les specs, les tests et les documents de suivi.
+9. Deplacer le plan dans `docs/development-plans/termines/`.
+10. Creer un commit clair contenant le travail du plan.
+11. Pousser la branche sur GitHub.
+12. Ouvrir une Pull Request correspondant au plan vers `main`.
+13. Attendre la validation explicite de l'utilisatrice avant de merger la Pull Request.
+14. Merger la Pull Request vers `main`.
+15. Revenir sur `main` et synchroniser la branche locale avec `origin/main`.
 
 Un seul Development Plan peut etre actif a la fois, sauf instruction contraire explicite. Chaque nouveau Development Plan exige la creation d'une nouvelle branche qui n'existait pas auparavant, meme si une branche existante concerne le meme sujet ou porte un nom proche. Un Development Plan actif = une nouvelle branche = une Pull Request. Ne pas reutiliser une ancienne branche pour un nouveau plan et ne pas regrouper plusieurs plans independants dans une meme Pull Request.
+
+Une petite correction, une correction de methode, une modification documentaire ou un ajustement annexe est un nouveau sujet si ce n'etait pas explicitement prevu dans le plan actif. Dans ce cas, il faut repartir de `main`, creer une nouvelle branche, rediger un nouveau Development Plan, puis suivre tout le cycle commit, Pull Request et merge vers `main`.
 
 ## Frontend Et UX
 
