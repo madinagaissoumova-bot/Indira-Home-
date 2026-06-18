@@ -25,6 +25,6 @@ Revenir a une organisation avec un dossier de plans en cours et un dossier de pl
 
 Separation retenue :
 
-- `docs/roadmap/` : direction generale ;
+- `docs/changelog/` : historique des changements livres ;
 - `docs/development-plans/en-cours/` : grands lots, statut projet et plans de travail actifs ;
 - `docs/development-plans/termines/` : plans de travail termines.
