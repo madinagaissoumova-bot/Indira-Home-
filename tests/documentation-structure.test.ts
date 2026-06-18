@@ -8,7 +8,7 @@ const root = process.cwd();
 const ignoredDirs = new Set([".git", ".next", "node_modules"]);
 const oldDocsPath = "D" + "ocs/";
 const finderDuplicatePath = "D" + "ocs 2";
-const allowedDocsRootDirs = ["development-plans", "roadmap", "specs", "testing"];
+const allowedDocsRootDirs = ["changelog", "development-plans", "specs", "testing"];
 const allowedDevelopmentPlanRootFiles = new Set(["README.md", "status.md", "tickets.md"]);
 
 function listProjectFiles(dir: string): string[] {

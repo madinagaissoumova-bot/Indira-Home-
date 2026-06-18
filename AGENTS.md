@@ -35,7 +35,7 @@ Avant tout changement important de comportement, lire les documents pertinents :
 - `docs/specs/feature-specs/`
 - `docs/development-plans/status.md`
 - `docs/development-plans/tickets.md`
-- `docs/roadmap/README.md`
+- `docs/changelog/README.md`
 - `docs/testing/test-plan.md`
 
 Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
@@ -214,4 +214,4 @@ Avant de terminer un changement significatif :
 - Afficher la quantite exacte en stock aux clientes.
 - Exposer telephone, adresse ou notes admin sur une page publique.
 - Ajouter de gros refactors sans lien avec la phase en cours.
-- Modifier les specs, la roadmap ou les plans sans garder le code coherent avec eux.
+- Modifier les specs, le changelog ou les plans sans garder le code coherent avec eux.

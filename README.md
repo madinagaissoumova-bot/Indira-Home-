@@ -16,7 +16,7 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 - `app/admin/` : espace admin.
 - `components/cart/` : composants liés au panier.
 - `components/navigation/` : composants de navigation partagés.
-- `docs/` : documents du projet, specs, plans de developpement, suivi, exploitation, roadmap et tests.
+- `docs/` : documents du projet, specs, plans de developpement, suivi, exploitation, changelog et tests.
 - `lib/` : constantes, formatage, Prisma et helpers visuels.
 - `prisma/` : schéma, base locale et seed.
 - `public/uploads/brand/` : visuels de marque.
@@ -27,7 +27,7 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 - `docs/development-plans/termines/` : plans termines et verifies.
 - `docs/development-plans/status.md` : statut projet et lots.
 - `docs/development-plans/tickets.md` : backlog et tickets.
-- `docs/roadmap/` : vision et sequence globale de la V1.
+- `docs/changelog/` : historique des changements livres.
 - `docs/testing/test-plan.md` : checklist de verification V1.
 
 ## Chemin de specification
@@ -42,7 +42,7 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 8. `docs/development-plans/en-cours/` : plans de lots et travaux actifs.
 9. `docs/development-plans/status.md` et `docs/development-plans/tickets.md` : execution, tickets et suivi des lots.
 10. `docs/specs/technical/` : technique, exploitation, Supabase, production et securite.
-11. `docs/roadmap/` : priorites et sequence globale de la V1.
+11. `docs/changelog/` : historique des changements livres.
 12. `docs/testing/test-plan.md` : validation finale et verifications manuelles.
 
 ## Principe de travail

@@ -14,13 +14,13 @@ fait, et comment exploiter la V1 en conditions reelles.
 | `specs/content/` | Centralise les textes importants, notamment les textes russes visibles cote cliente. | Avant d'ajouter ou modifier du copywriting client. |
 | `specs/adr/` | Garde les decisions d'architecture deja prises. | Quand une decision technique doit rester explicable dans le temps. |
 | `development-plans/` | Regroupe les plans de travail et le suivi projet. | Pour voir ce qui est actif, termine, bloque, restant, ou pour suivre les tickets. |
-| `roadmap/` | Donne la vision et l'ordre des priorites. | Pour savoir ce qui appartient a la V1 et ce qui attendra une version suivante. |
+| `changelog/` | Retrace les changements deja livres. | Pour consulter l'historique des fonctionnalites et stabilisations de la V1. |
 | `testing/` | Regroupe la validation manuelle et technique de la V1. | Avant de declarer un lot termine ou de livrer la V1. |
 
 ## Regles de rangement
 
 - Ne pas ajouter de nouveau dossier a la racine de `docs/` sans decision explicite.
-- La racine de `docs/` doit rester limitee a `specs/`, `development-plans/`, `roadmap/` et `testing/`.
+- La racine de `docs/` doit rester limitee a `specs/`, `development-plans/`, `changelog/` et `testing/`.
 - Mettre les besoins produit, les regles metier et les criteres d'acceptation dans `specs/`.
 - Mettre l'avancement, les tickets et le statut courant dans `development-plans/status.md` et `development-plans/tickets.md`.
 - Mettre les instructions d'exploitation reelle dans `specs/technical/`.

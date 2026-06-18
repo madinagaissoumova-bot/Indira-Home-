@@ -1,6 +1,6 @@
 # Development Plans - Indira Home
 
-Ce dossier transforme la roadmap en plans de developpement executables.
+Ce dossier transforme les specs et les besoins valides en plans de developpement executables.
 
 ## Organisation
 
