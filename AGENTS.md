@@ -6,10 +6,6 @@ Ce projet est **Indira Home**, une V1 e-commerce simple pour une boutique de vai
 
 Le comportement produit, les parcours, les routes, les statuts, les regles metier, l'UX, les criteres de validation et les textes visibles sont definis dans `docs/specs/`.
 
-Le site cliente est en russe.
-
-Les prix sont affiches en roubles.
-
 ## Stack
 
 - Framework : Next.js App Router
