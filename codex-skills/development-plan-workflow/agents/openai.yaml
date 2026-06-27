@@ -1,0 +1,4 @@
+interface:
+  display_name: "Development Plan Workflow"
+  short_description: "Run scoped branch, plan, PR workflows"
+  default_prompt: "Use $development-plan-workflow to prepare and execute this work through a validated development plan."

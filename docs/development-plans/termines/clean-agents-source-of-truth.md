@@ -13,6 +13,7 @@ Rendre `AGENTS.md` plus clair en le limitant aux instructions de travail pour le
 - Renvoyer explicitement vers `docs/specs/` pour les comportements produit, parcours, routes, statuts, regles metier, UX et criteres de validation.
 - Lister les skills utiles et indiquer quand les utiliser, sans recopier leur contenu detaille.
 - Reduire la section verification a une consigne generale qui renvoie aux specs et aux tests.
+- Versionner les skills utiles dans `codex-skills/` pour que GitHub garde une copie portable sans chemin local vers la machine de l'utilisatrice.
 
 ## Hors perimetre
 

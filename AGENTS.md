@@ -24,6 +24,8 @@ Si le code et les specs se contredisent, preferer les specs, puis aligner le cod
 
 ## Skills
 
+Les copies versionnees des skills projet sont dans `codex-skills/`.
+
 - `development-plan-workflow` : utiliser pour tout travail qui demande un plan, une branche, un commit, une Pull Request, un merge ou une validation explicite avant implementation.
 - `indira-spec-workflow` : utiliser pour tout changement lie aux specs, au comportement produit, aux routes, aux regles metier, aux plans, aux tickets ou a la coherence globale Indira Home.
 - `frontend-ux` : utiliser pour ameliorer l'ergonomie frontend, les parcours, la navigation, les formulaires, les libelles, les etats vides, erreurs, chargements et confirmations.
