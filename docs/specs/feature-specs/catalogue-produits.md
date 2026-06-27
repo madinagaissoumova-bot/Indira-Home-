@@ -54,6 +54,25 @@ Si le produit est en stock, le catalogue ne doit pas afficher de texte "disponib
 
 Si le produit est epuise, le catalogue doit afficher clairement "indisponible" ou "produit epuise" et l'action de commande ne doit pas fonctionner.
 
+## Regles visuelles du catalogue
+
+Le catalogue doit mettre les produits au premier plan. Il ne doit pas devenir une landing page marketing sans produits visibles rapidement.
+
+Les photos produit doivent etre nettes, suffisamment grandes pour identifier l'article et bien cadrees. Les images, cartes et miniatures doivent garder des proportions stables pour eviter les sauts de layout.
+
+Les cartes produit doivent :
+
+- rendre la photo principale dominante ;
+- rendre le nom et le prix lisibles rapidement ;
+- utiliser des badges fins et discrets ;
+- eviter de masquer le produit avec trop de texte ;
+- avoir des coins doux et des ombres tres legeres, sans effet carton lourd ;
+- garder des dimensions stables entre les produits.
+
+Pour un produit epuise, la carte peut etre visuellement adoucie. Le badge ou l'indication d'indisponibilite doit rester clair, sans dominer la photo.
+
+Les filtres, tris et controles de catalogue doivent rester visuellement stables. Sur mobile, ils ne doivent pas prendre toute la page en permanence avant l'acces aux produits.
+
 ## Affichage par defaut
 
 Par defaut, le catalogue affiche :
