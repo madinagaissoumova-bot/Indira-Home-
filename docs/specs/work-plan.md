@@ -84,7 +84,6 @@ Afficher les produits visibles aux clientes.
 - Utiliser les collections d'accueil comme aide de navigation, sans remplacer la consultation directe des produits.
 - Utiliser les pages categorie comme vraies pages de collection.
 - Prevoir un header avec acces principal aux pages du site et au menu categories.
-- Prevoir sur les pages categorie une zone visuelle pour les futures photos de collection.
 
 ### Verification
 
@@ -207,7 +206,7 @@ Donner a l'admin une vue centrale apres connexion.
 - Afficher les indicateurs essentiels : chiffre d'affaires hors commandes annulees, nombre de commandes, nombre de produits et produits en rupture.
 - Afficher les commandes recentes dans un tableau.
 - Afficher les produits recemment ajoutes.
-- Ajouter une navigation admin simple vers dashboard, produits, categories, commandes, clients, stock et parametres.
+- Ajouter une navigation admin simple vers dashboard, produits, categories, commandes et stock.
 - Ajouter la deconnexion depuis le tableau de bord.
 
 ### Verification

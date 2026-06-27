@@ -173,11 +173,9 @@ L'admin peut :
 - Retirer une quantite du stock existant.
 - Modifier manuellement la quantite disponible.
 - Voir si un produit est en stock ou epuise.
-- Le stock determine si un produit est commandable ou epuise.
 - Corriger le stock apres une erreur, une modification de commande ou un reassort.
-- Verifier que l'annulation admin remet automatiquement le stock en ligne une seule fois.
-- Voir le stock diminuer automatiquement lorsqu'une commande est validee sur le site.
-- Exemple : si le stock d'un produit est N et qu'une cliente commande 1 unite, le stock devient N - 1.
+- Gerer l'impact des commandes et annulations sur le stock.
+- Voir que le stock diminue quand une commande est validee.
 
 ### Gerer les commandes
 
