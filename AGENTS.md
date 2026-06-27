@@ -22,7 +22,7 @@ Avant de faire un changement, une action ou une modification quelconque sur le p
 
 Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
 
-## Skills A Utiliser
+## Skills
 
 - `development-plan-workflow` : utiliser pour tout travail qui demande un plan, une branche, un commit, une Pull Request, un merge ou une validation explicite avant implementation.
 - `indira-spec-workflow` : utiliser pour tout changement lie aux specs, au comportement produit, aux routes, aux regles metier, aux plans, aux tickets ou a la coherence globale Indira Home.
@@ -35,25 +35,12 @@ Si le code et les specs se contredisent, preferer les specs, puis aligner le cod
 
 ## Verification
 
-Commandes utiles :
+Utiliser les commandes et verifications adaptees au changement.
 
-- `npm run dev`
-- `npm run lint`
-- `npm run build`
-- `npm run prisma:generate`
-- `npm run prisma:migrate`
-- `npm run prisma:seed`
-
-Avant de terminer un changement significatif :
-
-- lancer `npm run lint` si le changement touche TypeScript ou React ;
-- lancer `npm run build` si le changement touche routes, actions serveur, Prisma, CSS global ou configuration ;
-- mettre a jour `docs/development-plans/tickets.md` et `docs/development-plans/status.md` si un ticket ou lot change d'etat ;
-- utiliser `docs/testing/test-plan.md` pour la validation V1 ;
-- verifier que le travail correspond aux specs ;
-- effectuer les tests necessaires.
+Les criteres de validation sont definis dans `docs/specs/` et `docs/testing/`.
 
 ## A Eviter
 
 - Dupliquer dans `AGENTS.md` des informations qui appartiennent aux specs produit.
 - Recopier dans `AGENTS.md` le contenu detaille des skills.
+- Ajouter dans `AGENTS.md` un workflow detaille qui appartient a un skill.
