@@ -4,12 +4,7 @@
 
 Ce projet est **Indira Home**, une V1 e-commerce simple pour une boutique de vaisselle et de produits maison en Republique tchetchene.
 
-La V1 doit livrer deux surfaces completes :
-
-- un parcours cliente mobile-first ;
-- un espace admin protege.
-
-Le site cliente est en russe. L'admin peut etre en russe ou en francais pendant la construction, mais les libelles finaux doivent tendre vers le russe quand ils sont visibles dans l'interface.
+Le comportement produit, les parcours, les routes, les statuts, les regles metier, l'UX, les criteres de validation et les textes visibles sont definis dans `docs/specs/`.
 
 ## Stack
 
@@ -23,118 +18,9 @@ Le site cliente est en russe. L'admin peut etre en russe ou en francais pendant 
 
 ## Sources De Verite
 
-Avant tout changement important de comportement, lire les documents pertinents :
-
-- `docs/specs/global-spec.md`
-- `docs/specs/functional-map.md`
-- `docs/specs/work-plan.md`
-- `docs/specs/technical/README.md`
-- `docs/specs/technical/production-plan.md`
-- `docs/specs/technical/security-checklist.md`
-- `docs/specs/technical/supabase.md`
-- `docs/specs/feature-specs/`
-- `docs/development-plans/status.md`
-- `docs/development-plans/tickets.md`
-- `docs/changelog/README.md`
-- `docs/testing/test-plan.md`
+Avant de faire un changement, une action ou une modification quelconque sur le projet, lire toutes les specs du projet dans `docs/specs/`.
 
 Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
-
-## Fonctionnalites V1
-
-### Parcours Cliente
-
-- catalogue public ;
-- navigation par categorie et sous-categorie ;
-- recherche ;
-- fiche produit ;
-- panier en `localStorage` ;
-- checkout sans compte ;
-- creation de commande ;
-- confirmation de commande ;
-- page confidentialite.
-
-### Admin
-
-- connexion admin ;
-- tableau de bord ;
-- gestion produits ;
-- gestion categories et sous-categories ;
-- gestion stock ;
-- gestion commandes ;
-- changement de statut commande ;
-- notes internes.
-
-## Regles Produit Non Negociables
-
-- Les textes visibles par les clientes doivent etre en russe.
-- Les prix sont affiches en roubles.
-- Les clientes ne creent pas de compte.
-- Il n'y a pas de paiement en ligne en V1.
-- La boutique confirme les commandes par telephone ou WhatsApp.
-- Numero WhatsApp public : `+7 988 906-41-06`.
-- La livraison V1 est limitee a la Republique tchetchene.
-- La quantite exacte en stock est reservee a l'admin et ne doit jamais etre affichee cote cliente.
-- Un produit publie avec stock `0` reste visible, mais il n'est pas commandable.
-- Les produits `DRAFT` ou `HIDDEN` ne sont pas visibles cote cliente.
-- Un produit commandable doit etre `PUBLISHED`, non masque, dans une categorie visible, dans une sous-categorie visible, avec un stock superieur a `0`.
-- Les prix d'une commande sont figes au moment de la validation.
-- Le stock diminue uniquement apres une validation de commande reussie.
-- Les donnees personnelles de commande ne sont jamais affichees sur les pages publiques.
-
-## Routes
-
-### Publiques
-
-- `/`
-- `/category/:slug`
-- `/subcategory/:slug`
-- `/product/:slug`
-- `/search`
-- `/cart`
-- `/checkout`
-- `/checkout/confirmation`
-- `/privacy`
-
-### Admin
-
-- `/admin/login`
-- `/admin`
-- `/admin/products`
-- `/admin/products/:id`
-- `/admin/categories`
-- `/admin/stock`
-- `/admin/orders`
-- `/admin/orders/:id`
-
-## Conventions De Donnees
-
-Toujours utiliser `lib/constants.ts` pour les valeurs metier.
-
-Statuts produit :
-
-- `DRAFT`
-- `PUBLISHED`
-- `HIDDEN`
-
-Statuts de visibilite :
-
-- `VISIBLE`
-- `HIDDEN`
-
-Modes de paiement :
-
-- `CASH_ON_DELIVERY`
-- `TRANSFER_AFTER_CONFIRMATION`
-
-Statuts de commande :
-
-- `NEW`
-- `TO_CONFIRM`
-- `CONFIRMED`
-- `PREPARING`
-- `DELIVERED`
-- `CANCELLED`
 
 ## Regles D'Implementation
 
@@ -144,12 +30,8 @@ Statuts de commande :
 - Ne pas ajouter de grosse abstraction sans benefice clair.
 - Mettre les types reutilisables dans `types/`.
 - Garder les types strictement locaux dans le composant ou le module concerne.
-- Stocker le panier navigateur avec seulement `productId` et `quantity`.
-- Ne jamais faire confiance au panier navigateur pour les prix, le stock ou les statuts.
-- Recalculer prix, disponibilite, total et stock cote serveur avant creation de commande.
-- Utiliser des URLs d'images produit en V1.
-- Proteger toutes les pages et actions admin cote serveur.
-- Ne pas exposer de lien admin de facon trop visible dans le parcours cliente.
+- Appliquer les constantes, routes, statuts, regles serveur et contraintes produit definis dans `docs/specs/`.
+- Ne pas ajouter de comportement hors specs sans nouveau plan valide.
 
 ## Workflow Development Plan
 
@@ -175,17 +57,6 @@ Un seul Development Plan peut etre actif a la fois, sauf instruction contraire e
 
 Une petite correction, une correction de methode, une modification documentaire ou un ajustement annexe est un nouveau sujet si ce n'etait pas explicitement prevu dans le plan actif. Dans ce cas, il faut repartir de `main`, creer une nouvelle branche, rediger un nouveau Development Plan, puis suivre tout le cycle commit, Pull Request et merge vers `main`.
 
-## Frontend Et UX
-
-- Mobile-first pour le parcours cliente.
-- Interface cliente chaleureuse, propre, raffinee, centree produit.
-- Admin plus dense, plus utilitaire, facile a scanner.
-- Les boutons principaux doivent etre faciles a toucher sur mobile.
-- Les cartes produit ne doivent pas afficher de longues descriptions.
-- Les etats vides, erreurs et indisponibilites doivent etre clairs.
-- Ne pas transformer le catalogue en landing page marketing.
-- Ne pas afficher le stock exact cote cliente.
-
 ## Verification
 
 Commandes utiles :
@@ -208,10 +79,6 @@ Avant de terminer un changement significatif :
 
 ## A Eviter
 
-- Construire une marketplace.
-- Ajouter le paiement en ligne en V1.
-- Demander une connexion cliente.
-- Afficher la quantite exacte en stock aux clientes.
-- Exposer telephone, adresse ou notes admin sur une page publique.
 - Ajouter de gros refactors sans lien avec la phase en cours.
+- Dupliquer dans `AGENTS.md` des informations qui appartiennent aux specs produit.
 - Modifier les specs, le changelog ou les plans sans garder le code coherent avec eux.
