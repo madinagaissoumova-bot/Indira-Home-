@@ -8,6 +8,8 @@ Le comportement produit, les parcours, les routes, les statuts, les regles metie
 
 Le site cliente est en russe.
 
+Les prix sont affiches en roubles.
+
 ## Stack
 
 - Framework : Next.js App Router
