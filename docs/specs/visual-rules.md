@@ -8,20 +8,18 @@ Il ne definit pas les parcours, les routes, les regles metier, les textes, les s
 
 L'interface doit inspirer confiance, rester simple a utiliser sur telephone et mettre les produits au premier plan.
 
-Indira Home vend des objets pour la maison. Le rendu doit etre chaleureux, propre, lisible et plus raffine que domestique ordinaire. Les photos produit sont l'element visuel principal.
+Indira Home vend des objets pour la maison. Le rendu doit rester chaleureux, propre, lisible et plus raffine qu'une boutique domestique ordinaire.
 
-La direction visuelle doit rester claire, douce, chaleureuse et premium. Les choix de palette detailles sont portes par le skill `indira-design-system`.
+La direction visuelle doit rester claire, douce, chaleureuse et premium. Les details de palette et de mise en forme se trouvent dans le skill `indira-design-system`.
 
 ## Principes Visuels
 
 - Mobile-first dans la composition visuelle.
-- Produit et photo avant decoration.
+- Produit avant decoration.
 - Interface claire, aeree et facile a scanner.
 - Hierarchie nette entre titre, contenu, prix, action principale et informations secondaires.
 - Une seule action principale dominante par zone visuelle.
-- Rendu client chaleureux et raffine.
-- Rendu admin plus dense, utilitaire et facile a scanner.
-- Etats visuels visibles pour chargement, vide, erreur, indisponibilite, succes et action admin reussie.
+- Etats visuels lisibles pour chargement, vide, erreur, indisponibilite, succes et action admin reussie.
 
 ## Typographie
 
@@ -33,19 +31,13 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Les cho
 - Favoriser une typographie elegante et nette, pas trop clinique.
 - Ne pas utiliser de texte trop petit sur mobile.
 
-## Images Et Medias
-
-- Les photos produit doivent etre l'element visuel dominant.
-- Les images manquantes doivent etre gerees par un etat visuel propre, sans casser la grille.
-- Les futures images de collection ou de categorie doivent pouvoir s'integrer sans changer toute la direction visuelle.
-
 ## Mise En Page
 
 - Composer d'abord pour mobile, puis enrichir tablette et desktop.
 - Garder les sections lisibles, avec une respiration reguliere.
 - Eviter de multiplier les grands blocs pleins largeur sur une meme page.
 - Eviter les cartes imbriquees dans d'autres cartes.
-- Garder les toolbars, filtres, listes et tableaux visuellement stables.
+- Garder les layouts, listes et tableaux visuellement stables.
 - Les layouts desktop peuvent etre plus larges, mais ne doivent pas rendre l'information plus difficile a scanner.
 
 ## Boutons Et Actions
