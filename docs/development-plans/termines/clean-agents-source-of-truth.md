@@ -8,8 +8,10 @@ Rendre `AGENTS.md` plus clair en le limitant aux instructions de travail pour le
 
 - Remplacer la liste de documents de la section `Sources De Verite` par une regle generale demandant de lire toutes les specs avant toute action ou changement.
 - Retirer de `AGENTS.md` les sections qui decrivent le produit lui-meme, les parcours, routes, statuts, regles metier ou criteres fonctionnels.
-- Garder dans `AGENTS.md` les informations de mission courte, stack, workflow Development Plan, regles generales d'implementation et verification.
+- Retirer de `AGENTS.md` le workflow Development Plan detaille et les regles d'implementation qui doivent etre portees par les specs ou les skills.
+- Garder dans `AGENTS.md` les informations de mission courte, stack, sources de verite, skills a utiliser et verification.
 - Renvoyer explicitement vers `docs/specs/` pour les comportements produit, parcours, routes, statuts, regles metier, UX et criteres de validation.
+- Lister les skills utiles et indiquer quand les utiliser, sans recopier leur contenu detaille.
 
 ## Hors perimetre
 
