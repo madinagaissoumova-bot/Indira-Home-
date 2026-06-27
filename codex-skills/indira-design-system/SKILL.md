@@ -11,13 +11,13 @@ Utiliser ce skill pour le travail visuel et UX sur Indira Home.
 
 Lire seulement les fichiers pertinents :
 
-- `specs/visual-rules.md`
-- `specs/content/ru-copy.md`
-- `specs/feature-specs/catalogue-produits.md`
-- `specs/feature-specs/fiche-produit.md`
-- `specs/feature-specs/panier.md`
-- `specs/feature-specs/validation-commande.md`
-- `specs/feature-specs/confirmation-commande.md`
+- `docs/specs/visual-rules.md`
+- `docs/specs/content/ru-copy.md`
+- `docs/specs/feature-specs/catalogue-produits.md`
+- `docs/specs/feature-specs/fiche-produit.md`
+- `docs/specs/feature-specs/panier.md`
+- `docs/specs/feature-specs/validation-commande.md`
+- `docs/specs/feature-specs/confirmation-commande.md`
 - la fiche admin pertinente si le travail concerne l'interface admin
 
 ## Direction Visuelle
@@ -35,18 +35,24 @@ Les photos produit sont l'element visuel principal. Ne pas transformer le catalo
 
 ## Palette
 
-Direction recommandee :
+Palette recommandee :
 
-- fonds rose tres pale, blanc chaud ou ivoire rose ;
-- texte taupe fonce, brun profond ou neutre sombre ;
-- accents rose poudre ou champagne doux ;
-- bordures subtiles ;
-- rouge brique sourd pour les erreurs et indisponibilites.
+| Usage | Direction |
+| --- | --- |
+| Fond principal | Rose tres pale, ivoire rose ou blanc chaud |
+| Texte principal | Taupe fonce, brun tres sombre ou gris profond |
+| Accent principal | Rose poudre leger pour les actions importantes |
+| Accent secondaire | Rose tres doux, champagne ou beige rose pour filtres et badges |
+| Erreur / indisponible | Rouge sourd ou brique douce |
+| Succes | Ton doux et discret, sans vert agressif |
+| Bordures | Rose gris ou neutres tres fins |
+| Survol / actif | Rose plus dense ou rose grise selon le composant |
 
 Eviter :
 
-- rose vif ou fuchsia ;
+- rose vif, fuchsia, sature ou enfantin ;
 - palettes tres sombres ;
+- contrastes agressifs hors messages d'erreur ;
 - degrades agressifs ;
 - palettes dominees par une seule couleur ;
 - blobs/orbes decoratifs ;
