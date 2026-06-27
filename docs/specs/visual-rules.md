@@ -19,7 +19,7 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Les det
 - Interface claire, aeree et facile a scanner.
 - Hierarchie nette entre titre, contenu, prix, action principale et informations secondaires.
 - Une seule action principale dominante par zone visuelle.
-- Etats visuels lisibles pour chargement, vide, erreur, indisponibilite, succes et action admin reussie.
+- Etats visuels lisibles pour chargement, vide, erreur, indisponibilite et succes.
 
 ## Typographie
 
@@ -61,7 +61,6 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Les det
 
 - Utiliser l'espace supplementaire pour ameliorer le scan, pas pour ajouter du bruit.
 - Les grilles peuvent s'elargir si les images restent lisibles.
-- Les tableaux admin peuvent etre plus denses, tout en gardant badges, actions et colonnes lisibles.
 
 ## Accessibilite Visuelle
 
