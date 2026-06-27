@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile First"
+  short_description: "Design and audit mobile-first interfaces"
+  default_prompt: "Use $mobile-first to design or audit this interface from the mobile experience first."
