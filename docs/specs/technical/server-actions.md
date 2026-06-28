@@ -42,7 +42,6 @@
 - Une commande validee doit creer les lignes `OrderItem` avec snapshots de nom, image et prix.
 - Une commande validee doit decrementer le stock dans la meme transaction que la creation de commande, apres les verifications serveur.
 - La creation de commande doit utiliser une cle d'idempotence ou un mecanisme equivalent afin qu'une meme tentative cliente ne puisse creer qu'une seule commande.
-- Les listes du dashboard doivent pouvoir afficher au maximum les 10 commandes recentes.
 
 ## Concurrence et stock
 

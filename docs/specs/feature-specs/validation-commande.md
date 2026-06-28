@@ -84,16 +84,6 @@ La cliente peut :
 
 Apres validation, la cliente ne peut pas annuler ou modifier elle-meme sa commande depuis le site. Si elle veut annuler ou modifier sa commande, elle doit contacter la boutique par telephone ou WhatsApp.
 
-L'admin peut, apres validation :
-
-- Voir la nouvelle commande dans le tableau de bord.
-- Voir les produits commandes.
-- Voir les quantites commandees.
-- Voir les informations de contact et de livraison.
-- Contacter la cliente par telephone ou WhatsApp.
-
-En V1 obligatoire, aucune notification automatique SMS ou WhatsApp n'est requise pour l'admin. Les commandes doivent arriver uniquement dans l'espace admin. La boutique contactera ensuite la cliente manuellement par telephone ou WhatsApp si necessaire.
-
 ## Boutons / commandes
 
 | Bouton / commande | Role |
@@ -171,9 +161,6 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - La livraison V1 est limitee a la Republique tchetchene.
 - Le delai de livraison V1 annonce aux clientes est de 4 a 5 jours.
 - Les frais de livraison V1 sont confirmes manuellement par la boutique et ne sont pas calcules automatiquement par le site.
-- La boutique doit contacter la cliente avec le numero renseigne dans la commande.
-- Le numero WhatsApp public de la boutique affiche aux clientes est +7 988 906-41-06.
-- Les informations de commande doivent etre visibles dans le tableau de bord admin.
 - La creation de commande doit etre idempotente pour une meme tentative cliente.
 - Une annulation apres validation doit etre traitee par contact avec la boutique, puis par l'admin dans l'espace admin.
 - Les donnees personnelles de commande servent uniquement au traitement de la commande et ne doivent jamais etre affichees cote public.
@@ -197,5 +184,4 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Apres validation, la cliente voit un message indiquant que la boutique la contactera.
 - Apres validation, la cliente ne voit pas de bouton pour annuler elle-meme sa commande.
 - La cliente voit que la livraison est limitee a la Republique tchetchene, estimee a 4 a 5 jours, et que les frais seront confirmes par la boutique.
-- L'admin n'a pas besoin de recevoir une notification SMS ou WhatsApp automatique en V1 obligatoire.
 - Les textes visibles par les clientes sont en russe.
