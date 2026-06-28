@@ -34,7 +34,7 @@ Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/conte
 - [x] 6. Creer un commit clair.
 - [x] 7. Pousser la branche sur GitHub.
 - [x] 8. Ouvrir une Pull Request vers `main`.
-- [ ] 9. Attendre la validation explicite de l'utilisatrice.
+- [x] 9. Attendre la validation explicite de l'utilisatrice.
 - [ ] 10. Merger la Pull Request.
 
 ## Verification
