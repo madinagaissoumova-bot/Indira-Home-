@@ -33,7 +33,7 @@ Mettre en place un changelog organise par zones de travail pour enregistrer les 
 - [x] 5. Creer un commit clair.
 - [x] 6. Pousser la branche sur GitHub.
 - [x] 7. Ouvrir une Pull Request vers `main`.
-- [ ] 8. Attendre la validation explicite de l'utilisatrice.
+- [x] 8. Attendre la validation explicite de l'utilisatrice.
 - [ ] 9. Merger la Pull Request.
 
 ## Verification
