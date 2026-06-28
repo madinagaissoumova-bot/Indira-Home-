@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 
 const CONFIRMATION_KEY = "indira-home-last-order-confirmation";
 const WHATSAPP_CONFIRMATION_HREF = `https://wa.me/79889064106?text=${encodeURIComponent(

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { formatRub } from "@/lib/format";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 import { publicProductOrderBy, publicProductWhere } from "@/lib/publicCatalog";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";

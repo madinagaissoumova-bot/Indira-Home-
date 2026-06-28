@@ -38,7 +38,7 @@ Centraliser autant que possible les textes client.
 
 Exemple de cible :
 
-- `lib/.i18n/ru.ts`
+- `lib/i18n/ru.ts`
 
 Validation :
 
@@ -123,7 +123,7 @@ Validation :
 - `app/globals.css`
 - `app/`
 - `components/`
-- `lib/.i18n/ru.ts`
+- `lib/i18n/ru.ts`
 - `docs/testing/test-plan.md`
 
 ## Mini-plans d'execution
@@ -207,7 +207,7 @@ Validation :
 - Mini-plans d'execution ajoutes pour piloter la fin du Lot 8 par petits blocs.
 - Correction de l'accueil : le hero conserve une hauteur de premiere vue sans bloquer le scroll vers le catalogue.
 - Remplacement des derniers libelles admin visibles en francais par des libelles russes.
-- Centralisation de libelles admin supplementaires dans `lib/.i18n/ru.ts`.
+- Centralisation de libelles admin supplementaires dans `lib/i18n/ru.ts`.
 - Ajout de helpers de libelles admin pour statuts commande, produit et visibilite.
 - Ajout de `tests/admin-labels.test.ts` pour verrouiller l'affichage russe des statuts admin.
 

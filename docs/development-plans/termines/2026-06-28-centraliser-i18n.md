@@ -6,7 +6,7 @@ Retirer les traductions recopiees dans les specs et centraliser les textes visib
 
 ## Perimetre
 
-- Deplacer ou conserver la source russe de l'application dans un dossier i18n cache du projet.
+- Garder la source russe de l'application dans un dossier i18n visible et standard du projet.
 - Mettre a jour les imports de l'application pour utiliser cette source unique.
 - Retirer des specs les tableaux de traductions exactes et les remplace par des renvois ou des regles de centralisation.
 - Garder dans les specs les regles produit, pas les libelles exacts.
@@ -45,4 +45,4 @@ Retirer les traductions recopiees dans les specs et centraliser les textes visib
 
 ## Notes
 
-La source i18n actuelle existe deja dans `lib/.i18n/ru.ts`. Le travail consiste a la rendre invisible au niveau de l'arborescence courante et a supprimer les duplications de traduction dans les specs.
+La source i18n actuelle existe dans `lib/i18n/ru.ts`. Le travail consiste a la garder visible de facon standard dans l'arborescence courante et a supprimer les duplications de traduction dans les specs.

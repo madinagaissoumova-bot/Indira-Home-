@@ -2,7 +2,7 @@
 
 Ce fichier definit la direction visuelle et les regles de presentation de la V1.
 
-Il ne definit pas les parcours, les routes, les regles metier, les textes, les statuts ou les criteres fonctionnels. Ces elements sont documentes dans les feature specs, les specs techniques, `lib/.i18n/ru.ts` et `docs/specs/validation-rules.md`.
+Il ne definit pas les parcours, les routes, les regles metier, les textes, les statuts ou les criteres fonctionnels. Ces elements sont documentes dans les feature specs, les specs techniques, `lib/i18n/ru.ts` et `docs/specs/validation-rules.md`.
 
 ## Intention
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 
 type ProductCardData = {
   id: string;

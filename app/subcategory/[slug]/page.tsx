@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { VISIBILITY_STATUS } from "@/lib/constants";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 import { publicProductOrderBy, publicProductWhere } from "@/lib/publicCatalog";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
