@@ -4,8 +4,6 @@
 
 Permettre a l'admin de gerer les quantites en stock des produits Indira Home.
 
-Le stock determine automatiquement si un produit est commandable ou epuise cote cliente.
-
 ## Utilisatrices concernees
 
 - Admin
@@ -92,10 +90,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si le stock devient 0, le produit reste publie mais devient epuise cote cliente.
 - Si le stock est faible, l'admin peut voir une alerte interne sans afficher cette information aux clientes.
 - Si le stock passe de 0 a une quantite superieure a 0, le produit redevient commandable.
-- Si une commande est validee, le stock diminue automatiquement selon les quantites commandees.
-- Si une validation de commande echoue, le stock ne doit pas diminuer.
-- Si deux clientes essaient de commander le dernier produit, seule la premiere commande validee doit diminuer le stock.
-- Si une commande passe au statut `CANCELLED`, le stock des articles de la commande est remis automatiquement en ligne une seule fois.
 - Si une commande est modifiee par l'admin, le stock peut etre corrige manuellement.
 - Si un historique de stock existe, les corrections manuelles doivent y etre tracees.
 - La quantite exacte en stock ne doit pas etre affichee aux clientes.
@@ -112,9 +106,7 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Un produit epuise ne peut pas etre commande.
 - Un produit epuise n'est pas supprime automatiquement.
 - L'admin peut remettre du stock sur un produit epuise.
-- La validation de commande est le seul moment ou le stock diminue automatiquement.
 - Les corrections apres erreur ou modification de commande restent manuelles.
-- La correction apres annulation standard est automatique lors du premier passage de la commande au statut `CANCELLED`.
 - Le stock est une information admin et ne doit pas etre affiche aux clientes.
 
 ## Critères d'acceptation
@@ -127,7 +119,4 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Un produit avec stock 0 devient epuise.
 - Un produit epuise reste visible s'il est publie et non masque.
 - Un produit epuise redevient commandable si l'admin ajoute du stock.
-- Une commande validee diminue le stock.
-- Une commande annulee par l'admin remet automatiquement le stock en ligne une seule fois.
-- Une validation echouee ne diminue pas le stock.
 - Les clientes ne voient pas la quantite exacte en stock.
