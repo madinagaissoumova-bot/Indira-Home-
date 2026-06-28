@@ -29,7 +29,7 @@ L'admin doit pouvoir ajouter elle-meme les noms, les photos, les prix, les descr
 | Statut nouveaute | Indique si le produit doit apparaitre comme nouveaute | Non |
 | Ordre d'affichage | Priorite d'affichage dans le catalogue | Non |
 
-Cette fiche garde seulement la quantite initiale necessaire pour publier un produit. La gestion detaillee du stock, des reassorts, des retraits et de la baisse automatique apres commande est decrite dans `admin-stock.md`.
+Cette fiche garde seulement la quantite initiale necessaire pour publier un produit. La gestion detaillee du stock est decrite dans `admin-stock.md`.
 
 ## Statuts produit
 
@@ -118,14 +118,12 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si un produit existe dans une commande validee, la suppression definitive doit etre bloquee. L'admin doit le masquer si elle veut le retirer du catalogue.
 - Si le prix est modifie, les paniers non valides doivent utiliser le nouveau prix avant validation.
 - Les commandes deja validees conservent les prix enregistres au moment de la validation.
-- Les cas de stock 0, produit epuise et reassort sont traites dans `admin-stock.md`.
 
 ## Regles metier
 
 - L'admin doit etre connectee pour gerer les produits.
 - Un produit publie doit avoir un nom, une photo, un prix, une categorie, une sous-categorie, une description et un stock valide.
 - Un produit ne peut pas etre enregistre avec une categorie et une sous-categorie incoherentes.
-- La quantite exacte en stock est geree cote admin et n'est pas affichee aux clientes.
 - Masquer un produit est different de supprimer un produit.
 - Masquer est recommande si l'admin veut retirer temporairement un produit du site client.
 - Supprimer est une action definitive ou exceptionnelle.
