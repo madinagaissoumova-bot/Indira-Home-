@@ -29,7 +29,7 @@ Supprimer `docs/specs/glossary.md`, devenu un document generaliste non reference
 - [x] 2. Supprimer `docs/specs/glossary.md`.
 - [x] 3. Verifier.
 - [x] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
-- [ ] 5. Creer un commit clair.
+- [x] 5. Creer un commit clair.
 - [ ] 6. Pousser la branche sur GitHub.
 - [ ] 7. Ouvrir une Pull Request vers `main`.
 - [ ] 8. Attendre la validation explicite de l'utilisatrice.
