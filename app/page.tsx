@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import type { Prisma } from "@prisma/client";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { listVisibleCategories, publicProductOrderBy, publicProductWhere } from "@/lib/publicCatalog";
 
 type HomeSearchParams = {

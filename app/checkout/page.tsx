@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { publicProductWhere } from "@/lib/publicCatalog";
 import { CheckoutClient } from "./CheckoutClient";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";

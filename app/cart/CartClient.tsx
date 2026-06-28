@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import type { CartStorageItem } from "@/types";
 
 const CART_KEY = "indira-home-cart";

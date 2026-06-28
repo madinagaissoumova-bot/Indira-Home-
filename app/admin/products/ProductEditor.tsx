@@ -5,7 +5,7 @@ import type { FormEvent } from "react";
 import { useActionState, useState } from "react";
 import { getAdminProductStatusLabel } from "@/lib/adminLabels";
 import { PRODUCT_STATUS } from "@/lib/constants";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import type { AdminActionState } from "../actions";
 import { deleteProductAction, saveProductAction } from "../actions";
 import type { AdminCategoryOption, AdminProductEditorProduct } from "@/types";

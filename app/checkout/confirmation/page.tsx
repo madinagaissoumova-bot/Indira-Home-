@@ -1,4 +1,4 @@
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { ConfirmationClient } from "./ConfirmationClient";
 

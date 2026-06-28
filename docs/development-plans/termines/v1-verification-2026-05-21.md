@@ -7,7 +7,7 @@ Ce fichier consigne les corrections et verifications effectuees pendant le passa
 - Mobile public : navigation mobile rendue plus stable, bouton categories agrandi, boutons produits et panier ajustes pour les petits ecrans, grille produits passee en une colonne sous 420 px.
 - Checkout mobile : recapitulatif remonte avant le formulaire sur telephone pour rendre le contenu du panier visible avant saisie.
 - Admin : libelles de stock, statuts, paiement et detail commande alignes avec les textes russes centralises.
-- Textes : les textes visibles par les clientes restent centralises dans `lib/i18n/ru.ts`; le scan du code ne remonte plus de texte client russe hors fichier de contenu, sauf les signaux internes de validation de zone.
+- Textes : les textes visibles par les clientes restent centralises dans `lib/.i18n/ru.ts`; le scan du code ne remonte plus de texte client russe hors fichier de contenu, sauf les signaux internes de validation de zone.
 
 ## Verifications automatiques
 

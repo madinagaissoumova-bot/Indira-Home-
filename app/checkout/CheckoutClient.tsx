@@ -5,7 +5,7 @@ import { useActionState, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PAYMENT_METHOD } from "@/lib/constants";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { createOrder, type CheckoutState } from "./actions";
 import type { CartStorageItem } from "@/types";
 

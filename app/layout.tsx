@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { VISIBILITY_STATUS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { CartNavLink } from "@/components/cart/CartNavLink";
 import "./globals.css";
 

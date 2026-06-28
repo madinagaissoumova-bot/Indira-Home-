@@ -34,7 +34,7 @@ import {
   getAdminLoginRateLimitState,
   recordFailedAdminLogin
 } from "@/lib/adminLoginRateLimit";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import type { FormActionState } from "@/types";
 
 export type AdminActionState = FormActionState;

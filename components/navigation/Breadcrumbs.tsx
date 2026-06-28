@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 
 export type BreadcrumbItem = {
   label: string;

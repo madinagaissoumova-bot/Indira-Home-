@@ -3,7 +3,7 @@ import { requireAdminSession } from "@/lib/adminAuth";
 import { getAdminProductStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { ProductEditor } from "./ProductEditor";
 import { AdminNav } from "../AdminNav";
 

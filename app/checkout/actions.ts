@@ -3,7 +3,7 @@
 import { randomInt } from "node:crypto";
 import { ORDER_STATUS, PAYMENT_METHOD } from "@/lib/constants";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { parseCartInput, verifyCartForOrder } from "@/lib/serverCart";
 import { isClearlyOutsideChechnya, isValidRussianContactPhone } from "@/lib/validation";
 
