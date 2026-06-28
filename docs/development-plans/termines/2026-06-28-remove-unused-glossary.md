@@ -30,8 +30,8 @@ Supprimer `docs/specs/glossary.md`, devenu un document generaliste non reference
 - [x] 3. Verifier.
 - [x] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [x] 5. Creer un commit clair.
-- [ ] 6. Pousser la branche sur GitHub.
-- [ ] 7. Ouvrir une Pull Request vers `main`.
+- [x] 6. Pousser la branche sur GitHub.
+- [x] 7. Ouvrir une Pull Request vers `main`.
 - [ ] 8. Attendre la validation explicite de l'utilisatrice.
 - [ ] 9. Merger la Pull Request.
 
@@ -39,3 +39,7 @@ Supprimer `docs/specs/glossary.md`, devenu un document generaliste non reference
 
 - [x] `npm run check:docs`
 - [x] `npm test`
+
+## Notes
+
+Pull Request ouverte : https://github.com/madinagaissoumova-bot/Indira-Home-/pull/19
