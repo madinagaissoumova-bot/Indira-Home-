@@ -32,8 +32,8 @@ Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/conte
 - [x] 4. Verifier.
 - [x] 5. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [x] 6. Creer un commit clair.
-- [ ] 7. Pousser la branche sur GitHub.
-- [ ] 8. Ouvrir une Pull Request vers `main`.
+- [x] 7. Pousser la branche sur GitHub.
+- [x] 8. Ouvrir une Pull Request vers `main`.
 - [ ] 9. Attendre la validation explicite de l'utilisatrice.
 - [ ] 10. Merger la Pull Request.
 
@@ -41,3 +41,7 @@ Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/conte
 
 - [x] `npm run check:docs`
 - [x] `npm test`
+
+## Notes
+
+Pull Request ouverte : https://github.com/madinagaissoumova-bot/Indira-Home-/pull/17
