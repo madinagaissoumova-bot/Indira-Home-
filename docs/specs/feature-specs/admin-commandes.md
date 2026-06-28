@@ -6,8 +6,6 @@ Permettre a l'admin de recevoir, consulter et traiter les commandes envoyees dep
 
 Cette fonctionnalite sert a organiser le suivi des commandes apres validation par une cliente. Elle ne gere pas le paiement bancaire en ligne en V1.
 
-En V1 obligatoire, la reception d'une commande se fait dans l'espace admin. Les notifications automatiques par SMS ou WhatsApp ne sont pas incluses dans la V1 obligatoire.
-
 ## Utilisatrices concernees
 
 - Admin
@@ -73,17 +71,6 @@ L'admin peut :
 
 La cliente ne peut pas annuler elle-meme sa commande depuis le site. L'annulation est une action admin apres contact avec la boutique.
 
-### Commande preparee, cliente injoignable ou absente
-
-- La boutique, via l'admin qui traite et livre la commande en V1, contacte la cliente avec le telephone ou WhatsApp renseigne dans la commande.
-- Si la commande est deja preparee mais que la cliente ne repond pas a l'appel, l'admin lui laisse un message vocal sur WhatsApp.
-- Le message vocal indique que la commande est prete et que la cliente a 24 heures pour repondre afin de confirmer ou replanifier la remise.
-- Si la cliente etait absente au moment convenu, l'admin peut appliquer la meme procedure : appel, message vocal WhatsApp, attente de 24 heures.
-- Si la cliente ne repond pas dans ce delai de 24 heures, l'admin annule la commande avec le bouton d'annulation admin, qui passe la commande au statut `CANCELLED`.
-- L'admin doit ajouter une note interne indiquant la raison de l'annulation, l'appel effectue, le message vocal WhatsApp et l'heure limite de reponse.
-- L'annulation par le bouton admin remet automatiquement en ligne les articles de la commande en reincrementant le stock des produits concernes.
-- Si la commande etait deja payee par virement, la boutique doit traiter manuellement une nouvelle remise ou un remboursement hors site avant de cloturer le dossier.
-
 ## Boutons / commandes
 
 | Bouton / commande | Role |
@@ -136,9 +123,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Si une commande passe au statut `CANCELLED`, le stock des articles de la commande est remis automatiquement en ligne une seule fois.
 - Si une cliente demande une annulation apres validation, l'admin peut passer la commande au statut "Annulee".
 - Si une commande est modifiee avec la cliente par telephone ou WhatsApp, l'admin peut corriger le stock manuellement dans `admin-stock.md`.
-- Le site ne doit pas encaisser de paiement en ligne en V1.
-- Le paiement se fait hors site : paiement a la livraison ou virement apres confirmation avec la boutique.
-- Le numero WhatsApp de la boutique affiche aux clientes pour confirmer les commandes est +7 988 906-41-06.
 - L'admin ne recoit pas automatiquement de SMS ou de message WhatsApp en V1 obligatoire ; elle consulte les nouvelles commandes dans l'espace admin.
 
 ## Regles metier
@@ -176,4 +160,3 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Une commande validee conserve ses prix meme si les prix produits changent ensuite.
 - Une commande reste lisible meme si un produit commande est ensuite masque, ou si la fiche produit n'existe plus a cause d'une erreur technique ou d'une evolution future.
 - Le paiement en ligne n'est pas demande dans l'espace admin V1.
-- Les notifications automatiques SMS ou WhatsApp ne sont pas obligatoires en V1.
