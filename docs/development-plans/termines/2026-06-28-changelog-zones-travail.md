@@ -6,9 +6,9 @@ Mettre en place un changelog organise par zones de travail pour enregistrer les 
 
 ## Perimetre
 
-- Reorganiser `docs/changelog/v1.md` autour de zones de travail stables.
+- Remplacer `docs/changelog/v1.md` par un index et des fichiers de zones de travail.
 - Ajouter une convention simple pour les futures entrees de changelog.
-- Reprendre l'historique V1 deja livre et le ranger dans les zones proposees.
+- Reprendre l'historique V1 deja livre et le ranger dans les fichiers de zones proposes.
 
 ## Hors perimetre
 
@@ -27,7 +27,7 @@ Mettre en place un changelog organise par zones de travail pour enregistrer les 
 ## Etapes
 
 - [x] 1. Relire le changelog existant et les plans termines utiles.
-- [x] 2. Reorganiser `docs/changelog/v1.md` par zones de travail.
+- [x] 2. Reorganiser le changelog en fichiers par zones de travail.
 - [x] 3. Verifier l'absence de README et la structure documentaire.
 - [x] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [x] 5. Creer un commit clair.
