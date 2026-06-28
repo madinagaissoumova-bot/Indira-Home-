@@ -33,7 +33,7 @@ Supprimer `docs/specs/glossary.md`, devenu un document generaliste non reference
 - [x] 6. Pousser la branche sur GitHub.
 - [x] 7. Ouvrir une Pull Request vers `main`.
 - [x] 8. Attendre la validation explicite de l'utilisatrice.
-- [ ] 9. Merger la Pull Request.
+- [x] 9. Merger la Pull Request.
 
 ## Verification
 
