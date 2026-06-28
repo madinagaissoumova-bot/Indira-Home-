@@ -31,8 +31,8 @@ Mettre en place un changelog organise par zones de travail pour enregistrer les 
 - [x] 3. Verifier l'absence de README et la structure documentaire.
 - [x] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [x] 5. Creer un commit clair.
-- [ ] 6. Pousser la branche sur GitHub.
-- [ ] 7. Ouvrir une Pull Request vers `main`.
+- [x] 6. Pousser la branche sur GitHub.
+- [x] 7. Ouvrir une Pull Request vers `main`.
 - [ ] 8. Attendre la validation explicite de l'utilisatrice.
 - [ ] 9. Merger la Pull Request.
 
@@ -40,3 +40,7 @@ Mettre en place un changelog organise par zones de travail pour enregistrer les 
 
 - [x] `npm run check:docs`
 - [x] `npm test`
+
+## Notes
+
+Pull Request ouverte : https://github.com/madinagaissoumova-bot/Indira-Home-/pull/18
