@@ -31,7 +31,7 @@ Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/conte
 - [x] 3. Ajuster les references actives et tests documentaires.
 - [x] 4. Verifier.
 - [x] 5. Deplacer ce plan dans `docs/development-plans/termines/`.
-- [ ] 6. Creer un commit clair.
+- [x] 6. Creer un commit clair.
 - [ ] 7. Pousser la branche sur GitHub.
 - [ ] 8. Ouvrir une Pull Request vers `main`.
 - [ ] 9. Attendre la validation explicite de l'utilisatrice.
