@@ -80,8 +80,6 @@ La cliente peut :
 | Enregistrer | Sauvegarder les changements |
 | Annuler | Quitter sans enregistrer |
 
-L'interface admin V1 doit rester simple : liste compacte des categories a gauche, formulaire unique a droite, champs visibles limités au nom, a la visibilite et a l'ordre d'affichage. Le slug est genere automatiquement cote serveur et n'apparait pas dans le formulaire.
-
 ## Messages
 
 | Situation | Message attendu |

@@ -28,7 +28,7 @@ L'admin peut :
 - Voir les indicateurs essentiels de la boutique.
 - Ouvrir une commande depuis le tableau de bord.
 - Voir les derniers produits ajoutes.
-- Utiliser la navigation admin pour aller vers les produits, categories, commandes, stock et autres sections.
+- Utiliser la navigation admin pour aller vers les produits, categories, commandes et stock.
 - Se deconnecter.
 
 ## Boutons / commandes
@@ -64,8 +64,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Les commandes recentes visibles depuis le tableau de bord doivent renvoyer vers la commande correspondante.
 - Le tableau de bord ne remplace pas `admin-commandes.md`, `admin-produits.md`, `admin-stock.md` ou `categories-sous-categories.md`.
 - Les raccourcis metier ne doivent pas etre affiches comme gros boutons principaux sur le dashboard.
-- La navigation admin doit rester simple et claire : Dashboard, Produits, Categories, Commandes, Clients, Stock, Parametres.
-- Les sections non implementees en V1 peuvent apparaitre comme elements desactives, sans creer de route inutile.
 - La deconnexion peut etre placee a part des raccourcis metier, par exemple en bas a droite de l'interface admin.
 
 ## Regles metier
