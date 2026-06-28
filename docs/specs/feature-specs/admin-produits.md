@@ -126,7 +126,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Un produit publie doit avoir un nom, une photo, un prix, une categorie, une sous-categorie, une description et un stock valide.
 - Un produit ne peut pas etre enregistre avec une categorie et une sous-categorie incoherentes.
 - La quantite exacte en stock est geree cote admin et n'est pas affichee aux clientes.
-- Le stock determine si un produit est commandable ou epuise, selon les regles de `admin-stock.md`.
 - Masquer un produit est different de supprimer un produit.
 - Masquer est recommande si l'admin veut retirer temporairement un produit du site client.
 - Supprimer est une action definitive ou exceptionnelle.

@@ -48,7 +48,7 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 - L'accueil doit afficher l'identite de la boutique, les acces principaux et un apercu du catalogue, sans gros blocs successifs.
 - Les categories doivent etre accessibles depuis le header via un menu dedie.
 - Chaque categorie visible doit disposer de sa propre page publique.
-- Chaque page categorie doit pouvoir servir de page de collection avec un espace visuel pour de futures photos, puis un acces rapide aux sous-categories.
+- Chaque page categorie doit pouvoir servir de page de collection avec un acces rapide aux sous-categories.
 - Chaque sous-categorie visible doit disposer de sa propre page publique.
 - Les pages sous-categorie et produit doivent rester separees de l'accueil pour eviter de charger la home avec trop de contenu.
 - Les fiches produit doivent rester des pages autonomes, accessibles depuis les cartes du catalogue et depuis les pages de categorie et sous-categorie.
@@ -57,12 +57,11 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 
 - Les pages admin sont accessibles uniquement apres connexion.
 - Une admin non connectee est redirigee vers la connexion.
-- La navigation admin doit separer clairement : dashboard, produits, categories, commandes, clients, stock, parametres.
+- La navigation admin doit separer clairement : dashboard, produits, categories, commandes et stock.
 - Les acces admin ne doivent pas etre dupliques dans plusieurs zones visibles du meme ecran.
 - L'admin doit pouvoir revenir a la liste apres avoir ouvert un produit ou une commande.
 - Le tableau de bord admin est la page d'arrivee apres connexion.
 - Le tableau de bord ne doit pas afficher les sections admin comme gros boutons principaux ; la navigation admin porte cette fonction.
-- Les sections admin non implementees en V1 peuvent etre affichees comme elements desactives si elles n'ont pas encore de route.
 - La liste des commandes recentes du tableau de bord doit afficher les 5 a 10 elements les plus recents, pas tout l'historique.
 
 ## Tableau de bord admin
