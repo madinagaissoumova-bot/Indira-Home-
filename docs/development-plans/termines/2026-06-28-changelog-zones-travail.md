@@ -30,7 +30,7 @@ Mettre en place un changelog organise par zones de travail pour enregistrer les 
 - [x] 2. Reorganiser `docs/changelog/v1.md` par zones de travail.
 - [x] 3. Verifier l'absence de README et la structure documentaire.
 - [x] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
-- [ ] 5. Creer un commit clair.
+- [x] 5. Creer un commit clair.
 - [ ] 6. Pousser la branche sur GitHub.
 - [ ] 7. Ouvrir une Pull Request vers `main`.
 - [ ] 8. Attendre la validation explicite de l'utilisatrice.
