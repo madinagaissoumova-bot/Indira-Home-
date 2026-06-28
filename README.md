@@ -49,7 +49,7 @@ Le projet suit une approche **Specification-Driven Development** : les décision
 
 - Une fonctionnalité commence par une specification.
 - Une specification doit avoir des critères d'acceptation vérifiables.
-- Une décision importante doit être tracée dans `docs/specs/adr/`.
+- Une decision importante doit etre tracee dans les specs ou dans un plan de developpement dedie.
 - Le code ne doit pas introduire de comportement non décrit ou non accepté.
 
 ## Commandes Utiles
