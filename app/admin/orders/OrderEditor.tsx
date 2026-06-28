@@ -7,7 +7,7 @@ import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import type { AdminActionState } from "../actions";
 import { updateOrderAction } from "../actions";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import type { AdminOrderEditorOrder } from "@/types";
 
 type OrderEditorProps = {

@@ -55,7 +55,7 @@ Pour changer un lot en `TERMINE`, verifier d'abord :
 | `tickets.md` | Backlog priorise par ticket |
 | `../specs/technical/production-plan.md` | Plan de mise en production, sauvegarde et rollback |
 | `../specs/technical/security-checklist.md` | Checklist securite minimale V1 |
-| `../specs/content/ru-copy.md` | Base des textes russes cote cliente |
+| `../../lib/.i18n/ru.ts` | Base des textes russes cote cliente |
 
 ## Regle d'utilisation
 

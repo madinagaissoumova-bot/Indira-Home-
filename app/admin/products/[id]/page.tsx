@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdminSession } from "@/lib/adminAuth";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { ProductEditor } from "../ProductEditor";
 import { AdminNav } from "../../AdminNav";
 

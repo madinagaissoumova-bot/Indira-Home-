@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useActionState } from "react";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { loginAdmin, type AdminActionState as LoginState } from "../actions";
 
 export function LoginForm() {

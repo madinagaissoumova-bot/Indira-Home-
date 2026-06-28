@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/adminAuth";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import { LoginForm } from "./LoginForm";
 
 export default async function AdminLoginPage() {

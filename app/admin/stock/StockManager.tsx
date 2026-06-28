@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { STOCK_ADJUSTMENT_MODE } from "@/lib/constants";
 import { getAdminProductStatusLabel } from "@/lib/adminLabels";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import type { AdminActionState } from "../actions";
 import { adjustStockAction } from "../actions";
 import type { AdminStockProductItem } from "@/types";

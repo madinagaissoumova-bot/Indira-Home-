@@ -4,7 +4,7 @@ import type { FormEvent } from "react";
 import { useActionState, useEffect, useState } from "react";
 import { getAdminVisibilityStatusLabel } from "@/lib/adminLabels";
 import { VISIBILITY_STATUS } from "@/lib/constants";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 import type { AdminCategoryManagerItem } from "@/types";
 import {
   deleteCategoryAction,
