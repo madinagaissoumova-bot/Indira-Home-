@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { createOrder } from "@/app/checkout/actions";
 import { PAYMENT_METHOD } from "@/lib/constants";
-import { ru } from "@/lib/i18n/ru";
+import { ru } from "@/lib/.i18n/ru";
 
 function checkoutForm(overrides: Record<string, string> = {}) {
   const formData = new FormData();

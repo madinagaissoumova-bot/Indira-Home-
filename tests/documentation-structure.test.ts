@@ -9,7 +9,7 @@ const ignoredDirs = new Set([".git", ".next", "node_modules"]);
 const oldDocsPath = "D" + "ocs/";
 const finderDuplicatePath = "D" + "ocs 2";
 const allowedDocsRootDirs = ["changelog", "development-plans", "specs", "testing"];
-const allowedDevelopmentPlanRootFiles = new Set(["README.md", "status.md", "tickets.md"]);
+const allowedDevelopmentPlanRootFiles = new Set(["status.md", "tickets.md"]);
 
 function listProjectFiles(dir: string): string[] {
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -40,6 +40,17 @@ describe("documentation structure", () => {
 
     assert.equal(trackedFiles.some((file) => file.startsWith(oldDocsPath)), false);
     assert.equal(trackedFiles.some((file) => file.startsWith("docs/")), true);
+  });
+
+  it("does not track README files", () => {
+    const trackedReadmes = execFileSync("git", ["ls-files", "*README.md"], {
+      cwd: root,
+      encoding: "utf8"
+    })
+      .split("\n")
+      .filter(Boolean);
+
+    assert.deepEqual(trackedReadmes, []);
   });
 
   it("does not keep Finder-style duplicate documentation folders", () => {
