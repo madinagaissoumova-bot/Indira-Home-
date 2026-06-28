@@ -21,19 +21,9 @@ Cette fonctionnalite protege les fonctions sensibles comme les produits, le stoc
 
 ## Decision V1
 
-La V1 utilise un seul compte admin configure par variables d'environnement :
+La V1 utilise un seul compte admin et une session cote serveur protegee.
 
-- `ADMIN_USERNAME` pour l'identifiant ;
-- `ADMIN_PASSWORD_HASH` pour le mot de passe hashe avec bcrypt ;
-- `ADMIN_SESSION_SECRET` pour signer la session.
-
-La session admin est conservee dans un cookie HTTP-only signe cote serveur. En production, le cookie doit utiliser `Secure` et `SameSite=Lax`.
-
-Le cookie de session V1 doit etre nomme `indira_admin_session`.
-
-La duree de session doit etre limitee, par exemple 7 jours maximum.
-
-Le mot de passe en clair ne doit jamais etre stocke dans le code, dans la base ou dans les logs. La comparaison du mot de passe doit se faire cote serveur avec le hash configure.
+Les details d'implementation, comme les variables d'environnement, le cookie de session et le hash du mot de passe, sont documentes dans les specs techniques.
 
 ## Actions possibles
 
@@ -85,7 +75,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - La fonctionnalite ne doit pas creer de compte pour les clientes.
 - En V1, il n'y a qu'un seul compte admin.
 - Si plusieurs admins deviennent necessaires plus tard, une table `AdminUser` pourra etre ajoutee.
-- Les actions de modification admin ne doivent pas etre executees avec des requetes GET.
 - Une action admin qui echoue pour cause de session expiree ne doit pas appliquer de modification partielle.
 - Les tentatives de connexion repetees doivent etre limitees ou ralenties cote serveur.
 
@@ -99,9 +88,6 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Les identifiants de connexion ne sont pas visibles cote cliente.
 - Le mot de passe admin ne doit pas etre stocke en clair.
 - Les routes et actions admin doivent verifier la session cote serveur, pas seulement cote interface.
-- Le hash de mot de passe admin utilise bcrypt.
-- Le cookie admin est HTTP-only et signe cote serveur.
-- Le cookie admin utilise `Secure` en production.
 - Les mutations admin doivent verifier la session avant toute ecriture.
 - Les erreurs de connexion ne doivent pas reveler si l'identifiant admin existe.
 
