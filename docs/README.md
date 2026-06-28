@@ -12,7 +12,6 @@ fait, et comment exploiter la V1 en conditions reelles.
 | `specs/feature-specs/` | Detaille chaque grande fonctionnalite. | Pour verifier les criteres d'acceptation d'une page ou d'un flux precis. |
 | `specs/technical/` | Explique les choix et contraintes techniques. | Pour comprendre les routes, les actions serveur, le modele de donnees, l'auth admin ou les images. |
 | `specs/content/` | Centralise les textes importants, notamment les textes russes visibles cote cliente. | Avant d'ajouter ou modifier du copywriting client. |
-| `specs/adr/` | Garde les decisions d'architecture deja prises. | Quand une decision technique doit rester explicable dans le temps. |
 | `development-plans/` | Regroupe les plans de travail et le suivi projet. | Pour voir ce qui est actif, termine, bloque, restant, ou pour suivre les tickets. |
 | `changelog/` | Retrace les changements deja livres. | Pour consulter l'historique des fonctionnalites et stabilisations de la V1. |
 | `testing/` | Regroupe la validation manuelle et technique de la V1. | Avant de declarer un lot termine ou de livrer la V1. |
