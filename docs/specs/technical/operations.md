@@ -91,4 +91,4 @@ Pour la V1, un export CSV des commandes depuis l'admin peut etre ajoute plus tar
 - Admin categorie : suppression impossible si produits associes.
 - Admin commande : changement de statut, conservation des prix snapshots et restauration du stock au premier passage au statut `CANCELLED`.
 
-La checklist complete de verification V1 est definie dans `docs/testing/test-plan.md`.
+La checklist complete de verification V1 est definie dans `docs/specs/validation-rules.md`.

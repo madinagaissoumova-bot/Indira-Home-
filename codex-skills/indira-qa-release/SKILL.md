@@ -9,7 +9,7 @@ Use this skill for QA, review, and release readiness.
 
 ## Read First
 
-- `docs/testing/test-plan.md`
+- `docs/specs/validation-rules.md`
 - `docs/specs/technical/security-checklist.md`
 - `docs/specs/technical/production-plan.md`
 - `docs/changelog/index.md`

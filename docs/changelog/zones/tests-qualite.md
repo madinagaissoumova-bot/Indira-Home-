@@ -16,6 +16,11 @@
 - Ajout d'un controle explicite contre le retour des anciens fichiers documentaires supprimes.
 - Blocage de `docs/development-plans/status.md`, `docs/development-plans/tickets.md`, `docs/specs/glossary.md`, `docs/specs/content/ru-copy.md` et `docs/changelog/v1.md`.
 
+## 2026-07-07 - Checklist de validation centralisee
+
+- Deplacement de la checklist de verification V1 dans `docs/specs/validation-rules.md`.
+- Mise a jour du controle documentaire pour retirer `docs/testing/` de la structure attendue.
+
 ## 2026-06-08 - Tests auth admin
 
 - Tests couvrant blocage temporaire, expiration et remise a zero de la limitation de connexion admin.

@@ -39,7 +39,7 @@ Les copies versionnees des skills projet sont dans `codex-skills/`.
 
 Utiliser les commandes et verifications adaptees au changement.
 
-Les criteres de validation sont definis dans `docs/specs/` et `docs/testing/`.
+Les criteres de validation sont definis dans `docs/specs/`.
 
 ## A Eviter
 

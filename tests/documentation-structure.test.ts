@@ -8,12 +8,13 @@ const root = process.cwd();
 const ignoredDirs = new Set([".git", ".next", "node_modules"]);
 const oldDocsPath = "D" + "ocs/";
 const finderDuplicatePath = "D" + "ocs 2";
-const allowedDocsRootDirs = ["changelog", "development-plans", "specs", "testing"];
+const allowedDocsRootDirs = ["changelog", "development-plans", "specs"];
 const allowedDevelopmentPlanRootFiles = new Set<string>();
 const obsoleteTrackedFiles = [
   "docs/changelog/v1.md",
   "docs/development-plans/status.md",
   "docs/development-plans/tickets.md",
+  "docs/testing/test-plan.md",
   "docs/specs/content/ru-copy.md",
   "docs/specs/glossary.md"
 ];
