@@ -1,6 +1,6 @@
 ---
 name: indira-spec-workflow
-description: Use for any Indira Home project work that may affect specs, roadmap, development plans, routes, product behavior, data rules, or implementation scope. Ensures changes follow the V1 specification, current roadmap, and active development plan.
+description: Use for any Indira Home project work that may affect specs, changelog, development plans, routes, product behavior, data rules, or implementation scope. Ensures changes follow the V1 specification and active development plan.
 ---
 
 # Indira Spec Workflow
@@ -41,23 +41,22 @@ Read only what is relevant:
 - `docs/specs/global-spec.md`
 - `docs/specs/functional-map.md`
 - `docs/specs/work-plan.md`
-- `docs/specs/technical/README.md`
-- `docs/roadmap/README.md`
-- `docs/development-plans/README.md`
-- `docs/development-plans/status.md`
-- `docs/development-plans/tickets.md`
+- `docs/specs/technical/routes-navigation.md`
+- `docs/specs/technical/data-model.md`
+- `docs/changelog/index.md`
+- relevant files in `docs/changelog/zones/`
 - relevant files in `docs/specs/feature-specs/`
 
 ## Workflow
 
 1. Identify the affected route, feature, or lot.
-2. Read the matching feature spec and current ticket status.
-3. Follow the Development Plan workflow in `AGENTS.md` and `docs/development-plans/README.md`.
+2. Read the matching feature spec and changelog zone when useful.
+3. Follow the Development Plan workflow in `AGENTS.md`.
 4. Keep changes inside the active plan unless the user asks otherwise.
 5. Use `lib/constants.ts` for statuses and payment methods.
 6. Keep customer-facing text in Russian.
 7. Do not add out-of-scope V1 features.
-8. If work changes scope or status, update development plan docs.
+8. If delivered work changes documented history, update the matching changelog zone.
 
 ## Delivery Rule
 

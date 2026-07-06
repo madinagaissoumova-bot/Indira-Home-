@@ -18,8 +18,8 @@ Use the relevant files:
 - `docs/specs/feature-specs/validation-commande.md`
 - `docs/specs/feature-specs/confirmation-commande.md`
 - `docs/specs/visual-rules.md`
-- `docs/specs/content/ru-copy.md`
-- `docs/development-plans/tickets.md`
+- `lib/.i18n/ru.ts`
+- relevant files in `docs/changelog/zones/`
 
 ## Routes
 
