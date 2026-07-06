@@ -12,6 +12,11 @@
 - Suppression de `docs/development-plans/tickets.md`.
 - Conservation du suivi utile dans les plans termines, les specs et le changelog par zones.
 
+## 2026-07-07 - Fusion du test plan documentaire
+
+- Integration de la checklist `docs/testing/test-plan.md` dans `docs/specs/validation-rules.md`.
+- Suppression du dossier documentaire `docs/testing/` devenu redondant.
+
 ## 2026-06-28 - Nettoyage des README et de ru-copy
 
 - Suppression des fichiers `README.md` suivis par Git.
