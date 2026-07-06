@@ -12,8 +12,8 @@ Use this skill for QA, review, and release readiness.
 - `docs/testing/test-plan.md`
 - `docs/specs/technical/security-checklist.md`
 - `docs/specs/technical/production-plan.md`
-- `docs/development-plans/status.md`
-- `docs/development-plans/tickets.md`
+- `docs/changelog/index.md`
+- relevant files in `docs/changelog/zones/`
 - relevant feature specs for the area under review
 
 ## Verification Commands

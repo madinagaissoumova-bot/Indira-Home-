@@ -6,6 +6,12 @@
 - Ajout d'une convention d'ecriture dans `docs/changelog/index.md`.
 - Repartition de l'historique deja livre dans les fichiers de zones.
 
+## 2026-07-07 - Suppression du suivi global redondant
+
+- Suppression de `docs/development-plans/status.md`.
+- Suppression de `docs/development-plans/tickets.md`.
+- Conservation du suivi utile dans les plans termines, les specs et le changelog par zones.
+
 ## 2026-06-28 - Nettoyage des README et de ru-copy
 
 - Suppression des fichiers `README.md` suivis par Git.

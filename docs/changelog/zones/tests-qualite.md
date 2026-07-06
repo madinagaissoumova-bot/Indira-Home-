@@ -11,6 +11,11 @@
 - Ajout d'un controle documentaire qui refuse le retour de fichiers `README.md` suivis par Git.
 - Verification que `docs/specs/content/ru-copy.md` n'est plus suivi.
 
+## 2026-07-07 - Blocage des anciens fichiers documentaires
+
+- Ajout d'un controle explicite contre le retour des anciens fichiers documentaires supprimes.
+- Blocage de `docs/development-plans/status.md`, `docs/development-plans/tickets.md`, `docs/specs/glossary.md`, `docs/specs/content/ru-copy.md` et `docs/changelog/v1.md`.
+
 ## 2026-06-08 - Tests auth admin
 
 - Tests couvrant blocage temporaire, expiration et remise a zero de la limitation de connexion admin.

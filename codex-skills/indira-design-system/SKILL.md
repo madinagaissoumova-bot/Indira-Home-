@@ -12,7 +12,7 @@ Utiliser ce skill pour le travail visuel et UX sur Indira Home.
 Lire seulement les fichiers pertinents :
 
 - `docs/specs/visual-rules.md`
-- `docs/specs/content/ru-copy.md`
+- `lib/.i18n/ru.ts`
 - `docs/specs/feature-specs/catalogue-produits.md`
 - `docs/specs/feature-specs/fiche-produit.md`
 - `docs/specs/feature-specs/panier.md`
