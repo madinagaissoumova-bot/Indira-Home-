@@ -14,6 +14,11 @@
 - Conservation d'une seule action principale vers une collection.
 - Acces aux produits conserve via les categories, sous-categories, recherche et fiches produit.
 
+## 2026-07-07 - Informations catalogue allegees
+
+- Suppression des compteurs repetes sur les pages categorie et sous-categorie.
+- Metadonnees de cartes produit reduites quand le contexte est deja visible.
+
 ## 2026-06-02 - Verification mobile V1
 
 - Parcours accueil, recherche et catalogue verifies en navigateur mobile.

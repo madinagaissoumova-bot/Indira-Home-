@@ -180,8 +180,6 @@ export function CheckoutClient({ products }: CheckoutClientProps) {
         <div className="checkout-note">
           <p>{ru.checkout.deliveryNote}</p>
           <p>{ru.checkout.deliveryFeeNote}</p>
-          <p>{ru.checkout.reminder}</p>
-          <p>{ru.checkout.changeOrCancel}</p>
         </div>
 
         <div className="form-actions">

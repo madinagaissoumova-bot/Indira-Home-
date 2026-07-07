@@ -44,12 +44,10 @@ export const ru = {
   },
   catalog: {
     collection: "Коллекция",
-    collectionSummary: "Информация о коллекции",
     defaultCategoryDescription: "Подборка товаров для красивого и уютного дома.",
     subcategories: "Подкатегории",
     viewCategory: "Смотреть всю категорию",
     filtersAndSorting: "Сортировка и фильтры",
-    productCount: (count: number) => `${count} товаров`,
     filters: "Фильтры",
     title: "Каталог",
     intro: "Выберите категорию, найдите товар или посмотрите новинки.",
@@ -68,7 +66,6 @@ export const ru = {
     sortNewFirst: "Сначала новинки",
     applyFilters: "Показать",
     resetFilters: "Сбросить",
-    inSection: "в разделе",
     noProducts: "Пока нет товаров для показа.",
     noFilteredProducts: "Нет товаров по выбранным фильтрам.",
     noCategoryProducts: "Пока нет товаров в этой категории.",
@@ -94,9 +91,6 @@ export const ru = {
   product: {
     photos: "Фотографии товара",
     fallbackSpecLabel: "Деталь",
-    noAccountOrder: "Без регистрации",
-    confirmationByPhone: "Подтверждение по телефону или в WhatsApp",
-    deliveryChechnya: "Доставка по Чеченской Республике",
     whatsappButton: "Написать в WhatsApp",
     whatsappText: (productName: string) =>
       `Здравствуйте! Хочу уточнить наличие товара: ${productName}`,
@@ -107,7 +101,6 @@ export const ru = {
   cart: {
     title: "Ваша корзина",
     eyebrow: "Корзина",
-    intro: "Проверьте товары перед оформлением заказа.",
     empty: "Ваша корзина пуста.",
     backToCart: "Вернуться в корзину",
     unavailableLine: "Недоступно для заказа",
@@ -128,7 +121,6 @@ export const ru = {
     breadcrumb: "Оформление заказа",
     eyebrow: "Оформление заказа",
     title: "Данные для доставки",
-    intro: "Оставьте контакты, и мы подтвердим заказ.",
     contactTitle: "Контактные данные",
     firstName: "Имя",
     lastName: "Фамилия",
@@ -141,9 +133,6 @@ export const ru = {
     transferAfterConfirmation: "Перевод после подтверждения",
     deliveryNote: "Доставка по Чеченской Республике, обычно 4-5 дней.",
     deliveryFeeNote: "Стоимость доставки уточним при подтверждении заказа.",
-    reminder:
-      "Оплата онлайн не нужна. Мы подтвердим заказ по телефону или в WhatsApp.",
-    changeOrCancel: "Изменить или отменить заказ можно через WhatsApp: +7 988 906-41-06.",
     submit: "Отправить заказ",
     submitting: "Отправка...",
     summary: "Ваш заказ",
@@ -172,8 +161,6 @@ export const ru = {
       "Заказ отправлен. Мы свяжемся с вами по телефону или в WhatsApp для подтверждения.",
     orderNumber: (order: string) => `Номер заказа: ${order}`,
     delivery: "Доставка по Чеченской Республике, обычно 4-5 дней.",
-    deliveryFee: "Стоимость доставки уточним при подтверждении заказа.",
-    changeOrCancel: "Изменить или отменить заказ можно через WhatsApp: +7 988 906-41-06.",
     noRecentOrder: "Нет недавнего заказа."
   },
   notFound: {

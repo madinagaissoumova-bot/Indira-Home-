@@ -52,9 +52,6 @@ export function ConfirmationClient() {
       {confirmation ? (
         <>
           <p>{ru.confirmation.delivery}</p>
-          <p>{ru.confirmation.deliveryFee}</p>
-          <p>{ru.confirmation.changeOrCancel}</p>
-          <p>{ru.common.whatsappShop}</p>
           <a className="button secondary whatsapp-button" href={WHATSAPP_CONFIRMATION_HREF} target="_blank" rel="noreferrer">
             {ru.product.whatsappButton}
           </a>

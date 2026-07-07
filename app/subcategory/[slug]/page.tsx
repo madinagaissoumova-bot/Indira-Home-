@@ -49,13 +49,12 @@ export default async function SubcategoryPage({
       <section className="hero hero-compact">
         <span className="eyebrow">{subcategory.category.name}</span>
         <h1>{subcategory.name}</h1>
-        <p>{ru.catalog.productCount(subcategory.products.length)} {ru.catalog.inSection}</p>
       </section>
 
       {subcategory.products.length > 0 ? (
         <div className="product-grid">
           {subcategory.products.map((product) => (
-            <ProductCard compact={false} key={product.id} meta="category" product={product} />
+            <ProductCard compact={false} key={product.id} meta="none" product={product} />
           ))}
         </div>
       ) : (

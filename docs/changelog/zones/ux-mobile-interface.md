@@ -16,6 +16,11 @@
 - Sous-categories presentees comme cartes tactiles horizontales sur mobile.
 - Menu categories public rendu plus stable et plus facile a scanner.
 
+## 2026-07-07 - Sobriete interface cliente
+
+- Suppression de textes et metadonnees repetes sur les pages clientes.
+- Espacement editorial conserve pour eviter un rendu trop brut apres simplification.
+
 ## 2026-06-02 - Verification navigateur V1
 
 - Parcours public mobile verifie sur accueil, categorie, sous-categorie, recherche, fiche produit, panier, checkout, confirmation et confidentialite.
