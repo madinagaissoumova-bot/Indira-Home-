@@ -68,23 +68,26 @@ export default async function RootLayout({
             </summary>
             <div className="category-menu-panel">
               {categories.map((category) => (
-                <div className="category-menu-group" key={category.id}>
-                  <Link className="category-menu-link" href={`/category/${category.slug}`}>
-                    {category.name}
-                  </Link>
+                <details className="category-menu-group" key={category.id}>
+                  <summary className="category-menu-category-summary">
+                    <span className="category-menu-link">{category.name}</span>
+                  </summary>
                   <div className="category-menu-subcategories">
+                    <Link className="category-menu-all-link" href={`/category/${category.slug}`}>
+                      {ru.catalog.viewCategory}
+                    </Link>
                     {category.subcategories.map((subcategory) => (
                       <Link
                         className="category-menu-subcategory"
                         href={`/subcategory/${subcategory.slug}`}
                         key={subcategory.id}
                       >
-                        <span aria-hidden="true">→</span>
+                        <span aria-hidden="true" />
                         {subcategory.name}
                       </Link>
                     ))}
                   </div>
-                </div>
+                </details>
               ))}
             </div>
           </details>

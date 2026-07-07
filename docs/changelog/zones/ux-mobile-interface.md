@@ -11,6 +11,11 @@
 - Simplification mobile-first de l'accueil autour d'une image principale.
 - Suppression du doublon de boutons du hero.
 
+## 2026-07-07 - Categories plus lisibles sur mobile
+
+- Sous-categories presentees comme cartes tactiles horizontales sur mobile.
+- Menu categories public rendu plus stable et plus facile a scanner.
+
 ## 2026-06-02 - Verification navigateur V1
 
 - Parcours public mobile verifie sur accueil, categorie, sous-categorie, recherche, fiche produit, panier, checkout, confirmation et confidentialite.

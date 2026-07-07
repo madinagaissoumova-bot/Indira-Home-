@@ -47,6 +47,7 @@ export const ru = {
     collectionSummary: "Информация о коллекции",
     defaultCategoryDescription: "Подборка товаров для красивого и уютного дома.",
     subcategories: "Подкатегории",
+    viewCategory: "Смотреть всю категорию",
     filtersAndSorting: "Сортировка и фильтры",
     productCount: (count: number) => `${count} товаров`,
     filters: "Фильтры",

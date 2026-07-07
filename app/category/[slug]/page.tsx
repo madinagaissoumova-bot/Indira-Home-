@@ -49,6 +49,9 @@ export default async function CategoryPage({
           <span className="eyebrow">{ru.catalog.collection}</span>
           <h1>{category.name}</h1>
           <p>{ru.catalog.categoryDescriptions[category.slug] ?? ru.catalog.defaultCategoryDescription}</p>
+          <div className="category-hero-meta" aria-label={ru.catalog.collectionSummary}>
+            <span>{ru.catalog.productCount(category.products.length)}</span>
+          </div>
         </div>
         <div className="category-hero-image" aria-hidden="true">
           <Image
@@ -60,14 +63,6 @@ export default async function CategoryPage({
             width={960}
           />
         </div>
-      </section>
-
-      <section className="subcategory-strip" aria-label={ru.catalog.subcategories}>
-        {category.subcategories.map((subcategory) => (
-          <Link className="chip" href={`/subcategory/${subcategory.slug}`} key={subcategory.id}>
-            {subcategory.name}
-          </Link>
-        ))}
       </section>
 
       <section className="collection-toolbar" aria-label={ru.catalog.collectionSummary}>
