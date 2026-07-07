@@ -17,6 +17,10 @@
 - Integration de la checklist `docs/testing/test-plan.md` dans `docs/specs/validation-rules.md`.
 - Suppression du dossier documentaire `docs/testing/` devenu redondant.
 
+## 2026-07-07 - Correction du template de plan
+
+- Alignement de `docs/development-plans/en-cours/TEMPLATE.md` avec le workflow Pull Request vers `main`.
+
 ## 2026-06-28 - Nettoyage des README et de ru-copy
 
 - Suppression des fichiers `README.md` suivis par Git.

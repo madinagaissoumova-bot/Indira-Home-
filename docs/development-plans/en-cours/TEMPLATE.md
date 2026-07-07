@@ -8,7 +8,7 @@ Decrire simplement ce qu'on veut faire.
 
 - [ ] Le besoin et le contenu du plan ont ete discutes dans la conversation.
 - [ ] Le perimetre du plan a ete valide explicitement par l'utilisatrice.
-- [ ] Une branche qui n'existait pas auparavant, portant un nom correspondant au plan, a ete creee depuis `develop`.
+- [ ] Une branche qui n'existait pas auparavant, portant un nom correspondant au plan, a ete creee depuis `main`.
 - [ ] Ce fichier a ete enregistre dans `docs/development-plans/en-cours/` sur la branche dediee.
 
 ## Etapes
@@ -19,7 +19,7 @@ Decrire simplement ce qu'on veut faire.
 - [ ] 4. Deplacer ce plan dans `docs/development-plans/termines/`.
 - [ ] 5. Creer un commit clair.
 - [ ] 6. Pousser la branche sur GitHub.
-- [ ] 7. Ouvrir une Pull Request vers `develop`.
+- [ ] 7. Ouvrir une Pull Request vers `main`.
 - [ ] 8. Attendre la validation explicite de l'utilisatrice.
 - [ ] 9. Merger la Pull Request.
 
