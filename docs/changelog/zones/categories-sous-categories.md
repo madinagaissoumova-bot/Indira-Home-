@@ -12,6 +12,7 @@
 - Menu categories public rendu plus lisible et plus structure.
 - Page categorie enrichie avec un hero plus editorial et des cartes de sous-categories.
 - Adaptation mobile de la navigation sous-categories.
+- Menu categories corrige en navigation progressive : categories d'abord, sous-categories seulement apres ouverture.
 
 ## 2026-06-02 - Verification mobile V1
 
