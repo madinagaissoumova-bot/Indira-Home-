@@ -21,6 +21,11 @@
 - Deplacement de la checklist de verification V1 dans `docs/specs/validation-rules.md`.
 - Mise a jour du controle documentaire pour retirer `docs/testing/` de la structure attendue.
 
+## 2026-07-07 - Structure documentaire verrouillee
+
+- Ajout de controles explicites sur la structure de `docs/changelog/`, `docs/specs/` et `docs/development-plans/`.
+- Blocage des dossiers ou fichiers inattendus dans les zones documentaires sensibles.
+
 ## 2026-06-08 - Tests auth admin
 
 - Tests couvrant blocage temporaire, expiration et remise a zero de la limitation de connexion admin.
