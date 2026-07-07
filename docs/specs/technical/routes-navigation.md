@@ -4,7 +4,7 @@
 
 | Page / route | Role |
 | --- | --- |
-| Accueil / `/` | Afficher les produits publies, les categories, la recherche et les filtres principaux |
+| Accueil / `/` | Afficher l'identite Indira Home, une image editoriale et une action principale vers une collection |
 | Categorie / `/category/:slug` | Afficher les produits d'une categorie visible |
 | Sous-categorie / `/subcategory/:slug` | Afficher les produits d'une sous-categorie visible |
 | Fiche produit / `/product/:slug` | Afficher les details d'un produit publie dans une categorie et sous-categorie visibles, commandable ou epuise |
@@ -33,7 +33,7 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 
 ## Navigation publique
 
-- Le catalogue est le point d'entree principal.
+- L'accueil, le menu categories et la recherche sont les points d'entree principaux vers le catalogue.
 - Le header public doit contenir les acces principaux aux pages du site et le menu des categories.
 - La cliente doit pouvoir passer du catalogue a une fiche produit, puis revenir au catalogue.
 - Les filtres de catalogue doivent etre conserves si possible au retour depuis une fiche produit.
@@ -44,8 +44,8 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 
 ## Architecture des pages publiques
 
-- L'accueil doit rester une page d'entree compacte.
-- L'accueil doit afficher l'identite de la boutique, les acces principaux et un apercu du catalogue, sans gros blocs successifs.
+- L'accueil doit rester une page d'entree compacte et editoriale.
+- L'accueil doit afficher l'identite de la boutique, une image principale et une action claire vers une collection, sans grille produits obligatoire.
 - Les categories doivent etre accessibles depuis le header via un menu dedie.
 - Chaque categorie visible doit disposer de sa propre page publique.
 - Chaque page categorie doit pouvoir servir de page de collection avec un espace visuel pour de futures photos, puis un acces rapide aux sous-categories.

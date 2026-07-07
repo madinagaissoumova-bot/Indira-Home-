@@ -54,9 +54,9 @@ Si le produit est en stock, le catalogue ne doit pas afficher de texte "disponib
 
 Si le produit est epuise, le catalogue doit afficher clairement "indisponible" ou "produit epuise" et l'action de commande ne doit pas fonctionner.
 
-## Regles visuelles du catalogue
+## Regles visuelles des listes produits
 
-Le catalogue doit mettre les produits au premier plan. Il ne doit pas devenir une landing page marketing sans produits visibles rapidement.
+Les pages qui affichent une liste de produits doivent mettre les produits au premier plan. Elles ne doivent pas devenir des pages marketing sans produits visibles rapidement.
 
 Les photos produit doivent etre nettes, suffisamment grandes pour identifier l'article et bien cadrees. Les images, cartes et miniatures doivent garder des proportions stables pour eviter les sauts de layout.
 
@@ -84,29 +84,33 @@ Par defaut, le catalogue affiche :
 
 Les produits masques ou en brouillon ne doivent pas apparaitre dans le catalogue client.
 
-## UX D'Accueil Catalogue
+## UX D'Accueil Et Catalogue
 
-L'accueil `/` doit etre une vraie entree catalogue, pas seulement une page de presentation.
+L'accueil `/` sert d'entree editoriale premium. Il peut etre tres simple, avec une grande photo, la marque et une seule action principale vers une collection ou une categorie.
 
 La cliente doit pouvoir, depuis l'accueil :
 
 - comprendre rapidement que le site vend des produits pour la maison ;
 - entrer par une mise en scene visuelle premium ;
 - acceder aux categories depuis la navbar et son mega-menu ;
-- rechercher un produit par nom ;
-- filtrer par categorie ;
-- filtrer par sous-categorie ;
+- ouvrir une collection principale depuis une action claire ;
+- rechercher un produit par nom depuis la recherche du header.
+
+L'accueil ne doit pas dupliquer les categories sous forme de gros blocs si elles sont deja accessibles dans le mega-menu. Il ne doit pas afficher obligatoirement la grille produits : la consultation detaillee des produits se fait via les pages categorie, sous-categorie, recherche et fiche produit.
+
+Les pages catalogue, categorie, sous-categorie et recherche doivent permettre de :
+
+- filtrer par categorie quand le contexte le permet ;
+- filtrer par sous-categorie quand le contexte le permet ;
 - limiter l'affichage aux produits en stock ;
 - afficher les nouveautes ;
 - trier les produits ;
 - reinitialiser les filtres ;
-- voir une grille de produits sans passer par une autre page ;
+- voir une grille de produits ;
 - ouvrir une fiche produit ;
 - ajouter un produit commandable au panier.
 
-Les categories ne doivent pas etre repetees comme de gros blocs sur l'accueil si elles sont deja accessibles dans le mega-menu. Sur desktop, le hero doit rester compact afin que les controles du catalogue et le debut de la grille produits soient accessibles rapidement.
-
-Si aucun produit ne correspond aux filtres, l'accueil doit afficher un etat vide clair en russe et proposer une reinitialisation accessible.
+Si aucun produit ne correspond aux filtres sur une page de liste produits, la page doit afficher un etat vide clair en russe et proposer une reinitialisation accessible quand des filtres sont actifs.
 
 ## Actions possibles
 

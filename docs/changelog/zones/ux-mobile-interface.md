@@ -6,6 +6,11 @@
 - Etats vides, erreurs et indisponibilites verifies.
 - Interface admin rendue plus compacte et scannable.
 
+## 2026-07-07 - Accueil visuel premium
+
+- Simplification mobile-first de l'accueil autour d'une image principale.
+- Suppression du doublon de boutons du hero.
+
 ## 2026-06-02 - Verification navigateur V1
 
 - Parcours public mobile verifie sur accueil, categorie, sous-categorie, recherche, fiche produit, panier, checkout, confirmation et confidentialite.

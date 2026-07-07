@@ -8,6 +8,12 @@
 - Produits publies et visibles uniquement dans le catalogue public.
 - Produits epuises visibles mais non commandables.
 
+## 2026-07-07 - Accueil editorial simplifie
+
+- Retrait de la grille produits directement sous le hero de l'accueil.
+- Conservation d'une seule action principale vers une collection.
+- Acces aux produits conserve via les categories, sous-categories, recherche et fiches produit.
+
 ## 2026-06-02 - Verification mobile V1
 
 - Parcours accueil, recherche et catalogue verifies en navigateur mobile.
