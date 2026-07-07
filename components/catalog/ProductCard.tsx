@@ -18,19 +18,21 @@ type ProductCardData = {
 
 type ProductCardProps = {
   product: ProductCardData;
-  meta?: "category" | "subcategory" | "both";
+  meta?: "category" | "subcategory" | "both" | "none";
   compact?: boolean;
 };
 
 export function ProductCard({ product, meta = "both", compact = true }: ProductCardProps) {
   const image = product.images[0];
   const isSoldOut = product.stockQuantity <= 0;
-  const metaText = [
-    meta === "both" || meta === "category" ? product.category?.name : null,
-    meta === "both" || meta === "subcategory" ? product.subcategory?.name : null
-  ]
-    .filter(Boolean)
-    .join(" / ");
+  const metaText = meta === "none"
+    ? ""
+    : [
+        meta === "both" || meta === "category" ? product.category?.name : null,
+        meta === "both" || meta === "subcategory" ? product.subcategory?.name : null
+      ]
+        .filter(Boolean)
+        .join(" / ");
 
   return (
     <article className={`product-card${compact ? " compact" : ""}`}>

@@ -35,7 +35,6 @@ export default async function CheckoutPage() {
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.checkout.eyebrow}</span>
         <h1>{ru.checkout.title}</h1>
-        <p>{ru.checkout.intro}</p>
       </section>
       <CheckoutClient products={products} />
     </main>

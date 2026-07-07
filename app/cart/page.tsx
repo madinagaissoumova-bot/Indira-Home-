@@ -34,7 +34,6 @@ export default async function CartPage() {
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.cart.eyebrow}</span>
         <h1>{ru.cart.title}</h1>
-        <p>{ru.cart.intro}</p>
       </section>
       <CartClient products={products} />
     </main>

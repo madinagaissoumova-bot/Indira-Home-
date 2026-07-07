@@ -16,6 +16,11 @@
 - Retour de la commande existante quand une meme tentative checkout est renvoyee.
 - Protection contre le double decrement de stock pour une meme tentative.
 
+## 2026-07-07 - Checkout allege
+
+- Notes checkout reduites aux informations utiles au moment de commander.
+- Confirmation client simplifiee pour eviter les repetitions autour de WhatsApp et de la livraison.
+
 ## 2026-06-04 - Exigences checkout clarifiees
 
 - Ajout de l'exigence d'idempotence checkout dans les specs V1.

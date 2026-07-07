@@ -131,12 +131,6 @@ export default async function ProductPage({
             </div>
           ) : null}
 
-          <div className="product-service-note">
-            <span>{ru.product.noAccountOrder}</span>
-            <span>{ru.product.confirmationByPhone}</span>
-            <span>{ru.product.deliveryChechnya}</span>
-          </div>
-
           <div className="product-cta-stack">
             <AddToCartButton
               disabled={isSoldOut}
