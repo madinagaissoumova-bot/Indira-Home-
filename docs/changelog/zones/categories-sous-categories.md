@@ -7,6 +7,12 @@
 - Masquage des categories et sous-categories non visibles cote cliente.
 - Verification de la coherence entre categorie, sous-categorie et produit.
 
+## 2026-07-07 - Navigation categories affinee
+
+- Menu categories public rendu plus lisible et plus structure.
+- Page categorie enrichie avec un hero plus editorial et des cartes de sous-categories.
+- Adaptation mobile de la navigation sous-categories.
+
 ## 2026-06-02 - Verification mobile V1
 
 - Pages categorie et sous-categorie verifiees en navigateur mobile.

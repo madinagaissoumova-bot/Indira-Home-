@@ -69,9 +69,12 @@ export default async function RootLayout({
             <div className="category-menu-panel">
               {categories.map((category) => (
                 <div className="category-menu-group" key={category.id}>
-                  <Link className="category-menu-link" href={`/category/${category.slug}`}>
-                    {category.name}
-                  </Link>
+                  <div className="category-menu-heading">
+                    <Link className="category-menu-link" href={`/category/${category.slug}`}>
+                      {category.name}
+                    </Link>
+                    <span>{category.subcategories.length}</span>
+                  </div>
                   <div className="category-menu-subcategories">
                     {category.subcategories.map((subcategory) => (
                       <Link
@@ -79,7 +82,7 @@ export default async function RootLayout({
                         href={`/subcategory/${subcategory.slug}`}
                         key={subcategory.id}
                       >
-                        <span aria-hidden="true">→</span>
+                        <span aria-hidden="true" />
                         {subcategory.name}
                       </Link>
                     ))}

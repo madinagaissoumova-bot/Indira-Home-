@@ -256,13 +256,13 @@ textarea {
   border-radius: 0;
   box-shadow: 0 30px 80px rgba(33, 25, 22, 0.1);
   display: grid;
-  gap: 18px 24px;
+  gap: 14px;
   grid-template-columns: repeat(4, minmax(150px, 1fr));
   margin-top: 0;
   max-height: min(380px, 48dvh);
-  min-width: min(860px, calc(100vw - 36px));
+  min-width: min(920px, calc(100vw - 36px));
   overflow: auto;
-  padding: 22px 24px;
+  padding: 18px;
   position: absolute;
   right: 0;
   top: calc(100% + 14px);
@@ -270,33 +270,63 @@ textarea {
 }
 
 .category-menu-group {
+  background: rgba(255, 253, 249, 0.78);
+  border: 1px solid rgba(231, 222, 211, 0.78);
   display: grid;
-  gap: 8px;
+  gap: 12px;
+  min-height: 138px;
+  padding: 13px;
+}
+
+.category-menu-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.category-menu-heading span {
+  border-bottom: 1px solid rgba(70, 46, 42, 0.2);
+  color: var(--muted);
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  padding-bottom: 4px;
 }
 
 .category-menu-link {
   color: var(--accent-strong);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
 }
 
 .category-menu-subcategories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 12px;
+  display: grid;
+  gap: 0;
 }
 
 .category-menu-subcategory {
   align-items: center;
+  border-top: 1px solid rgba(231, 222, 211, 0.58);
   color: var(--muted);
-  display: inline-flex;
-  gap: 4px;
-  font-size: 13px;
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
   line-height: 1.35;
+  padding: 7px 0 0;
 }
 
 .category-menu-subcategory:hover {
   color: var(--accent-strong);
+}
+
+.category-menu-subcategory span {
+  background: currentColor;
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 1px;
+  width: 12px;
 }
 
 .page {
@@ -912,8 +942,8 @@ p {
   display: grid;
   gap: clamp(18px, 4vw, 40px);
   grid-template-columns: minmax(0, 0.82fr) minmax(260px, 0.58fr);
-  min-height: 300px;
-  padding: clamp(28px, 5vw, 56px) 0;
+  min-height: 340px;
+  padding: clamp(32px, 6vw, 72px) 0;
 }
 
 .category-hero-copy {
@@ -931,6 +961,22 @@ p {
   max-width: 520px;
 }
 
+.category-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.category-hero-meta span {
+  border-bottom: 1px solid rgba(72, 49, 44, 0.26);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
 .category-hero-image {
   align-items: center;
   background:
@@ -938,7 +984,7 @@ p {
   box-shadow: 0 24px 70px rgba(33, 25, 22, 0.08);
   display: flex;
   justify-content: center;
-  min-height: 220px;
+  min-height: 250px;
   overflow: hidden;
   padding: clamp(12px, 2.4vw, 24px);
 }
@@ -950,13 +996,48 @@ p {
   width: 100%;
 }
 
-.subcategory-strip {
-  align-items: center;
+.subcategory-panel {
   border-bottom: 1px solid rgba(231, 222, 211, 0.8);
+  display: grid;
+  gap: 16px;
+  padding: 22px 0;
+}
+
+.subcategory-panel-heading {
+  align-items: flex-end;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.subcategory-panel-heading h2 {
+  font-size: 18px;
+}
+
+.subcategory-strip {
+  align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  padding: 18px 0;
+  gap: 10px;
+}
+
+.subcategory-card {
+  align-items: center;
+  background: rgba(255, 253, 249, 0.86);
+  border: 1px solid rgba(231, 222, 211, 0.86);
+  color: var(--text);
+  display: flex;
+  font-size: 13px;
+  font-weight: 750;
+  justify-content: space-between;
+  min-height: 46px;
+  padding: 12px 14px;
+}
+
+.subcategory-card:hover {
+  background: #fffdf9;
+  border-color: #d6a7ae;
+  color: var(--accent-strong);
 }
 
 .collection-toolbar {
@@ -2424,8 +2505,9 @@ p {
   }
 
   .category-menu-group {
-    border-bottom: 1px solid rgba(231, 222, 211, 0.72);
-    padding-bottom: 12px;
+    border-inline: 0;
+    min-height: 0;
+    padding: 12px 0;
   }
 
   .category-menu-group:last-child {
@@ -2605,10 +2687,29 @@ p {
     min-height: 190px;
   }
 
+  .category-hero-meta {
+    gap: 8px;
+  }
+
+  .subcategory-panel {
+    padding: 18px 0;
+  }
+
+  .subcategory-panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .subcategory-strip {
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .subcategory-card {
+    flex: 0 0 auto;
+    min-width: 46%;
   }
 
   .collection-toolbar {

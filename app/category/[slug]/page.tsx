@@ -49,6 +49,10 @@ export default async function CategoryPage({
           <span className="eyebrow">{ru.catalog.collection}</span>
           <h1>{category.name}</h1>
           <p>{ru.catalog.categoryDescriptions[category.slug] ?? ru.catalog.defaultCategoryDescription}</p>
+          <div className="category-hero-meta" aria-label={ru.catalog.collectionSummary}>
+            <span>{ru.catalog.productCount(category.products.length)}</span>
+            <span>{category.subcategories.length} {ru.catalog.subcategories.toLowerCase()}</span>
+          </div>
         </div>
         <div className="category-hero-image" aria-hidden="true">
           <Image
@@ -62,13 +66,21 @@ export default async function CategoryPage({
         </div>
       </section>
 
-      <section className="subcategory-strip" aria-label={ru.catalog.subcategories}>
-        {category.subcategories.map((subcategory) => (
-          <Link className="chip" href={`/subcategory/${subcategory.slug}`} key={subcategory.id}>
-            {subcategory.name}
-          </Link>
-        ))}
-      </section>
+      {category.subcategories.length > 0 ? (
+        <section className="subcategory-panel" aria-label={ru.catalog.subcategories}>
+          <div className="subcategory-panel-heading">
+            <span className="eyebrow">{ru.catalog.subcategories}</span>
+            <h2>{ru.catalog.chooseSubcategory}</h2>
+          </div>
+          <div className="subcategory-strip">
+            {category.subcategories.map((subcategory) => (
+              <Link className="subcategory-card" href={`/subcategory/${subcategory.slug}`} key={subcategory.id}>
+                <span>{subcategory.name}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="collection-toolbar" aria-label={ru.catalog.collectionSummary}>
         <span>{ru.catalog.productCount(category.products.length)}</span>
