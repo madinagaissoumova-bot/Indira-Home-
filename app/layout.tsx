@@ -71,7 +71,6 @@ export default async function RootLayout({
                 <details className="category-menu-group" key={category.id}>
                   <summary className="category-menu-category-summary">
                     <span className="category-menu-link">{category.name}</span>
-                    <span className="category-menu-count">{category.subcategories.length}</span>
                   </summary>
                   <div className="category-menu-subcategories">
                     <Link className="category-menu-all-link" href={`/category/${category.slug}`}>

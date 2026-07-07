@@ -315,14 +315,6 @@ textarea {
   transform: rotate(225deg) translateY(-1px);
 }
 
-.category-menu-count {
-  color: var(--muted);
-  flex: 0 0 auto;
-  font-size: 9px;
-  font-weight: 800;
-  margin-left: auto;
-}
-
 .category-menu-link {
   color: var(--accent-strong);
   font-size: 13px;

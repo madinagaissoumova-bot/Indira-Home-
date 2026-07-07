@@ -14,6 +14,7 @@
 - Adaptation mobile de la navigation sous-categories.
 - Menu categories corrige en navigation progressive : categories d'abord, sous-categories seulement apres ouverture.
 - Menu categories affine en liste compacte pour supprimer l'effet gros blocs.
+- Suppression des compteurs de sous-categories dans le menu public pour eviter les informations inutiles.
 
 ## 2026-06-02 - Verification mobile V1
 
