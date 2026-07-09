@@ -1,48 +1,93 @@
 # AGENTS.md
 
-## Mission
+## Sources de verite
 
-Ce projet est **Indira Home**, une V1 e-commerce simple pour une boutique de vaisselle et de produits maison en Republique tchetchene.
+Les specifications du projet sont dans `docs/specs/`.
 
-Le comportement produit, les parcours, les routes, les statuts, les regles metier, l'UX, les criteres de validation et les textes visibles sont definis dans `docs/specs/`.
+Les skills du projet sont dans `codex-skills/`.
 
-## Stack
+Avant toute action, l'IA doit :
 
-- Framework : Next.js App Router
-- Langage : TypeScript
-- ORM : Prisma
-- Base : Supabase PostgreSQL
-- Styles : CSS global dans `app/globals.css`
-- Types partages : `types/`
-- Donnees metier : constantes dans `lib/constants.ts`
+- identifier les specs concernees ;
+- identifier les skills applicables ;
+- les consulter ;
+- signaler toute contradiction, absence d'information ou ambiguite.
 
-## Sources De Verite
+Les specs definissent le comportement attendu du projet.
 
-Avant de faire un changement, une action ou une modification quelconque sur le projet, lire toutes les specs du projet dans `docs/specs/`.
+Les skills definissent la methode de travail.
 
-Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
+## Regle de clarification
 
-## Skills
+Si une information necessaire n'est pas documentee dans les specs, ne pas inventer.
 
-Les copies versionnees des skills projet sont dans `codex-skills/`.
+Demander une clarification avant de poursuivre.
 
-- `development-plan-workflow` : utiliser pour tout travail qui demande un plan, une branche, un commit, une Pull Request, un merge ou une validation explicite avant implementation.
-- `indira-spec-workflow` : utiliser pour tout changement lie aux specs, au comportement produit, aux routes, aux regles metier, aux plans, aux tickets ou a la coherence globale Indira Home.
-- `frontend-ux` : utiliser pour ameliorer l'ergonomie frontend, les parcours, la navigation, les formulaires, les libelles, les etats vides, erreurs, chargements et confirmations.
-- `mobile-first` : utiliser pour concevoir, corriger ou verifier une interface en partant du mobile, des petits ecrans, des actions tactiles et du responsive.
-- `indira-client-flow` : utiliser pour le parcours cliente Indira Home, notamment catalogue, categories, fiche produit, panier, checkout, confirmation et confidentialite.
-- `indira-admin-flow` : utiliser pour l'espace admin Indira Home, notamment authentification, dashboard, produits, categories, stock et commandes.
-- `indira-design-system` : utiliser seulement quand le sujet concerne l'identite visuelle ou les regles graphiques specifiques a Indira Home.
-- `indira-qa-release` : utiliser pour les verifications V1, tests, securite, production, release readiness ou controle final.
+Si une demande contredit les specs :
 
-## Verification
+- signaler la contradiction ;
+- expliquer l'impact ;
+- demander si les specs doivent etre modifiees.
 
-Utiliser les commandes et verifications adaptees au changement.
+## Workflow obligatoire
 
-Les criteres de validation sont definis dans `docs/specs/`.
+Toute demande suit ce workflow :
 
-## A Eviter
+1. Analyser la demande.
+2. Identifier les specs et skills concernes.
+3. Proposer un plan de developpement limite a cette demande.
+4. Attendre la validation explicite du plan.
+5. Enregistrer le plan valide dans `docs/development-plans/en-cours/`.
+6. Creer une branche Git dediee.
+7. Implementer uniquement le plan valide.
+8. Verifier selon les criteres des specs.
+9. Creer une Pull Request dediee.
+10. Presenter le resultat, le diff et la Pull Request.
+11. Demander l'autorisation explicite de merge.
+12. Merger uniquement apres validation explicite.
+13. Apres le merge, deplacer le plan dans `docs/development-plans/termines/`.
 
-- Dupliquer dans `AGENTS.md` des informations qui appartiennent aux specs produit.
-- Recopier dans `AGENTS.md` le contenu detaille des skills.
-- Ajouter dans `AGENTS.md` un workflow detaille qui appartient a un skill.
+## Perimetre
+
+Une demande = un plan.
+
+Une demande = une branche.
+
+Une demande = une Pull Request.
+
+Ne jamais modifier un fichier ou un comportement hors du plan valide.
+
+Si une amelioration utile depasse le perimetre, la proposer sans l'implementer.
+
+## Communication
+
+Signaler clairement :
+
+- une incoherence dans les specs ;
+- une incoherence dans le code ;
+- une ambiguite ;
+- un risque de regression ;
+- un probleme d'architecture.
+
+Expliquer le probleme, ses consequences et les options possibles.
+
+## Priorites
+
+En cas de conflit, respecter cet ordre :
+
+1. Specs.
+2. Plan valide.
+3. Fonctionnement existant.
+4. Qualite et maintenabilite.
+
+## A eviter
+
+Ne jamais :
+
+- ignorer les specs ;
+- ignorer un skill applicable ;
+- inventer un comportement ;
+- commencer sans plan valide ;
+- modifier hors perimetre ;
+- merger sans validation explicite ;
+- dupliquer dans `AGENTS.md` le contenu des specs ou des skills.
