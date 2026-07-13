@@ -31,13 +31,15 @@ function readCart(): CartStorageItem[] {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
 
-    return parsed.filter(
-      (item): item is CartStorageItem =>
-        typeof item?.productId === "string" &&
-        Number.isInteger(item?.quantity) &&
-        item.quantity > 0 &&
-        item.quantity <= MAX_CART_QUANTITY_PER_PRODUCT
-    );
+    return parsed
+      .filter(
+        (item): item is CartStorageItem =>
+          typeof item?.productId === "string" &&
+          Number.isInteger(item?.quantity) &&
+          item.quantity > 0 &&
+          item.quantity <= MAX_CART_QUANTITY_PER_PRODUCT
+      )
+      .map((item) => ({ productId: item.productId, quantity: item.quantity }));
   } catch {
     return [];
   }
