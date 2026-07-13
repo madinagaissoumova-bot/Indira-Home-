@@ -169,6 +169,7 @@ export async function saveProductAction(
   const characteristics = text(formData.get("characteristics")) || null;
   const imageUrl = text(formData.get("imageUrl")) || null;
   const imageAlt = text(formData.get("imageAlt")) || rawName || "Indira Home";
+  const removeImage = booleanValue(formData.get("removeImage"));
   const categoryId = text(formData.get("categoryId"));
   const subcategoryId = text(formData.get("subcategoryId"));
   const status = parseProductStatus(text(formData.get("status")));
@@ -252,7 +253,9 @@ export async function saveProductAction(
 
     const hasValidImageAfterUpdate = imageUrl
       ? isValidProductImageUrl(imageUrl)
-      : existing?.images.some((image) => isValidProductImageUrl(image.url)) ?? false;
+      : removeImage
+        ? false
+        : existing?.images.some((image) => isValidProductImageUrl(image.url)) ?? false;
     if (status === PRODUCT_STATUS.published && !hasValidImageAfterUpdate) {
       return { error: "У опубликованного товара должно быть хотя бы одно изображение." };
     }
@@ -293,8 +296,11 @@ export async function saveProductAction(
             }
           });
 
-      if (imageUrl) {
+      if (imageUrl || removeImage) {
         await tx.productImage.deleteMany({ where: { productId: product.id } });
+      }
+
+      if (imageUrl) {
         await tx.productImage.create({
           data: {
             productId: product.id,
