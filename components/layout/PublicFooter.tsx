@@ -1,26 +1,32 @@
 import Link from "next/link";
 import { ru } from "@/lib/i18n/ru";
+import {
+  DeliveryIcon,
+  PaymentIcon,
+  QualityIcon,
+  SupportIcon
+} from "@/components/layout/PublicIcons";
 
 export function PublicServiceStrip() {
   return (
     <section className="public-service-strip" aria-label={ru.home.benefitsLabel}>
       <div>
-        <span aria-hidden="true">▱</span>
+        <DeliveryIcon className="public-service-icon" />
         <strong>{ru.footer.deliveryTitle}</strong>
         <small>{ru.footer.deliveryText}</small>
       </div>
       <div>
-        <span aria-hidden="true">□</span>
+        <PaymentIcon className="public-service-icon" />
         <strong>{ru.footer.paymentTitle}</strong>
         <small>{ru.footer.paymentText}</small>
       </div>
       <div>
-        <span aria-hidden="true">♢</span>
+        <QualityIcon className="public-service-icon" />
         <strong>{ru.footer.qualityTitle}</strong>
         <small>{ru.footer.qualityText}</small>
       </div>
       <div>
-        <span aria-hidden="true">○</span>
+        <SupportIcon className="public-service-icon" />
         <strong>{ru.footer.supportTitle}</strong>
         <small>{ru.footer.supportText}</small>
       </div>

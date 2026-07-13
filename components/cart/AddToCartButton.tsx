@@ -129,14 +129,16 @@ export function AddToCartButton({
   if (withQuantity && !disabled && quantityLimit > 1) {
     return (
       <div className="add-to-cart-with-quantity">
-        <div className="quantity-controls compact" aria-label={ru.common.quantity}>
+        <span className="quantity-label">{ru.common.quantity}</span>
+        <div className="quantity-controls compact product-quantity-controls" aria-label={ru.common.quantity}>
           <button
             className="icon-button"
             disabled={selectedQuantity <= 1}
             onClick={() => updateSelectedQuantity(selectedQuantity - 1)}
             type="button"
           >
-            -
+            <span className="sr-only">{ru.common.decreaseQuantity}</span>
+            <span aria-hidden="true">-</span>
           </button>
           <span>{selectedQuantity}</span>
           <button
@@ -145,7 +147,8 @@ export function AddToCartButton({
             onClick={() => updateSelectedQuantity(selectedQuantity + 1)}
             type="button"
           >
-            +
+            <span className="sr-only">{ru.common.increaseQuantity}</span>
+            <span aria-hidden="true">+</span>
           </button>
         </div>
         {button}

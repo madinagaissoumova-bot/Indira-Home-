@@ -2,6 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Fragment } from "react";
 import { ru } from "@/lib/i18n/ru";
+import {
+  DeliveryIcon,
+  PaymentIcon,
+  QualityIcon,
+  SupportIcon
+} from "@/components/layout/PublicIcons";
 
 const homeCollections = [
   {
@@ -91,22 +97,22 @@ export default async function HomePage() {
 
       <section className="home-benefit-strip" aria-label={ru.home.benefitsLabel}>
         <div>
-          <span aria-hidden="true">♢</span>
+          <QualityIcon className="home-benefit-icon" />
           <p>{ru.home.benefits.qualityTitle}</p>
           <small>{ru.home.benefits.qualityText}</small>
         </div>
         <div>
-          <span aria-hidden="true">▱</span>
+          <DeliveryIcon className="home-benefit-icon" />
           <p>{ru.home.benefits.deliveryTitle}</p>
           <small>{ru.home.benefits.deliveryText}</small>
         </div>
         <div>
-          <span aria-hidden="true">□</span>
+          <PaymentIcon className="home-benefit-icon" />
           <p>{ru.home.benefits.paymentTitle}</p>
           <small>{ru.home.benefits.paymentText}</small>
         </div>
         <div>
-          <span aria-hidden="true">○</span>
+          <SupportIcon className="home-benefit-icon" />
           <p>{ru.home.benefits.supportTitle}</p>
           <small>{ru.home.benefits.supportText}</small>
         </div>

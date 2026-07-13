@@ -76,13 +76,6 @@ export default async function ProductPage({
     relatedProducts = getFallbackRelatedProducts(product);
   }
 
-  const featureRows = [
-    ru.product.materialCeramic,
-    product.brand ? ru.product.brandLabel(product.brand) : ru.product.dishwasherSafe,
-    product.characteristics?.split("\n")[0] ?? ru.product.dailyServing,
-    ru.product.paymentOnReceipt
-  ];
-
   return (
     <main className="page product-page">
       <div className="product-detail-layout">
@@ -102,7 +95,6 @@ export default async function ProductPage({
           <div className="product-panel-heading">
             {product.isNew ? <span className="eyebrow">{ru.common.new}</span> : null}
             <h1>{product.name}</h1>
-            <span className="product-rating">{ru.product.ratingEmpty} <small>{ru.product.ratingCount}</small></span>
           </div>
 
           <div className="product-buy-row">
@@ -111,15 +103,7 @@ export default async function ProductPage({
           </div>
 
           <p className="product-description">{product.description}</p>
-
-          <div className="product-feature-list" aria-label={ru.product.characteristics}>
-            {featureRows.map((row) => (
-              <span key={row}>
-                <i aria-hidden="true">□</i>
-                {row}
-              </span>
-            ))}
-          </div>
+          <p className="product-service-note">{ru.product.deliveryPaymentDetails}</p>
 
           <div className="product-cta-stack">
             <AddToCartButton
@@ -135,43 +119,6 @@ export default async function ProductPage({
           </div>
         </aside>
       </div>
-
-      <section className="product-lower-grid" aria-label={ru.product.information}>
-        <div className="product-accordions">
-          {[
-            ru.product.accordionDescription,
-            ru.product.accordionCharacteristics,
-            ru.product.accordionCare,
-            ru.product.accordionDeliveryPayment
-          ].map((title, index) => (
-            <details key={title} open={index === 0}>
-              <summary>{title}</summary>
-              <p>
-                {index === 0
-                  ? product.description
-                  : ru.product.confirmationDetails}
-              </p>
-            </details>
-          ))}
-        </div>
-        <aside className="product-service-box">
-          <div>
-            <span aria-hidden="true">▱</span>
-            <strong>{ru.product.freeDeliveryTitle}</strong>
-            <small>{ru.product.freeDeliveryText}</small>
-          </div>
-          <div>
-            <span aria-hidden="true">□</span>
-            <strong>{ru.product.paymentTitle}</strong>
-            <small>{ru.product.paymentText}</small>
-          </div>
-          <div>
-            <span aria-hidden="true">○</span>
-            <strong>{ru.product.supportTitle}</strong>
-            <small>{ru.product.supportText}</small>
-          </div>
-        </aside>
-      </section>
 
       {relatedProducts.length > 0 ? (
         <section aria-labelledby="related-title">
