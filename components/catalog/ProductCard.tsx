@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatRub } from "@/lib/format";
 import { ru } from "@/lib/i18n/ru";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { FavoriteButton } from "@/components/favorites/FavoriteButton";
 
 type ProductCardData = {
@@ -58,6 +59,14 @@ export function ProductCard({ product, compact = true }: ProductCardProps) {
           <span />
           <span />
           <span />
+        </div>
+        <div className="card-actions">
+          <AddToCartButton
+            disabled={isSoldOut}
+            label={ru.common.addToCart}
+            maxQuantity={product.stockQuantity}
+            productId={product.id}
+          />
         </div>
       </div>
     </article>
