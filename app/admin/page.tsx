@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ORDER_STATUS, PRODUCT_STATUS } from "@/lib/constants";
 import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 import { requireAdminSession } from "@/lib/adminAuth";
 import { formatRub } from "@/lib/format";
 import { AdminNav } from "./AdminNav";

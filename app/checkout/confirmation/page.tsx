@@ -1,10 +1,11 @@
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { ConfirmationClient } from "./ConfirmationClient";
+import { PublicFooter } from "@/components/layout/PublicFooter";
 
 export default function ConfirmationPage() {
   return (
-    <main className="page">
+    <main className="page collection-page">
       <Breadcrumbs
         items={[
           { label: ru.common.catalog, href: "/" },
@@ -19,6 +20,7 @@ export default function ConfirmationPage() {
       </section>
 
       <ConfirmationClient />
+      <PublicFooter />
     </main>
   );
 }

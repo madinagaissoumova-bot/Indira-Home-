@@ -1,6 +1,6 @@
 import { requireAdminSession } from "@/lib/adminAuth";
 import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 import { CategoryManager } from "./CategoryManager";
 import { AdminNav } from "../AdminNav";
 

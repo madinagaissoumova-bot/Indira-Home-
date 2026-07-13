@@ -80,6 +80,20 @@ En tant que cliente, je veux ouvrir une fiche produit, afin de voir les photos, 
 - Un produit epuise montre un label clair d'indisponibilite.
 - La cliente peut revenir au catalogue.
 
+## Cliente - retrouver ses favoris
+
+### Story
+
+En tant que cliente, je veux marquer des produits avec un coeur et les retrouver plus tard sur le meme appareil, afin de comparer facilement mes choix avant de commander.
+
+### Verification
+
+- La cliente peut ajouter un produit aux favoris depuis une carte produit ou une fiche produit.
+- La cliente peut ouvrir la page favoris depuis la navigation publique.
+- La page favoris affiche uniquement des produits encore visibles publiquement.
+- Si aucun produit n'est favori, la page affiche un etat vide clair en russe.
+- Les favoris ne demandent pas de compte cliente.
+
 ## Cliente - ajouter au panier
 
 ### Story

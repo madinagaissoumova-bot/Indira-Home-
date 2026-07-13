@@ -2,7 +2,7 @@
 
 ## Objectif
 
-Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/content/ru-copy.md`, maintenant que les textes russes visibles sont centralises dans `lib/.i18n/ru.ts`.
+Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/content/ru-copy.md`, maintenant que les textes russes visibles sont centralises dans `lib/i18n/ru.ts`.
 
 ## Perimetre
 
@@ -14,7 +14,7 @@ Supprimer les fichiers `README.md` suivis par Git et supprimer `docs/specs/conte
 ## Hors perimetre
 
 - Aucun changement de comportement produit.
-- Aucun changement des textes russes applicatifs dans `lib/.i18n/ru.ts`.
+- Aucun changement des textes russes applicatifs dans `lib/i18n/ru.ts`.
 - Aucun changement des routes ou des regles metier.
 
 ## Validation Du Plan

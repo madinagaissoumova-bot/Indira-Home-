@@ -1,18 +1,13 @@
-import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
-import { publicProductWhere } from "@/lib/publicCatalog";
+import { ru } from "@/lib/i18n/ru";
+import { listPublicProductsForCart } from "@/lib/publicCatalog";
 import { CartClient } from "./CartClient";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
+import { PublicFooter } from "@/components/layout/PublicFooter";
 
 export const dynamic = "force-dynamic";
 
 async function getCartProducts() {
-  const products = await prisma.product.findMany({
-    where: publicProductWhere,
-    include: {
-      images: { orderBy: { displayOrder: "asc" }, take: 1 }
-    }
-  });
+  const products = await listPublicProductsForCart();
 
   return products.map((product) => ({
     id: product.id,
@@ -29,7 +24,7 @@ export default async function CartPage() {
   const products = await getCartProducts();
 
   return (
-    <main className="page">
+    <main className="page collection-page">
       <Breadcrumbs items={[{ label: ru.common.catalog, href: "/" }, { label: ru.common.cart }]} />
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.cart.eyebrow}</span>
@@ -37,6 +32,7 @@ export default async function CartPage() {
         <p>{ru.cart.intro}</p>
       </section>
       <CartClient products={products} />
+      <PublicFooter />
     </main>
   );
 }

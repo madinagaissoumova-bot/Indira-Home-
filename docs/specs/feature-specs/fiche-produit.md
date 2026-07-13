@@ -42,6 +42,14 @@ La cliente doit pouvoir voir :
 - Caracteristiques si elles existent.
 - Indication "nouveau" si le produit est marque comme nouveaute.
 
+## Regles visuelles de la fiche
+
+La fiche produit doit donner plus de place a l'objet que les cartes catalogue : grande image principale, galerie stable, prix lisible et action d'achat claire.
+
+La zone achat doit rester calme et lisible. Elle peut etre sticky sur desktop si cela n'occulte pas le contenu, mais elle doit revenir a une lecture verticale simple sur mobile.
+
+Les informations de service, livraison et confirmation doivent rassurer sans devenir un long bloc explicatif. Elles doivent rester secondaires par rapport a la photo, au nom, au prix et a l'action panier.
+
 ## Actions possibles
 
 La cliente peut :

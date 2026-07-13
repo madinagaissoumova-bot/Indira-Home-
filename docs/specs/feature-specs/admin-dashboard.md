@@ -78,6 +78,8 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Le dashboard doit rester simple et lineaire : indicateurs essentiels, commandes recentes, produits recemment ajoutes.
 - Les statistiques doivent etre affichees sous forme de cartes propres et alignees.
 - Les commandes recentes doivent etre affichees en tableau avec numero, cliente, date, statut, total et action d'ouverture.
+- L'interface admin doit rester plus dense et moins decorative que l'interface cliente.
+- Les surfaces admin doivent aider la comparaison et la repetition : alignements nets, listes compactes, badges sobres, actions faciles a trouver.
 
 ## Critères d'acceptation
 

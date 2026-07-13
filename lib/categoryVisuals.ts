@@ -2,20 +2,20 @@ import type { CSSProperties } from "react";
 
 const CATEGORY_VISUALS: Record<string, { image: string; tone: string }> = {
   posuda: {
-    image: "/uploads/products/nabor-posudy-belyi-serviz-premium.png",
-    tone: "#ead6d9"
+    image: "/uploads/brand/home-strict-posuda.png",
+    tone: "#ead8c7"
   },
   kuhnya: {
-    image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80",
-    tone: "#eadcc7"
+    image: "/uploads/brand/home-strict-kuhnya.png",
+    tone: "#ead8c7"
   },
   "bytovaya-tehnika": {
-    image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=900&q=80",
-    tone: "#e9ded4"
+    image: "/uploads/brand/home-strict-tehnika-smeg.png",
+    tone: "#ead8c7"
   },
   dekor: {
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80",
-    tone: "#efd8dc"
+    image: "/uploads/brand/home-strict-dekor.png",
+    tone: "#ead8c7"
   }
 };
 
@@ -28,6 +28,7 @@ export function getCategoryVisualStyle(slug: string): CSSProperties {
 
   return {
     "--category-image": `url("${visual.image}")`,
+    "--category-hero-image": `url("${visual.image}")`,
     "--category-tone": visual.tone
   } as CSSProperties;
 }

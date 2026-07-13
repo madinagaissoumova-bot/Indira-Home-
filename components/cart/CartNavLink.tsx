@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ru } from "@/lib/.i18n/ru";
+import { CartIcon } from "@/components/layout/PublicIcons";
+import { ru } from "@/lib/i18n/ru";
 
 const CART_KEY = "indira-home-cart";
 
@@ -42,7 +43,10 @@ export function CartNavLink() {
 
   return (
     <Link className="cart-nav-link" href="/cart" aria-label={ru.cart.navLabel(count)}>
-      <span>{ru.common.cart}</span>
+      <span className="cart-nav-icon" aria-hidden="true">
+        <CartIcon />
+      </span>
+      <span className="cart-nav-text">{ru.common.cart}</span>
       {count > 0 ? <span className="cart-nav-count">{count}</span> : null}
     </Link>
   );

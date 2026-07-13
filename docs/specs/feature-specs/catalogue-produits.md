@@ -68,10 +68,14 @@ Les cartes produit doivent :
 - eviter de masquer le produit avec trop de texte ;
 - avoir des coins doux et des ombres tres legeres, sans effet carton lourd ;
 - garder des dimensions stables entre les produits.
+- permettre d'ouvrir naturellement la fiche depuis la photo ou le nom ;
+- eviter deux actions visuellement concurrentes si une seule action principale suffit.
 
 Pour un produit epuise, la carte peut etre visuellement adoucie. Le badge ou l'indication d'indisponibilite doit rester clair, sans dominer la photo.
 
 Les filtres, tris et controles de catalogue doivent rester visuellement stables. Sur mobile, ils ne doivent pas prendre toute la page en permanence avant l'acces aux produits.
+
+Les pages categorie et sous-categorie peuvent utiliser un en-tete de collection plus editorial si les produits restent accessibles rapidement. Cet en-tete ne doit pas remplacer la grille produit ni ajouter un long discours marketing.
 
 ## Affichage par defaut
 
@@ -96,7 +100,9 @@ La cliente doit pouvoir, depuis l'accueil :
 - ouvrir une collection principale depuis une action claire ;
 - rechercher un produit par nom depuis la recherche du header.
 
-L'accueil ne doit pas dupliquer les categories sous forme de gros blocs si elles sont deja accessibles dans le mega-menu. Il ne doit pas afficher obligatoirement la grille produits : la consultation detaillee des produits se fait via les pages categorie, sous-categorie, recherche et fiche produit.
+L'accueil peut afficher les collections principales sous forme de grands panneaux editoriaux si ces panneaux servent de navigation visuelle vers les categories et reprennent le style premium de la boutique. Ces panneaux ne remplacent pas le menu categories et ne doivent pas devenir une grille produit dense.
+
+L'accueil ne doit pas afficher obligatoirement la grille produits : la consultation detaillee des produits se fait via les pages categorie, sous-categorie, recherche et fiche produit.
 
 Les pages catalogue, categorie, sous-categorie et recherche doivent permettre de :
 
@@ -108,7 +114,8 @@ Les pages catalogue, categorie, sous-categorie et recherche doivent permettre de
 - reinitialiser les filtres ;
 - voir une grille de produits ;
 - ouvrir une fiche produit ;
-- ajouter un produit commandable au panier.
+- ajouter un produit commandable au panier ;
+- ajouter ou retirer un produit des favoris locaux quand cette fonction est active.
 
 Si aucun produit ne correspond aux filtres sur une page de liste produits, la page doit afficher un etat vide clair en russe et proposer une reinitialisation accessible quand des filtres sont actifs.
 
@@ -125,6 +132,8 @@ La cliente peut :
 - Voir les nouveautes.
 - Trier les produits par prix croissant.
 - Trier les produits par prix decroissant.
+- Ajouter un produit aux favoris locaux.
+- Retrouver les produits ajoutes aux favoris depuis une page dediee.
 - Reinitialiser les filtres et revenir au catalogue complet.
 - Ouvrir la fiche detaillee d'un produit.
 
@@ -173,6 +182,8 @@ Les filtres suivants ne sont pas necessaires dans la premiere version :
 | En stock uniquement | Afficher seulement les produits en stock |
 | Trier par prix croissant | Afficher les produits du moins cher au plus cher |
 | Trier par prix decroissant | Afficher les produits du plus cher au moins cher |
+| Ajouter aux favoris | Enregistrer le produit dans les favoris locaux de l'appareil |
+| Voir les favoris | Ouvrir la liste locale des produits favoris |
 | Reinitialiser | Supprimer la recherche, les filtres et le tri choisi |
 
 ## Messages
@@ -185,6 +196,8 @@ Les filtres suivants ne sont pas necessaires dans la premiere version :
 | Aucun resultat de recherche | Aucun produit ne correspond a votre recherche. |
 | Produit indisponible | Produit indisponible. |
 | Produit ajoute au panier | Produit ajoute au panier. |
+| Produit ajoute aux favoris | Produit ajoute aux favoris. |
+| Aucun favori | Aucun produit favori pour le moment. |
 | Filtres sans resultat | Aucun produit ne correspond aux filtres selectionnes. |
 
 Les messages visibles par les clientes devront etre affiches en russe sur le site.
@@ -222,6 +235,9 @@ Les messages visibles par les clientes devront etre affiches en russe sur le sit
 - Si une categorie ne contient aucun produit visible, elle peut etre masquee du catalogue client.
 - Si une sous-categorie ne contient aucun produit visible, elle peut etre masquee du catalogue client.
 - Si une recherche est active et que la cliente change de categorie, la recherche doit continuer a s'appliquer dans la categorie choisie, sauf si elle est reinitialisee.
+- Les favoris V1 sont une aide de navigation locale : ils sont stockes dans le navigateur, uniquement avec les identifiants produits, sans compte cliente et sans persistance serveur.
+- Si un produit favori devient masque, brouillon, supprime ou rattache a une categorie masquee, il ne doit pas apparaitre dans la page favoris publique.
+- Si la cliente change d'appareil ou vide les donnees du navigateur, les favoris locaux peuvent etre perdus. C'est accepte en V1 car les clientes ne creent pas de compte.
 - Si la cliente utilise le site sur mobile, le catalogue doit rester simple a parcourir.
 
 ## Mobile
@@ -269,6 +285,7 @@ Les details visuels sont definis dans `visual-rules.md`.
 - Une cliente peut reinitialiser les filtres.
 - Une cliente peut voir les nouveautes.
 - Une cliente peut trier les produits par prix croissant et decroissant.
+- Une cliente peut marquer un produit comme favori et retrouver les favoris sur le meme appareil.
 - Une cliente peut voir le prix en roubles.
 - Une cliente voit clairement quand un produit est indisponible ou epuise.
 - Une cliente ne voit pas de label "disponible" sur les produits en stock.

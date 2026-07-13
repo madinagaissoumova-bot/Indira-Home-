@@ -1,16 +1,17 @@
 import Link from "next/link";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
+import { PublicFooter } from "@/components/layout/PublicFooter";
 
 export default function PrivacyPage() {
   return (
-    <main className="page">
+    <main className="page collection-page">
       <section className="hero hero-compact">
         <span className="eyebrow">{ru.privacy.eyebrow}</span>
         <h1>{ru.privacy.title}</h1>
         <p>{ru.privacy.intro}</p>
       </section>
 
-      <section className="form-panel">
+      <section className="form-panel privacy-panel">
         <h2>{ru.privacy.collectedTitle}</h2>
         <p>{ru.privacy.collected}</p>
 
@@ -25,6 +26,7 @@ export default function PrivacyPage() {
           {ru.common.backToCatalog}
         </Link>
       </section>
+      <PublicFooter />
     </main>
   );
 }

@@ -68,6 +68,8 @@ La cliente peut :
 - Trouver un produit en naviguant dans les categories.
 - Trouver un produit en naviguant dans les sous-categories.
 - Utiliser le menu principal pour acceder rapidement aux pages du site et au catalogue par categorie.
+- Marquer un produit comme favori sur son appareil.
+- Retrouver ses produits favoris locaux depuis une page dediee.
 - Reperer rapidement les produits en stock.
 - Revenir au catalogue apres avoir consulte un produit.
 

@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { formatRub } from "@/lib/format";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 
 const CONFIRMATION_KEY = "indira-home-last-order-confirmation";
 const WHATSAPP_CONFIRMATION_HREF = `https://wa.me/79889064106?text=${encodeURIComponent(
-  "Здравствуйте! Хочу уточнить мой заказ Indira Home."
+  ru.confirmation.whatsappText
 )}`;
 
 type ConfirmationData = {
@@ -40,26 +40,22 @@ export function ConfirmationClient() {
   }, []);
 
   return (
-    <div className="empty-state">
+    <div className={`confirmation-panel${confirmation ? " has-order" : ""}`}>
       {confirmation ? (
         <>
-          <p>{ru.confirmation.orderNumber(confirmation.orderNumber)}</p>
-          {confirmation.totalRub != null ? <p>{formatRub(confirmation.totalRub)}</p> : null}
-        </>
-      ) : (
-        <p>{ru.confirmation.noRecentOrder}</p>
-      )}
-      {confirmation ? (
-        <>
-          <p>{ru.confirmation.delivery}</p>
-          <p>{ru.confirmation.deliveryFee}</p>
-          <p>{ru.confirmation.changeOrCancel}</p>
+          <div className="confirmation-reference">
+            <span>{ru.confirmation.orderNumber(confirmation.orderNumber)}</span>
+            {confirmation.totalRub != null ? <strong>{formatRub(confirmation.totalRub)}</strong> : null}
+          </div>
+          <p>{ru.confirmation.message}</p>
           <p>{ru.common.whatsappShop}</p>
           <a className="button secondary whatsapp-button" href={WHATSAPP_CONFIRMATION_HREF} target="_blank" rel="noreferrer">
             {ru.product.whatsappButton}
           </a>
         </>
-      ) : null}
+      ) : (
+        <p>{ru.confirmation.noRecentOrder}</p>
+      )}
       <Link className="button" href="/">
         {ru.common.backToCatalog}
       </Link>
