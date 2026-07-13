@@ -50,9 +50,9 @@ Alléger l'accueil, les pages de catégories et la fiche produit pour obtenir un
 - [x] 6. Creer un commit clair.
 - [x] 7. Pousser la branche sur GitHub.
 - [x] 8. Ouvrir une Pull Request vers `main`.
-- [ ] 9. Attendre la validation explicite de l'utilisatrice.
-- [ ] 10. Merger la Pull Request.
-- [ ] 11. Deplacer ce plan dans `docs/development-plans/termines/` apres merge.
+- [x] 9. Attendre la validation explicite de l'utilisatrice.
+- [x] 10. Merger la Pull Request.
+- [x] 11. Deplacer ce plan dans `docs/development-plans/termines/` apres merge.
 
 ## Verification
 
