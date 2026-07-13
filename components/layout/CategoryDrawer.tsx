@@ -86,7 +86,7 @@ export function CategoryDrawer({ categories }: CategoryDrawerProps) {
             <nav className="category-drawer-nav" aria-label={ru.common.categories}>
               <details className="category-drawer-group" open>
                 <summary id={titleId}>
-                  <span aria-hidden="true">▣</span>
+                  <span className="category-drawer-mark" aria-hidden="true" />
                   {ru.common.catalog}
                 </summary>
                 <div className="category-drawer-categories">
@@ -110,15 +110,15 @@ export function CategoryDrawer({ categories }: CategoryDrawerProps) {
               </details>
 
               <Link href="/search?new=1" onClick={closeDrawer}>
-                <span aria-hidden="true">☆</span>
+                <span className="category-drawer-mark" aria-hidden="true" />
                 {ru.common.new}
               </Link>
               <Link href="/search?sort=price-asc" onClick={closeDrawer}>
-                <span aria-hidden="true">◇</span>
+                <span className="category-drawer-mark" aria-hidden="true" />
                 {ru.common.sale}
               </Link>
               <Link href="/search?sort=new-first" onClick={closeDrawer}>
-                <span aria-hidden="true">♢</span>
+                <span className="category-drawer-mark" aria-hidden="true" />
                 {ru.common.bestsellers}
               </Link>
             </nav>

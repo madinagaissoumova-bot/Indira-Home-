@@ -72,3 +72,42 @@ export function HeartIcon({ className }: PublicIconProps) {
     </svg>
   );
 }
+
+export function DeliveryIcon({ className }: PublicIconProps) {
+  return (
+    <svg aria-hidden="true" className={className} fill="none" focusable="false" viewBox="0 0 24 24">
+      <path d="M4 8.4h9.6v7.2H4z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.45" />
+      <path d="M13.6 10.2h3.1l2.1 2.5v2.9h-5.2z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.45" />
+      <path d="M7.2 18a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8ZM16.8 18a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z" stroke="currentColor" strokeWidth="1.45" />
+      <path d="M4 11.2h5.2" stroke="currentColor" strokeLinecap="round" strokeWidth="1.45" />
+    </svg>
+  );
+}
+
+export function PaymentIcon({ className }: PublicIconProps) {
+  return (
+    <svg aria-hidden="true" className={className} fill="none" focusable="false" viewBox="0 0 24 24">
+      <rect height="12" rx="2" stroke="currentColor" strokeWidth="1.45" width="16" x="4" y="6" />
+      <path d="M4 10h16M7.2 14.6h3.6" stroke="currentColor" strokeLinecap="round" strokeWidth="1.45" />
+    </svg>
+  );
+}
+
+export function QualityIcon({ className }: PublicIconProps) {
+  return (
+    <svg aria-hidden="true" className={className} fill="none" focusable="false" viewBox="0 0 24 24">
+      <path d="M12 4.8 15 9l4.8 1.5-3 4.1.1 5-4.9-1.6-4.9 1.6.1-5-3-4.1L9 9z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.45" />
+      <path d="m9.4 12.4 1.7 1.7 3.6-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.45" />
+    </svg>
+  );
+}
+
+export function SupportIcon({ className }: PublicIconProps) {
+  return (
+    <svg aria-hidden="true" className={className} fill="none" focusable="false" viewBox="0 0 24 24">
+      <path d="M5.2 13.5v-1.8a6.8 6.8 0 0 1 13.6 0v1.8" stroke="currentColor" strokeLinecap="round" strokeWidth="1.45" />
+      <path d="M7 12.2H5.8c-.9 0-1.6.7-1.6 1.6v1.4c0 .9.7 1.6 1.6 1.6H7zM17 12.2h1.2c.9 0 1.6.7 1.6 1.6v1.4c0 .9-.7 1.6-1.6 1.6H17z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.45" />
+      <path d="M14.2 19h1.3c1.9 0 3.3-1.1 3.3-2.8" stroke="currentColor" strokeLinecap="round" strokeWidth="1.45" />
+    </svg>
+  );
+}

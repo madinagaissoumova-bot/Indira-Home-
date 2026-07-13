@@ -11,20 +11,28 @@ export default function AboutPage() {
         <p>{ru.about.intro}</p>
       </section>
 
-      <section className="form-panel privacy-panel">
-        <h2>{ru.about.missionTitle}</h2>
-        <p>{ru.about.mission}</p>
+      <section className="editorial-info-panel" aria-label={ru.about.eyebrow}>
+        <article>
+          <h2>{ru.about.missionTitle}</h2>
+          <p>{ru.about.mission}</p>
+        </article>
 
-        <h2>{ru.about.serviceTitle}</h2>
-        <p>{ru.about.service}</p>
+        <article>
+          <h2>{ru.about.serviceTitle}</h2>
+          <p>{ru.about.service}</p>
+        </article>
 
-        <h2>{ru.about.deliveryTitle}</h2>
-        <p>{ru.about.delivery}</p>
+        <article>
+          <h2>{ru.about.deliveryTitle}</h2>
+          <p>{ru.about.delivery}</p>
+        </article>
 
-        <p>{ru.about.contact}</p>
-        <Link className="button secondary" href="/">
-          {ru.about.cta}
-        </Link>
+        <div className="editorial-info-action">
+          <p>{ru.about.contact}</p>
+          <Link className="button secondary" href="/">
+            {ru.about.cta}
+          </Link>
+        </div>
       </section>
       <PublicFooter />
     </main>

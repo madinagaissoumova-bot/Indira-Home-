@@ -11,20 +11,28 @@ export default function PrivacyPage() {
         <p>{ru.privacy.intro}</p>
       </section>
 
-      <section className="form-panel privacy-panel">
-        <h2>{ru.privacy.collectedTitle}</h2>
-        <p>{ru.privacy.collected}</p>
+      <section className="editorial-info-panel" aria-label={ru.privacy.eyebrow}>
+        <article>
+          <h2>{ru.privacy.collectedTitle}</h2>
+          <p>{ru.privacy.collected}</p>
+        </article>
 
-        <h2>{ru.privacy.usageTitle}</h2>
-        <p>{ru.privacy.usage}</p>
+        <article>
+          <h2>{ru.privacy.usageTitle}</h2>
+          <p>{ru.privacy.usage}</p>
+        </article>
 
-        <h2>{ru.privacy.protectionTitle}</h2>
-        <p>{ru.privacy.protection}</p>
+        <article>
+          <h2>{ru.privacy.protectionTitle}</h2>
+          <p>{ru.privacy.protection}</p>
+        </article>
 
-        <p>{ru.privacy.contact}</p>
-        <Link className="button secondary" href="/">
-          {ru.common.backToCatalog}
-        </Link>
+        <div className="editorial-info-action">
+          <p>{ru.privacy.contact}</p>
+          <Link className="button secondary" href="/">
+            {ru.common.backToCatalog}
+          </Link>
+        </div>
       </section>
       <PublicFooter />
     </main>
