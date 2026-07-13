@@ -20,7 +20,7 @@ function emptyState(): AdminActionState {
 }
 
 function confirmDelete(event: FormEvent<HTMLFormElement>) {
-  if (!window.confirm(ru.admin.categories.confirmDelete)) {
+  if (!window.confirm(ru.admin.products.confirmDelete)) {
     event.preventDefault();
   }
 }
@@ -205,6 +205,13 @@ export function ProductEditor({ categories, product }: ProductEditorProps) {
             name="imageAlt"
           />
         </div>
+
+        {currentImage ? (
+          <label className="checkbox-row">
+            <input name="removeImage" type="checkbox" />
+            <span>{ru.admin.products.removeMainImage}</span>
+          </label>
+        ) : null}
 
         <label className="checkbox-row">
           <input defaultChecked={product?.isNew ?? false} name="isNew" type="checkbox" />

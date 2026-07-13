@@ -330,7 +330,7 @@ export const ru = {
     nav: {
       label: "Навигация админ-панели",
       panel: "Админ-панель",
-      dashboard: "Dashboard",
+      dashboard: "Панель",
       products: "Продукты",
       categories: "Категории",
       orders: "Заказы",
@@ -396,9 +396,11 @@ export const ru = {
       mainImage: "Главное изображение",
       imageAlt: "Альтернативный текст",
       newCollection: "Новая коллекция",
+      removeMainImage: "Удалить главное изображение",
       deleteTitle: "Удаление",
-      deleteHelp: "Товар можно удалить только если он не встречается в подтвержденных заказах.",
+      deleteHelp: "Товар можно удалить только если он ни разу не был в заказе.",
       delete: "Удалить товар",
+      confirmDelete: "Подтвердить удаление товара?",
       back: "Назад"
     },
     categories: {
@@ -458,6 +460,7 @@ export const ru = {
       text: "Просмотр заказов, изменение статуса и внутренние заметки.",
       empty: "Заказов пока нет.",
       open: "Открыть заказ",
+      back: "К списку заказов",
       customerInfo: "Данные клиентки",
       callCustomer: "Позвонить",
       whatsappCustomer: "WhatsApp",

@@ -1976,6 +1976,10 @@ p {
   max-width: 1320px;
 }
 
+body:has(.admin-page) .site-header {
+  display: none;
+}
+
 .admin-content {
   display: grid;
   gap: 20px;

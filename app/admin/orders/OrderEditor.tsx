@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import { useActionState, useRef } from "react";
+import Link from "next/link";
 import { ORDER_STATUS } from "@/lib/constants";
 import { getAdminOrderStatusLabel } from "@/lib/adminLabels";
 import type { AdminActionState } from "../actions";
@@ -59,6 +60,9 @@ export function OrderEditor({ order }: OrderEditorProps) {
         <div className="admin-order-meta">
           <span className="admin-badge">{getAdminOrderStatusLabel(order.status)}</span>
           <strong>{formatRub(order.totalRub)}</strong>
+          <Link className="button secondary admin-mini-button" href="/admin/orders">
+            {ru.admin.orders.back}
+          </Link>
         </div>
       </section>
 

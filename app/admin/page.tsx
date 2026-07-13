@@ -104,7 +104,7 @@ export default async function AdminPage() {
                         <td data-label={ru.admin.common.total}>{formatRub(order.totalRub)}</td>
                         <td data-label={ru.admin.dashboard.tableAction}>
                           <Link className="admin-table-action" href={`/admin/orders/${order.id}`}>
-                            {ru.common.viewProduct}
+                            {ru.admin.orders.open}
                           </Link>
                         </td>
                       </tr>
