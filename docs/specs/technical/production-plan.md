@@ -48,11 +48,13 @@ Avant mise en ligne :
 
 1. Creer le projet Supabase PostgreSQL.
 2. Configurer `DATABASE_URL`.
-3. Executer `npm run prisma:migrate` pour initialiser le schema PostgreSQL.
-4. Executer `npm run prisma:generate`.
-5. Executer le seed initial si necessaire.
-6. Verifier que categories et sous-categories sont presentes.
-7. Verifier qu'au moins un compte admin est configurable via variables.
+3. Verifier que `DATABASE_URL` pointe vers la base cible avant toute commande.
+4. Faire une sauvegarde ou un export si la base contient deja des donnees.
+5. Executer `npm run prisma:migrate` pour initialiser ou mettre a jour le schema PostgreSQL.
+6. Executer `npm run prisma:generate`.
+7. Executer le seed initial seulement si la base est vide ou si la mise a jour du catalogue est intentionnelle.
+8. Verifier que categories et sous-categories sont presentes.
+9. Verifier qu'au moins un compte admin est configurable via variables.
 
 ## Migration depuis ancienne SQLite locale
 
@@ -133,24 +135,59 @@ Une migration destructive ne doit pas etre lancee sans sauvegarde recente.
 
 ## Checklist go-live
 
-- `DATABASE_URL` Supabase production configure.
+### Configuration
+
+- `DATABASE_URL` Supabase production configure et verifie.
 - `ADMIN_USERNAME` configure.
-- `ADMIN_PASSWORD_HASH` bcrypt configure.
-- `ADMIN_SESSION_SECRET` configure.
-- Build production passe.
-- Migrations appliquees.
-- Categories de depart presentes.
+- `ADMIN_PASSWORD_HASH` bcrypt configure, sans mot de passe en clair.
+- `ADMIN_SESSION_SECRET` long, aleatoire et different du developpement.
+- Aucune valeur reelle de production n'est commitee.
+
+### Base et donnees
+
+- Sauvegarde ou export disponible avant migration.
+- Migrations appliquees avec `npm run prisma:migrate`.
+- Seed lance seulement si la base est vide ou si la mise a jour du catalogue est voulue.
+- Categories et sous-categories de depart presentes.
+- Produits publics visibles, produits masques invisibles.
+
+### Verification applicative
+
+- `npm run prisma:generate` passe.
+- `npm run lint` passe si disponible.
+- `npm test` passe si disponible.
+- `npm run build` passe.
+- Catalogue public verifie.
+- Fiche produit verifiee.
+- Panier verifie.
+- Checkout verifie.
+- Confirmation verifiee sans donnees personnelles sensibles.
+- Login admin verifie.
+- Dashboard admin verifie.
+- Gestion produits, stock et commandes verifiee.
+
+### Commande test
+
 - Produit de test commande avec succes.
 - Stock diminue apres commande.
 - Double soumission de la meme tentative ne cree qu'une commande.
 - Commande visible dans admin.
+
+### Securite et contenu public
+
 - Routes admin bloquees sans session.
 - Tentatives de connexion admin repetees limitees ou ralenties.
 - Textes client en russe.
 - Paiement en ligne absent.
 - Livraison limitee a la Republique tchetchene visible.
-- Sauvegarde production disponible.
 - Page confidentialite publique disponible.
+
+### Rollback
+
+- Derniere version stable du code identifiee.
+- Sauvegarde base recente disponible.
+- Procedure de restauration base connue.
+- Procedure de retour a la version precedente connue.
 
 ## Etat local du 2026-05-21
 
