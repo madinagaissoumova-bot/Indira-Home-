@@ -5078,7 +5078,7 @@ body:has(.home-page) .site-header {
   aspect-ratio: 4 / 5;
   background: transparent;
   border: 0;
-  border-radius: 0;
+  border-radius: 4px;
   box-shadow: none;
   height: auto;
   max-height: min(70vh, 760px);
