@@ -5068,17 +5068,17 @@ body:has(.home-page) .site-header {
 }
 
 .product-page .gallery-stage {
-  background: #f1ebe3;
-  border: 1px solid rgba(218, 208, 193, 0.82);
-  padding: clamp(6px, 1vw, 12px);
+  background: transparent;
+  border: 0;
+  padding: 0;
   position: relative;
 }
 
 .product-page .gallery-main {
   aspect-ratio: 4 / 5;
-  background: #f8f4ee;
+  background: transparent;
   border: 0;
-  border-radius: 3px;
+  border-radius: 0;
   box-shadow: none;
   height: auto;
   max-height: min(70vh, 760px);
@@ -5391,8 +5391,8 @@ body:has(.home-page) .site-header {
   }
 
   .product-page .gallery-stage {
-    margin-inline: -4px;
-    padding: 5px;
+    margin-inline: 0;
+    padding: 0;
   }
 
   .product-page .gallery-main {
