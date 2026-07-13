@@ -42,6 +42,25 @@ Regles :
 - `ADMIN_SESSION_SECRET` doit etre long, aleatoire et different du developpement ;
 - changer un secret de session deconnecte les sessions admin existantes.
 
+## Configuration Vercel
+
+Le projet n'a pas besoin de `vercel.json` en V1. Vercel peut detecter Next.js et lancer le script `npm run build`.
+
+Reglages attendus :
+
+- framework preset : Next.js ;
+- install command : valeur par defaut Vercel ou `npm ci` ;
+- build command : `npm run build` ;
+- output directory : valeur par defaut Next.js ;
+- Node.js : version compatible avec la CI, idealement Node 22 ;
+- variables d'environnement configurees dans l'environnement Production Vercel :
+  - `DATABASE_URL` ;
+  - `ADMIN_USERNAME` ;
+  - `ADMIN_PASSWORD_HASH` ;
+  - `ADMIN_SESSION_SECRET`.
+
+Ne pas ajouter de vraie valeur dans `.env.example`, dans les specs ou dans l'historique Git.
+
 ## Preparation base de donnees
 
 Avant mise en ligne :
@@ -111,6 +130,47 @@ Verification manuelle :
 - gestion produits ;
 - gestion stock ;
 - gestion commandes.
+
+## Procedure premier deploiement
+
+Cette procedure prepare la mise en ligne sans executer d'action destructive par reflexe.
+
+1. Verifier que la PR de release est mergee dans `main`.
+2. Verifier que la CI GitHub est verte sur `main`.
+3. Creer ou choisir le projet Supabase PostgreSQL de production.
+4. Recuperer la connection string PostgreSQL Supabase prevue pour l'application.
+5. Configurer les variables Production dans Vercel.
+6. Verifier que `DATABASE_URL` dans Vercel pointe vers la base Supabase de production prevue.
+7. Creer une sauvegarde ou un export si la base contient deja des donnees.
+8. Lancer `npm run prisma:migrate` seulement apres validation explicite.
+9. Lancer `npm run prisma:seed` seulement si la base est vide ou si la mise a jour catalogue est intentionnelle.
+10. Declencher ou attendre le deploiement Vercel de `main`.
+11. Ouvrir l'URL de production et effectuer la verification apres mise en ligne.
+
+Les commandes de migration et de seed doivent toujours etre lancees avec la bonne `DATABASE_URL`. Le script `scripts/require-supabase-url.mjs` refuse les URLs non PostgreSQL et les placeholders.
+
+## Verification apres mise en ligne
+
+Verifier sur l'URL production :
+
+- page d'accueil accessible ;
+- page categorie accessible ;
+- page sous-categorie accessible ;
+- recherche accessible ;
+- fiche produit accessible ;
+- favoris locaux fonctionnels ;
+- panier local fonctionnel ;
+- checkout accessible ;
+- commande test possible uniquement avec accord de la boutique ;
+- page confirmation sans telephone ni adresse affichee publiquement ;
+- page confidentialite accessible ;
+- `/admin` redirige vers `/admin/login` sans session ;
+- login admin possible avec les variables production ;
+- dashboard admin accessible apres connexion ;
+- nouvelle commande visible dans l'admin si une commande test a ete creee ;
+- produit epuise non commandable ;
+- produit masque non visible cote cliente ;
+- logs production sans secret, telephone ou adresse complete inutile.
 
 ## Donnees personnelles
 
