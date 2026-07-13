@@ -8,6 +8,10 @@ const baseUrl = process.env.QA_BASE_URL || "http://localhost:3000";
 const screenshotDir = process.env.QA_SCREENSHOT_DIR || "/private/tmp/indira-browser-qa";
 const prisma = new PrismaClient();
 
+function getBaseUrl() {
+  return new URL(baseUrl);
+}
+
 function loadEnvFile() {
   return fs
     .readFile(".env", "utf8")
@@ -165,10 +169,11 @@ async function run() {
     {
       name: "indira_admin_session",
       value: createAdminCookieValue(),
-      domain: "localhost",
+      domain: getBaseUrl().hostname,
       path: "/admin",
       httpOnly: true,
       sameSite: "Lax",
+      secure: getBaseUrl().protocol === "https:",
       expires: Math.floor(Date.now() / 1000) + 60 * 60
     }
   ]);

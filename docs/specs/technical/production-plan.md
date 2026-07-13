@@ -42,6 +42,16 @@ Regles :
 - `ADMIN_SESSION_SECRET` doit etre long, aleatoire et different du developpement ;
 - changer un secret de session deconnecte les sessions admin existantes.
 
+Pour generer les valeurs admin de production localement :
+
+```bash
+npm run admin:generate-secrets
+```
+
+Le script demande le mot de passe admin sans l'afficher, puis imprime `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH` et `ADMIN_SESSION_SECRET` a copier dans les variables Production Vercel. Il n'ecrit aucun fichier.
+
+Pour un usage non interactif, definir temporairement `ADMIN_PASSWORD` dans l'environnement local de la commande, sans l'ajouter a `.env.example`, aux specs ou a Git.
+
 ## Configuration Vercel
 
 Le projet n'a pas besoin de `vercel.json` en V1. Vercel peut detecter Next.js et lancer le script `npm run build`.
@@ -141,11 +151,13 @@ Cette procedure prepare la mise en ligne sans executer d'action destructive par 
 4. Recuperer la connection string PostgreSQL Supabase prevue pour l'application.
 5. Configurer les variables Production dans Vercel.
 6. Verifier que `DATABASE_URL` dans Vercel pointe vers la base Supabase de production prevue.
-7. Creer une sauvegarde ou un export si la base contient deja des donnees.
-8. Lancer `npm run prisma:migrate` seulement apres validation explicite.
-9. Lancer `npm run prisma:seed` seulement si la base est vide ou si la mise a jour catalogue est intentionnelle.
-10. Declencher ou attendre le deploiement Vercel de `main`.
-11. Ouvrir l'URL de production et effectuer la verification apres mise en ligne.
+7. Generer les valeurs admin avec `npm run admin:generate-secrets`.
+8. Copier `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH` et `ADMIN_SESSION_SECRET` dans les variables Production Vercel.
+9. Creer une sauvegarde ou un export si la base contient deja des donnees.
+10. Lancer `npm run prisma:migrate` seulement apres validation explicite.
+11. Lancer `npm run prisma:seed` seulement si la base est vide ou si la mise a jour catalogue est intentionnelle.
+12. Declencher ou attendre le deploiement Vercel de `main`.
+13. Ouvrir l'URL de production et effectuer la verification apres mise en ligne.
 
 Les commandes de migration et de seed doivent toujours etre lancees avec la bonne `DATABASE_URL`. Le script `scripts/require-supabase-url.mjs` refuse les URLs non PostgreSQL et les placeholders.
 
@@ -171,6 +183,14 @@ Verifier sur l'URL production :
 - produit epuise non commandable ;
 - produit masque non visible cote cliente ;
 - logs production sans secret, telephone ou adresse complete inutile.
+
+Quand l'URL production est disponible et que les variables admin/base sont configurees localement pour la verification, le smoke test navigateur peut etre lance avec :
+
+```bash
+QA_BASE_URL=https://example.com npm run qa:browser
+```
+
+Cette commande lit le catalogue, verifie des routes publiques et admin, controle le redirect admin sans session et capture des screenshots dans `/private/tmp/indira-browser-qa` par defaut. Elle ne remplace pas la verification manuelle de la commande test avec accord de la boutique.
 
 ## Donnees personnelles
 
