@@ -36,7 +36,7 @@ RUN_DB_INTEGRATION=1 npm test
 2. Copier la connection string PostgreSQL depuis Supabase.
 3. Configurer `DATABASE_URL` dans l'environnement de deploiement.
 4. Executer `npm run prisma:migrate`.
-5. Executer `npm run prisma:seed` si la base est vide.
+5. Executer `npm run prisma:seed` seulement si la base est vide ou si la mise a jour du catalogue est intentionnelle.
 6. Verifier les categories, sous-categories, produits, images et commandes.
 
 Note : les anciennes migrations SQLite locales ont ete remplacees par une migration initiale PostgreSQL.
