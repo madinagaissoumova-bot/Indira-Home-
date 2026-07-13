@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "test": "node --test --require ./tests/register.cjs tests/**/*.test.ts",
     "check:docs": "node --test --require ./tests/register.cjs tests/documentation-structure.test.ts",
+    "admin:generate-secrets": "node scripts/generate-admin-secrets.mjs",
+    "qa:browser": "node scripts/manual-browser-qa.mjs",
     "prisma:generate": "node scripts/require-supabase-url.mjs prisma generate",
     "prisma:migrate": "node scripts/require-supabase-url.mjs prisma migrate deploy",
     "prisma:push": "node scripts/require-supabase-url.mjs prisma db push",
