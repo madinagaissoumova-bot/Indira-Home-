@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ru } from "@/lib/.i18n/ru";
+import { ru } from "@/lib/i18n/ru";
 import type { CartStorageItem } from "@/types";
 
 type AddToCartButtonProps = {

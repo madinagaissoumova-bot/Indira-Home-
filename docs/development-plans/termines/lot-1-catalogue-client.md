@@ -106,7 +106,7 @@ Note : la capture mobile automatique n'a pas ete produite car l'environnement ma
 - `components/catalog/ProductCard.tsx`
 - `app/globals.css`
 - `lib/publicCatalog.ts`
-- `lib/.i18n/ru.ts`
+- `lib/i18n/ru.ts`
 
 ## Risques couverts
 

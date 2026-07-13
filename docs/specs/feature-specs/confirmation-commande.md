@@ -53,6 +53,14 @@ La page peut afficher le numero de commande si cela aide l'admin et la cliente a
 
 La page ne doit pas afficher l'adresse complete de livraison, le numero de telephone de la cliente ou d'autres donnees personnelles sensibles.
 
+## Regles visuelles
+
+La confirmation doit etre traitee comme un moment de confiance et de cloture du parcours. Elle ne doit pas reprendre exactement le style d'un etat vide generique.
+
+Si une commande recente existe, le numero de commande et le total eventuel doivent etre visuellement faciles a reperer. Les rappels livraison, frais et WhatsApp doivent etre organises en informations secondaires courtes.
+
+Si aucune commande recente n'existe, l'etat neutre doit rester simple, sans creer d'inquietude ni afficher d'erreur technique.
+
 ## Actions possibles
 
 La cliente peut :

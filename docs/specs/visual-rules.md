@@ -2,7 +2,7 @@
 
 Ce fichier definit la direction visuelle et les regles de presentation de la V1.
 
-Il ne definit pas les parcours, les routes, les regles metier, les textes, les statuts ou les criteres fonctionnels. Ces elements sont documentes dans les feature specs, les specs techniques, `lib/.i18n/ru.ts` et `docs/specs/validation-rules.md`.
+Il ne definit pas les parcours, les routes, les regles metier, les textes, les statuts ou les criteres fonctionnels. Ces elements sont documentes dans les feature specs, les specs techniques, `lib/i18n/ru.ts` et `docs/specs/validation-rules.md`.
 
 ## Intention
 
@@ -10,7 +10,7 @@ L'interface doit inspirer confiance, rester simple a utiliser sur telephone et m
 
 Indira Home vend des objets pour la maison. Le rendu doit rester chaleureux, propre, lisible et plus raffine qu'une boutique domestique ordinaire.
 
-La direction visuelle doit rester claire, douce, chaleureuse et premium. Les details de palette et de mise en forme se trouvent dans le skill `indira-design-system`.
+La direction visuelle doit rester claire, douce, chaleureuse et premium. Le site doit evoquer une marque maison soignee, pas un template de boutique generique. Les details de palette et de mise en forme se trouvent dans le skill `indira-design-system`.
 
 ## Principes Visuels
 
@@ -20,6 +20,8 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Les det
 - Hierarchie nette entre titre, contenu, prix, action principale et informations secondaires.
 - Une seule action principale dominante par zone visuelle.
 - Etats visuels lisibles pour chargement, vide, erreur, indisponibilite, succes et action admin reussie.
+- Les pages publiques doivent avoir une composition editoriale sobre : grandes photos, lignes fines, peu d'ombres, peu de fonds encadres.
+- Les pages admin doivent etre plus denses et operationnelles que les pages clientes, avec des tableaux et listes faciles a scanner.
 
 ## Typographie
 
@@ -39,6 +41,8 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Les det
 - Eviter les cartes imbriquees dans d'autres cartes.
 - Garder les layouts, listes et tableaux visuellement stables.
 - Les layouts desktop peuvent etre plus larges, mais ne doivent pas rendre l'information plus difficile a scanner.
+- Eviter de transformer chaque section en carte. Les cartes sont reservees aux produits, aux lignes repetables, aux formulaires ou aux blocs qui ont besoin d'un vrai cadre fonctionnel.
+- Les pages de confirmation, panier et checkout doivent se sentir comme un parcours de confiance, pas comme des etats vides generiques.
 
 ## Boutons Et Actions
 
@@ -47,6 +51,26 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Les det
 - Les boutons doivent avoir une hauteur confortable sur mobile.
 - Les icones peuvent etre utilisees quand elles aident vraiment la comprehension.
 - Les etats hover, focus, actif et desactive doivent etre visibles.
+- Les actions secondaires doivent rester visuellement calmes. Une carte produit ne doit pas donner le meme poids a "voir" et "ajouter" si cela rend la decision confuse.
+
+## Qualite Premium Attendue
+
+Sont consideres comme trop amateurs :
+
+- trop d'ombres lourdes ou de cartes flottantes ;
+- beaucoup de badges, bordures ou fonds differents sur une meme zone ;
+- des boutons tous identiques alors que les actions n'ont pas la meme importance ;
+- une grille produit ou les photos paraissent petites, coupees sans intention ou instables ;
+- des titres trop grands dans des panneaux compacts ;
+- des sections de confiance ou confirmation qui ressemblent a un message d'erreur ou a un etat vide.
+
+Sont recherches :
+
+- une grille produit calme, orientee photo et prix ;
+- des surfaces chaudes mais sobres ;
+- des details de luxe discrets : lignes fines, respiration reguliere, typographie elegante, actions nettes ;
+- une confirmation de commande rassurante et ceremonieuse ;
+- un admin dense, propre et moins decoratif que le site client.
 
 ## Responsive
 

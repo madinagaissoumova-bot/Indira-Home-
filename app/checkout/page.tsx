@@ -1,30 +1,20 @@
-import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
-import { publicProductWhere } from "@/lib/publicCatalog";
+import { ru } from "@/lib/i18n/ru";
+import { listPublicProductsForCheckout } from "@/lib/publicCatalog";
 import { CheckoutClient } from "./CheckoutClient";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
+import { PublicFooter } from "@/components/layout/PublicFooter";
 
 export const dynamic = "force-dynamic";
 
 async function getCheckoutProducts() {
-  const products = await prisma.product.findMany({
-    where: publicProductWhere,
-    select: {
-      id: true,
-      name: true,
-      priceRub: true,
-      stockQuantity: true
-    }
-  });
-
-  return products;
+  return listPublicProductsForCheckout();
 }
 
 export default async function CheckoutPage() {
   const products = await getCheckoutProducts();
 
   return (
-    <main className="page">
+    <main className="page collection-page">
       <Breadcrumbs
         items={[
           { label: ru.common.catalog, href: "/" },
@@ -38,6 +28,7 @@ export default async function CheckoutPage() {
         <p>{ru.checkout.intro}</p>
       </section>
       <CheckoutClient products={products} />
+      <PublicFooter />
     </main>
   );
 }

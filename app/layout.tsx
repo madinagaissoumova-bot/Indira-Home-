@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { VISIBILITY_STATUS } from "@/lib/constants";
-import { prisma } from "@/lib/db";
-import { ru } from "@/lib/.i18n/ru";
+import { listVisibleCategories } from "@/lib/publicCatalog";
+import { ru } from "@/lib/i18n/ru";
 import { CartNavLink } from "@/components/cart/CartNavLink";
+import { FavoritesNavLink } from "@/components/favorites/FavoritesNavLink";
+import { CategoryDrawer } from "@/components/layout/CategoryDrawer";
+import { PhoneIcon } from "@/components/layout/PublicIcons";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,27 +20,25 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const categories = await prisma.category.findMany({
-    where: { status: VISIBILITY_STATUS.visible },
-    orderBy: { displayOrder: "asc" },
-    include: {
-      subcategories: {
-        where: { status: VISIBILITY_STATUS.visible },
-        orderBy: { displayOrder: "asc" }
-      }
-    }
-  });
+  const categories = await listVisibleCategories();
 
   return (
     <html lang="ru">
       <body>
         <header className="site-header">
           <div className="site-header-top">
+            <CategoryDrawer categories={categories} />
             <Link className="brand" href="/">
               <span className="brand-mark">Indira</span>
               <span className="brand-home">Home</span>
               <span className="brand-tagline">{ru.brand.tagline}</span>
             </Link>
+            <nav className="site-nav" aria-label={ru.layout.mainNav}>
+              <Link href="/">{ru.common.home}</Link>
+              <Link href="/search?new=1">{ru.common.new}</Link>
+              <Link href="/search?sort=price-asc">{ru.common.sale}</Link>
+              <Link href="/search?sort=new-first">{ru.common.bestsellers}</Link>
+            </nav>
             <form className="header-search" action="/search">
               <label className="sr-only" htmlFor="header-search">
                 {ru.layout.searchLabel}
@@ -50,47 +50,14 @@ export default async function RootLayout({
                 type="search"
               />
             </form>
-            <nav className="site-nav" aria-label={ru.layout.mainNav}>
-              <Link href="/">{ru.common.home}</Link>
+            <nav className="site-actions" aria-label={ru.common.pageNavigation}>
+              <a className="site-action-link" href="https://wa.me/79889064106" aria-label="WhatsApp" target="_blank" rel="noreferrer">
+                <PhoneIcon className="site-action-icon" />
+              </a>
+              <FavoritesNavLink />
               <CartNavLink />
-              <Link href="/privacy">{ru.layout.privacy}</Link>
             </nav>
           </div>
-
-          <details className="category-menu">
-            <summary className="category-menu-summary" aria-label={ru.common.categories}>
-              <span className="category-menu-icon" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </span>
-              <span className="category-menu-label">{ru.common.categories}</span>
-            </summary>
-            <div className="category-menu-panel">
-              {categories.map((category) => (
-                <details className="category-menu-group" key={category.id}>
-                  <summary className="category-menu-category-summary">
-                    <span className="category-menu-link">{category.name}</span>
-                  </summary>
-                  <div className="category-menu-subcategories">
-                    <Link className="category-menu-all-link" href={`/category/${category.slug}`}>
-                      {ru.catalog.viewCategory}
-                    </Link>
-                    {category.subcategories.map((subcategory) => (
-                      <Link
-                        className="category-menu-subcategory"
-                        href={`/subcategory/${subcategory.slug}`}
-                        key={subcategory.id}
-                      >
-                        <span aria-hidden="true" />
-                        {subcategory.name}
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              ))}
-            </div>
-          </details>
         </header>
         {children}
       </body>

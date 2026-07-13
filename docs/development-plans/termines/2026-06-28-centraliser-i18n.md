@@ -45,4 +45,4 @@ Retirer les traductions recopiees dans les specs et centraliser les textes visib
 
 ## Notes
 
-La source i18n actuelle existe deja dans `lib/.i18n/ru.ts`. Le travail consiste a la rendre invisible au niveau de l'arborescence courante et a supprimer les duplications de traduction dans les specs.
+La source i18n actuelle existe deja dans `lib/i18n/ru.ts`. Le travail consiste a la rendre invisible au niveau de l'arborescence courante et a supprimer les duplications de traduction dans les specs.

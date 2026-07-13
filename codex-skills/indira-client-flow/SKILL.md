@@ -18,7 +18,7 @@ Use the relevant files:
 - `docs/specs/feature-specs/validation-commande.md`
 - `docs/specs/feature-specs/confirmation-commande.md`
 - `docs/specs/visual-rules.md`
-- `lib/.i18n/ru.ts`
+- `lib/i18n/ru.ts`
 - relevant files in `docs/changelog/zones/`
 
 ## Routes

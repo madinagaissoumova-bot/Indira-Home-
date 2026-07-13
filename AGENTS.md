@@ -22,6 +22,15 @@ Avant de faire un changement, une action ou une modification quelconque sur le p
 
 Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les docs pour garder le projet coherent.
 
+## Regle Bloquante De Demarrage
+
+Avant toute modification de code, documentation ou configuration :
+
+- verifier la branche courante et le working tree ;
+- verifier les plans actifs dans `docs/development-plans/en-cours/` ;
+- lire et appliquer `development-plan-workflow` si le travail demande un plan, une branche, une validation, un commit, une Pull Request ou touche au produit ;
+- ne pas modifier de fichier tant qu'un plan actif valide ne couvre pas explicitement le perimetre du changement.
+
 ## Skills
 
 Les copies versionnees des skills projet sont dans `codex-skills/`.

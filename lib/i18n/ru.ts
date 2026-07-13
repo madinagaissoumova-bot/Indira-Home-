@@ -8,6 +8,7 @@ export const ru = {
     home: "Главная",
     catalog: "Каталог",
     cart: "Корзина",
+    favorites: "Избранное",
     checkout: "Заказ",
     search: "Поиск",
     categories: "Категории",
@@ -23,16 +24,24 @@ export const ru = {
     new: "Новинка",
     soldOut: "Нет в наличии",
     whatsappShop: "WhatsApp магазина: +7 988 906-41-06",
-    pageNavigation: "Навигация по странице"
+    pageNavigation: "Навигация по странице",
+    sale: "Акции",
+    bestsellers: "Бестселлеры",
+    contacts: "Контакты",
+    contactUs: "Связаться с нами",
+    closeMenu: "Закрыть меню",
+    nextPage: "Следующая страница"
   },
   layout: {
     searchLabel: "Поиск товара",
     searchPlaceholder: "Поиск по товарам",
     mainNav: "Основные страницы",
+    about: "О нас",
     privacy: "Конфиденциальность"
   },
   home: {
     eyebrow: "Товары для дома",
+    heroTitle: "Красота\nв каждой детали",
     description:
       "Посуда, кухня, техника и декор для уютного дома.",
     viewCatalog: "Смотреть каталог",
@@ -40,7 +49,35 @@ export const ru = {
     benefitsLabel: "Преимущества",
     delivery: "Доставка по Чеченской Республике",
     paymentAfterConfirmation: "Оплата после подтверждения",
-    collectionsLabel: "Коллекции"
+    collectionsLabel: "Коллекции",
+    collections: {
+      posuda: {
+        title: "Посуда",
+        text: "Элегантная посуда на каждый день и для особых моментов."
+      },
+      kuhnya: {
+        title: "Кухня",
+        text: "Все для приготовления ваших любимых блюд."
+      },
+      tehnika: {
+        title: "Бытовая техника",
+        text: "Качество, стиль и функциональность."
+      },
+      dekor: {
+        title: "Декор",
+        text: "Детали, которые создают атмосферу дома."
+      }
+    },
+    benefits: {
+      qualityTitle: "Качество",
+      qualityText: "Мы выбираем только лучшее для вашего дома",
+      deliveryTitle: "Быстрая доставка",
+      deliveryText: "По Чеченской Республике",
+      paymentTitle: "Оплата при получении",
+      paymentText: "Или перевод после подтверждения",
+      supportTitle: "Поддержка",
+      supportText: "Мы ответим на вопросы в WhatsApp"
+    }
   },
   catalog: {
     collection: "Коллекция",
@@ -62,12 +99,19 @@ export const ru = {
     inStockOnly: "Только в наличии",
     newOnly: "Новинки",
     sortLabel: "Сортировка",
+    sortButton: "Сортировать",
+    sortPopular: "Популярные",
+    sortCheaperFirst: "Сначала дешевле",
+    sortExpensiveFirst: "Сначала дороже",
+    sortNewItems: "Новинки",
     defaultSort: "По умолчанию",
     sortPriceAsc: "Цена по возрастанию",
     sortPriceDesc: "Цена по убыванию",
     sortNewFirst: "Сначала новинки",
     applyFilters: "Показать",
     resetFilters: "Сбросить",
+    resetControls: "Сбросить фильтры",
+    pages: "Страницы каталога",
     inSection: "в разделе",
     noProducts: "Пока нет товаров для показа.",
     noFilteredProducts: "Нет товаров по выбранным фильтрам.",
@@ -93,6 +137,7 @@ export const ru = {
   },
   product: {
     photos: "Фотографии товара",
+    information: "Информация о товаре",
     fallbackSpecLabel: "Деталь",
     noAccountOrder: "Без регистрации",
     confirmationByPhone: "Подтверждение по телефону или в WhatsApp",
@@ -102,7 +147,25 @@ export const ru = {
       `Здравствуйте! Хочу уточнить наличие товара: ${productName}`,
     relatedTitle: "Похожие товары",
     viewSection: "Смотреть раздел",
-    characteristics: "Характеристики"
+    characteristics: "Характеристики",
+    materialCeramic: "Материал: керамика",
+    brandLabel: (brand: string) => `Бренд: ${brand}`,
+    dishwasherSafe: "Можно мыть в посудомоечной машине",
+    dailyServing: "Подходит для ежедневной сервировки",
+    paymentOnReceipt: "Оплата при получении",
+    ratingEmpty: "☆ ☆ ☆ ☆ ☆",
+    ratingCount: "(0)",
+    accordionDescription: "Описание",
+    accordionCharacteristics: "Характеристики",
+    accordionCare: "Уход",
+    accordionDeliveryPayment: "Доставка и оплата",
+    confirmationDetails: "Подробности уточним при подтверждении заказа по телефону или в WhatsApp.",
+    freeDeliveryTitle: "Бесплатная доставка",
+    freeDeliveryText: "при заказе от 5 000 ₽",
+    paymentTitle: "Оплата при получении",
+    paymentText: "наличный и безналичный расчет",
+    supportTitle: "Поддержка 24/7",
+    supportText: "мы всегда на связи"
   },
   cart: {
     title: "Ваша корзина",
@@ -123,6 +186,20 @@ export const ru = {
     checkout: "Оформить заказ",
     clear: "Очистить корзину",
     navLabel: (count: number) => `Корзина, товаров: ${count}`
+  },
+  favorites: {
+    eyebrow: "Избранное",
+    title: "Ваши избранные товары",
+    intro: "Здесь сохраняются товары, которые вы отметили сердцем.",
+    empty: "В избранном пока нет товаров.",
+    loading: "Загружаем избранное...",
+    backToCatalog: "Перейти в каталог",
+    count: (count: number) => `${count} товаров в избранном`,
+    navLabel: (count: number) => `Избранное, товаров: ${count}`,
+    add: "Добавить в избранное",
+    removeMessage: "Удалено из избранного",
+    addMessage: "Добавлено в избранное",
+    selected: "В избранном"
   },
   checkout: {
     breadcrumb: "Оформление заказа",
@@ -174,7 +251,8 @@ export const ru = {
     delivery: "Доставка по Чеченской Республике, обычно 4-5 дней.",
     deliveryFee: "Стоимость доставки уточним при подтверждении заказа.",
     changeOrCancel: "Изменить или отменить заказ можно через WhatsApp: +7 988 906-41-06.",
-    noRecentOrder: "Нет недавнего заказа."
+    noRecentOrder: "Нет недавнего заказа.",
+    whatsappText: "Здравствуйте! Хочу уточнить мой заказ Indira Home."
   },
   notFound: {
     eyebrow: "404",
@@ -197,6 +275,43 @@ export const ru = {
       "Данные заказа видны только в защищенной админ-панели. Они не показываются на публичных страницах сайта.",
     contact:
       "Изменить или отменить заказ можно через WhatsApp: +7 988 906-41-06."
+  },
+  about: {
+    eyebrow: "О нас",
+    title: "Indira Home",
+    intro:
+      "Мы подбираем посуду и предметы для дома так, чтобы покупки выглядели спокойно, понятно и аккуратно.",
+    missionTitle: "Что для нас важно",
+    mission:
+      "Красивые фотографии, понятный ассортимент, честные цены и быстрый контакт с клиентом без лишних шагов.",
+    serviceTitle: "Как мы работаем",
+    service:
+      "Вы выбираете товар, отправляете заказ без регистрации, а мы подтверждаем его по телефону или в WhatsApp.",
+    deliveryTitle: "Доставка",
+    delivery:
+      "Доставка доступна по Чеченской Республике. Срок обычно составляет 4-5 дней.",
+    contact:
+      "Связаться с магазином можно через WhatsApp: +7 988 906-41-06.",
+    cta: "Смотреть каталог"
+  },
+  footer: {
+    deliveryTitle: "Быстрая доставка",
+    deliveryText: "Доставка по всей Чеченской Республике",
+    paymentTitle: "Оплата при получении",
+    paymentText: "Наличный или безналичный расчет",
+    qualityTitle: "Качество",
+    qualityText: "Мы выбираем только лучшее для вашего дома",
+    supportTitle: "Поддержка 24/7",
+    supportText: "Мы всегда на связи и готовы помочь",
+    brandText: "Создаем уют и красоту в вашем доме.",
+    contacts: "Контакты",
+    catalogTitle: "Каталог",
+    buyersTitle: "Покупателям",
+    deliveryAndPayment: "Доставка и оплата",
+    privacy: "Политика конфиденциальности",
+    faq: "Частые вопросы",
+    aboutTitle: "О нас",
+    aboutCompany: "О компании"
   },
   admin: {
     login: {

@@ -9,9 +9,11 @@
 | Sous-categorie / `/subcategory/:slug` | Afficher les produits d'une sous-categorie visible |
 | Fiche produit / `/product/:slug` | Afficher les details d'un produit publie dans une categorie et sous-categorie visibles, commandable ou epuise |
 | Recherche / `/search` | Afficher les resultats d'une recherche produit |
+| Favoris / `/favorites` | Afficher les produits marques comme favoris sur l'appareil de la cliente |
 | Panier / `/cart` | Afficher les produits ajoutes, les quantites, les sous-totaux et le total |
 | Validation commande / `/checkout` | Collecter les informations cliente et envoyer la commande |
 | Confirmation commande / `/checkout/confirmation` | Confirmer que la commande a ete envoyee |
+| A propos / `/about` | Presenter la boutique et sa facon de travailler |
 | Confidentialite / `/privacy` | Expliquer les donnees collectees pour traiter les commandes |
 
 Toutes les pages publiques doivent afficher les textes visibles en russe.
@@ -38,6 +40,7 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 - La cliente doit pouvoir passer du catalogue a une fiche produit, puis revenir au catalogue.
 - Les filtres de catalogue doivent etre conserves si possible au retour depuis une fiche produit.
 - Le panier doit etre accessible depuis toutes les pages publiques.
+- Les favoris doivent etre accessibles depuis toutes les pages publiques si la fonction favoris est active.
 - La page confidentialite doit etre accessible depuis une zone publique stable, par exemple le footer.
 - La validation de commande doit etre accessible uniquement depuis un panier valide.
 - Apres validation reussie, la cliente arrive sur une page de confirmation.
@@ -86,6 +89,7 @@ Le tableau de bord doit afficher au minimum :
 | Barre de recherche | Rechercher un produit par nom |
 | Filtres catalogue | Filtrer par categorie, sous-categorie, stock et nouveaute |
 | Tri catalogue | Trier par defaut, prix croissant, prix decroissant, nouveautes |
+| Acces favoris | Retrouver les produits marques comme favoris sur l'appareil courant |
 | Carte produit | Afficher photo, nom, prix, categorie/sous-categorie, nouveaute et etat epuise, sans quantite exacte |
 | Galerie produit | Afficher les photos d'une fiche produit et un rendu plus large que les cartes catalogue |
 | Controle quantite | Augmenter ou diminuer une quantite sans depasser le stock |
