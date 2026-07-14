@@ -1,4 +1,4 @@
-# Technical Spec - Images Et Contenu
+# Specification Technique - Images Et Contenu
 
 ## Gestion des images
 

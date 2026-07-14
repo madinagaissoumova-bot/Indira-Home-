@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend UX"
-  short_description: "Improve frontend flows, states, and usability"
-  default_prompt: "Use $frontend-ux to review and improve this frontend user experience."
+  short_description: "Ameliorer parcours, etats et ergonomie frontend"
+  default_prompt: "Utilise $frontend-ux pour revoir et ameliorer cette experience frontend."

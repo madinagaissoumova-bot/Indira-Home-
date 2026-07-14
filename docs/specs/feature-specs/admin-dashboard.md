@@ -1,4 +1,4 @@
-# Feature Spec - Admin dashboard
+# Specification Fonctionnelle - Tableau de bord admin
 
 ## Objectif
 
@@ -63,8 +63,8 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Les indicateurs et listes doivent se mettre a jour apres creation, modification ou suppression d'un element.
 - Les commandes recentes visibles depuis le tableau de bord doivent renvoyer vers la commande correspondante.
 - Le tableau de bord ne remplace pas `admin-commandes.md`, `admin-produits.md`, `admin-stock.md` ou `categories-sous-categories.md`.
-- Les raccourcis metier ne doivent pas etre affiches comme gros boutons principaux sur le dashboard.
-- La navigation admin doit rester simple et claire : Dashboard, Produits, Categories, Commandes, Clients, Stock, Parametres.
+- Les raccourcis metier ne doivent pas etre affiches comme gros boutons principaux sur le tableau de bord.
+- La navigation admin doit rester simple et claire : Tableau de bord, Produits, Categories, Commandes, Clients, Stock, Parametres.
 - Les sections non implementees en V1 peuvent apparaitre comme elements desactives, sans creer de route inutile.
 - La deconnexion peut etre placee a part des raccourcis metier, par exemple en bas a droite de l'interface admin.
 
@@ -74,8 +74,8 @@ Les messages admin pourront etre affiches en russe dans l'interface finale.
 - Le tableau de bord est une vue centrale, pas une source de donnees distincte.
 - Les informations affichees proviennent des modules de gestion existants.
 - Les clientes ne voient pas le tableau de bord admin.
-- Le chiffre d'affaires du dashboard exclut les commandes annulees.
-- Le dashboard doit rester simple et lineaire : indicateurs essentiels, commandes recentes, produits recemment ajoutes.
+- Le chiffre d'affaires du tableau de bord exclut les commandes annulees.
+- Le tableau de bord doit rester simple et lineaire : indicateurs essentiels, commandes recentes, produits recemment ajoutes.
 - Les statistiques doivent etre affichees sous forme de cartes propres et alignees.
 - Les commandes recentes doivent etre affichees en tableau avec numero, cliente, date, statut, total et action d'ouverture.
 - L'interface admin doit rester plus dense et moins decorative que l'interface cliente.

@@ -1,4 +1,4 @@
-# Technical Spec - Authentification Admin
+# Specification Technique - Authentification Admin
 
 ## Principes
 

@@ -1,41 +1,41 @@
 ---
 name: indira-spec-workflow
-description: Use for any Indira Home project work that may affect specs, changelog, development plans, routes, product behavior, data rules, or implementation scope. Ensures changes follow the V1 specification and active development plan.
+description: Utiliser pour tout travail Indira Home qui peut toucher les specs, le changelog, les plans de developpement, les routes, le comportement produit, les regles de donnees ou le perimetre d'implementation. Garantit que les changements suivent la specification V1 et le plan actif.
 ---
 
-# Indira Spec Workflow
+# Processus Specs Indira
 
-Use this skill for general Indira Home work.
+Utiliser ce skill pour le travail general Indira Home.
 
-## Core Rule
+## Regle Centrale
 
-Before changing important behavior, read the relevant specs first. If code and specs conflict, prefer specs, then align code or specs.
+Avant de changer un comportement important, lire d'abord les specs pertinentes. Si le code et les specs se contredisent, preferer les specs, puis aligner le code ou les specs.
 
-## Project Context
+## Contexte Projet
 
-Indira Home is a simple e-commerce site for home goods in the Chechen Republic.
+Indira Home est un site e-commerce simple pour produits maison en Republique tchetchene.
 
-V1 includes:
+La V1 inclut :
 
-- public catalogue;
-- category and subcategory navigation;
-- product detail;
-- cart in `localStorage`;
-- checkout;
+- catalogue public ;
+- navigation par categorie et sous-categorie ;
+- fiche produit ;
+- panier dans `localStorage` ;
+- validation commande ;
 - confirmation;
-- protected admin;
-- products, categories, stock and orders management.
+- admin protege ;
+- gestion des produits, categories, stock et commandes.
 
-V1 excludes:
+La V1 exclut :
 
-- customer accounts;
-- online payment;
-- marketplace behavior;
-- delivery outside the Chechen Republic.
+- comptes clientes ;
+- paiement en ligne ;
+- fonctionnement marketplace ;
+- livraison hors Republique tchetchene.
 
-## Required References
+## References Requises
 
-Read only what is relevant:
+Lire seulement ce qui est pertinent :
 
 - `AGENTS.md`
 - `docs/specs/global-spec.md`
@@ -44,34 +44,34 @@ Read only what is relevant:
 - `docs/specs/technical/routes-navigation.md`
 - `docs/specs/technical/data-model.md`
 - `docs/changelog/index.md`
-- relevant files in `docs/changelog/zones/`
-- relevant files in `docs/specs/feature-specs/`
+- fichiers pertinents dans `docs/changelog/zones/`
+- fichiers pertinents dans `docs/specs/feature-specs/`
 
-## Workflow
+## Processus
 
-1. Identify the affected route, feature, or lot.
-2. Read the matching feature spec and changelog zone when useful.
-3. Follow the Development Plan workflow in `AGENTS.md`.
-4. Keep changes inside the active plan unless the user asks otherwise.
-5. Use `lib/constants.ts` for statuses and payment methods.
-6. Keep customer-facing text in Russian.
-7. Do not add out-of-scope V1 features.
-8. If delivered work changes documented history, update the matching changelog zone.
+1. Identifier la route, fonctionnalite ou le lot concerne.
+2. Lire la specification fonctionnelle correspondante et la zone de changelog quand c'est utile.
+3. Suivre le processus de plan de developpement dans `AGENTS.md`.
+4. Garder les changements dans le plan actif sauf demande contraire de l'utilisateur.
+5. Utiliser `lib/constants.ts` pour les statuts et modes de paiement.
+6. Garder les textes visibles par les clientes en russe.
+7. Ne pas ajouter de fonctionnalites hors perimetre V1.
+8. Si le travail livre change l'historique documente, mettre a jour la zone de changelog correspondante.
 
-## Delivery Rule
+## Regle De Livraison
 
-`AGENTS.md` is the source of truth for plan approval, branch creation, commit, push, Pull Request, user validation, and merge.
+`AGENTS.md` est la source de verite pour validation de plan, creation de branche, commit, push, Pull Request, validation utilisateur et merge.
 
-Every new Development Plan requires a newly created branch. Never reuse an existing branch for a new plan, even when it covers a similar subject.
+Chaque nouveau plan de developpement exige une nouvelle branche. Ne jamais reutiliser une branche existante pour un nouveau plan, meme si le sujet est proche.
 
-## Critical Invariants
+## Invariants Critiques
 
-- Product statuses: `DRAFT`, `PUBLISHED`, `HIDDEN`.
-- Visibility statuses: `VISIBLE`, `HIDDEN`.
-- Payment methods: `CASH_ON_DELIVERY`, `TRANSFER_AFTER_CONFIRMATION`.
-- Order statuses: `NEW`, `TO_CONFIRM`, `CONFIRMED`, `PREPARING`, `DELIVERED`, `CANCELLED`.
-- A commandable product must be published, in visible category and subcategory, and have stock greater than 0.
-- A stock 0 product remains visible if published, but cannot be ordered.
-- Exact stock is admin-only.
-- Order prices are frozen at validation.
-- Stock decreases only after successful order validation.
+- Statuts produit : `DRAFT`, `PUBLISHED`, `HIDDEN`.
+- Statuts de visibilite : `VISIBLE`, `HIDDEN`.
+- Modes de paiement : `CASH_ON_DELIVERY`, `TRANSFER_AFTER_CONFIRMATION`.
+- Statuts commande : `NEW`, `TO_CONFIRM`, `CONFIRMED`, `PREPARING`, `DELIVERED`, `CANCELLED`.
+- Un produit commandable doit etre publie, dans une categorie et une sous-categorie visibles, avec stock superieur a 0.
+- Un produit avec stock 0 reste visible s'il est publie, mais il ne peut pas etre commande.
+- Le stock exact est reserve a l'admin.
+- Les prix de commande sont figes a la validation.
+- Le stock diminue seulement apres validation reussie de commande.

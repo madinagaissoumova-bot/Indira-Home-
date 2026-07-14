@@ -1,4 +1,4 @@
-# Changelog - Admin Stock
+# Journal Des Changements - Stock Admin
 
 ## V1 - Gestion stock livree
 

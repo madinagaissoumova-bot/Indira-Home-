@@ -1,4 +1,4 @@
-# Work Plan - Indira Home
+# Plan De Travail - Indira Home
 
 Ce fichier decoupe le developpement en petites etapes.
 
@@ -207,7 +207,7 @@ Donner a l'admin une vue centrale apres connexion.
 - Afficher les indicateurs essentiels : chiffre d'affaires hors commandes annulees, nombre de commandes, nombre de produits et produits en rupture.
 - Afficher les commandes recentes dans un tableau.
 - Afficher les produits recemment ajoutes.
-- Ajouter une navigation admin simple vers dashboard, produits, categories, commandes, clients, stock et parametres.
+- Ajouter une navigation admin simple vers tableau de bord, produits, categories, commandes, clients, stock et parametres.
 - Ajouter la deconnexion depuis le tableau de bord.
 
 ### Verification

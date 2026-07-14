@@ -1,4 +1,4 @@
-# Changelog - Confirmation Et Confidentialite
+# Journal Des Changements - Confirmation Et Confidentialite
 
 ## V1 - Confirmation publique et confidentialite livrees
 
@@ -9,7 +9,7 @@
 
 ## 2026-06-04 - Spec confidentialite ajoutee
 
-- Ajout de la feature spec confidentialite.
+- Ajout de la specification fonctionnelle confidentialite.
 - Tracabilite de la confidentialite ajoutee dans les user stories et tests.
 
 ## 2026-06-02 - Verification donnees personnelles

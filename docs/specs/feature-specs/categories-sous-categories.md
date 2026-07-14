@@ -1,4 +1,4 @@
-# Feature Spec - Categories et sous-categories
+# Specification Fonctionnelle - Categories et sous-categories
 
 ## Objectif
 
@@ -26,7 +26,7 @@ Cette fonctionnalite couvre la gestion des categories et sous-categories. Elle n
 
 ## Structure de depart
 
-La structure de depart vient de la Function Map.
+La structure de depart vient de la carte fonctionnelle.
 
 | Categorie | Sous-categories possibles |
 | --- | --- |

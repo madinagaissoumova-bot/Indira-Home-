@@ -1,6 +1,6 @@
 ---
 name: indira-design-system
-description: Utiliser pour concevoir ou améliorer l'interface Indira Home, le style visuel, le responsive mobile, le CSS, les layouts, les composants, les pages clientes, les écrans admin, les cartes produit, les formulaires, le checkout ou le polish visuel.
+description: Utiliser pour concevoir ou ameliorer l'interface Indira Home, le style visuel, le responsive mobile, le CSS, les mises en page, les composants, les pages clientes, les ecrans admin, les cartes produit, les formulaires, la validation commande ou la finition visuelle.
 ---
 
 # Indira Design System
@@ -27,11 +27,11 @@ Indira Home doit donner une impression :
 - chaleureuse ;
 - propre ;
 - raffinee ;
-- mobile-first;
+- priorite mobile ;
 - centree sur les produits ;
 - plus premium qu'une boutique maison ordinaire.
 
-Les photos produit sont l'element visuel principal. Ne pas transformer le catalogue en landing page marketing.
+Les photos produit sont l'element visuel principal. Ne pas transformer le catalogue en page marketing.
 
 ## Palette
 
@@ -114,7 +114,7 @@ Formulaires clientes :
 - labels clairs ;
 - erreurs proches des champs ;
 - options de paiement presentees clairement ;
-- rappel au checkout que la boutique confirme par telephone ou WhatsApp.
+- rappel dans la validation commande que la boutique confirme par telephone ou WhatsApp.
 
 Formulaires admin :
 
@@ -137,7 +137,7 @@ Verifier :
 - cartes produit stables ;
 - filtres utilisables ;
 - lignes panier lisibles ;
-- champs checkout faciles a remplir ;
+- champs de validation commande faciles a remplir ;
 - tableaux admin faciles a scanner.
 
 ## Avant De Finir

@@ -1,4 +1,4 @@
-# Changelog - Infrastructure Et Donnees
+# Journal Des Changements - Infrastructure Et Donnees
 
 ## V1 - Base technique livree
 
@@ -8,7 +8,7 @@
 - Constantes metier partagees pour les statuts et modes de paiement.
 - Seeds et migrations V1.
 
-## 2026-06-07 - Migration idempotence checkout
+## 2026-06-07 - Migration idempotence validation commande
 
 - Ajout d'une migration Prisma pour `checkoutAttemptId`.
 - Migration Supabase appliquee lors de la verification du lot.

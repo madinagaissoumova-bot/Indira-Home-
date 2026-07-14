@@ -1,4 +1,4 @@
-# Feature Spec - Admin auth
+# Specification Fonctionnelle - Admin auth
 
 ## Objectif
 

@@ -1,15 +1,15 @@
 ---
 name: indira-admin-flow
-description: Use when working on Indira Home admin authentication, dashboard, products, categories, stock, orders, admin routes, admin actions, or protected management workflows.
+description: Utiliser pour travailler sur l'authentification admin Indira Home, le tableau de bord, les produits, les categories, le stock, les commandes, les routes admin, les actions admin ou les processus de gestion proteges.
 ---
 
-# Indira Admin Flow
+# Parcours Admin Indira
 
-Use this skill for admin work.
+Utiliser ce skill pour le travail admin.
 
-## Read First
+## Lire D'Abord
 
-Use the relevant files:
+Lire les fichiers pertinents :
 
 - `docs/specs/feature-specs/admin-auth.md`
 - `docs/specs/feature-specs/admin-dashboard.md`
@@ -34,43 +34,43 @@ Use the relevant files:
 - `/admin/orders`
 - `/admin/orders/:id`
 
-## Auth Rules
+## Regles Auth
 
-- Admin uses one V1 account from env vars.
-- Required env vars: `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`.
-- `ADMIN_PASSWORD_HASH` is bcrypt.
-- Session cookie: `indira_admin_session`.
-- Cookie must be HTTP-only, signed server-side, `SameSite=Lax`, and `Secure` in production.
-- All admin pages and actions verify session server-side.
-- No admin mutation via GET.
+- L'admin utilise un seul compte V1 configure par variables d'environnement.
+- Variables d'environnement requises : `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`.
+- `ADMIN_PASSWORD_HASH` utilise bcrypt.
+- Cookie de session : `indira_admin_session`.
+- Le cookie doit etre HTTP-only, signe cote serveur, `SameSite=Lax` et `Secure` en production.
+- Toutes les pages et actions admin verifient la session cote serveur.
+- Aucune mutation admin via GET.
 
-## Admin Product Rules
+## Regles Produits Admin
 
-- Draft can be incomplete.
-- Publishing requires name, description, price, image, category, subcategory and valid stock.
-- Hidden products are invisible to customers.
-- Product already present in a validated order cannot be permanently deleted in V1.
-- Use hiding for long-term removal when order history exists.
+- Un brouillon peut etre incomplet.
+- La publication exige nom, description, prix, image, categorie, sous-categorie et stock valide.
+- Les produits masques sont invisibles pour les clientes.
+- Un produit deja present dans une commande validee ne peut pas etre supprime definitivement en V1.
+- Utiliser le masquage pour un retrait durable quand un historique de commande existe.
 
-## Admin Stock Rules
+## Regles Stock Admin
 
-- Stock is exact and admin-only.
-- Stock must be an integer >= 0.
-- Stock 0 means customer-visible out of stock if product is published and visible.
-- Manual corrections after cancellation or phone changes are allowed.
-- Automatic stock decrease happens only during successful order validation.
+- Le stock exact est reserve a l'admin.
+- Le stock doit etre un entier >= 0.
+- Un stock 0 signifie epuise cote cliente si le produit est publie et visible.
+- Les corrections manuelles apres annulation ou changement par telephone sont autorisees.
+- La diminution automatique du stock arrive seulement pendant une validation de commande reussie.
 
-## Admin Order Rules
+## Regles Commandes Admin
 
-- Orders contain personal data and are admin-only.
-- Order item snapshots must stay readable after product changes.
-- Status changes are manual.
-- Cancellation does not automatically restore stock in V1.
-- Notes are internal only.
+- Les commandes contiennent des donnees personnelles et sont reservees a l'admin.
+- Les snapshots de lignes de commande doivent rester lisibles apres modification produit.
+- Les changements de statut sont manuels.
+- L'annulation remet automatiquement le stock en ligne seulement selon les regles documentees dans les specs.
+- Les notes sont internes uniquement.
 
-## Before Finishing
+## Avant De Finir
 
-- verify route/action protection;
-- verify customer data is not public;
-- verify destructive actions ask confirmation;
-- verify constants from `lib/constants.ts` are used.
+- verifier la protection des routes et actions ;
+- verifier que les donnees clientes ne sont pas publiques ;
+- verifier que les actions destructives demandent confirmation ;
+- verifier que les constantes de `lib/constants.ts` sont utilisees.

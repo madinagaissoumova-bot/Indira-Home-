@@ -1,4 +1,4 @@
-# Feature Spec - Confidentialite
+# Specification Fonctionnelle - Confidentialite
 
 ## Objectif
 

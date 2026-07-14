@@ -1,4 +1,4 @@
-# User Stories - Indira Home
+# Recits Utilisateur - Indira Home
 
 Ce fichier sert a verifier les parcours comme si une vraie utilisatrice testait le site.
 
@@ -12,7 +12,7 @@ Verifier que la V1 permet :
 
 ## Cliente - consulter le catalogue
 
-### Story
+### Recit
 
 En tant que cliente, je veux ouvrir le site Indira Home et voir rapidement les produits publies, afin de comprendre ce que la boutique vend.
 
@@ -26,7 +26,7 @@ En tant que cliente, je veux ouvrir le site Indira Home et voir rapidement les p
 
 ## Cliente - naviguer par categorie
 
-### Story
+### Recit
 
 En tant que cliente, je veux parcourir les produits par categorie et sous-categorie, afin de trouver plus vite un type d'article.
 
@@ -40,7 +40,7 @@ En tant que cliente, je veux parcourir les produits par categorie et sous-catego
 
 ## Cliente - rechercher un produit
 
-### Story
+### Recit
 
 En tant que cliente, je veux rechercher un produit par son nom, afin de ne pas parcourir tout le catalogue.
 
@@ -54,7 +54,7 @@ En tant que cliente, je veux rechercher un produit par son nom, afin de ne pas p
 
 ## Cliente - filtrer et trier
 
-### Story
+### Recit
 
 En tant que cliente, je veux filtrer les produits en stock, voir les nouveautes et trier par prix, afin de comparer facilement les articles.
 
@@ -68,7 +68,7 @@ En tant que cliente, je veux filtrer les produits en stock, voir les nouveautes 
 
 ## Cliente - lire une fiche produit
 
-### Story
+### Recit
 
 En tant que cliente, je veux ouvrir une fiche produit, afin de voir les photos, la description et les details avant de commander.
 
@@ -82,7 +82,7 @@ En tant que cliente, je veux ouvrir une fiche produit, afin de voir les photos, 
 
 ## Cliente - retrouver ses favoris
 
-### Story
+### Recit
 
 En tant que cliente, je veux marquer des produits avec un coeur et les retrouver plus tard sur le meme appareil, afin de comparer facilement mes choix avant de commander.
 
@@ -96,7 +96,7 @@ En tant que cliente, je veux marquer des produits avec un coeur et les retrouver
 
 ## Cliente - ajouter au panier
 
-### Story
+### Recit
 
 En tant que cliente, je veux ajouter un produit en stock au panier, afin de preparer ma commande.
 
@@ -111,7 +111,7 @@ En tant que cliente, je veux ajouter un produit en stock au panier, afin de prep
 
 ## Cliente - modifier le panier
 
-### Story
+### Recit
 
 En tant que cliente, je veux modifier les quantites ou retirer un produit, afin de corriger ma commande avant validation.
 
@@ -126,7 +126,7 @@ En tant que cliente, je veux modifier les quantites ou retirer un produit, afin 
 
 ## Cliente - produit devenu indisponible
 
-### Story
+### Recit
 
 En tant que cliente, je veux etre informee si un produit de mon panier devient indisponible, afin de corriger ma commande.
 
@@ -139,7 +139,7 @@ En tant que cliente, je veux etre informee si un produit de mon panier devient i
 
 ## Cliente - valider une commande
 
-### Story
+### Recit
 
 En tant que cliente, je veux envoyer ma commande sans creer de compte et sans paiement en ligne, afin que la boutique me contacte pour confirmer.
 
@@ -158,7 +158,7 @@ En tant que cliente, je veux envoyer ma commande sans creer de compte et sans pa
 
 ## Cliente - voir la confirmation
 
-### Story
+### Recit
 
 En tant que cliente, je veux voir une confirmation apres l'envoi de ma commande, afin de savoir que la boutique l'a bien recue.
 
@@ -175,7 +175,7 @@ En tant que cliente, je veux voir une confirmation apres l'envoi de ma commande,
 
 ## Cliente - comprendre la confidentialite
 
-### Story
+### Recit
 
 En tant que cliente, je veux comprendre quelles donnees sont collectees pour ma commande, afin de savoir comment la boutique les utilise.
 
@@ -190,7 +190,7 @@ En tant que cliente, je veux comprendre quelles donnees sont collectees pour ma 
 
 ## Cliente - livraison hors zone V1
 
-### Story
+### Recit
 
 En tant que cliente, je veux comprendre si ma zone n'est pas livree, afin de ne pas envoyer une commande impossible.
 
@@ -203,7 +203,7 @@ En tant que cliente, je veux comprendre si ma zone n'est pas livree, afin de ne 
 
 ## Admin - connexion
 
-### Story
+### Recit
 
 En tant qu'admin, je veux me connecter a un espace protege, afin de gerer la boutique.
 
@@ -215,7 +215,7 @@ En tant qu'admin, je veux me connecter a un espace protege, afin de gerer la bou
 
 ## Admin - tableau de bord
 
-### Story
+### Recit
 
 En tant qu'admin, je veux voir un tableau de bord central apres connexion, afin d'acceder rapidement aux commandes, aux produits, au stock et aux categories.
 
@@ -230,7 +230,7 @@ En tant qu'admin, je veux voir un tableau de bord central apres connexion, afin 
 
 ## Admin - gerer un produit
 
-### Story
+### Recit
 
 En tant qu'admin, je veux creer et publier un produit complet, afin qu'il apparaisse dans le catalogue.
 
@@ -245,7 +245,7 @@ En tant qu'admin, je veux creer et publier un produit complet, afin qu'il appara
 
 ## Admin - gerer categories et sous-categories
 
-### Story
+### Recit
 
 En tant qu'admin, je veux organiser les produits par categories et sous-categories, afin que le catalogue reste clair.
 
@@ -259,7 +259,7 @@ En tant qu'admin, je veux organiser les produits par categories et sous-categori
 
 ## Admin - gerer le stock
 
-### Story
+### Recit
 
 En tant qu'admin, je veux ajuster le stock d'un produit, afin que le catalogue reflete les quantites disponibles.
 
@@ -274,7 +274,7 @@ En tant qu'admin, je veux ajuster le stock d'un produit, afin que le catalogue r
 
 ## Admin - recevoir une commande
 
-### Story
+### Recit
 
 En tant qu'admin, je veux voir les nouvelles commandes, afin de contacter les clientes et organiser la livraison.
 
@@ -288,7 +288,7 @@ En tant qu'admin, je veux voir les nouvelles commandes, afin de contacter les cl
 
 ## Admin - suivre une commande
 
-### Story
+### Recit
 
 En tant qu'admin, je veux changer le statut d'une commande, afin de suivre son traitement.
 

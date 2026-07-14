@@ -6,7 +6,7 @@ Ce projet est **Indira Home**, une V1 e-commerce simple pour une boutique de vai
 
 Le comportement produit, les parcours, les routes, les statuts, les regles metier, l'UX, les criteres de validation et les textes visibles sont definis dans `docs/specs/`.
 
-## Stack
+## Pile Technique
 
 - Framework : Next.js App Router
 - Langage : TypeScript
@@ -26,12 +26,12 @@ Si le code et les specs se contredisent, preferer les specs, puis aligner le cod
 
 Avant toute modification de code, documentation ou configuration :
 
-- verifier la branche courante et le working tree ;
+- verifier la branche courante et l'etat du travail Git ;
 - verifier les plans actifs dans `docs/development-plans/en-cours/` ;
 - lire et appliquer `development-plan-workflow` si le travail demande un plan, une branche, une validation, un commit, une Pull Request ou touche au produit ;
 - ne pas modifier de fichier tant qu'un plan actif valide ne couvre pas explicitement le perimetre du changement.
 
-## Skills
+## Skills Projet
 
 Les copies versionnees des skills projet sont dans `codex-skills/`.
 
@@ -39,10 +39,10 @@ Les copies versionnees des skills projet sont dans `codex-skills/`.
 - `indira-spec-workflow` : utiliser pour tout changement lie aux specs, au comportement produit, aux routes, aux regles metier, aux plans, aux tickets ou a la coherence globale Indira Home.
 - `frontend-ux` : utiliser pour ameliorer l'ergonomie frontend, les parcours, la navigation, les formulaires, les libelles, les etats vides, erreurs, chargements et confirmations.
 - `mobile-first` : utiliser pour concevoir, corriger ou verifier une interface en partant du mobile, des petits ecrans, des actions tactiles et du responsive.
-- `indira-client-flow` : utiliser pour le parcours cliente Indira Home, notamment catalogue, categories, fiche produit, panier, checkout, confirmation et confidentialite.
-- `indira-admin-flow` : utiliser pour l'espace admin Indira Home, notamment authentification, dashboard, produits, categories, stock et commandes.
+- `indira-client-flow` : utiliser pour le parcours cliente Indira Home, notamment catalogue, categories, fiche produit, panier, validation commande, confirmation et confidentialite.
+- `indira-admin-flow` : utiliser pour l'espace admin Indira Home, notamment authentification, tableau de bord, produits, categories, stock et commandes.
 - `indira-design-system` : utiliser seulement quand le sujet concerne l'identite visuelle ou les regles graphiques specifiques a Indira Home.
-- `indira-qa-release` : utiliser pour les verifications V1, tests, securite, production, release readiness ou controle final.
+- `indira-qa-release` : utiliser pour les verifications V1, tests, securite, production, preparation de mise en ligne ou controle final.
 
 ## Verification
 
@@ -54,4 +54,4 @@ Les criteres de validation sont definis dans `docs/specs/`.
 
 - Dupliquer dans `AGENTS.md` des informations qui appartiennent aux specs produit.
 - Recopier dans `AGENTS.md` le contenu detaille des skills.
-- Ajouter dans `AGENTS.md` un workflow detaille qui appartient a un skill.
+- Ajouter dans `AGENTS.md` un processus detaille qui appartient a un skill.

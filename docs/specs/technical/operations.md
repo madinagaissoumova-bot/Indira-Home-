@@ -1,4 +1,4 @@
-# Technical Spec - Operations
+# Specification Technique - Operations
 
 ## Suppression et archivage
 

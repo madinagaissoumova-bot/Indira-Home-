@@ -1,4 +1,4 @@
-# Changelog - Contenu Et Traductions
+# Journal Des Changements - Contenu Et Traductions
 
 ## V1 - Textes russes livres
 

@@ -1,66 +1,66 @@
 ---
 name: indira-qa-release
-description: Use when verifying Indira Home V1, running QA, reviewing release readiness, checking security, production setup, tests, mobile behavior, or compliance with the V1 specs.
+description: Utiliser pour verifier Indira Home V1, lancer la QA, controler la preparation de mise en production, la securite, la configuration production, les tests, le comportement mobile ou la conformite aux specs V1.
 ---
 
-# Indira QA Release
+# QA Et Mise En Production Indira
 
-Use this skill for QA, review, and release readiness.
+Utiliser ce skill pour la QA, les revues et la preparation de mise en production.
 
-## Read First
+## Lire D'Abord
 
 - `docs/specs/validation-rules.md`
 - `docs/specs/technical/security-checklist.md`
 - `docs/specs/technical/production-plan.md`
 - `docs/changelog/index.md`
-- relevant files in `docs/changelog/zones/`
-- relevant feature specs for the area under review
+- fichiers pertinents dans `docs/changelog/zones/`
+- specifications fonctionnelles pertinentes pour la zone auditee
 
-## Verification Commands
+## Commandes De Verification
 
-Run when appropriate:
+Lancer quand c'est pertinent :
 
 - `npm run prisma:generate`
 - `npm run build`
 
-If available:
+Si disponible :
 
 - `npm run lint`
 - `npm test`
 - `npm run prisma:migrate`
 - `npm run prisma:seed`
 
-## Critical QA Areas
+## Zones QA Critiques
 
-Customer:
+Cliente :
 
-- catalogue shows only public products;
-- hidden categories/subcategories do not leak products;
-- stock 0 visible but not orderable;
-- cart stores only `productId` and `quantity`;
-- checkout recalculates server-side;
-- confirmation exposes no customer phone or address;
-- all customer text is Russian.
+- le catalogue affiche seulement les produits publics ;
+- les categories et sous-categories masquees ne laissent pas apparaitre leurs produits ;
+- les produits avec stock 0 sont visibles mais non commandables ;
+- le panier stocke seulement `productId` et `quantity` ;
+- la validation commande recalcule cote serveur ;
+- la confirmation n'expose ni telephone ni adresse cliente ;
+- tous les textes clientes sont en russe.
 
-Admin:
+Admin :
 
-- admin routes require session;
-- admin actions require session server-side;
-- product publication validation works;
-- deletion of ordered products is blocked;
-- stock cannot become negative;
-- order snapshots remain stable;
-- order personal data is admin-only.
+- les routes admin exigent une session ;
+- les actions admin exigent une session cote serveur ;
+- la validation de publication produit fonctionne ;
+- la suppression des produits deja commandes est bloquee ;
+- le stock ne peut pas devenir negatif ;
+- les snapshots de commande restent stables ;
+- les donnees personnelles des commandes sont reservees a l'admin.
 
-Release:
+Mise en production :
 
-- `DATABASE_URL` production is set;
-- admin env vars are set;
-- no secrets in code;
-- backup/rollback is planned;
-- no online payment is present;
-- delivery limit to the Chechen Republic is visible.
+- `DATABASE_URL` production est configure ;
+- les variables d'environnement admin sont configurees ;
+- aucun secret n'est dans le code ;
+- sauvegarde et rollback sont prevus ;
+- aucun paiement en ligne n'est present ;
+- la limite de livraison a la Republique tchetchene est visible.
 
-## Reporting Style
+## Style De Rapport
 
-Lead with blockers and regressions. Include file references when reviewing code. Keep summaries short and concrete.
+Commencer par les blocages et regressions. Inclure des references de fichiers pendant les reviews de code. Garder les resumes courts et concrets.

@@ -1,4 +1,4 @@
-# Technical Spec - Modele De Donnees
+# Specification Technique - Modele De Donnees
 
 ## Product
 
@@ -92,7 +92,7 @@ Pour la V1, le panier est stocke dans `localStorage` cote navigateur sous forme 
 | createdAt | Date | Date de validation |
 | updatedAt | Date | Automatique |
 
-Le checkout collecte le prenom et le nom dans deux champs distincts pour faciliter la validation et l'ergonomie. La V1 les stocke ensuite dans `customerName` sous la forme `Prenom Nom`.
+La validation commande collecte le prenom et le nom dans deux champs distincts pour faciliter la validation et l'ergonomie. La V1 les stocke ensuite dans `customerName` sous la forme `Prenom Nom`.
 
 `orderNumber` doit etre unique en base, genere cote serveur, stable apres creation et ne doit pas contenir de donnee personnelle. Le format V1 est `IH-YYYYMMDD-NNNNNN`, avec une partie aleatoire a six chiffres et une nouvelle tentative en cas de collision.
 
