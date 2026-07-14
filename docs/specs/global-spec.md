@@ -1,4 +1,4 @@
-# Global Spec - Indira Home
+# Specification Globale - Indira Home
 
 ## Description simple
 

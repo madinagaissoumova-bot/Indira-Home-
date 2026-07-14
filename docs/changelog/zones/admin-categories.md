@@ -1,4 +1,4 @@
-# Changelog - Admin Categories
+# Journal Des Changements - Categories Admin
 
 ## V1 - Gestion categories livree
 

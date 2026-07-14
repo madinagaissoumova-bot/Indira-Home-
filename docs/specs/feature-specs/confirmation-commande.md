@@ -1,4 +1,4 @@
-# Feature Spec - Confirmation commande
+# Specification Fonctionnelle - Confirmation commande
 
 ## Objectif
 

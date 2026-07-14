@@ -1,4 +1,4 @@
-# Feature Spec - Fiche produit
+# Specification Fonctionnelle - Fiche produit
 
 ## Objectif
 

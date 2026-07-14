@@ -1,4 +1,4 @@
-# Changelog - Indira Home
+# Journal Des Changements - Indira Home
 
 Ce changelog enregistre les travaux livres par zone de travail.
 
@@ -23,14 +23,14 @@ Quand un travail touche plusieurs zones, ajouter une entree courte dans chaque f
 - [Categories Et Sous-Categories](zones/categories-sous-categories.md)
 - [Fiche Produit](zones/fiche-produit.md)
 - [Panier](zones/panier.md)
-- [Checkout Et Commande Client](zones/checkout-commande-client.md)
+- [Validation Commande Et Commande Client](zones/checkout-commande-client.md)
 - [Confirmation Et Confidentialite](zones/confirmation-confidentialite.md)
-- [Admin Authentification](zones/admin-authentification.md)
-- [Admin Dashboard](zones/admin-dashboard.md)
-- [Admin Catalogue](zones/admin-catalogue.md)
-- [Admin Categories](zones/admin-categories.md)
-- [Admin Stock](zones/admin-stock.md)
-- [Admin Commandes](zones/admin-commandes.md)
+- [Authentification Admin](zones/admin-authentification.md)
+- [Tableau De Bord Admin](zones/admin-dashboard.md)
+- [Catalogue Admin](zones/admin-catalogue.md)
+- [Categories Admin](zones/admin-categories.md)
+- [Stock Admin](zones/admin-stock.md)
+- [Commandes Admin](zones/admin-commandes.md)
 - [Contenu Et Traductions](zones/contenu-traductions.md)
 - [UX Mobile Et Interface](zones/ux-mobile-interface.md)
 - [Securite Et Donnees Personnelles](zones/securite-donnees-personnelles.md)

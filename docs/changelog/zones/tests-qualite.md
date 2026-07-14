@@ -1,4 +1,4 @@
-# Changelog - Tests Et Qualite
+# Journal Des Changements - Tests Et Qualite
 
 ## V1 - Verification qualite livree
 
@@ -30,7 +30,7 @@
 
 - Tests couvrant blocage temporaire, expiration et remise a zero de la limitation de connexion admin.
 
-## 2026-06-07 - Tests stock et checkout
+## 2026-06-07 - Tests stock et validation commande
 
 - Test unitaire sur la restauration du stock apres annulation.
-- Test d'integration sur le renvoi d'une meme tentative checkout.
+- Test d'integration sur le renvoi d'une meme tentative de validation commande.

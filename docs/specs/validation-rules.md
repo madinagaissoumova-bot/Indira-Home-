@@ -104,7 +104,7 @@ Le serveur doit refuser une commande si :
 - un prix est invalide ;
 - une donnee cliente obligatoire manque.
 
-Le checkout collecte le prenom et le nom separement. Apres validation, le serveur les concatene dans `Order.customerName` sous la forme `Prenom Nom`.
+La validation commande collecte le prenom et le nom separement. Apres validation, le serveur les concatene dans `Order.customerName` sous la forme `Prenom Nom`.
 
 La creation de commande doit etre idempotente pour une meme tentative de validation. Un double clic, un retry reseau ou un renvoi du meme formulaire ne doit pas creer deux commandes ni decrementer deux fois le stock.
 
@@ -144,7 +144,7 @@ Si les scripts existent et sont adaptes au changement, executer aussi :
 | Fiche produit | Photos, prix, description, categorie et action panier sont visibles |
 | Panier | Ajout, retrait, augmentation, diminution et vidage fonctionnent |
 | Stock panier | Une quantite superieure au stock est bloquee sans afficher le stock exact |
-| Checkout | Les champs obligatoires sont valides et les erreurs sont en russe |
+| Validation commande | Les champs obligatoires sont valides et les erreurs sont en russe |
 | Livraison | Une zone vide est refusee et le message mentionne la Republique tchetchene |
 | Livraison hors zone | Une zone clairement hors Republique tchetchene est refusee |
 | Commande reussie | La commande est creee, le stock diminue et la confirmation s'affiche |
@@ -155,11 +155,11 @@ Si les scripts existent et sont adaptes au changement, executer aussi :
 
 | Parcours | Verification |
 | --- | --- |
-| Connexion | Une session valide ouvre le dashboard |
+| Connexion | Une session valide ouvre le tableau de bord |
 | Protection | Une session absente ou expiree redirige vers `/admin/login` |
 | Action protegee | Une action admin appelee sans session ne modifie aucune donnee |
 | Deconnexion | Apres logout, les pages admin redeviennent bloquees |
-| Dashboard | Compteurs, commandes recentes et alertes stock sont coherents |
+| Tableau de bord | Compteurs, commandes recentes et alertes stock sont coherents |
 | Annulation admin | Le bouton d'annulation admin passe la commande a `CANCELLED` et remet le stock en ligne une seule fois |
 | Produits | Creation brouillon, publication complete, masquage et suppression autorisee fonctionnent |
 | Publication | Un produit incomplet ne peut pas etre publie |
@@ -181,7 +181,7 @@ Si les scripts existent et sont adaptes au changement, executer aussi :
 | Produit masque | Un produit masque disparait du catalogue mais reste lisible dans les commandes |
 | Suppression produit commande | Un produit deja present dans une commande validee ne peut pas etre supprime definitivement |
 | Dernier stock | Deux validations concurrentes sur le dernier produit ne creent qu'une commande reussie |
-| Double soumission | Une meme tentative checkout envoyee plusieurs fois ne cree qu'une commande et ne diminue le stock qu'une fois |
+| Double soumission | Une meme tentative de validation commande envoyee plusieurs fois ne cree qu'une commande et ne diminue le stock qu'une fois |
 | Transaction | Une ligne invalide annule toute la commande et aucun stock ne diminue |
 | Taxonomie produit | Une sous-categorie qui n'appartient pas a la categorie choisie est refusee |
 | Numero commande | Le numero est unique, stable et ne contient aucune donnee personnelle |
@@ -204,7 +204,7 @@ Les points a verifier :
 - les boutons principaux sont faciles a toucher ;
 - les filtres catalogue restent utilisables ;
 - le panier reste lisible ;
-- le formulaire checkout est empile et clair ;
+- le formulaire de validation commande est empile et clair ;
 - l'admin reste utilisable sur desktop et acceptable sur tablette.
 
 ### Definition de sortie V1

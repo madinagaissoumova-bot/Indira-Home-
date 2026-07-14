@@ -1,4 +1,4 @@
-# Changelog - Categories Et Sous-Categories
+# Journal Des Changements - Categories Et Sous-Categories
 
 ## V1 - Navigation par collections livree
 

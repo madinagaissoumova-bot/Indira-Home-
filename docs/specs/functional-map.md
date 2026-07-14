@@ -1,4 +1,4 @@
-# Function Map - Indira Home
+# Carte Fonctionnelle - Indira Home
 
 Ce fichier liste ce que les utilisatrices peuvent faire sur le site.
 

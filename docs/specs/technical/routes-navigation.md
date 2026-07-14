@@ -1,4 +1,4 @@
-# Technical Spec - Routes Et Navigation
+# Specification Technique - Routes Et Navigation
 
 ## Pages publiques
 
@@ -60,7 +60,7 @@ Les routes publiques utilisent des segments techniques en anglais pour rester si
 
 - Les pages admin sont accessibles uniquement apres connexion.
 - Une admin non connectee est redirigee vers la connexion.
-- La navigation admin doit separer clairement : dashboard, produits, categories, commandes, clients, stock, parametres.
+- La navigation admin doit separer clairement : tableau de bord, produits, categories, commandes, clients, stock, parametres.
 - Les acces admin ne doivent pas etre dupliques dans plusieurs zones visibles du meme ecran.
 - L'admin doit pouvoir revenir a la liste apres avoir ouvert un produit ou une commande.
 - Le tableau de bord admin est la page d'arrivee apres connexion.
@@ -103,8 +103,8 @@ Le tableau de bord doit afficher au minimum :
 | Composant | Role |
 | --- | --- |
 | Formulaire connexion | Connecter l'admin |
-| Navigation admin | Permettre d'aller vers dashboard, produits, categories, commandes et stock sans doublon |
-| Indicateurs dashboard | Afficher chiffre d'affaires, commandes, produits et ruptures |
+| Navigation admin | Permettre d'aller vers tableau de bord, produits, categories, commandes et stock sans doublon |
+| Indicateurs tableau de bord | Afficher chiffre d'affaires, commandes, produits et ruptures |
 | Tableau commandes recentes | Afficher numero, cliente, date, statut, total et action d'ouverture |
 | Tableau produits recents | Afficher les derniers produits ajoutes |
 | Tableau produits | Lister les produits avec statut, stock, prix et actions |

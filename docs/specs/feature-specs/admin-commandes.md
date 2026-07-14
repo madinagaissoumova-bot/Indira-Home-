@@ -1,4 +1,4 @@
-# Feature Spec - Admin commandes
+# Specification Fonctionnelle - Admin commandes
 
 ## Objectif
 

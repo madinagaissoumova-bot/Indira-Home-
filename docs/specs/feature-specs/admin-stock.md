@@ -1,4 +1,4 @@
-# Feature Spec - Admin stock
+# Specification Fonctionnelle - Admin stock
 
 ## Objectif
 

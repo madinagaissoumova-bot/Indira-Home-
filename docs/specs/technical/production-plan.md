@@ -1,4 +1,4 @@
-# Production Plan - Indira Home V1
+# Plan De Production - Indira Home V1
 
 Ce fichier liste les decisions et verifications necessaires avant mise en production.
 
@@ -133,10 +133,10 @@ Verification manuelle :
 - catalogue public ;
 - fiche produit ;
 - panier ;
-- checkout ;
+- validation commande ;
 - confirmation ;
 - login admin ;
-- dashboard admin ;
+- tableau de bord admin ;
 - gestion produits ;
 - gestion stock ;
 - gestion commandes.
@@ -145,7 +145,7 @@ Verification manuelle :
 
 Cette procedure prepare la mise en ligne sans executer d'action destructive par reflexe.
 
-1. Verifier que la PR de release est mergee dans `main`.
+1. Verifier que la PR de mise en production est mergee dans `main`.
 2. Verifier que la CI GitHub est verte sur `main`.
 3. Creer ou choisir le projet Supabase PostgreSQL de production.
 4. Recuperer la connection string PostgreSQL Supabase prevue pour l'application.
@@ -172,13 +172,13 @@ Verifier sur l'URL production :
 - fiche produit accessible ;
 - favoris locaux fonctionnels ;
 - panier local fonctionnel ;
-- checkout accessible ;
+- validation commande accessible ;
 - commande test possible uniquement avec accord de la boutique ;
 - page confirmation sans telephone ni adresse affichee publiquement ;
 - page confidentialite accessible ;
 - `/admin` redirige vers `/admin/login` sans session ;
 - login admin possible avec les variables production ;
-- dashboard admin accessible apres connexion ;
+- tableau de bord admin accessible apres connexion ;
 - nouvelle commande visible dans l'admin si une commande test a ete creee ;
 - produit epuise non commandable ;
 - produit masque non visible cote cliente ;
@@ -240,10 +240,10 @@ Une migration destructive ne doit pas etre lancee sans sauvegarde recente.
 - Catalogue public verifie.
 - Fiche produit verifiee.
 - Panier verifie.
-- Checkout verifie.
+- Validation commande verifiee.
 - Confirmation verifiee sans donnees personnelles sensibles.
 - Login admin verifie.
-- Dashboard admin verifie.
+- Tableau de bord admin verifie.
 - Gestion produits, stock et commandes verifiee.
 
 ### Commande test

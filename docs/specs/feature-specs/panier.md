@@ -1,4 +1,4 @@
-# Feature Spec - Panier
+# Specification Fonctionnelle - Panier
 
 ## Objectif
 
@@ -139,7 +139,7 @@ Les messages visibles par les clientes doivent etre affiches en russe.
 - Le total du panier est calcule en roubles.
 - Le panier ne gere pas de paiement en ligne.
 - Le panier est accessible sans compte cliente.
-- La validation de commande se fait dans une autre Feature Spec.
+- La validation de commande se fait dans une autre specification fonctionnelle.
 - Le contenu stocke dans `localStorage` n'est jamais considere comme fiable cote serveur.
 
 ## Critères d'acceptation

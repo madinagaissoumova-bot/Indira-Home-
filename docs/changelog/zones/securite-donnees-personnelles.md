@@ -1,4 +1,4 @@
-# Changelog - Securite Et Donnees Personnelles
+# Journal Des Changements - Securite Et Donnees Personnelles
 
 ## V1 - Protections de base livrees
 

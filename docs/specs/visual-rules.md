@@ -1,4 +1,4 @@
-# Visual Rules - Indira Home
+# Regles Visuelles - Indira Home
 
 Ce fichier definit la direction visuelle et les regles de presentation de la V1.
 
@@ -42,7 +42,7 @@ La direction visuelle doit rester claire, douce, chaleureuse et premium. Le site
 - Garder les layouts, listes et tableaux visuellement stables.
 - Les layouts desktop peuvent etre plus larges, mais ne doivent pas rendre l'information plus difficile a scanner.
 - Eviter de transformer chaque section en carte. Les cartes sont reservees aux produits, aux lignes repetables, aux formulaires ou aux blocs qui ont besoin d'un vrai cadre fonctionnel.
-- Les pages de confirmation, panier et checkout doivent se sentir comme un parcours de confiance, pas comme des etats vides generiques.
+- Les pages de confirmation, panier et validation commande doivent se sentir comme un parcours de confiance, pas comme des etats vides generiques.
 
 ## Boutons Et Actions
 

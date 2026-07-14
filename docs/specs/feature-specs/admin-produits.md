@@ -1,4 +1,4 @@
-# Feature Spec - Admin produits
+# Specification Fonctionnelle - Admin produits
 
 ## Objectif
 

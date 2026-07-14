@@ -1,15 +1,15 @@
 ---
 name: indira-client-flow
-description: Use when working on Indira Home customer-facing catalogue, categories, product detail, cart, checkout, confirmation, mobile UX, or Russian customer copy.
+description: Utiliser pour travailler sur le parcours cliente Indira Home : catalogue, categories, fiche produit, panier, validation commande, confirmation, UX mobile ou textes clientes en russe.
 ---
 
-# Indira Client Flow
+# Parcours Cliente Indira
 
-Use this skill for public customer experience work.
+Utiliser ce skill pour le travail sur l'experience cliente publique.
 
-## Read First
+## Lire D'Abord
 
-Use the relevant files:
+Lire les fichiers pertinents :
 
 - `docs/specs/feature-specs/catalogue-produits.md`
 - `docs/specs/feature-specs/categories-sous-categories.md`
@@ -19,7 +19,7 @@ Use the relevant files:
 - `docs/specs/feature-specs/confirmation-commande.md`
 - `docs/specs/visual-rules.md`
 - `lib/i18n/ru.ts`
-- relevant files in `docs/changelog/zones/`
+- fichiers pertinents dans `docs/changelog/zones/`
 
 ## Routes
 
@@ -31,44 +31,44 @@ Use the relevant files:
 - `/checkout`
 - `/checkout/confirmation`
 
-## Customer Rules
+## Regles Cliente
 
-- All customer-visible text is in Russian.
-- Prices are displayed in roubles.
-- Customers do not create accounts.
-- No online payment in V1.
-- Delivery is limited to the Chechen Republic.
-- Store public WhatsApp: `+7 988 906-41-06`.
-- Do not display exact stock to customers.
-- Published stock 0 products stay visible but are not orderable.
-- Draft or hidden products are not visible.
-- Products in hidden categories or subcategories are not visible, even by direct product URL.
+- Tous les textes visibles par les clientes sont en russe.
+- Les prix sont affiches en roubles.
+- Les clientes ne creent pas de compte.
+- Pas de paiement en ligne en V1.
+- La livraison est limitee a la Republique tchetchene.
+- WhatsApp public de la boutique : `+7 988 906-41-06`.
+- Ne pas afficher le stock exact aux clientes.
+- Les produits publies avec stock 0 restent visibles mais non commandables.
+- Les brouillons et produits masques ne sont pas visibles.
+- Les produits dans des categories ou sous-categories masquees ne sont pas visibles, meme par URL produit directe.
 
-## Cart Rules
+## Regles Panier
 
-Store only this in `localStorage`:
+Stocker uniquement ceci dans `localStorage` :
 
 - `productId`
 - `quantity`
 
-Never trust browser cart data for price, stock, status, category visibility, or total. Recalculate server-side before checkout/order.
+Ne jamais faire confiance aux donnees panier du navigateur pour prix, stock, statut, visibilite categorie ou total. Recalculer cote serveur avant validation commande ou commande.
 
-## UX Rules
+## Regles UX
 
 - Mobile-first.
-- Catalogue is the first useful screen, not a marketing landing page.
-- Keep product cards stable and readable.
-- Use clear empty states and errors.
-- Do not add long explanations to the customer UI.
+- Le catalogue est le premier ecran utile, pas une landing page marketing.
+- Garder les cartes produit stables et lisibles.
+- Utiliser des etats vides et erreurs clairs.
+- Ne pas ajouter de longues explications dans l'UI cliente.
 
-## Implementation Checklist
+## Liste De Verification De Mise En Oeuvre
 
-Before finishing customer work:
+Avant de finir un travail cliente :
 
-- customer text is Russian;
-- no exact stock appears;
-- out-of-stock products cannot be added;
-- hidden category/subcategory products are inaccessible;
-- checkout has no online payment;
-- confirmation exposes no customer phone or address;
-- mobile layout does not overflow.
+- les textes clientes sont en russe ;
+- aucun stock exact n'apparait ;
+- les produits epuises ne peuvent pas etre ajoutes ;
+- les produits de categories ou sous-categories masquees sont inaccessibles ;
+- la validation commande n'a pas de paiement en ligne ;
+- la confirmation n'expose ni telephone ni adresse cliente ;
+- le layout mobile ne deborde pas.

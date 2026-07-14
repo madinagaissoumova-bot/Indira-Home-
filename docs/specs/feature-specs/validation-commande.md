@@ -1,4 +1,4 @@
-# Feature Spec - Validation commande
+# Specification Fonctionnelle - Validation commande
 
 ## Objectif
 

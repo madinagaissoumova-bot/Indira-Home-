@@ -1,4 +1,4 @@
-# Changelog - UX Mobile Et Interface
+# Journal Des Changements - UX Mobile Et Interface
 
 ## V1 - Interface mobile-first livree
 
@@ -18,8 +18,8 @@
 
 ## 2026-06-02 - Verification navigateur V1
 
-- Parcours public mobile verifie sur accueil, categorie, sous-categorie, recherche, fiche produit, panier, checkout, confirmation et confidentialite.
-- Admin connecte verifie sur dashboard, produits, detail produit, categories, stock, commandes et detail commande.
+- Parcours public mobile verifie sur accueil, categorie, sous-categorie, recherche, fiche produit, panier, validation commande, confirmation et confidentialite.
+- Admin connecte verifie sur tableau de bord, produits, detail produit, categories, stock, commandes et detail commande.
 - Corrections CSS anti-debordement appliquees.
 
 ## 2026-06-02 - Style editorial

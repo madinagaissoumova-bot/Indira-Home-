@@ -1,4 +1,4 @@
-# Security Checklist - Indira Home V1
+# Checklist Securite - Indira Home V1
 
 Cette checklist couvre le minimum securite attendu pour la V1.
 
@@ -91,4 +91,4 @@ Cette checklist couvre le minimum securite attendu pour la V1.
 - Tester commande avec categorie masquee.
 - Tester commande avec stock insuffisant.
 - Tester confirmation ouverte directement.
-- Tester logs lors d'une erreur checkout.
+- Tester les logs lors d'une erreur de validation commande.

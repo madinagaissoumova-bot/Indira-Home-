@@ -1,4 +1,4 @@
 interface:
-  display_name: "Mobile First"
-  short_description: "Design and audit mobile-first interfaces"
-  default_prompt: "Use $mobile-first to design or audit this interface from the mobile experience first."
+  display_name: "Priorite Mobile"
+  short_description: "Concevoir et auditer depuis le mobile"
+  default_prompt: "Utilise $mobile-first pour concevoir ou auditer cette interface en partant de l'experience mobile."

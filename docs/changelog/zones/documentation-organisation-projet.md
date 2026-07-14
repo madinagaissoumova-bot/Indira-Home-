@@ -1,4 +1,9 @@
-# Changelog - Documentation Et Organisation Projet
+# Journal Des Changements - Documentation Et Organisation Projet
+
+## 2026-07-14 - Harmonisation francais des documents projet
+
+- Harmonisation en francais des titres de specs, du journal des changements et des skills versionnes.
+- Conservation des routes, noms de fichiers, variables, enums, commandes et noms techniques exacts.
 
 ## 2026-06-28 - Changelog par fichiers de zones
 
@@ -19,7 +24,7 @@
 
 ## 2026-07-07 - Correction du template de plan
 
-- Alignement de `docs/development-plans/en-cours/TEMPLATE.md` avec le workflow Pull Request vers `main`.
+- Alignement de `docs/development-plans/en-cours/TEMPLATE.md` avec le processus Pull Request vers `main`.
 
 ## 2026-06-28 - Nettoyage des README et de ru-copy
 
@@ -38,7 +43,7 @@
 - Conservation d'un historique des changements V1 deja livres.
 - Suppression de la planification V2 du changelog.
 
-## 2026-06-09 - Workflow main obligatoire
+## 2026-06-09 - Processus main obligatoire
 
 - Clarification du cycle de livraison vers `main`.
 - Formalisation du passage par branche dediee, Pull Request, validation explicite et merge.
@@ -47,4 +52,4 @@
 
 - Audit des specs V1.
 - Clarification de l'identite cliente, de la taxonomie produit, du numero de commande, des statuts et des images.
-- Ajout des exigences d'idempotence checkout et de limitation des tentatives admin.
+- Ajout des exigences d'idempotence de validation commande et de limitation des tentatives admin.

@@ -1,4 +1,4 @@
-# Changelog - Panier
+# Journal Des Changements - Panier
 
 ## V1 - Panier client livre
 

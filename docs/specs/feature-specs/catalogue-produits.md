@@ -1,4 +1,4 @@
-# Feature Spec - Catalogue produits
+# Specification Fonctionnelle - Catalogue produits
 
 ## Objectif
 
@@ -271,7 +271,7 @@ Les details visuels sont definis dans `visual-rules.md`.
 - Un produit en brouillon ne doit jamais apparaitre dans le catalogue client.
 - Un produit publie doit avoir au minimum un nom, une photo, un prix, une categorie, une sous-categorie, une description et un stock valide.
 - En V1, chaque produit doit etre associe a une categorie et a une sous-categorie.
-- Les categories et sous-categories de depart viennent de la Function Map, mais l'admin doit pouvoir les modifier.
+- Les categories et sous-categories de depart viennent de la carte fonctionnelle, mais l'admin doit pouvoir les modifier.
 - Le catalogue doit pouvoir accueillir de nouvelles categories plus tard.
 - Les noms de categories et sous-categories visibles par les clientes doivent etre en russe.
 - Les noms de categories en francais dans les specs servent seulement a organiser le projet.

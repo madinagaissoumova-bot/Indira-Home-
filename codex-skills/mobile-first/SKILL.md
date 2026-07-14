@@ -1,38 +1,38 @@
 ---
 name: mobile-first
-description: Design, implement, or audit interfaces from the phone experience first. Use when the user asks for mobile-first UI, phone-first layouts, mobile ergonomics, responsive behavior starting from small screens, tap target improvements, mobile navigation, or mobile checkout/form/catalogue flows.
+description: Concevoir, implementer ou auditer les interfaces en partant d'abord de l'experience telephone. Utiliser quand l'utilisateur demande une UI mobile-first, des layouts penses pour telephone, une meilleure ergonomie mobile, un responsive depuis les petits ecrans, de meilleures zones tactiles, une navigation mobile ou des parcours mobile pour validation commande, formulaire ou catalogue.
 ---
 
-# Mobile First
+# Priorite Mobile
 
-Use this skill when the mobile experience must drive the interface decisions, not merely be adapted after desktop.
+Utiliser ce skill quand l'experience mobile doit guider les decisions d'interface, et pas seulement etre adaptee apres le desktop.
 
-## Workflow
+## Processus
 
-1. Start from the primary mobile task and the smallest practical viewport.
-2. Place content in the order a phone user needs it: identity, context, primary action, supporting details.
-3. Design one-column structure first; add multi-column desktop layouts only after the mobile flow works.
-4. Prioritize tap comfort, readable text, stable controls, and clear next actions.
-5. Verify that desktop did not regress after mobile changes.
+1. Commencer par la tache mobile principale et le plus petit viewport pratique.
+2. Placer le contenu dans l'ordre utile sur telephone : identite, contexte, action principale, details secondaires.
+3. Concevoir d'abord la structure en une colonne ; ajouter les layouts desktop multi-colonnes seulement apres validation du parcours mobile.
+4. Prioriser le confort tactile, le texte lisible, les controles stables et les actions suivantes claires.
+5. Verifier que le desktop n'a pas regresse apres les changements mobiles.
 
-## Mobile Priorities
+## Priorites Mobile
 
-- Keep the main action reachable without hunting.
-- Prefer compact navigation, drawers, segmented controls, and stacked forms on small screens.
-- Avoid desktop-only assumptions such as hover-only actions, wide tables, cramped toolbars, or side-by-side forms.
-- Keep tap targets comfortable and separated.
-- Keep product cards, form rows, counters, and toolbar controls dimensionally stable.
-- Do not shrink text until it becomes hard to read; simplify layout first.
+- Garder l'action principale facile a trouver.
+- Preferer navigation compacte, drawers, controles segmentes et formulaires empiles sur petits ecrans.
+- Eviter les hypotheses desktop uniquement : actions hover-only, grands tableaux, toolbars serrees ou formulaires cote a cote.
+- Garder les zones tactiles confortables et separees.
+- Garder les cartes produit, lignes de formulaire, compteurs et controles de toolbar dimensionnellement stables.
+- Ne pas reduire le texte jusqu'a le rendre difficile a lire ; simplifier d'abord le layout.
 
 ## Verification
 
-- Check at phone, tablet, and desktop widths when the app can run locally.
-- Inspect overflow, clipped labels, text wrapping, fixed-width elements, and horizontal scroll.
-- Test the main path with realistic content length.
-- Confirm that empty, loading, error, disabled, and success states remain usable on mobile.
+- Verifier aux largeurs telephone, tablette et desktop quand l'app peut tourner localement.
+- Inspecter debordements, labels coupes, retours a la ligne, elements a largeur fixe et scroll horizontal.
+- Tester le parcours principal avec des longueurs de contenu realistes.
+- Confirmer que les etats vide, chargement, erreur, desactive et succes restent utilisables sur mobile.
 
-## Guardrails
+## Garde-Fous
 
-- Do not turn a catalogue, dashboard, form, or tool into a marketing page just because it is mobile.
-- Do not hide critical information behind weak icons or unexplained controls.
-- Do not solve mobile problems by removing required functionality.
+- Ne pas transformer un catalogue, tableau de bord, formulaire ou outil en page marketing sous pretexte de mobile.
+- Ne pas cacher les informations critiques derriere des icones faibles ou des controles non expliques.
+- Ne pas resoudre les problemes mobiles en supprimant une fonctionnalite requise.

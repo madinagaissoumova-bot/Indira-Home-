@@ -1,4 +1,4 @@
-# Changelog - Fiche Produit
+# Journal Des Changements - Fiche Produit
 
 ## V1 - Fiche produit livree
 

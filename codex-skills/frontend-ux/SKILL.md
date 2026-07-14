@@ -1,40 +1,40 @@
 ---
 name: frontend-ux
-description: Improve frontend usability, interaction design, navigation, forms, conversion flows, labels, feedback, loading and error states, accessibility-minded polish, and responsive user journeys. Use when the user asks for a better frontend UX, clearer flow, smoother interface, less friction, better forms, better states, or a usability audit.
+description: Ameliorer l'utilisabilite frontend, les interactions, la navigation, les formulaires, les parcours de conversion, les libelles, les retours, les etats de chargement et d'erreur, l'accessibilite pratique et les parcours responsive. Utiliser quand l'utilisateur demande une meilleure UX frontend, un parcours plus clair, une interface plus fluide, moins de friction, de meilleurs formulaires, de meilleurs etats ou un audit d'utilisabilite.
 ---
 
 # Frontend UX
 
-Use this skill when the problem is how the interface works for a user: clarity, flow, feedback, ergonomics, and confidence.
+Utiliser ce skill quand le probleme concerne le fonctionnement de l'interface pour l'utilisateur : clarte, parcours, retours, ergonomie et confiance.
 
-## Workflow
+## Processus
 
-1. Identify the user's goal and the page or flow that supports it.
-2. Map the current path: entry, decision points, action, confirmation, recovery.
-3. Fix confusion before decoration: labels, hierarchy, state, navigation, and feedback.
-4. Make forms, buttons, tables, filters, and navigation predictable.
-5. Verify with realistic data, empty states, errors, and mobile behavior.
+1. Identifier l'objectif de l'utilisateur et la page ou le parcours qui le soutient.
+2. Cartographier le chemin actuel : entree, points de decision, action, confirmation, recuperation.
+3. Corriger la confusion avant la decoration : libelles, hierarchie, etat, navigation et retours.
+4. Rendre les formulaires, boutons, tableaux, filtres et navigations previsibles.
+5. Verifier avec des donnees realistes, des etats vides, des erreurs et le comportement mobile.
 
-## UX Checks
+## Verifications UX
 
-- The next action is obvious and named accurately.
-- Primary and secondary actions are visually distinct.
-- Forms explain required input only where needed and show errors near fields.
-- Loading, empty, disabled, success, and failure states are present and honest.
-- Navigation lets the user move forward, back, and recover from dead ends.
-- Interface text matches what the system actually does.
-- Keyboard focus, labels, contrast, and tap targets are reasonable.
+- L'action suivante est evidente et correctement nommee.
+- Les actions principales et secondaires sont visuellement distinctes.
+- Les formulaires expliquent les champs requis seulement quand c'est utile et affichent les erreurs pres des champs.
+- Les etats chargement, vide, desactive, succes et echec sont presents et honnetes.
+- La navigation permet d'avancer, de revenir et de sortir des impasses.
+- Les textes d'interface correspondent a ce que le systeme fait vraiment.
+- Le focus clavier, les labels, le contraste et les zones tactiles restent raisonnables.
 
-## Implementation Guidance
+## Conseils De Mise En Oeuvre
 
-- Prefer improving existing components and patterns over adding a new design system.
-- Keep changes close to the affected flow.
-- Use icons only when they clarify the action; otherwise use direct labels.
-- Avoid adding explanatory copy inside the app when better structure or labels solve the issue.
-- Preserve business rules and backend truth; never make UX imply an action succeeded before it has.
+- Preferer l'amelioration des composants et patterns existants plutot que l'ajout d'un nouveau design system.
+- Garder les changements proches du parcours concerne.
+- Utiliser des icones seulement si elles clarifient l'action ; sinon utiliser des libelles directs.
+- Eviter d'ajouter du texte explicatif dans l'app quand une meilleure structure ou de meilleurs libelles resolvent le probleme.
+- Preserver les regles metier et la verite backend ; ne jamais laisser l'UX faire croire qu'une action a reussi avant que ce soit vrai.
 
-## Guardrails
+## Garde-Fous
 
-- Do not optimize visuals while leaving the flow ambiguous.
-- Do not add new steps unless they remove larger confusion.
-- Do not hide critical actions or errors behind subtle styling.
+- Ne pas optimiser le visuel en laissant le parcours ambigu.
+- Ne pas ajouter de nouvelles etapes sauf si elles retirent une confusion plus importante.
+- Ne pas cacher des actions ou erreurs critiques derriere un style trop discret.

@@ -1,48 +1,48 @@
 ---
 name: development-plan-workflow
-description: Follow a strict development plan workflow for scoped project work. Use when the user asks to create, validate, execute, move, commit, push, open, or merge a development plan; when project instructions require branch-per-plan work; or when a task needs plan approval before implementation.
+description: Suivre un processus strict de plan de developpement pour un travail delimite. Utiliser quand l'utilisateur demande de creer, valider, executer, deplacer, commit, push, ouvrir ou merger un plan de developpement ; quand les instructions projet exigent une branche par plan ; ou quand une tache demande validation du plan avant implementation.
 ---
 
-# Development Plan Workflow
+# Processus De Plan De Developpement
 
-Use this skill when work must be controlled by a validated plan, branch, commit, and Pull Request.
+Utiliser ce skill quand le travail doit etre controle par un plan valide, une branche, un commit et une Pull Request.
 
-## Workflow
+## Processus
 
-1. Check the current branch and working tree.
-2. Move to `main` and verify the local `main` status against `origin/main` when possible.
-3. Discuss the need and write the plan content in the conversation.
-4. Wait for explicit user validation before implementation.
-5. Create a new branch from `main`; do not reuse old branches for new plans.
-6. Save the validated plan in the active plans folder used by the project.
-7. Implement only the approved scope.
-8. Run the relevant checks and update tracking docs if the project requires it.
-9. Move the plan to the completed plans folder when the work is done.
-10. Commit, push the branch, and open a Pull Request.
-11. Wait for explicit user validation before merging.
-12. After merge, return to `main` and synchronize it.
+1. Verifier la branche courante et le working tree.
+2. Passer sur `main` et verifier l'etat local de `main` par rapport a `origin/main` quand c'est possible.
+3. Discuter le besoin et ecrire le contenu du plan dans la conversation.
+4. Attendre la validation explicite de l'utilisateur avant implementation.
+5. Creer une nouvelle branche depuis `main` ; ne pas reutiliser d'anciennes branches pour de nouveaux plans.
+6. Enregistrer le plan valide dans le dossier des plans actifs du projet.
+7. Implementer uniquement le perimetre approuve.
+8. Lancer les verifications pertinentes et mettre a jour les documents de suivi si le projet l'exige.
+9. Deplacer le plan dans le dossier des plans termines quand le travail est fait.
+10. Commit, push la branche et ouvrir une Pull Request.
+11. Attendre la validation explicite de l'utilisateur avant merge.
+12. Apres merge, revenir sur `main` et synchroniser.
 
-## Plan Content
+## Contenu Du Plan
 
-Include only what helps execution:
+Inclure uniquement ce qui aide l'execution :
 
-- objective;
-- scope;
-- out of scope;
-- likely files or areas;
-- expected verification;
-- risks or constraints.
+- objectif ;
+- perimetre ;
+- hors perimetre ;
+- fichiers ou zones probables ;
+- verification attendue ;
+- risques ou contraintes.
 
 ## Discipline
 
-- Treat a small correction as a new subject if it was not included in the active plan.
-- Keep one plan equal to one branch and one Pull Request unless the user explicitly says otherwise.
-- Do not expand scope silently while implementing.
-- If project-specific instructions define folders or statuses, follow those instructions over generic defaults.
+- Traiter une petite correction comme un nouveau sujet si elle n'etait pas incluse dans le plan actif.
+- Garder un plan egal a une branche et une Pull Request sauf demande explicite contraire de l'utilisateur.
+- Ne pas elargir le perimetre silencieusement pendant l'implementation.
+- Si les instructions du projet definissent des dossiers ou statuts, suivre ces instructions avant les valeurs generiques.
 
 ## Verification
 
-- Check the final diff against the approved scope.
-- Run documentation checks for docs-only work.
-- Run lint/build/tests according to the files changed and the project instructions.
-- State clearly if any expected check could not be run.
+- Comparer le diff final au perimetre approuve.
+- Lancer les verifications documentaires pour un travail uniquement documentaire.
+- Lancer lint, build ou tests selon les fichiers modifies et les instructions du projet.
+- Dire clairement si une verification attendue n'a pas pu etre lancee.

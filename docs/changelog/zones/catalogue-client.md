@@ -1,4 +1,4 @@
-# Changelog - Catalogue Client
+# Journal Des Changements - Catalogue Client
 
 ## V1 - Catalogue public livre
 
