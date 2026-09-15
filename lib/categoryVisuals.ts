@@ -10,7 +10,7 @@ const CATEGORY_VISUALS: Record<string, { image: string; tone: string }> = {
     tone: "#ead8c7"
   },
   "bytovaya-tehnika": {
-    image: "/uploads/brand/home-strict-tehnika-smeg.png",
+    image: "/uploads/brand/home-strict-tehnika-smeg-logo.png",
     tone: "#ead8c7"
   },
   dekor: {
